@@ -181,7 +181,7 @@
         <p>最近公司做的项目据我观察就是flux架构，即使不是也是Flux存在多种实现之一，比如Redux之类的。</p>
 <h2 id="Flux架构"><a href="#Flux架构" class="headerlink" title="Flux架构"></a>Flux架构</h2><p>先来个<code>阮老师</code>(好多人喜欢这么称呼)链接，</p>
 <p>参考链接 <a href="http://www.ruanyifeng.com/blog/2016/01/flux.html" target="_blank" rel="external">Browse blog</a> </p>
-<p><img src="/assets/blogImg/flux/flux_1.png" alt="原型" title="flux架构"></p>
+<p><img src="/assets/blogImg/flux/flux_1.png" alt="flux" title="flux架构"></p>
 <h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><ul>
 <li>View：视图层；</li>
 <li>Action：动作层，视图层发出的消息(比如click)；</li>
@@ -196,6 +196,22 @@
 <li>View 收到”change”事件后，更新页面</li>
 </ul>
 <p>上面过程中，数据总是”单向流动”，任何相邻的部分都不会发生数据的”双向流动”。这保证了流程的清晰。</p>
+<p>然后就是看阮老师的<a href="http://www.ruanyifeng.com/blog/2016/01/flux.html" target="_blank" rel="external">demo</a>,我是看的差不多了。</p>
+<p>想用调试工具调一下，先是用<code>chrome react</code> 插件,搞了好久，插件闪来闪去，没法弄。git上的源码又不知怎么变成crc文件。<br>然后只能用react-hot-loader<a href="https://www.v2ex.com/t/286262" target="_blank" rel="external">链接</a><br>也可以试试react-transform</p>
+<p>在webpack配置完react-hot-loader后又调不好程序了-_-!!!。<br><img src="/assets/blogImg/flux/flux_1.png" alt="webpack配置错误" title="webpack配置错误"><br>不知道了，应该可以找到。</p>
+<h2 id="Redux"><a href="#Redux" class="headerlink" title="Redux"></a>Redux</h2><p>2015年，Redux 出现，将 Flux 与函数式编程结合一起，很短时间内就成为了最热门的前端架构。</p>
+<p><a href="http://www.ruanyifeng.com/blog/2016/09/redux_tutorial_part_one_basic_usages.html" target="_blank" rel="external">参考链接</a></p>
+<p>整个过程是：</p>
+<ul>
+<li>用户发出 Action，store.dispatch(action);</li>
+<li>Store 自动调用 Reducer，并且传入两个参数：当前 State 和收到的 Action。 Reducer 会返回新的 State。</li>
+<li>State 一旦有变化，Store 就会调用监听函数。</li>
+<li>listener可以通过store.getState()得到当前状态。如果使用的是 React，这时可以触发重新渲染 View。</li>
+</ul>
+<p><img src="/assets/blogImg/flux/redux_1.png" alt="redux" title="redux架构"></p>
+<p>然后，看demo。</p>
+<p>还有异步操作：Action 发出以后，过一段时间再执行 Reducer，这就是异步。这个没细看，感觉像面向切面的编程(AOP)。</p>
+<p><img src="/assets/blogImg/flux/redux_2.png" alt="redux" title="redux架构"></p>
 
       
 
