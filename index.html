@@ -158,6 +158,56 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-搭载git服务器" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/03/05/搭载git服务器/">搭载git服务器</a>
+    </h1>
+  
+
+        
+        <a href="/2017/03/05/搭载git服务器/" class="archive-article-date">
+  	<time datetime="2017-03-05T06:55:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-05</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/03/05/搭载git服务器/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
     <article id="post-Flux架构" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -215,7 +265,7 @@
 <h2 id="公司项目分析"><a href="#公司项目分析" class="headerlink" title="公司项目分析"></a>公司项目分析</h2><h4 id="项目src的目录介绍"><a href="#项目src的目录介绍" class="headerlink" title="项目src的目录介绍"></a>项目src的目录介绍</h4><p><img src="/assets/blogImg/flux/xm_1.png" alt="项目" title="项目"></p>
 <p>其实还是不大懂！！</p>
 <h4 id="关于bind"><a href="#关于bind" class="headerlink" title="关于bind"></a>关于bind</h4><p>找了些资料总结一下：当需要传参，为了确保处理函数中的this时刻指向这个组件，就需要bind。bind会可以复制出一个函数，改变函数指针，给函数传参。</p>
-<p>比如下面这个demo<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">var  Hello=React.createClass(&#123;</div><div class="line">		getInitialState:<span class="function"><span class="title">function</span></span>()&#123;</div><div class="line">			<span class="built_in">return</span> &#123;</div><div class="line">				name:<span class="string">''</span>,</div><div class="line">				sex:<span class="string">''</span>,</div><div class="line">				age:<span class="string">''</span>,</div><div class="line">				tel:<span class="string">''</span>,</div><div class="line">				address:<span class="string">''</span></div><div class="line">			&#125;</div><div class="line">		&#125;,</div><div class="line">		changeValue:<span class="keyword">function</span>(<span class="built_in">type</span>,e)&#123;			</div><div class="line">			var that=this;</div><div class="line">			var obj=&#123;&#125;</div><div class="line">			obj[<span class="built_in">type</span>]=e.target.value;</div><div class="line">			that.setState(obj)</div><div class="line">		&#125;,</div><div class="line">		render:<span class="function"><span class="title">function</span></span>()&#123;</div><div class="line">			<span class="built_in">return</span> (</div><div class="line">				&lt;div&gt;</div><div class="line">					&lt;input onChange=&#123;this.changeValue.bind(this,<span class="string">'name'</span>)&#125; <span class="built_in">type</span>=<span class="string">"text"</span> defaultValue=<span class="string">'default value'</span> /&gt;&#123;this.state.name&#125;&lt;br/&gt;</div><div class="line">					&lt;input onChange=&#123;this.changeValue.bind(this,<span class="string">'sex'</span>)&#125; <span class="built_in">type</span>=<span class="string">"text"</span> defaultValue=<span class="string">'default value'</span> /&gt;&#123;this.state.sex&#125;&lt;br/&gt;</div><div class="line">					&lt;input onChange=&#123;this.ageChange&#125; <span class="built_in">type</span>=<span class="string">"text"</span> defaultValue=<span class="string">'default value'</span> /&gt;&#123;this.state.age&#125;&lt;br/&gt;</div><div class="line"></div><div class="line">				&lt;/div&gt;</div><div class="line">			)</div><div class="line">		&#125;</div><div class="line">	&#125;)</div><div class="line">	ReactDOM.render(&lt;Hello/&gt;,document.getElementById(<span class="string">"app"</span>));</div></pre></td></tr></table></figure></p>
+<p>比如下面这个demo<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">var  Hello=React.createClass(&#123;</div><div class="line">	getInitialState:<span class="function"><span class="title">function</span></span>()&#123;</div><div class="line">		<span class="built_in">return</span> &#123;</div><div class="line">			name:<span class="string">''</span>,</div><div class="line">			sex:<span class="string">''</span>,</div><div class="line">			age:<span class="string">''</span>,</div><div class="line">			tel:<span class="string">''</span>,</div><div class="line">			address:<span class="string">''</span></div><div class="line">		&#125;</div><div class="line">	&#125;,</div><div class="line">	changeValue:<span class="keyword">function</span>(<span class="built_in">type</span>,e)&#123;			</div><div class="line">		var that=this;</div><div class="line">		var obj=&#123;&#125;</div><div class="line">		obj[<span class="built_in">type</span>]=e.target.value;</div><div class="line">		that.setState(obj)</div><div class="line">	&#125;,</div><div class="line">	render:<span class="function"><span class="title">function</span></span>()&#123;</div><div class="line">		<span class="built_in">return</span> (</div><div class="line">			&lt;div&gt;</div><div class="line">				&lt;input onChange=&#123;this.changeValue.bind(this,<span class="string">'name'</span>)&#125; <span class="built_in">type</span>=<span class="string">"text"</span> defaultValue=<span class="string">'default value'</span> /&gt;&#123;this.state.name&#125;&lt;br/&gt;</div><div class="line">				&lt;input onChange=&#123;this.changeValue.bind(this,<span class="string">'sex'</span>)&#125; <span class="built_in">type</span>=<span class="string">"text"</span> defaultValue=<span class="string">'default value'</span> /&gt;&#123;this.state.sex&#125;&lt;br/&gt;</div><div class="line">				&lt;input onChange=&#123;this.ageChange&#125; <span class="built_in">type</span>=<span class="string">"text"</span> defaultValue=<span class="string">'default value'</span> /&gt;&#123;this.state.age&#125;&lt;br/&gt;</div><div class="line"></div><div class="line">			&lt;/div&gt;</div><div class="line">		)</div><div class="line">	&#125;</div><div class="line">&#125;)</div><div class="line">    ReactDOM.render(&lt;Hello/&gt;,document.getElementById(<span class="string">"app"</span>));</div></pre></td></tr></table></figure></p>
 <p>项目中初始化时bind</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">class InvitationJoin extends Component &#123;</div><div class="line">    constructor(props) &#123;</div><div class="line">        super(props);</div><div class="line"></div><div class="line">        this.state = &#123;&#125;;</div><div class="line">        this.join = this.join.bind(this);</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="title">join</span></span>() &#123;&#125;</div><div class="line">    <span class="function"><span class="title">render</span></span>() &#123;</div><div class="line">        <span class="built_in">return</span> &lt;div className=&#123;style.box&#125;&gt;</div><div class="line">			.......</div><div class="line">			&lt;div className=&#123;style.btnBox&#125;&gt;</div><div class="line">                &lt;div className=&#123;button.normal&#125; onClick=&#123;this.join&#125;&gt;&#123;<span class="string">'加入'</span>&#125;&lt;/div&gt;</div><div class="line">            &lt;/div&gt;</div><div class="line">			........</div><div class="line">        &lt;/div&gt;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="built_in">export</span> default InvitationJoin;</div></pre></td></tr></table></figure>
 <p>使用箭头函数从而避免bind,剑锋说效率低。</p>
