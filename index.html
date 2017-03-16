@@ -180,6 +180,10 @@
       
         <h2 id="这篇主要是canvas"><a href="#这篇主要是canvas" class="headerlink" title="这篇主要是canvas"></a>这篇主要是canvas</h2><p>最终要达到的效果是下面这个样子：</p>
 <p><img src="/assets/blogImg/canvas/earth.gif" alt="earth" title="earth"></p>
+<h4 id="demo1弹弹球，碰撞就变色"><a href="#demo1弹弹球，碰撞就变色" class="headerlink" title="demo1弹弹球，碰撞就变色"></a>demo1弹弹球，碰撞就变色</h4><p><img src="/assets/blogImg/canvas/ball.gif" alt="ball" title="ball"></p>
+<p>这个解决最长时间的问题是：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">ctx.beginPath();</div><div class="line">drawBall(ballX,ballY);</div><div class="line">ctx.closePath();</div></pre></td></tr></table></figure>
+<p>缺了2行代码，导致运动完的路径一直都在。</p>
 
       
 
@@ -486,7 +490,7 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">-react</a>
+                <a href="javascript:void(0)" class="js-tag color2">-JavaScript</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -494,11 +498,7 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">-前端架构</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">-前端框架</a>
+                <a href="javascript:void(0)" class="js-tag color2">-react</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -506,11 +506,15 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">-前端架构</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">-服务器</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">-JavaScript</a>
+                <a href="javascript:void(0)" class="js-tag color1">-前端框架</a>
               </li>
             
             <div class="clearfix"></div>
