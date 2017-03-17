@@ -186,6 +186,13 @@
 <p>缺了2行代码，导致运动完的路径一直都在。</p>
 <h4 id="demo2-时钟"><a href="#demo2-时钟" class="headerlink" title="demo2 时钟"></a>demo2 时钟</h4><p><img src="/assets/blogImg/canvas/clock.gif" alt="clock" title="clock"></p>
 <h4 id="demo3-画板"><a href="#demo3-画板" class="headerlink" title="demo3 画板"></a>demo3 画板</h4><p><img src="/assets/blogImg/canvas/board.gif" alt="board" title="board"></p>
+<h4 id="demo4-运动"><a href="#demo4-运动" class="headerlink" title="demo4 运动"></a>demo4 运动</h4><p><img src="/assets/blogImg/canvas/transform.gif" alt="transform" title="transform"></p>
+<p>这个的主要问题是：</p>
+<ul>
+<li>canvas的旋转是从上一次旋转开始计算的和css3不一样，除非加上<code>save()</code>和<code>restore()</code>方法；</li>
+<li>clearRect的时候还待translate(0,0)，这个问题。。反正我的浏览器待这样弄。</li>
+<li>一个画板要画多个连续运动图像怎么办？</li>
+</ul>
 
       
 
@@ -488,15 +495,19 @@ var _hmt = _hmt || [];
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">-canvas</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">-前端架构</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">-canvas</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">-react</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">-md语法</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -505,10 +516,6 @@ var _hmt = _hmt || [];
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">-前端框架</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">-md语法</a>
               </li>
              
               <li class="article-tag-list-item">
