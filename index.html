@@ -180,7 +180,8 @@
       
         <h2 id="第一步"><a href="#第一步" class="headerlink" title="第一步"></a>第一步</h2><p>先把下面这个用5分钟看完-_-!!</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">http://es6.ruanyifeng.com/</div></pre></td></tr></table></figure>
-<h2 id="第二步写demo"><a href="#第二步写demo" class="headerlink" title="第二步写demo"></a>第二步写demo</h2><h4 id="demo1-实现登录注册"><a href="#demo1-实现登录注册" class="headerlink" title="demo1 实现登录注册"></a>demo1 实现登录注册</h4><h4 id="demo2-读取歌词"><a href="#demo2-读取歌词" class="headerlink" title="demo2 读取歌词"></a>demo2 读取歌词</h4>
+<h2 id="第二步写demo"><a href="#第二步写demo" class="headerlink" title="第二步写demo"></a>第二步写demo</h2><h4 id="demo1-实现登录注册"><a href="#demo1-实现登录注册" class="headerlink" title="demo1 实现登录注册"></a>demo1 实现登录注册</h4><h4 id="demo2-读取歌词"><a href="#demo2-读取歌词" class="headerlink" title="demo2 读取歌词"></a>demo2 读取歌词</h4><p><img src="/assets/blogImg/node/music.gif" alt="music" title="music"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line">//读取歌词文件</div><div class="line">//使用cmd进入node脚本模式</div><div class="line">const fs=require(<span class="string">"fs"</span>);</div><div class="line">const path = require(<span class="string">"path"</span>);</div><div class="line"></div><div class="line"><span class="built_in">let</span> _path=path.join(__dirname,<span class="string">'./xxx.lrc'</span>)</div><div class="line"></div><div class="line">fs.stat(_path,(err,stats)=&gt;&#123;</div><div class="line">	<span class="keyword">if</span>(err) throw err;</div><div class="line">	//console.log(stats)</div><div class="line">	fs.readFile(_path,(err,content)=&gt;&#123;</div><div class="line">		<span class="keyword">if</span>(err) throw err;</div><div class="line">		//默认的就是utf-8,所以不用写。</div><div class="line">		//console.log(content.toString(<span class="string">'utf-8'</span>))</div><div class="line">		<span class="built_in">let</span> lines = content.toString(<span class="string">'utf-8'</span>).split(<span class="string">'\n'</span>);</div><div class="line">		//console.log(lines);</div><div class="line">		<span class="built_in">let</span> rg=/\[(\d&#123;2&#125;)\:(\d&#123;2&#125;)\.(\d&#123;2&#125;)\](.+)/;</div><div class="line">		lines.forEach((line,index)=&gt;&#123;</div><div class="line">			//console.log(rg.test(line))</div><div class="line">			<span class="built_in">let</span> matchs =rg.exec(line);</div><div class="line">			<span class="keyword">if</span>(matchs)&#123;</div><div class="line">				//console.log(matchs)</div><div class="line">				<span class="built_in">let</span> h = matchs[1];</div><div class="line">				<span class="built_in">let</span> m = matchs[2];</div><div class="line">				<span class="built_in">let</span> _s = matchs[3];</div><div class="line">				<span class="built_in">let</span> w = matchs[4];</div><div class="line">				<span class="built_in">set</span>Timeout(()=&gt;&#123;</div><div class="line">					console.log(w);</div><div class="line">					//定时器的参数是毫秒</div><div class="line">				&#125;,h*60*1000+m*1000+_s*10)</div><div class="line">			&#125;</div><div class="line">		&#125;)</div><div class="line"></div><div class="line">	&#125;)</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
       
 
       
@@ -499,6 +500,10 @@ var _hmt = _hmt || [];
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">前端架构</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Node.js</a>
               </li>
              
@@ -515,6 +520,10 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">react</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">canvas</a>
               </li>
              
@@ -523,15 +532,7 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">react</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">前端架构</a>
               </li>
              
               <li class="article-tag-list-item">
