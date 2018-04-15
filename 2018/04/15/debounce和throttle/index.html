@@ -8,16 +8,27 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>debounce和throttle | zhangzs的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="山西大学11级。擅长各项前端技能，深入研究移动端开发与前端性能。非专业视觉设计师。此为博客一枚。">
+  <meta name="description" content="这个问题也经常会碰到，于是手动实现试试
+debounce(防抖)间隔时间内只能执行一次把该封装的封装，抽离的抽离
+
+`btn.addEventListener(‘click’,debounce())function debounce() {    return function() {        clearTimeout(this.timer)        this.timer = setT">
 <meta property="og:type" content="article">
 <meta property="og:title" content="debounce和throttle">
 <meta property="og:url" content="http://yoursite.com/2018/04/15/debounce和throttle/index.html">
 <meta property="og:site_name" content="zhangzs的博客">
-<meta property="og:description" content="山西大学11级。擅长各项前端技能，深入研究移动端开发与前端性能。非专业视觉设计师。此为博客一枚。">
-<meta property="og:updated_time" content="2018-04-15T00:15:40.323Z">
+<meta property="og:description" content="这个问题也经常会碰到，于是手动实现试试
+debounce(防抖)间隔时间内只能执行一次把该封装的封装，抽离的抽离
+
+`btn.addEventListener(‘click’,debounce())function debounce() {    return function() {        clearTimeout(this.timer)        this.timer = setT">
+<meta property="og:image" content="http://yoursite.com/assets/blogImg/debounce&throttle/001.gif">
+<meta property="og:updated_time" content="2018-04-15T00:59:52.891Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="debounce和throttle">
-<meta name="twitter:description" content="山西大学11级。擅长各项前端技能，深入研究移动端开发与前端性能。非专业视觉设计师。此为博客一枚。">
+<meta name="twitter:description" content="这个问题也经常会碰到，于是手动实现试试
+debounce(防抖)间隔时间内只能执行一次把该封装的封装，抽离的抽离
+
+`btn.addEventListener(‘click’,debounce())function debounce() {    return function() {        clearTimeout(this.timer)        this.timer = setT">
+<meta name="twitter:image" content="http://yoursite.com/assets/blogImg/debounce&throttle/001.gif">
   
     <link rel="alternative" href="/atom.xml" title="zhangzs的博客" type="application/atom+xml">
   
@@ -177,7 +188,29 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <h2 id="这个问题也经常会碰到，于是手动实现试试"><a href="#这个问题也经常会碰到，于是手动实现试试" class="headerlink" title="这个问题也经常会碰到，于是手动实现试试"></a>这个问题也经常会碰到，于是手动实现试试</h2><ul>
+<li>debounce(防抖)间隔时间内只能执行一次<h1 id="把该封装的封装，抽离的抽离"><a href="#把该封装的封装，抽离的抽离" class="headerlink" title="把该封装的封装，抽离的抽离"></a>把该封装的封装，抽离的抽离</h1></li>
+</ul>
+<p>`<br>btn.addEventListener(‘click’,debounce())<br>function debounce() {<br>    return function() {<br>        clearTimeout(this.timer)<br>        this.timer = setTimeout(function(){<br>            todo()<br>        },500)<br>    }<br>}<br>function todo() {<br>    console.log(11111)<br>}</p>
+<p>`<br><img src="/assets/blogImg/debounce&amp;throttle/001.gif" alt="debounce" title="debounce"></p>
+<h1 id="再优化一下，回调，传参，绑定作用域"><a href="#再优化一下，回调，传参，绑定作用域" class="headerlink" title="再优化一下，回调，传参，绑定作用域"></a>再优化一下，回调，传参，绑定作用域</h1><p><code>// 这个还是蛮标准的。
+btn.addEventListener(&#39;click&#39;,debounce(todo, 500))
+function debounce(fn, delay) {
+    return function() {
+        let context = this; // btn
+        let args = arguments; // 事件e
+        clearTimeout(this.timer)
+        this.timer = setTimeout(function(){
+            fn.apply(context, args)
+        },delay)
+    }
+}
+function todo(param) {
+    console.log(11111, param)
+}</code></p>
+<h1 id="目前的情况是间隔时间后才触发"><a href="#目前的情况是间隔时间后才触发" class="headerlink" title="目前的情况是间隔时间后才触发"></a>目前的情况是间隔时间后才触发</h1><p>`</p>
+<p>`</p>
+
       
 
       
@@ -459,11 +492,11 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">服务器</a>
+                <a href="javascript:void(0)" class="js-tag color5">前端框架</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">前端框架</a>
+                <a href="javascript:void(0)" class="js-tag color4">服务器</a>
               </li>
             
             <div class="clearfix"></div>

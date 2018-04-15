@@ -158,6 +158,78 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-debounce和throttle" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/04/15/debounce和throttle/">debounce和throttle</a>
+    </h1>
+  
+
+        
+        <a href="/2018/04/15/debounce和throttle/" class="archive-article-date">
+  	<time datetime="2018-04-15T00:15:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-15</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="这个问题也经常会碰到，于是手动实现试试"><a href="#这个问题也经常会碰到，于是手动实现试试" class="headerlink" title="这个问题也经常会碰到，于是手动实现试试"></a>这个问题也经常会碰到，于是手动实现试试</h2><ul>
+<li>debounce(防抖)间隔时间内只能执行一次<h1 id="把该封装的封装，抽离的抽离"><a href="#把该封装的封装，抽离的抽离" class="headerlink" title="把该封装的封装，抽离的抽离"></a>把该封装的封装，抽离的抽离</h1></li>
+</ul>
+<p>`<br>btn.addEventListener(‘click’,debounce())<br>function debounce() {<br>    return function() {<br>        clearTimeout(this.timer)<br>        this.timer = setTimeout(function(){<br>            todo()<br>        },500)<br>    }<br>}<br>function todo() {<br>    console.log(11111)<br>}</p>
+<p>`<br><img src="/assets/blogImg/debounce&amp;throttle/001.gif" alt="debounce" title="debounce"></p>
+<h1 id="再优化一下，回调，传参，绑定作用域"><a href="#再优化一下，回调，传参，绑定作用域" class="headerlink" title="再优化一下，回调，传参，绑定作用域"></a>再优化一下，回调，传参，绑定作用域</h1><p><code>// 这个还是蛮标准的。
+btn.addEventListener(&#39;click&#39;,debounce(todo, 500))
+function debounce(fn, delay) {
+    return function() {
+        let context = this; // btn
+        let args = arguments; // 事件e
+        clearTimeout(this.timer)
+        this.timer = setTimeout(function(){
+            fn.apply(context, args)
+        },delay)
+    }
+}
+function todo(param) {
+    console.log(11111, param)
+}</code></p>
+<h1 id="目前的情况是间隔时间后才触发"><a href="#目前的情况是间隔时间后才触发" class="headerlink" title="目前的情况是间隔时间后才触发"></a>目前的情况是间隔时间后才触发</h1><p>`</p>
+<p>`</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/04/15/debounce和throttle/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
     <article id="post-手写react和redux" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -258,59 +330,9 @@
 
 
   
-    <article id="post-jQuery源码分析" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/15/jQuery源码分析/">jQuery源码分析</a>
-    </h1>
-  
-
-        
-        <a href="/2018/04/15/jQuery源码分析/" class="archive-article-date">
-  	<time datetime="2018-04-15T00:14:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-15</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/04/15/jQuery源码分析/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
+      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
     </nav>
   
 
@@ -447,11 +469,11 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">服务器</a>
+                <a href="javascript:void(0)" class="js-tag color5">前端框架</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">前端框架</a>
+                <a href="javascript:void(0)" class="js-tag color4">服务器</a>
               </li>
             
             <div class="clearfix"></div>
