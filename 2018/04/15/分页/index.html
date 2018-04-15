@@ -8,16 +8,31 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>分页 | zhangzs的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="山西大学11级。擅长各项前端技能，深入研究移动端开发与前端性能。非专业视觉设计师。此为博客一枚。">
+  <meta name="description" content="反正就是想写个分页呢
+1.先整个假数据
+123let _data = &amp;#123;	&amp;quot;images&amp;quot;: [1, 2, 3, 4, 5, 6, 1, 2, 3, 4, 5, 6, 1, 2, 3, 4, 5, 6, 1, 2, 3, 4, 5, 6, 1, 2, 3, 4, 5, 6]&amp;#125;
+
+2.把基本结构和样式写好
+1234567891011121314&amp;lt;styl">
 <meta property="og:type" content="article">
 <meta property="og:title" content="分页">
 <meta property="og:url" content="http://yoursite.com/2018/04/15/分页/index.html">
 <meta property="og:site_name" content="zhangzs的博客">
-<meta property="og:description" content="山西大学11级。擅长各项前端技能，深入研究移动端开发与前端性能。非专业视觉设计师。此为博客一枚。">
-<meta property="og:updated_time" content="2018-04-15T00:19:52.070Z">
+<meta property="og:description" content="反正就是想写个分页呢
+1.先整个假数据
+123let _data = &amp;#123;	&amp;quot;images&amp;quot;: [1, 2, 3, 4, 5, 6, 1, 2, 3, 4, 5, 6, 1, 2, 3, 4, 5, 6, 1, 2, 3, 4, 5, 6, 1, 2, 3, 4, 5, 6]&amp;#125;
+
+2.把基本结构和样式写好
+1234567891011121314&amp;lt;styl">
+<meta property="og:updated_time" content="2018-04-15T08:54:26.412Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="分页">
-<meta name="twitter:description" content="山西大学11级。擅长各项前端技能，深入研究移动端开发与前端性能。非专业视觉设计师。此为博客一枚。">
+<meta name="twitter:description" content="反正就是想写个分页呢
+1.先整个假数据
+123let _data = &amp;#123;	&amp;quot;images&amp;quot;: [1, 2, 3, 4, 5, 6, 1, 2, 3, 4, 5, 6, 1, 2, 3, 4, 5, 6, 1, 2, 3, 4, 5, 6, 1, 2, 3, 4, 5, 6]&amp;#125;
+
+2.把基本结构和样式写好
+1234567891011121314&amp;lt;styl">
   
     <link rel="alternative" href="/atom.xml" title="zhangzs的博客" type="application/atom+xml">
   
@@ -177,7 +192,30 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <h4 id="反正就是想写个分页呢"><a href="#反正就是想写个分页呢" class="headerlink" title="反正就是想写个分页呢"></a>反正就是想写个分页呢</h4><ul>
+<li><p>1.先整个假数据</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">let _data = &#123;</div><div class="line">	&quot;images&quot;: [1, 2, 3, 4, 5, 6, 1, 2, 3, 4, 5, 6, 1, 2, 3, 4, 5, 6, 1, 2, 3, 4, 5, 6, 1, 2, 3, 4, 5, 6]</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>2.把基本结构和样式写好</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">&lt;style type=&quot;text/css&quot;&gt;</div><div class="line">    body&#123; margin:0 auto;&#125;</div><div class="line">    #container&#123; width:1000px; height:200px; overflow:hidden; margin:0 auto;&#125;</div><div class="line">    #container span&#123; display:block; width:172px; height:172px; padding:3px; border:solid 1px #ccc; float:left; margin:10px; display:inline;&#125;</div><div class="line">    #container span img&#123; width:172px; height:172px; border:none; float:left;&#125;</div><div class="line"></div><div class="line">    #button&#123; width:1000px; height:40px; margin:0 auto; overflow:hidden;&#125;</div><div class="line">    #button span.root&#123; display:block; width:180px; height:40px; overflow:hidden; margin:0 auto;&#125;</div><div class="line">    #button span span&#123; display:block; width:28px; height:28px; overflow:hidden; border:solid 1px #ccc; float:left; margin-left:5px; display:inline; line-height:30px; font-size:13px; color:#555; text-align:center; cursor:pointer;&#125;</div><div class="line">&lt;/style&gt;</div><div class="line">&lt;div id=&quot;container&quot;&gt;</div><div class="line"></div><div class="line">&lt;/div&gt;</div><div class="line">&lt;div id=&quot;button&quot;&gt;&lt;/div&gt;</div></pre></td></tr></table></figure>
+</li>
+<li><p>3.创建分页类，并构思好架构</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">// 分页类</div><div class="line">function PageContent() &#123;</div><div class="line">	.....</div><div class="line">	this.bindEvent = function()&#123;</div><div class="line">		....用于绑定事件</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	this.initButton = function()&#123;</div><div class="line">		.... 用于初始化分页按钮</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	this.getImg = function() &#123;</div><div class="line">		...用于获取图片,并对图片做样式包装</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	this.initData = function() &#123;</div><div class="line">		...用于初始化数据</div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>4.实现初始化数据</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">// 也就是展示第一页的内容</div><div class="line">this.initData = function() &#123;</div><div class="line">	// 加载图片并包装</div><div class="line">	this.getImg(_data, 0, this.pagesize)</div><div class="line">	// 获取总页数</div><div class="line">	this.totalPages = Math.ceil(_data[&apos;images&apos;].length/this.pagesize)</div><div class="line">	// 初始化分页按钮数</div><div class="line">	this.initButton()</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>5.实现获取图片</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">this.getImg=function(data,_s,_o)&#123;</div><div class="line">	var _html=&quot;&quot;;</div><div class="line">	for(var i=_s;i&lt;_o;i++)&#123;</div><div class="line">		_html+=&quot;&lt;span&gt;&lt;img alt=\&quot;\&quot; src=\&quot;waterfall/&quot;+data[&quot;images&quot;][i]+&quot;.jpg&quot;+&quot;\&quot;/&gt;&lt;/span&gt;&quot;;</div><div class="line">	&#125;</div><div class="line">	$(&quot;#container&quot;).html(_html);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>6.初始化分页按钮</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">// 把一页展示的几个按钮显示出来,为了简单可以一页把所有的按钮都展示-_-!!!</div><div class="line">this.initButton=function()&#123;</div><div class="line">	var _btn=&quot;&lt;span class=\&quot;root\&quot;&gt;&quot;;</div><div class="line">	for(var i=this.s;i&lt;=this.o &amp;&amp; i&lt;this.total;i++)&#123;</div><div class="line">		_btn+=&quot;&lt;span&gt;&quot;+i+&quot;&lt;/span&gt;&quot;;</div><div class="line">	&#125;</div><div class="line">	_btn+=&quot;&lt;/span&gt;&quot;;</div><div class="line">	$(&quot;#button&quot;).html(_btn);</div><div class="line">	this.bindEvent();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>7.绑定事件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">this.bindEvent=function()&#123;</div><div class="line">	var _self=this;</div><div class="line">	$(&quot;.root span&quot;).click(function()&#123;</div><div class="line">		// 为每个按钮添加点击事件，并且还要刷新按钮样式</div><div class="line">		_self.s=(parseInt($(this).html())-1)*_self.size;</div><div class="line">	    _self.o=_self.s+_self.size;</div><div class="line">		</div><div class="line">		// reloadData加载数据</div><div class="line">		_self.getImg(data,_self.s,_self.o);</div><div class="line">	&#125;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="太草率了，以后附上github链接"><a href="#太草率了，以后附上github链接" class="headerlink" title="太草率了，以后附上github链接"></a>太草率了，以后附上github链接</h3>
       
 
       
@@ -423,10 +461,6 @@ var _hmt = _hmt || [];
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">react</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Node.js</a>
               </li>
              
@@ -443,6 +477,14 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">前端架构</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">react</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">canvas</a>
               </li>
              
@@ -452,10 +494,6 @@ var _hmt = _hmt || [];
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">前端架构</a>
               </li>
              
               <li class="article-tag-list-item">
