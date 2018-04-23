@@ -24,7 +24,7 @@
 
 2.如何实现创建的实例上有绑定的事件
 1234567891011121314class">
-<meta property="og:updated_time" content="2018-04-16T00:11:57.620Z">
+<meta property="og:updated_time" content="2018-04-23T23:20:15.464Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="手写react和redux">
 <meta name="twitter:description" content="简单实现一个react，点赞组件。具体参考react小书，或my github
@@ -206,7 +206,12 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">class Component &#123;</div><div class="line">    setState (state) &#123;</div><div class="line">      </div><div class="line">    &#125;</div><div class="line"></div><div class="line">    _renderDOM () &#123;</div><div class="line">      </div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  class LikeButton extends Component &#123;</div><div class="line">    constructor (props) &#123;</div><div class="line">      super(props)</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    onClick () &#123;</div><div class="line">      </div><div class="line">    &#125;</div><div class="line"></div><div class="line">    render () &#123;</div><div class="line">      return `</div><div class="line">        ...</div><div class="line">      `</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">  </div><div class="line">  // 把组件的 DOM 元素插入页面，并且在 setState 的时候更新页面</div><div class="line">  mount(new LikeButton(), wrapper)</div></pre></td></tr></table></figure>
 </li>
 </ul>
-
+<h4 id="上面还涉及到柯里化"><a href="#上面还涉及到柯里化" class="headerlink" title="上面还涉及到柯里化"></a>上面还涉及到柯里化</h4><h5 id="但是看过很多博客都对柯里化做了解释总感觉有种牵强附会的感觉，强扭的瓜不甜。其实说白了，柯里化不过就是“用空间换时间”"><a href="#但是看过很多博客都对柯里化做了解释总感觉有种牵强附会的感觉，强扭的瓜不甜。其实说白了，柯里化不过就是“用空间换时间”" class="headerlink" title="但是看过很多博客都对柯里化做了解释总感觉有种牵强附会的感觉，强扭的瓜不甜。其实说白了，柯里化不过就是“用空间换时间”"></a>但是看过很多博客都对柯里化做了解释总感觉有种牵强附会的感觉，强扭的瓜不甜。其实说白了，柯里化不过就是“用空间换时间”</h5><h5 id="三个优点"><a href="#三个优点" class="headerlink" title="三个优点"></a>三个优点</h5><ul>
+<li>参数复用</li>
+<li>提前执行</li>
+<li>延迟执行</li>
+</ul>
+<h6 id="具体代码详见github"><a href="#具体代码详见github" class="headerlink" title="具体代码详见github"></a>具体代码详见github</h6>
       
 
       
@@ -452,7 +457,15 @@ var _hmt = _hmt || [];
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">前端架构</a>
+                <a href="javascript:void(0)" class="js-tag color2">canvas</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">开源</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">react</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -472,15 +485,11 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">react</a>
+                <a href="javascript:void(0)" class="js-tag color5">前端架构</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">canvas</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">开源</a>
+                <a href="javascript:void(0)" class="js-tag color5">前端框架</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -489,10 +498,6 @@ var _hmt = _hmt || [];
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">服务器</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">前端框架</a>
               </li>
             
             <div class="clearfix"></div>
