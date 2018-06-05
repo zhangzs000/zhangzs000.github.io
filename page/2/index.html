@@ -301,19 +301,19 @@
 
 
   
-    <article id="post-手写react和redux" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-手写vue和vuex" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/15/手写react和redux/">手写react和redux</a>
+      <a class="article-title" href="/2018/04/15/手写vue和vuex/">��дvue��vuex</a>
     </h1>
   
 
         
-        <a href="/2018/04/15/手写react和redux/" class="archive-article-date">
+        <a href="/2018/04/15/手写vue和vuex/" class="archive-article-date">
   	<time datetime="2018-04-15T00:14:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-15</time>
 </a>
         
@@ -321,26 +321,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="简单实现一个react，点赞组件。具体参考react小书，或my-github"><a href="#简单实现一个react，点赞组件。具体参考react小书，或my-github" class="headerlink" title="简单实现一个react，点赞组件。具体参考react小书，或my github"></a>简单实现一个react，点赞组件。具体参考react小书，或my github</h3><ul>
-<li><p>1.为了结构复用先构建类</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">class LikeButton &#123;</div><div class="line">	render() &#123;</div><div class="line">	  ....</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line">// 最终的目的是new LikeButton()就可以在dom上创建实例</div></pre></td></tr></table></figure>
-</li>
-<li><p>2.如何实现创建的实例上有绑定的事件</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">class LikeButton &#123;</div><div class="line">  constructor () &#123;</div><div class="line">    .....this.state</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  changeLikeText () &#123;</div><div class="line">    ....操作state和dom</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  render () &#123;</div><div class="line">    ...字符串转换成dom,给dom绑定事件，最后实例化时通过dom方法渲染到页面</div><div class="line">    return this.el</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-<li><p>3.添加setState方法，每次调用setState就调用render方法</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">setState (state) &#123;</div><div class="line">  this.state = state</div><div class="line">  this.el = this.render()</div><div class="line">&#125;</div><div class="line">// 这里面有坑</div></pre></td></tr></table></figure>
-</li>
-<li><p>4.抽离公共组件</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">class Component &#123;</div><div class="line">    setState (state) &#123;</div><div class="line">      </div><div class="line">    &#125;</div><div class="line"></div><div class="line">    _renderDOM () &#123;</div><div class="line">      </div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  class LikeButton extends Component &#123;</div><div class="line">    constructor (props) &#123;</div><div class="line">      super(props)</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    onClick () &#123;</div><div class="line">      </div><div class="line">    &#125;</div><div class="line"></div><div class="line">    render () &#123;</div><div class="line">      return `</div><div class="line">        ...</div><div class="line">      `</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">  </div><div class="line">  // 把组件的 DOM 元素插入页面，并且在 setState 的时候更新页面</div><div class="line">  mount(new LikeButton(), wrapper)</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<h4 id="上面还涉及到柯里化"><a href="#上面还涉及到柯里化" class="headerlink" title="上面还涉及到柯里化"></a>上面还涉及到柯里化</h4><h5 id="但是看过很多博客都对柯里化做了解释总感觉有种牵强附会的感觉，强扭的瓜不甜。其实说白了，柯里化不过就是“用空间换时间”"><a href="#但是看过很多博客都对柯里化做了解释总感觉有种牵强附会的感觉，强扭的瓜不甜。其实说白了，柯里化不过就是“用空间换时间”" class="headerlink" title="但是看过很多博客都对柯里化做了解释总感觉有种牵强附会的感觉，强扭的瓜不甜。其实说白了，柯里化不过就是“用空间换时间”"></a>但是看过很多博客都对柯里化做了解释总感觉有种牵强附会的感觉，强扭的瓜不甜。其实说白了，柯里化不过就是“用空间换时间”</h5><h5 id="三个优点"><a href="#三个优点" class="headerlink" title="三个优点"></a>三个优点</h5><ul>
-<li>参数复用</li>
-<li>提前执行</li>
-<li>延迟执行</li>
-</ul>
-<h6 id="具体代码详见github"><a href="#具体代码详见github" class="headerlink" title="具体代码详见github"></a>具体代码详见github</h6>
+        <p><a href="https://mp.weixin.qq.com/s/uhahI78U9-qbjrjAT2WZmA" target="_blank" rel="external">�ο�����</a></p>
+
       
 
       
@@ -352,7 +334,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2018/04/15/手写react和redux/">展开全文 >></a>
+          <a class="article-more-a" href="/2018/04/15/手写vue和vuex/">展开全文 >></a>
         </p>
       
 
@@ -477,6 +459,10 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">react</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Node.js</a>
               </li>
              
@@ -490,10 +476,6 @@ var _hmt = _hmt || [];
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">xmapp</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">react</a>
               </li>
              
               <li class="article-tag-list-item">
