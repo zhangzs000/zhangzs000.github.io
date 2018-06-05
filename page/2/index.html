@@ -158,6 +158,79 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-分页" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/04/15/分页/">分页</a>
+    </h1>
+  
+
+        
+        <a href="/2018/04/15/分页/" class="archive-article-date">
+  	<time datetime="2018-04-15T00:19:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-15</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="反正就是想写个分页呢"><a href="#反正就是想写个分页呢" class="headerlink" title="反正就是想写个分页呢"></a><code>反正就是想写个分页呢</code></h4><ul>
+<li><p>1.先整个假数据</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">let _data = &#123;</div><div class="line">	&quot;images&quot;: [1, 2, 3, 4, 5, 6, 1, 2, 3, 4, 5, 6, 1, 2, 3, 4, 5, 6, 1, 2, 3, 4, 5, 6, 1, 2, 3, 4, 5, 6]</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>2.把基本结构和样式写好</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">&lt;style type=&quot;text/css&quot;&gt;</div><div class="line">    body&#123; margin:0 auto;&#125;</div><div class="line">    #container&#123; width:1000px; height:200px; overflow:hidden; margin:0 auto;&#125;</div><div class="line">    #container span&#123; display:block; width:172px; height:172px; padding:3px; border:solid 1px #ccc; float:left; margin:10px; display:inline;&#125;</div><div class="line">    #container span img&#123; width:172px; height:172px; border:none; float:left;&#125;</div><div class="line"></div><div class="line">    #button&#123; width:1000px; height:40px; margin:0 auto; overflow:hidden;&#125;</div><div class="line">    #button span.root&#123; display:block; width:180px; height:40px; overflow:hidden; margin:0 auto;&#125;</div><div class="line">    #button span span&#123; display:block; width:28px; height:28px; overflow:hidden; border:solid 1px #ccc; float:left; margin-left:5px; display:inline; line-height:30px; font-size:13px; color:#555; text-align:center; cursor:pointer;&#125;</div><div class="line">&lt;/style&gt;</div><div class="line">&lt;div id=&quot;container&quot;&gt;</div><div class="line"></div><div class="line">&lt;/div&gt;</div><div class="line">&lt;div id=&quot;button&quot;&gt;&lt;/div&gt;</div></pre></td></tr></table></figure>
+</li>
+<li><p>3.创建分页类，并构思好架构</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">// 分页类</div><div class="line">function PageContent() &#123;</div><div class="line">	.....</div><div class="line">	this.bindEvent = function()&#123;</div><div class="line">		....用于绑定事件</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	this.initButton = function()&#123;</div><div class="line">		.... 用于初始化分页按钮</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	this.getImg = function() &#123;</div><div class="line">		...用于获取图片,并对图片做样式包装</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	this.initData = function() &#123;</div><div class="line">		...用于初始化数据</div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>4.实现初始化数据</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">// 也就是展示第一页的内容</div><div class="line">this.initData = function() &#123;</div><div class="line">	// 加载图片并包装</div><div class="line">	this.getImg(_data, 0, this.pagesize)</div><div class="line">	// 获取总页数</div><div class="line">	this.totalPages = Math.ceil(_data[&apos;images&apos;].length/this.pagesize)</div><div class="line">	// 初始化分页按钮数</div><div class="line">	this.initButton()</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>5.实现获取图片</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">this.getImg=function(data,_s,_o)&#123;</div><div class="line">	var _html=&quot;&quot;;</div><div class="line">	for(var i=_s;i&lt;_o;i++)&#123;</div><div class="line">		_html+=&quot;&lt;span&gt;&lt;img alt=\&quot;\&quot; src=\&quot;waterfall/&quot;+data[&quot;images&quot;][i]+&quot;.jpg&quot;+&quot;\&quot;/&gt;&lt;/span&gt;&quot;;</div><div class="line">	&#125;</div><div class="line">	$(&quot;#container&quot;).html(_html);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>6.初始化分页按钮</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">// 把一页展示的几个按钮显示出来,为了简单可以一页把所有的按钮都展示-_-!!!</div><div class="line">this.initButton=function()&#123;</div><div class="line">	var _btn=&quot;&lt;span class=\&quot;root\&quot;&gt;&quot;;</div><div class="line">	for(var i=this.s;i&lt;=this.o &amp;&amp; i&lt;this.total;i++)&#123;</div><div class="line">		_btn+=&quot;&lt;span&gt;&quot;+i+&quot;&lt;/span&gt;&quot;;</div><div class="line">	&#125;</div><div class="line">	_btn+=&quot;&lt;/span&gt;&quot;;</div><div class="line">	$(&quot;#button&quot;).html(_btn);</div><div class="line">	this.bindEvent();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>7.绑定事件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">this.bindEvent=function()&#123;</div><div class="line">	var _self=this;</div><div class="line">	$(&quot;.root span&quot;).click(function()&#123;</div><div class="line">		// 为每个按钮添加点击事件，并且还要刷新按钮样式</div><div class="line">		_self.s=(parseInt($(this).html())-1)*_self.size;</div><div class="line">	    _self.o=_self.s+_self.size;</div><div class="line">		</div><div class="line">		// reloadData加载数据</div><div class="line">		_self.getImg(data,_self.s,_self.o);</div><div class="line">	&#125;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="太草率了，以后附上github链接"><a href="#太草率了，以后附上github链接" class="headerlink" title="太草率了，以后附上github链接"></a>太草率了，以后附上github链接</h3><h3 id="上面写法有问题，就是每次new对象的时候方法之类的重新创建，没做到原型共享"><a href="#上面写法有问题，就是每次new对象的时候方法之类的重新创建，没做到原型共享" class="headerlink" title="上面写法有问题，就是每次new对象的时候方法之类的重新创建，没做到原型共享"></a>上面写法有问题，就是每次new对象的时候方法之类的重新创建，没做到原型共享</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div></pre></td><td class="code"><pre><div class="line">// 无聊花半小时写了个简单版，亲测有效</div><div class="line">const LoadData = &#123;</div><div class="line">	&quot;images&quot;: [1, 2, 3, 4, 5, 6, 1, 2, 3, 4, 5, 6, 1, 2, 3, 4, 5, 6, 1, 2, 3, 4, 5, 6, 1, 2, 3, 4, 5, 6]</div><div class="line">&#125;</div><div class="line">class PageContent &#123;</div><div class="line">	constructor() &#123;</div><div class="line">		this.pageSize = 5;</div><div class="line">		this.totalBtns = 0;</div><div class="line">		this.btnWrapper = document.getElementById(&apos;button&apos;);</div><div class="line">	&#125;</div><div class="line">	bindEvent() &#123;</div><div class="line">		let btns = this.btnWrapper.querySelectorAll(&apos;button&apos;)	</div><div class="line">		for (var i = 0; i &lt; btns.length; i++) &#123;</div><div class="line">			(function(i)&#123;</div><div class="line">				btns[i].addEventListener(&apos;click&apos;,function () &#123;</div><div class="line">					this.getImgs(LoadData, i*this.pageSize, (i+1)*this.pageSize)</div><div class="line">				&#125;.bind(this))	</div><div class="line">			&#125;.bind(this))(i)</div><div class="line">		&#125;;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	getImgs(data, s, e) &#123;</div><div class="line">		console.log(data, s, e)</div><div class="line">		let wrapper = document.getElementById(&apos;container&apos;);</div><div class="line">		let container = &apos;&apos;;</div><div class="line">		for (var i = s; i &lt; e; i++) &#123;</div><div class="line">			container+=`</div><div class="line">				&lt;span&gt;</div><div class="line">					&lt;img src=&quot;waterfall/$&#123;LoadData[&quot;images&quot;][i]&#125;.jpg&quot;/&gt;</div><div class="line">				&lt;/span&gt;</div><div class="line">			`</div><div class="line">		&#125;;</div><div class="line">		wrapper.innerHTML = container;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	initButtons() &#123;</div><div class="line">		</div><div class="line">		this.totalBtns = Math.ceil(LoadData[&quot;images&quot;].length/this.pageSize);</div><div class="line">		let container = &apos;&apos;;</div><div class="line">		for (var i = 0; i &lt; this.totalBtns; i++) &#123;</div><div class="line">			container+=`</div><div class="line">				&lt;button&gt;</div><div class="line">					$&#123;i+1&#125;</div><div class="line">				&lt;/button&gt;</div><div class="line">			`</div><div class="line">		&#125;;</div><div class="line">		this.btnWrapper.innerHTML = container;</div><div class="line"></div><div class="line">		this.bindEvent()</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	initData () &#123;</div><div class="line">		this.getImgs(LoadData, 0, this.pageSize)</div><div class="line">		this.initButtons()</div><div class="line">	&#125;	</div><div class="line">&#125;</div><div class="line">var _pc=new PageContent();</div><div class="line">	_pc.initData();</div></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/04/15/分页/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
     <article id="post-debounce和throttle" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -280,57 +353,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2018/04/15/手写react和redux/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-手写vue和vuex" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/15/手写vue和vuex/">手写vue和vuex</a>
-    </h1>
-  
-
-        
-        <a href="/2018/04/15/手写vue和vuex/" class="archive-article-date">
-  	<time datetime="2018-04-15T00:14:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-15</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>aaa����������������</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/04/15/手写vue和vuex/">展开全文 >></a>
         </p>
       
 
