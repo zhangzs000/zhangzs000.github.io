@@ -158,6 +158,117 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-js理解" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/03/03/js理解/">js理解</a>
+    </h1>
+  
+
+        
+        <a href="/2017/03/03/js理解/" class="archive-article-date">
+  	<time datetime="2017-03-03T10:08:31.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-03</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="js中的面向对象"><a href="#js中的面向对象" class="headerlink" title="js中的面向对象"></a>js中的面向对象</h2><h3 id="面向对象的三大特性：封装、继承、多态。这里只说封装和继承。"><a href="#面向对象的三大特性：封装、继承、多态。这里只说封装和继承。" class="headerlink" title="面向对象的三大特性：封装、继承、多态。这里只说封装和继承。"></a>面向对象的三大特性：封装、继承、多态。这里只说封装和继承。</h3><h5 id="js面向对象的几种方式"><a href="#js面向对象的几种方式" class="headerlink" title="js面向对象的几种方式"></a>js面向对象的几种方式</h5><p>这个不同的人有不同的总结，仅供参考！</p>
+<h6 id="1、工厂模式"><a href="#1、工厂模式" class="headerlink" title="1、工厂模式"></a>1、工厂模式</h6><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">function</span> Person(name)&#123;</div><div class="line">    // 原料</div><div class="line">    var obj=new Object();</div><div class="line">    // 加工</div><div class="line">    obj.name=name;</div><div class="line">	obj.getName=<span class="function"><span class="title">function</span></span>() &#123;</div><div class="line">      console.log(this.name)</div><div class="line">   &#125;</div><div class="line">   //出厂</div><div class="line">    <span class="built_in">return</span> obj;</div><div class="line">&#125;</div><div class="line"></div><div class="line">var person = Person(<span class="string">"zhang"</span>)</div><div class="line">person.getName();</div></pre></td></tr></table></figure>
+<h6 id="结果为"><a href="#结果为" class="headerlink" title="结果为"></a>结果为</h6><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">zhang</div></pre></td></tr></table></figure>
+<p>这种方式的缺点是：每一个实例都创建一个新的对象,浪费空间，并且创建实例时没有用关键字new；</p>
+<h6 id="2、构造函数模式"><a href="#2、构造函数模式" class="headerlink" title="2、构造函数模式"></a>2、构造函数模式</h6><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">function</span> Person(opt)&#123;</div><div class="line">	this.config=&#123;</div><div class="line">		name:<span class="string">"zhang"</span></div><div class="line">	&#125;</div><div class="line">	<span class="keyword">for</span>(var i <span class="keyword">in</span> opt)&#123;</div><div class="line">		this.config[i]=opt[i]</div><div class="line">	&#125;</div><div class="line">	this.getName=<span class="function"><span class="title">function</span></span>()&#123;</div><div class="line">		console.log(this.config.name)</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">var person = new Person(&#123;name:<span class="string">"lisi"</span>&#125;)</div><div class="line">person.getName();</div></pre></td></tr></table></figure>
+<h6 id="结果为-1"><a href="#结果为-1" class="headerlink" title="结果为"></a>结果为</h6><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">lisi</div></pre></td></tr></table></figure>
+<p>这种方式的优势是：对象指向性强，new出的就是一个person示例；</p>
+<h6 id="3、混合模式"><a href="#3、混合模式" class="headerlink" title="3、混合模式"></a>3、混合模式</h6><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">function</span> Person(name)&#123;</div><div class="line">	this.name = name;</div><div class="line">&#125;</div><div class="line"></div><div class="line">Person.prototype=&#123;</div><div class="line">	getName:<span class="function"><span class="title">function</span></span>()&#123;</div><div class="line">		console.log(this.name)</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line">var person = new Person(<span class="string">"lisi"</span>)</div><div class="line">person.getName();</div></pre></td></tr></table></figure>
+<h6 id="结果为-2"><a href="#结果为-2" class="headerlink" title="结果为"></a>结果为</h6><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">lisi</div></pre></td></tr></table></figure>
+<p>这种方式的优势是：属性独立，并且可以根据原型链实现方法共享；</p>
+<h5 id="js的继承"><a href="#js的继承" class="headerlink" title="js的继承"></a>js的继承</h5><h3 id="首先介绍js中的原型链"><a href="#首先介绍js中的原型链" class="headerlink" title="首先介绍js中的原型链"></a>首先介绍js中的原型链</h3><p>首先来一段代码</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">function</span> <span class="function"><span class="title">funcA</span></span>() &#123;</div><div class="line">    this.show = <span class="function"><span class="title">function</span></span>() &#123;&#125;</div><div class="line">&#125;</div><div class="line">console.log(funcA.prototype);</div></pre></td></tr></table></figure>
+<p>通过观察可以画出这样的图形</p>
+<p><img src="/assets/blogImg/js/js_1.png" alt="原型" title="js原型"></p>
+<p>注：此图是盗用别人的图片，具体参考下面链接，此博客已被吾收录。</p>
+<p>参考链接 <a href="http://www.cnblogs.com/OceanHeaven/p/4965947.html" target="_blank" rel="external">Browse blog</a></p>
+<p>总之，最后形成一张这样的图：</p>
+<p><img src="/assets/blogImg/js/js_2.png" alt="原型" title="js原型"></p>
+<h4 id="是不是感觉惊呆了！！！！！！"><a href="#是不是感觉惊呆了！！！！！！" class="headerlink" title="是不是感觉惊呆了！！！！！！"></a>是不是感觉惊呆了！！！！！！</h4><h4 id="如果让我画的话，比如一个b继承a的图，是这样："><a href="#如果让我画的话，比如一个b继承a的图，是这样：" class="headerlink" title="如果让我画的话，比如一个b继承a的图，是这样："></a>如果让我画的话，比如一个b继承a的图，是这样：</h4><p>b是函数funcB()的实例，a是函数funA()的实例对象。</p>
+<p><img src="/assets/blogImg/js/js_3.png" alt="原型" title="js继承图"></p>
+<h2 id="下面是js继承"><a href="#下面是js继承" class="headerlink" title="下面是js继承"></a>下面是js继承</h2><p>参考链接 <a href="http://www.jb51.net/article/55540.htm" target="_blank" rel="external">Browse blog</a></p>
+<h6 id="1、使用原型链实现继承"><a href="#1、使用原型链实现继承" class="headerlink" title="1、使用原型链实现继承"></a>1、使用原型链实现继承</h6><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">function</span> <span class="function"><span class="title">SuperClass</span></span>()&#123;</div><div class="line">	this.name = <span class="string">"zhang"</span>;</div><div class="line">&#125;</div><div class="line">SuperClass.prototype.say=<span class="function"><span class="title">function</span></span>()&#123;</div><div class="line">	console.log(this.name);</div><div class="line">&#125;</div><div class="line"><span class="keyword">function</span> <span class="function"><span class="title">SubClass</span></span>()&#123;</div><div class="line">	this.name = <span class="string">"haha"</span>;</div><div class="line">&#125;</div><div class="line">SubClass.prototype.say=<span class="function"><span class="title">function</span></span>()&#123;</div><div class="line">	console.log(this.name);</div><div class="line">&#125;</div><div class="line">SubClass.prototype=new SuperClass();</div><div class="line">var sub = new SubClass();</div><div class="line"></div><div class="line">sub.say();</div></pre></td></tr></table></figure>
+<p>结果是：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">haha</div></pre></td></tr></table></figure>
+<p>但是：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">function</span> <span class="function"><span class="title">SuperClass</span></span>()&#123;</div><div class="line">  this.name = <span class="string">"women"</span>;</div><div class="line">  this.bra = [<span class="string">"a"</span>,<span class="string">"b"</span>];</div><div class="line">&#125;</div><div class="line"><span class="keyword">function</span> <span class="function"><span class="title">SubClass</span></span>()&#123;</div><div class="line">  this.subname = <span class="string">"your sister"</span>;</div><div class="line">&#125;</div><div class="line">SubClass.prototype = new SuperClass();</div><div class="line">var sub1 = new SubClass();</div><div class="line">sub1.name = <span class="string">"man"</span>;</div><div class="line">sub1.bra.push(<span class="string">"c"</span>);</div><div class="line">console.log(sub1.name);//man</div><div class="line">console.log(sub1.bra);//[<span class="string">"a"</span>,<span class="string">"b"</span>,<span class="string">"c"</span>]</div><div class="line">var sub2 = new SubClass();</div><div class="line">console.log(sub1.name);//woman</div><div class="line">console.log(sub2.bra);//[<span class="string">"a"</span>,<span class="string">"b"</span>,<span class="string">"c"</span>]</div></pre></td></tr></table></figure>
+<p>缺点显而易见：所有继承自SuperClass的实例都会受到影响，引用类型共享。</p>
+<h6 id="2、经典继承"><a href="#2、经典继承" class="headerlink" title="2、经典继承"></a>2、经典继承</h6><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">function</span> <span class="function"><span class="title">SuperClass</span></span>() &#123;</div><div class="line">  this.name = <span class="string">"women"</span>;</div><div class="line">  this.bra = [<span class="string">"a"</span>, <span class="string">"b"</span>];</div><div class="line">&#125;</div><div class="line">SuperClass.prototype.sayWhat = <span class="function"><span class="title">function</span></span>()&#123;</div><div class="line">  console.log(<span class="string">"hello"</span>);</div><div class="line">&#125;</div><div class="line"><span class="keyword">function</span> <span class="function"><span class="title">SubClass</span></span>() &#123;</div><div class="line">  this.subname = <span class="string">"your sister"</span>;</div><div class="line">  SuperClass.call(this);</div><div class="line">&#125;  </div><div class="line">var sub1 = new SubClass();</div><div class="line">console.log(sub1.sayWhat());//TypeError: undefined is not a <span class="keyword">function</span></div></pre></td></tr></table></figure>
+<p>但是：</p>
+<p>1、如果在构造函数中有方法的定义，那么对于每一个实例都存在一份单独的Function引用，我们的目的其实是想共用这个方法。（其实不太懂）<br>2、超类型原型中定义的方法，在子类型实例中是无法调用到。</p>
+<h6 id="3、组合式继承"><a href="#3、组合式继承" class="headerlink" title="3、组合式继承"></a>3、组合式继承</h6><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">function</span> <span class="function"><span class="title">SuperClass</span></span>() &#123;</div><div class="line">  this.name = <span class="string">"women"</span>;</div><div class="line">  this.bra = [<span class="string">"a"</span>, <span class="string">"b"</span>];</div><div class="line">&#125;</div><div class="line">SuperClass.prototype.sayWhat = <span class="function"><span class="title">function</span></span>()&#123;</div><div class="line">  console.log(<span class="string">"hello"</span>);</div><div class="line">&#125;</div><div class="line"><span class="keyword">function</span> <span class="function"><span class="title">SubClass</span></span>() &#123;</div><div class="line">  this.subname = <span class="string">"your sister"</span>;</div><div class="line">  SuperClass.call(this);       //第二次调用SuperClass</div><div class="line">&#125;</div><div class="line">SubClass.prototype = new SuperClass(); //第一次调用SuperClass</div><div class="line">var sub1 = new SubClass();</div><div class="line">console.log(sub1.sayWhat());//hello</div></pre></td></tr></table></figure>
+<p>这个常用，寄生组合式继承就不写了，想了解的看<a href="http://www.jb51.net/article/55540.htm" target="_blank" rel="external">原文</a>。<br>据说有寄生组合式继承的插件。</p>
+<p>但是：<br>这个模式调用了两次超类型的构造函数。</p>
+<p>下面是我自己项目中的一段代码：MstBall继承了Missile</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">/*</div><div class="line">*组合式继承实现MasterBall这个类</div><div class="line">*/</div><div class="line"><span class="keyword">function</span> MstBall(option)&#123;</div><div class="line">  //经典继承</div><div class="line">  Missile.call(this,option);</div><div class="line">&#125;</div><div class="line">//原型继承</div><div class="line">MstBall.prototype = new Missile();</div><div class="line">//重写create方法</div><div class="line">MstBall.prototype._create = <span class="function"><span class="title">function</span></span>() &#123;</div><div class="line">  var mstBall = $(<span class="string">"&lt;div class='missile "</span>+this.config.className+<span class="string">"'&gt;"</span>);</div><div class="line">  mstBall.css(&#123;</div><div class="line">    width:this.config.width,</div><div class="line">    height:this.config.height,</div><div class="line">    transform:<span class="string">"translate("</span>+this.config.pos.x+<span class="string">"px,"</span>+this.config.pos.y+<span class="string">"px)"</span></div><div class="line">  &#125;);</div><div class="line">  this.missile=mstBall;</div><div class="line">  //console.log(this.missile)</div><div class="line">  GameConfig.gameBox.append(this.missile);</div><div class="line">  <span class="built_in">return</span> this;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<h2 id="ES6中类和类的继承的写法"><a href="#ES6中类和类的继承的写法" class="headerlink" title="ES6中类和类的继承的写法"></a>ES6中类和类的继承的写法</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">class ColorPoint extends Point &#123;</div><div class="line">  constructor(x, y, color) &#123;</div><div class="line">    super(x, y); // 等同于parent.constructor(x, y)</div><div class="line">    this.color = color;</div><div class="line">  &#125;</div><div class="line">  <span class="function"><span class="title">toString</span></span>() &#123;</div><div class="line">    <span class="built_in">return</span> this.color + <span class="string">' '</span> + super.toString(); // 等同于parent.toString()</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>参考链接 <a href="http://www.jianshu.com/p/342966fdf816" target="_blank" rel="external">Browse blog</a><br>参考链接 <a href="http://www.jianshu.com/p/d1bd2218b1f2" target="_blank" rel="external">Browse blog</a></p>
+<p>ES6继承感觉像java中的的继承，规范了继承的操作。</p>
+<p>最后，写点剑锋的东西，虽然最后被拉黑T_T</p>
+<h2 id="原型链"><a href="#原型链" class="headerlink" title="原型链"></a>原型链</h2><h3 id="作用域链demo1"><a href="#作用域链demo1" class="headerlink" title="作用域链demo1"></a>作用域链demo1</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">//对name的访问, 哪种效率更高</div><div class="line">var name = <span class="string">'张三'</span>;</div><div class="line"></div><div class="line"><span class="keyword">function</span> <span class="function"><span class="title">hello</span></span>() &#123;</div><div class="line">	console.log(name);</div><div class="line">	console.log(window.name);</div><div class="line">	console.log(this.name);</div><div class="line">&#125;</div><div class="line">hello();</div></pre></td></tr></table></figure>
+<p>分析：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">var name = <span class="string">'张三'</span>;</div><div class="line">　　var start = new Date().getTime();</div><div class="line">　　<span class="keyword">for</span>(var i=0;i&lt;100000;i++)&#123;</div><div class="line">    hello()</div><div class="line">  &#125;</div><div class="line">  </div><div class="line">　　var end = new Date().getTime();</div><div class="line">　　alert(end-start);</div><div class="line">  <span class="keyword">function</span> <span class="function"><span class="title">hello</span></span>()&#123;</div><div class="line">    //console.log(name)//2234,2240,2372,2272---2279.5</div><div class="line">    //console.log(window.name);//2292,2439,2299,2437---2366.75</div><div class="line">    //console.log(this.name);//2302,2324,2272,2363--2315.25</div><div class="line">  &#125;</div></pre></td></tr></table></figure></p>
+<p>我就这么测了一下效率从高到低是name,this.name,window.name。。。和我分析的不一样啊！！<br>不过测也不准，优势时间多有时时间低。</p>
+<h3 id="原型链特点"><a href="#原型链特点" class="headerlink" title="原型链特点"></a>原型链特点</h3><ul>
+<li>支持了面向对象开发模式</li>
+<li>显示原型指针<code>prototype</code>, 任何函数都有(除了特殊Empty函数)</li>
+<li>隐式原型指针<code>__proto__</code>, 任何对象都有(除了null, undefined, NaN)</li>
+<li>特殊空函数只有<code>__proto__</code></li>
+<li>Object的原型对象的<code>__proto__</code>指向null</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">Function instanceof Object //任何对象都是Object的实例</div><div class="line"></div><div class="line">Object instanceof Function //任何函数都是Function的实例</div><div class="line"></div><div class="line">Date.__proto__ === Function.prototype</div><div class="line"></div><div class="line">Function.__proto__ === Function.prototype</div></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/03/03/js理解/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
     <article id="post-md语法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -390,14 +501,6 @@ var _hmt = _hmt || [];
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">前端架构</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">react</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Node.js</a>
               </li>
              
@@ -419,6 +522,14 @@ var _hmt = _hmt || [];
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">开源</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">前端架构</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">react</a>
               </li>
              
               <li class="article-tag-list-item">
