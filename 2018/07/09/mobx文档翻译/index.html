@@ -25,7 +25,7 @@
 篇教材主要讲述的就是那个组合。
 核心思想状态是每个应用">
 <meta property="og:image" content="http://yoursite.com/assets/blogImg/mobx/overview.png">
-<meta property="og:updated_time" content="2018-07-09T00:06:37.081Z">
+<meta property="og:updated_time" content="2018-07-10T00:18:03.385Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="mobx文档翻译">
 <meta name="twitter:description" content="十分钟交互式的 MobX + React 教程mobx
@@ -205,6 +205,36 @@
 <p>从概念上讲MobX 就像电子表格的公式一样处理你的应用。</p>
 <p><img src="/assets/blogImg/mobx/overview.png" alt="概览图" title="概览图"></p>
 <p>1.首先有一个应用状态。对象图像，数组，事物，应用模型表单，这些值都是你的应用数据源。</p>
+<p>2.第二，有一些派生值。基本上，在你的应用状态任何值都能够自动得被计算。这些派生值或计算值能够从简单的值，比如</p>
+<p>未完成todos的编号，到复杂的东西，比如你的todos一个可视化HTML表现，变化得到。类比于电子表格中：这些是你应用的公式和图表。</p>
+<p>3.Reactions 是和派生非常相似的。主要的不同是这些函数不能产生一个值。而是，它们会自动执行去完成一些任务。通常这是和 I/O </p>
+<p>相关的操作。它们确保 DOM 被更新或者网络请求在正确的时间被自动执行。</p>
+<p>4.最后是一些 actions 。Actions 是改变状态的所有操作。MobX 将确保所有由于 actions 造成的应用状态的改变，都是由派生和 </p>
+<p>reactions 同步地间断性地自动处理。</p>
+<h3 id="一个简单的-todo-store…"><a href="#一个简单的-todo-store…" class="headerlink" title="一个简单的 todo store…"></a>一个简单的 todo store…</h3><p>足够的理论，用行动去熟悉这些理论可能会比仔细得阅读上面文档更深入。为了创意起见，我们开始一个简单的 ToDo store。</p>
+<p>所有在下面的代码块的笔记是可编辑的。所以可以使用运行代码按钮去执行它们。下面是一个非常简单的 维护一个todos 集合的</p>
+<p>TodoStore 。目前仍没涉及 MobX 。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">class TodoStore &#123;</div><div class="line">	todos = [];</div><div class="line"></div><div class="line">	get <span class="function"><span class="title">completedTodosCount</span></span>() &#123;</div><div class="line">    	<span class="built_in">return</span> this.todos.filter(</div><div class="line">			todo =&gt; todo.completed === <span class="literal">true</span></div><div class="line">		).length;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="title">report</span></span>() &#123;</div><div class="line">		<span class="keyword">if</span> (this.todos.length === 0)</div><div class="line">			<span class="built_in">return</span> <span class="string">"&lt;none&gt;"</span>;</div><div class="line">		<span class="built_in">return</span> `Next todo: <span class="string">"<span class="variable">$&#123;this.todos[0].task&#125;</span>"</span>. ` +</div><div class="line">			`Progress: <span class="variable">$&#123;this.completedTodosCount&#125;</span>/<span class="variable">$&#123;this.todos.length&#125;</span>`;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">    addTodo(task) &#123;</div><div class="line">		this.todos.push(&#123;</div><div class="line">			task: task,</div><div class="line">			completed: <span class="literal">false</span>,</div><div class="line">            assignee: null</div><div class="line">		&#125;);</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">const todoStore = new TodoStore();</div></pre></td></tr></table></figure>
+<p>我们仅仅用一个todos 集合创建了一个todoStore 实例。用一些对象去填充todoStore 。为了确保我们能看见改变的效果，我们在每个</p>
+<p>改变之后调用todoStore.report记录它。报告的笔记总是有意的打印仅仅第一个任务。这样做使这个例子有点人为干预，但是就像你</p>
+<p>下面看到的很好的示范了 MobX 的依赖和追踪是动态的。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">todoStore.addTodo(<span class="string">"read MobX tutorial"</span>);</div><div class="line">console.log(todoStore.report());</div><div class="line"></div><div class="line">todoStore.addTodo(<span class="string">"try MobX"</span>);</div><div class="line">console.log(todoStore.report());</div><div class="line"></div><div class="line">todoStore.todos[0].completed = <span class="literal">true</span>;</div><div class="line">console.log(todoStore.report());</div><div class="line"></div><div class="line">todoStore.todos[1].task = <span class="string">"try MobX in own project"</span>;</div><div class="line">console.log(todoStore.report());</div><div class="line"></div><div class="line">todoStore.todos[0].task = <span class="string">"grok MobX tutorial"</span>;</div><div class="line">console.log(todoStore.report());</div></pre></td></tr></table></figure>
+<h3 id="变成响应式"><a href="#变成响应式" class="headerlink" title="变成响应式"></a>变成响应式</h3><p>到目前为止这些代码没有什么特别之处。但是，如果我们不需要去显式的调用report ，仅仅需要在每个想要去被改变状态上声明。</p>
+<p>它将免去我们从可能影响报告的代码任何地方调用report 的责任。我们想要去确保打印的是最新的报告，但是又不想被约束所困扰。</p>
+<p>幸运地是MobX 确切地能为我们做那些事情。自动地执行代码仅仅依赖于state。所以我们的report 函数自动执行，就像电子表格中的</p>
+<p>图表。为了实现这样的需求，TodoStore 变成了可观察的，所以MobX 能够跟踪所有所有正在进行的改变。让我们修改类去就足以实现它。</p>
+<p>并且，completedTodosCount 能够从todo 列表自动的得到。通过使用@observable 和 @computed 装饰器我们能</p>
+<p>够引进观察属性在一个对象。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">class ObservableTodoStore &#123;</div><div class="line">	@observable todos = [];</div><div class="line">    @observable pendingRequests = 0;</div><div class="line"></div><div class="line">    <span class="function"><span class="title">constructor</span></span>() &#123;</div><div class="line">        mobx.autorun(() =&gt; console.log(this.report));</div><div class="line">    &#125;</div><div class="line"></div><div class="line">	@computed get <span class="function"><span class="title">completedTodosCount</span></span>() &#123;</div><div class="line">    	<span class="built_in">return</span> this.todos.filter(</div><div class="line">			todo =&gt; todo.completed === <span class="literal">true</span></div><div class="line">		).length;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">	@computed get <span class="function"><span class="title">report</span></span>() &#123;</div><div class="line">		<span class="keyword">if</span> (this.todos.length === 0)</div><div class="line">			<span class="built_in">return</span> <span class="string">"&lt;none&gt;"</span>;</div><div class="line">		<span class="built_in">return</span> `Next todo: <span class="string">"<span class="variable">$&#123;this.todos[0].task&#125;</span>"</span>. ` +</div><div class="line">			`Progress: <span class="variable">$&#123;this.completedTodosCount&#125;</span>/<span class="variable">$&#123;this.todos.length&#125;</span>`;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	addTodo(task) &#123;</div><div class="line">		this.todos.push(&#123;</div><div class="line">			task: task,</div><div class="line">			completed: <span class="literal">false</span>,</div><div class="line">			assignee: null</div><div class="line">		&#125;);</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line">const observableTodoStore = new ObservableTodoStore();</div></pre></td></tr></table></figure>
+<p>就像上面那样！我们标记了一些属性@observable 做为对MobX 的信号，意味着这些值能够随时被改变。用装饰器</p>
+<p>@computed 声明的计算值，能够确定地从state中推断出来。</p>
+<p>上面的pendingRequests 和assignee 属性到目前为止还没被使用。但是将在这篇教材后面使用。为了简洁，这个页面的所有例子</p>
+<p>使用ES6，JSX和装饰器。但是不要担心，所有在MobX 的装饰器有相应的ES5 匹配。 </p>
+<p>在构造函数中，我们创建了小的函数，能够去打印report 并且被包装在了autorun 中。 Autorun 创建了一个运行一次的响应式。</p>
+<p>并且之后无论什么时候我们内部使用函数变化它都会自动运行。因为report 使用可观察的todos 属性，它将打印报告在适当的时候。</p>
+<p>在下面的列表中是一个演示。按运行按钮就可以。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">observableTodoStore.addTodo(<span class="string">"read MobX tutorial"</span>);</div><div class="line">observableTodoStore.addTodo(<span class="string">"try MobX"</span>);</div><div class="line">observableTodoStore.todos[0].completed = <span class="literal">true</span>;</div><div class="line">observableTodoStore.todos[1].task = <span class="string">"try MobX in own project"</span>;</div><div class="line">observableTodoStore.todos[0].task = <span class="string">"grok MobX tutorial"</span>;</div></pre></td></tr></table></figure>
+<p>纯属搞笑？上面的report 确实自动打印了，</p>
 
       
 
@@ -442,18 +472,6 @@ var _hmt = _hmt || [];
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">前端架构</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">canvas</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">开源</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Node.js</a>
               </li>
              
@@ -474,15 +492,27 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">前端架构</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">canvas</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">开源</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">服务器</a>
+                <a href="javascript:void(0)" class="js-tag color5">前端框架</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">前端框架</a>
+                <a href="javascript:void(0)" class="js-tag color4">服务器</a>
               </li>
             
             <div class="clearfix"></div>
