@@ -179,9 +179,9 @@
     <div class="article-entry" itemprop="articleBody">
       
         <ul>
-<li>十分钟交互式的 MobX + React 教程<a href="https://mobx.js.org/getting-started.html" target="_blank" rel="external">mobx</a></li>
+<li>十分钟交互式的 MobX + React 教程<a href="https://mobx.js.org/getting-started.html" target="_blank" rel="external">外文链接</a></li>
 </ul>
-<h3 id="关于MobX-and-React十分钟的介绍"><a href="#关于MobX-and-React十分钟的介绍" class="headerlink" title="关于MobX and React十分钟的介绍"></a>关于MobX and React十分钟的介绍</h3><p>mobx[<a href="https://github.com/mobxjs/mobx]是一个简单，可控，经过战火洗礼的状态管理解决方案。这个" target="_blank" rel="external">https://github.com/mobxjs/mobx]是一个简单，可控，经过战火洗礼的状态管理解决方案。这个</a></p>
+<h3 id="关于MobX-and-React十分钟的介绍"><a href="#关于MobX-and-React十分钟的介绍" class="headerlink" title="关于MobX and React十分钟的介绍"></a>关于MobX and React十分钟的介绍</h3><p><a href="https://github.com/mobxjs/mobx" target="_blank" rel="external">mobx</a>是一个简单，可控，经过战火洗礼的状态管理解决方案。这个</p>
 <p>教材将用10分钟教你 MobX 的所有重要概念。MobX 是一个单独的库，但是大多数人结合react使用它并且这</p>
 <p>篇教材主要讲述的就是那个组合。</p>
 <h3 id="核心思想"><a href="#核心思想" class="headerlink" title="核心思想"></a>核心思想</h3><p>状态是每个应用的核心并且没有更快的方式去创建这种机制，没有状态管理的应用产生了不协调的状态或者<br>用未约束的本地变量控制状态。因此，很多很多状态管理解决方案尽力去限制你修改状态的方式。例如说，<br>通过制作状态的immutable去限制你修改状态。但是，这种方式有新的问题。数据必须被标准化，引用完整性<br>不再是有保证的并且它将几乎不可能去使用像prototypes一样有力的概念。</p>
@@ -218,7 +218,40 @@
 <p>并且之后无论什么时候我们内部使用函数变化它都会自动运行。因为report 使用可观察的todos 属性，它将打印报告在适当的时候。</p>
 <p>在下面的列表中是一个演示。按运行按钮就可以。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">observableTodoStore.addTodo(<span class="string">"read MobX tutorial"</span>);</div><div class="line">observableTodoStore.addTodo(<span class="string">"try MobX"</span>);</div><div class="line">observableTodoStore.todos[0].completed = <span class="literal">true</span>;</div><div class="line">observableTodoStore.todos[1].task = <span class="string">"try MobX in own project"</span>;</div><div class="line">observableTodoStore.todos[0].task = <span class="string">"grok MobX tutorial"</span>;</div></pre></td></tr></table></figure>
-<p>纯属搞笑？上面的report 确实自动打印了，</p>
+<p>纯属搞笑？上面的report 自动地，同步地，并且中间值没有遗漏。如果你小心的调查日志，你将看见在新的日志行中第四行</p>
+<p>没有结果。因为上面的report 做为重命名的结果确实没有改变，尽管后面的数据改变了。另一方面第一个todo 名字的改变</p>
+<p>确实更新了report ,因为那个名字活跃地使用在报告中。这个很好的示范不仅仅是todos 里面通过autorun 被观察的数组，还有</p>
+<p>在todo 里面独立的属性被观察。</p>
+<h3 id="使react变成响应式"><a href="#使react变成响应式" class="headerlink" title="使react变成响应式"></a>使react变成响应式</h3><p>好的，到目前为止我们做了一个简单的响应式report。是时候用一个相同的store 去构建一个响应式用户接口。React 组件在盒子外面</p>
+<p>不是响应式的。来自mobx-react 包的 @observer 装饰器通过在 autorun 方法中包装React 组建的render 方法。自动地使你的组件和</p>
+<p>状态同步。那在概念上不同于我们之前做的report 。</p>
+<p>下面的列表定义了一些React 组件。MobX 仅仅用的就是@observer 装饰器。那足够去确保每个组件单独得去重新渲染，</p>
+<p>当相关数据改变的时候。 你不在需要去调用setState 。你也不再需要去计算怎样用选择器或可配置的高阶组建去适当地订阅应用状态。</p>
+<p>基本上，所有组件变成了容器组建。但是，它们是用陈述式的方式定义在纯组件中。</p>
+<p>按运行代码的按钮去看下面代码的运行。列表是可编辑的，所以可以随意修改。为了测试可以尝试删除所有@observer 的调用，</p>
+<p>或者仅仅保留TodoView 的一个装饰器。每次组建重新渲染的时候，在右边的数字就会高亮显示。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">@observer</div><div class="line">class TodoList extends React.Component &#123;</div><div class="line">  <span class="function"><span class="title">render</span></span>() &#123;</div><div class="line">    const store = this.props.store;</div><div class="line">    <span class="built_in">return</span> (</div><div class="line">      &lt;div&gt;</div><div class="line">        &#123; store.report &#125;</div><div class="line">        &lt;ul&gt;</div><div class="line">        &#123; store.todos.map(</div><div class="line">          (todo, idx) =&gt; &lt;TodoView todo=&#123; todo &#125; key=&#123; idx &#125; /&gt;</div><div class="line">        ) &#125;</div><div class="line">        &lt;/ul&gt;</div><div class="line">        &#123; store.pendingRequests &gt; 0 ? &lt;marquee&gt;Loading...&lt;/marquee&gt; : null &#125;</div><div class="line">        &lt;button onClick=&#123; this.onNewTodo &#125;&gt;New Todo&lt;/button&gt;</div><div class="line">        &lt;small&gt; (double-click a todo to edit)&lt;/small&gt;</div><div class="line">        &lt;RenderCounter /&gt;</div><div class="line">      &lt;/div&gt;</div><div class="line">    );</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  onNewTodo = () =&gt; &#123;</div><div class="line">    this.props.store.addTodo(prompt(<span class="string">'Enter a new todo:'</span>,<span class="string">'coffee plz'</span>));</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">@observer</div><div class="line">class TodoView extends React.Component &#123;</div><div class="line">  <span class="function"><span class="title">render</span></span>() &#123;</div><div class="line">    const todo = this.props.todo;</div><div class="line">    <span class="built_in">return</span> (</div><div class="line">      &lt;li onDoubleClick=&#123; this.onRename &#125;&gt;</div><div class="line">        &lt;input</div><div class="line">          <span class="built_in">type</span>=<span class="string">'checkbox'</span></div><div class="line">          checked=&#123; todo.completed &#125;</div><div class="line">          onChange=&#123; this.onToggleCompleted &#125;</div><div class="line">        /&gt;</div><div class="line">        &#123; todo.task &#125;</div><div class="line">        &#123; todo.assignee</div><div class="line">          ? &lt;small&gt;&#123; todo.assignee.name &#125;&lt;/small&gt;</div><div class="line">          : null</div><div class="line">        &#125;</div><div class="line">        &lt;RenderCounter /&gt;</div><div class="line">      &lt;/li&gt;</div><div class="line">    );</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  onToggleCompleted = () =&gt; &#123;</div><div class="line">    const todo = this.props.todo;</div><div class="line">    todo.completed = !todo.completed;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  onRename = () =&gt; &#123;</div><div class="line">    const todo = this.props.todo;</div><div class="line">    todo.task = prompt(<span class="string">'Task name'</span>, todo.task) || todo.task;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">ReactDOM.render(</div><div class="line">  &lt;TodoList store=&#123; observableTodoStore &#125; /&gt;,</div><div class="line">  document.getElementById(<span class="string">'reactjs-app'</span>)</div><div class="line">);</div></pre></td></tr></table></figure>
+<p>下一个列表很好的展示了我们不需要做其它任何事情就可以修改我们的数据。MobX 将自动派生和更新在store 中的state 用户接口相关</p>
+<p>的部分。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">const store = observableTodoStore;</div><div class="line">store.todos[0].completed = !store.todos[0].completed;</div><div class="line">store.todos[1].task = <span class="string">"Random todo "</span> + Math.random();</div><div class="line">store.todos.push(&#123; task: <span class="string">"Find a fine cheese"</span>, completed: <span class="literal">true</span> &#125;);</div><div class="line">// etc etc.. add your own statements here...</div></pre></td></tr></table></figure>
+<h3 id="通过引用运行"><a href="#通过引用运行" class="headerlink" title="通过引用运行"></a>通过引用运行</h3><p>到目前为止，我们在数组和数据源上增加了观察对象。你可能担心MobX 如何处理这些引用。在我的state 允许形成图表？</p>
+<p>在前面的列表中你可能注意到在todos 中有一个assignee 属性。让我们引入另一个 “store” 去给它们一些值。</p>
+<p>包括人和给他们分配任务。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">var peopleStore = mobx.observable([</div><div class="line">    &#123; name: <span class="string">"Michel"</span> &#125;,</div><div class="line">	&#123; name: <span class="string">"Me"</span> &#125;</div><div class="line">]);</div><div class="line">observableTodoStore.todos[0].assignee = peopleStore[0];</div><div class="line">observableTodoStore.todos[1].assignee = peopleStore[1];</div><div class="line">peopleStore[0].name = <span class="string">"Michel Weststrate"</span>;</div></pre></td></tr></table></figure>
+<p>我们现在有两个独立的 stores 。一个是 people 并且另一个是 todos。为了从people store 中分配一个assignee 给一个人。</p>
+<p>我们仅仅指定一个引用。这些改变将被TodoView 自动地执行。使用MobX 没有必要首先去标准化数据并且去写选择器确保我们组件将</p>
+<p>被更新。事实上，数据存储到哪里不重要。只要数据被 observable，MobX 将能够追踪它们。真正的JavaScript 引用将产生作用。MobX </p>
+<p>将自动追踪它们如果它们是一个派生的引用。为了去测试它们，在下面的输入框中，尽力去改变你的名字。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">Your name:</div></pre></td></tr></table></figure>
+<p>随便说一下，上面输入框的HTML是简单的：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">&lt;input onkeyup=<span class="string">"peopleStore[1].name = event.target.value"</span> /&gt;</div></pre></td></tr></table></figure>
+<h3 id="异步actions"><a href="#异步actions" class="headerlink" title="异步actions"></a>异步actions</h3><p>因为在我们小的Todo 应用中每个属性都是从state 中派生出来的，当状态改变时它确实无关紧要。创建一个异步的actions 确实很简单。</p>
+<p>仅仅按下面的按钮去模仿异步加载新的todo 选项。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">按钮 &lt;-_&lt;-</div></pre></td></tr></table></figure>
+<p>后面的代码相当简单。我们以更新store 属性pendingRequests 开始，去有一个当前当前加载状态UI 的反应。一旦加载完成我们就</p>
+<p>更新store 的todos 并且再次减少pendingRequests 的计数。仅仅用更早的TodoList 定义比较这段代码，去了解pendingRequests 熟悉</p>
+<p>如何被使用。 </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">observableTodoStore.pendingRequests++;</div><div class="line"><span class="built_in">set</span>Timeout(<span class="function"><span class="title">function</span></span>() &#123;</div><div class="line">    observableTodoStore.addTodo(<span class="string">'Random Todo '</span> + Math.random());</div><div class="line">    observableTodoStore.pendingRequests--;</div><div class="line">&#125;, 2000);</div></pre></td></tr></table></figure>
 
       
 
@@ -488,6 +521,22 @@ var _hmt = _hmt || [];
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">canvas</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">开源</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">react</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">前端架构</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Node.js</a>
               </li>
              
@@ -504,31 +553,15 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">react</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">前端架构</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">canvas</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">开源</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">前端框架</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">服务器</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
               </li>
             
             <div class="clearfix"></div>
