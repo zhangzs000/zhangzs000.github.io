@@ -158,6 +158,116 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-工程化" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/07/29/工程化/">工程化</a>
+    </h1>
+  
+
+        
+        <a href="/2018/07/29/工程化/" class="archive-article-date">
+  	<time datetime="2018-07-28T23:07:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-29</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li>单元测试</li>
+<li>网页性能分析</li>
+<li>代码托管</li>
+<li>bug日志</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/07/29/工程化/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
+    <article id="post-架构设计" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/07/29/架构设计/">架构设计</a>
+    </h1>
+  
+
+        
+        <a href="/2018/07/29/架构设计/" class="archive-article-date">
+  	<time datetime="2018-07-28T23:04:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-29</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li>underscore</li>
+<li>jquery</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/07/29/架构设计/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
     <article id="post-mobx文档翻译" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -282,142 +392,6 @@
 
 
   
-    <article id="post-网页分析" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/06/18/网页分析/">网页分析</a>
-    </h1>
-  
-
-        
-        <a href="/2018/06/18/网页分析/" class="archive-article-date">
-  	<time datetime="2018-06-18T08:08:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-18</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="CR和SSR项目对比"><a href="#CR和SSR项目对比" class="headerlink" title="CR和SSR项目对比"></a>CR和SSR项目对比</h2><p>首先我们带有一个项目分别用SSR的方式和CR的方式实现，这里选用vue项目。<br>关于vue服务端渲染的知识可以参考官网和作者的demo。<br>找了个项目，chrome开发工具中将网络调整为<code>fast 3G</code>的Performance图分别如下：</p>
-<h3 id="客户端渲染"><a href="#客户端渲染" class="headerlink" title="客户端渲染"></a>客户端渲染</h3><p><img src="/assets/blogImg/ssr/cr.png" alt="客户端渲染" title="客户端渲染图片"></p>
-<h3 id="服务端渲染"><a href="#服务端渲染" class="headerlink" title="服务端渲染"></a>服务端渲染</h3><p><img src="/assets/blogImg/ssr/ssr.png" alt="服务端渲染" title="服务端渲染图片"></p>
-<h3 id="关于vue的SSR解释"><a href="#关于vue的SSR解释" class="headerlink" title="关于vue的SSR解释"></a>关于vue的SSR解释</h3><p>SSR 有两个入口文件，client.js 和 server.js， 都包含了应用代码，webpack 通过两个入口文件分别打包成给服务端用的 server bundle 和给客户端用的 client bundle. 当服务器接收到了来自客户端的请求之后，会创建一个渲染器 bundleRenderer，这个 bundleRenderer 会读取上面生成的 server bundle 文件，并且执行它的代码， 然后发送一个生成好的 html 到浏览器，等到客户端加载了 client bundle 之后，会和服务端生成的DOM 进行 Hydration (判断这个 DOM 和自己即将生成的 DOM 是否相同，如果相同就将客户端的Vue实例挂载到这个 DOM 上， 否则会提示警告)。</p>
-<h3 id="有火焰图的那个窗口"><a href="#有火焰图的那个窗口" class="headerlink" title="有火焰图的那个窗口"></a>有火焰图的那个窗口</h3><p>细心的小盆友会发现有3根线：</p>
-<ul>
-<li>绿线代表首次绘制的时间。</li>
-<li>蓝线代表 DOMContentLoaded 事件。 </li>
-<li>红线代表 load 事件</li>
-</ul>
-<h3 id="从分析图中我们可以看到："><a href="#从分析图中我们可以看到：" class="headerlink" title="从分析图中我们可以看到："></a>从分析图中我们可以看到：</h3><p>CR的首次绘制时间大约是550ms, 而SSR的首次绘制时间大约是1070ms,这就<code>尴尬</code>了。<br>这个待完善。CR肯定是存在阻塞行为的。<br>至于这个<code>TTFB</code>(多长时间才能收到第一个响应的字节)</p>
-<p><img src="/assets/blogImg/ssr/TTFB.png" alt="TTFB" title="TTFB图片"></p>
-<p>我们是在本地服务启动，相当于开发环境，也没什么意义。</p>
-<h2 id="RAIL模型"><a href="#RAIL模型" class="headerlink" title="RAIL模型"></a>RAIL模型</h2><ul>
-<li><code>Response</code>立即响应用户；在 100 毫秒以内确认用户输入。</li>
-<li><code>Animation</code>设置动画或滚动时，在 10 毫秒以内生成帧。</li>
-<li><code>Idle</code>最大程度增加主线程的空闲时间。</li>
-<li><p><code>Load</code>持续吸引用户；在 1000 毫秒以内呈现交互内容。</p>
-<h2 id="关键渲染路径"><a href="#关键渲染路径" class="headerlink" title="关键渲染路径"></a>关键渲染路径</h2><p><img src="/assets/blogImg/ssr/rp.jpeg" alt="关键渲染路径" title="关键渲染路径图片"></p>
-</li>
-</ul>
-<h2 id="分析网站"><a href="#分析网站" class="headerlink" title="分析网站"></a>分析网站</h2><ul>
-<li><p>识别网站的关键资源，画出它的关键渲染路径图。</p>
-<p><img src="/assets/blogImg/ssr/mycp.png" alt="关键渲染路径" title="关键渲染路径图片"></p>
-</li>
-<li><p>算出关键渲染路径的三个指标。</p>
-<ul>
-<li>关键资源个数</li>
-<li>关键资源大小。</li>
-<li>关键网络来回数目。</li>
-</ul>
-</li>
-<li><p>是否可优化？优化后的<code>指标</code>?</p>
-</li>
-</ul>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/06/18/网页分析/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-编码测试" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/06/05/编码测试/">编码测试</a>
-    </h1>
-  
-
-        
-        <a href="/2018/06/05/编码测试/" class="archive-article-date">
-  	<time datetime="2018-06-05T00:07:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-05</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>乱码乱码乱码<br>编码测试编码测试编码测试</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/06/05/编码测试/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -521,6 +495,10 @@ var _hmt = _hmt || [];
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">前端架构</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">canvas</a>
               </li>
              
@@ -530,10 +508,6 @@ var _hmt = _hmt || [];
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">react</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">前端架构</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -553,7 +527,7 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">前端框架</a>
+                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -561,7 +535,7 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
+                <a href="javascript:void(0)" class="js-tag color5">前端框架</a>
               </li>
             
             <div class="clearfix"></div>
