@@ -248,7 +248,7 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">var _ = <span class="keyword">function</span>(obj) &#123;</div><div class="line"><span class="keyword">if</span>(!(this instanceof _)) &#123;</div><div class="line">	<span class="built_in">return</span> new _(obj)</div><div class="line">&#125;</div><div class="line">this.wrapped = obj</div><div class="line">&#125;</div><div class="line"></div><div class="line">？？？？？？？</div></pre></td></tr></table></figure>
 <p>把obj 用call 或 apply 的形式传到要调用的函数中</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line">core.js</div><div class="line"></div><div class="line"> _.each = <span class="keyword">function</span>(arr, cb) &#123;</div><div class="line">	<span class="keyword">for</span> (var i = 0; i &lt; arr.length; i++) &#123;</div><div class="line">		cb.call(arr, arr[i], i)</div><div class="line">	&#125;;</div><div class="line">&#125;	</div><div class="line"></div><div class="line">_.functions = <span class="keyword">function</span>(obj) &#123;</div><div class="line">	var result = [];</div><div class="line">	<span class="keyword">for</span> (var key <span class="keyword">in</span> obj) &#123;</div><div class="line">		// 忽略掉那些从原型链上继承到的属性。</div><div class="line">		<span class="keyword">if</span> (obj.hasOwnProperty(key)) &#123;</div><div class="line">			result.push(key)</div><div class="line">		&#125;</div><div class="line">	&#125;;</div><div class="line">	<span class="built_in">return</span> result;</div><div class="line">&#125;</div><div class="line"></div><div class="line">_.mixin = <span class="keyword">function</span>(obj) &#123;</div><div class="line">	_.each(_.functions(obj), <span class="keyword">function</span>(value, index) &#123;</div><div class="line">		var fun = obj[value]</div><div class="line">		obj.prototype[value] = <span class="function"><span class="title">function</span></span>() &#123;</div><div class="line">			console.log(<span class="string">'arguments: '</span>,arguments)</div><div class="line">			console.log(<span class="string">'this.wrapped: '</span>,this.wrapped)</div><div class="line">			fun.apply(this,...)</div><div class="line">			fun.call(this,...)</div><div class="line">		&#125;;</div><div class="line">	&#125;)</div><div class="line">&#125;</div><div class="line"></div><div class="line">_.mixin(_)</div><div class="line">root._ = _;</div><div class="line"></div><div class="line"></div><div class="line">当执行</div><div class="line"> </div><div class="line"> _([1, 1, 2, 1, 2]).indexOf(2)</div><div class="line"></div><div class="line">结果：</div><div class="line">this.wrapped:  (5) [1, 1, 2, 1, 2]</div><div class="line">arguments:  Arguments [2, callee: ƒ, Symbol(Symbol.iterator): ƒ]</div></pre></td></tr></table></figure>
-
+<h3 id="原型共享之Jquery"><a href="#原型共享之Jquery" class="headerlink" title="原型共享之Jquery"></a>原型共享之Jquery</h3>
       
 
       
@@ -525,19 +525,7 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">canvas</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">开源</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">服务器</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -546,6 +534,18 @@ var _hmt = _hmt || [];
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">前端框架</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">开源</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">服务器</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">canvas</a>
               </li>
             
             <div class="clearfix"></div>
