@@ -23,7 +23,7 @@
 冒泡排序从小到大排序，比较相邻元素，如果前一个比后一个大，则调换位置。如果有n个数据，那么就要进行n-1趟排序，每趟排序比较次数根据趟数决定。
 12345678910111213141516171819202122232425262728293031/*数据结构 ----------">
 <meta property="og:image" content="http://yoursite.com/assets/blogImg/algorithm/s1.png">
-<meta property="og:updated_time" content="2018-08-30T00:41:23.545Z">
+<meta property="og:updated_time" content="2018-09-04T00:28:32.138Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="算法">
 <meta name="twitter:description" content="排序算法
@@ -330,8 +330,21 @@ console.log(SelectionSort(arr))
 }
 </code></pre>
 <h3 id="插入排序-2"><a href="#插入排序-2" class="headerlink" title="插入排序 2"></a>插入排序 2</h3><p>二分插入排序： 因为左边的数列已经排好序，那么可以采用二分法来减少比较次数。</p>
-<p>二分查找的时间复杂度。</p>
+<h4 id="二分查找的时间复杂度。"><a href="#二分查找的时间复杂度。" class="headerlink" title="二分查找的时间复杂度。"></a>二分查找的时间复杂度。</h4><p>时间频度为T(n)，n为问题规模。一般情况下，算法中基本操作重复执行的次数是问题规模n的某个函数，用T(n)表示，若有某个辅助函数f(n)，使得当n趋近于无穷大时，T（n)/f(n)的极限值为不等于零的常数，则称f(n)是T(n)的同数量级函数，记作T(n)=O(f(n))，它称为算法的渐进时间复杂度，简称时间复杂度。<br>用O( )来体现算法时间复杂度的记法，我们称之为大O表示法。 <code>尴尬</code></p>
 <pre><code class="bash">
+// 最差时间复杂度
+// 假设数据规模是n，则T(n)为除以2再加上一次比较的过程为O(1)
+    T(n) = T(n/2) + O(1)
+以此类推：
+    T(n) = T(n/2^1) + O(1)
+         = (T(n/2^2)+O(1)) + O(1)
+         = (T(n/2^3)+O(1)+O(1)) + O(1)
+    .....
+辅助函数f(n)=n/2^k , 比较次数是k;
+其中f(n)=n/2^k&lt;=1 =&gt; n&lt;=2^k =&gt;logn&lt;=k 
+T(n) = [logn]O(1) =&gt; T(n)/f(n)=O(1) =&gt; O(logn)
+
+因此二分查找的时间复杂度是<span class="built_in">log</span>N。
 </code></pre>
 
       
@@ -579,7 +592,15 @@ var _hmt = _hmt || [];
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">react</a>
+                <a href="javascript:void(0)" class="js-tag color5">前端架构</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">canvas</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">开源</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -599,23 +620,15 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">react</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">开源</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">服务器</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">canvas</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">前端架构</a>
               </li>
              
               <li class="article-tag-list-item">
