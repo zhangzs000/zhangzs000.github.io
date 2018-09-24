@@ -22,7 +22,7 @@ debounce(防抖)间隔时间内只能执行一次
 把该封装的封装，抽离的抽离123456789101112btn.addEventListener(&amp;apos;click&amp;apos;,debounce())function debounce() &amp;#123;	return function() &amp;#123;		clearTimeout(this.timer)">
 <meta property="og:image" content="http://yoursite.com/assets/blogImg/debounce&throttle/001.gif">
 <meta property="og:image" content="http://yoursite.com/assets/blogImg/debounce&throttle/002.gif">
-<meta property="og:updated_time" content="2018-04-15T06:55:21.941Z">
+<meta property="og:updated_time" content="2018-09-16T08:43:24.340Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="debounce和throttle">
 <meta name="twitter:description" content="这个问题也经常会碰到，于是手动实现试试
@@ -203,7 +203,7 @@ debounce(防抖)间隔时间内只能执行一次
 <h3 id="下面呢就实现间隔时间delay内不断触发，并且在最后一次触发的时候，delay秒后将再次自动触发"><a href="#下面呢就实现间隔时间delay内不断触发，并且在最后一次触发的时候，delay秒后将再次自动触发" class="headerlink" title="下面呢就实现间隔时间delay内不断触发，并且在最后一次触发的时候，delay秒后将再次自动触发"></a>下面呢就实现间隔时间delay内不断触发，并且在最后一次触发的时候，delay秒后将再次自动触发</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">btn.addEventListener(&apos;click&apos;,throttle(todo, 500))</div><div class="line">function throttle(fn, delay) &#123;</div><div class="line">	return function() &#123;</div><div class="line">		let context = this;</div><div class="line">		let args = arguments;</div><div class="line">		if (!this.timer) &#123; // 没报错说明没语法错误，不执行说明逻辑没走掉这</div><div class="line">			this.timer = setTimeout(function()&#123;</div><div class="line">				fn.apply(context, args)</div><div class="line">				this.timer = null;</div><div class="line">			&#125;.bind(this), delay)</div><div class="line">		&#125;</div><div class="line">		</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line">function todo(params) &#123;</div><div class="line">	console.log(11111, params)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p><img src="/assets/blogImg/debounce&amp;throttle/002.gif" alt="throttle" title="throttle"></p>
 <h3 id="但是呢，上面那个总是在delay后执行，不能立即执行；下面就用时间戳的形式实现立即执行-前提是初始点击的时候已经是delay后了"><a href="#但是呢，上面那个总是在delay后执行，不能立即执行；下面就用时间戳的形式实现立即执行-前提是初始点击的时候已经是delay后了" class="headerlink" title="但是呢，上面那个总是在delay后执行，不能立即执行；下面就用时间戳的形式实现立即执行,前提是初始点击的时候已经是delay后了"></a>但是呢，上面那个总是在delay后执行，不能立即执行；下面就用时间戳的形式实现立即执行,前提是初始点击的时候已经是delay后了</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">btn.addEventListener(&apos;click&apos;,throttle(todo, 500))</div><div class="line">	function throttle(fn, delay) &#123;</div><div class="line">		let prev = Date.now();</div><div class="line">		return function() &#123;</div><div class="line">			let context = this;</div><div class="line">			let args = arguments;</div><div class="line">			let next = Date.now();</div><div class="line">			if (next-prev &gt; delay) &#123;</div><div class="line">				fn.apply(context, args);</div><div class="line">				prev = Date.now();</div><div class="line">			&#125;			</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	function todo(params) &#123;</div><div class="line">		console.log(11111, params)</div><div class="line">	&#125;</div></pre></td></tr></table></figure>
-<h3 id="假如我想开始立即触发，最后那一次delay后也要执行一次呢"><a href="#假如我想开始立即触发，最后那一次delay后也要执行一次呢" class="headerlink" title="假如我想开始立即触发，最后那一次delay后也要执行一次呢"></a>假如我想开始立即触发，最后那一次delay后也要执行一次呢</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">btn.addEventListener(&apos;click&apos;,throttle(todo, 1000))</div><div class="line">function throttle(fn, delay) &#123;</div><div class="line">	let prev = Date.now();</div><div class="line">	return function() &#123;</div><div class="line">		let context = this;</div><div class="line">		let args = arguments;</div><div class="line">		let next = Date.now();</div><div class="line"></div><div class="line">		if (next-prev &gt; delay) &#123;</div><div class="line">			fn.apply(context, args);</div><div class="line">			prev = Date.now();</div><div class="line">		&#125; else &#123;</div><div class="line">			clearTimeout(this.timer);</div><div class="line">			this.timer = setTimeout(fn.bind(this, args),delay);</div><div class="line">		&#125;</div><div class="line">		</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line">function todo(params) &#123;</div><div class="line">	console.log(11111, params)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="假如我想开始立即触发，最后那一次delay后也要执行一次呢"><a href="#假如我想开始立即触发，最后那一次delay后也要执行一次呢" class="headerlink" title="假如我想开始立即触发，最后那一次delay后也要执行一次呢"></a>假如我想开始立即触发，最后那一次delay后也要执行一次呢</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">btn.addEventListener(&apos;click&apos;,throttle(todo, 1000))</div><div class="line">function throttle(fn, delay) &#123;</div><div class="line">	let prev = Date.now();</div><div class="line">	return function() &#123;</div><div class="line">		let context = this;</div><div class="line">		let args = arguments;</div><div class="line">		let next = Date.now();</div><div class="line"></div><div class="line">		if (next-prev &gt; delay) &#123;</div><div class="line">			fn.apply(context, args);</div><div class="line">			prev = Date.now();</div><div class="line">		&#125; else &#123;</div><div class="line">			// 一直清除定时器</div><div class="line">			clearTimeout(this.timer);</div><div class="line">			this.timer = setTimeout(fn.bind(this, args),delay);</div><div class="line">		&#125;</div><div class="line">		</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line">function todo(params) &#123;</div><div class="line">	console.log(11111, params)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h3 id="适用场景"><a href="#适用场景" class="headerlink" title="适用场景"></a>适用场景</h3><ul>
 <li>防抖放在购物车结算时，它只能点击一次；</li>
 <li>节流放在购物车加减商品时，还有类似淘宝的搜索框，还有类似的resize,之类的不断触发AjAx的场景</li>
@@ -455,7 +455,19 @@ var _hmt = _hmt || [];
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">前端架构</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">react</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">canvas</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">开源</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -475,14 +487,6 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">canvas</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">开源</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
               </li>
              
@@ -492,10 +496,6 @@ var _hmt = _hmt || [];
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">前端框架</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">前端架构</a>
               </li>
             
             <div class="clearfix"></div>
