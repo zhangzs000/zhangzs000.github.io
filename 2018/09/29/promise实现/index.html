@@ -22,7 +22,7 @@
 
 12345678910111213new Promise((resolve, reject)=&amp;gt;&amp;#123;    console.log(111)    resolve(222)&amp;#125;).then((data)=&amp;gt;&amp;#123;    console.log(data)&amp;#125;)结果：111222
 12345678910111">
-<meta property="og:updated_time" content="2018-09-28T23:37:46.607Z">
+<meta property="og:updated_time" content="2018-09-28T23:40:14.914Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="promise实现">
 <meta name="twitter:description" content="实现一个简单的promise
@@ -206,7 +206,7 @@
 <p>链式调用中，上一个then的返回值，下一个then如何接收？这里要用到闭包。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">new Promise((resolve, reject)=&gt;&#123;</div><div class="line">    <span class="built_in">set</span>Timeout(()=&gt;&#123;</div><div class="line">        console.log(111)</div><div class="line">        resolve(222)</div><div class="line">    &#125;, 100)</div><div class="line">&#125;)</div><div class="line">.then((data)=&gt;&#123;</div><div class="line">    console.log(data)</div><div class="line">    <span class="built_in">return</span> 333</div><div class="line">&#125;)</div><div class="line">.then((data)=&gt;&#123;</div><div class="line">    console.log(data)</div><div class="line">&#125;)</div><div class="line"></div><div class="line">结果：</div><div class="line"></div><div class="line">111</div><div class="line">222</div><div class="line">333</div></pre></td></tr></table></figure>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">.......</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">then</span>(onFulfilled, onRejected) &#123;</div><div class="line">    const &#123; _value, _status, _fulfilledList, _rejectedList &#125; = this</div><div class="line">    </div><div class="line">    <span class="built_in">return</span> new MyPromise((nextFulfiled, nextRejected)=&gt;&#123;</div><div class="line">        const _onFulfilled = (val) =&gt; &#123;</div><div class="line">            <span class="built_in">let</span> res = onFulfilled(val);</div><div class="line">            nextFulfiled(res)</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        const _onRejected = (val) =&gt; &#123;</div><div class="line">            <span class="built_in">let</span> res = onRejected(val);</div><div class="line">            nextRejected(res)</div><div class="line">        &#125;</div><div class="line">        switch(_status) &#123;</div><div class="line">            <span class="keyword">case</span> pedding: </div><div class="line">                _fulfilledList.push(_onFulfilled);</div><div class="line">                _rejectedList.push(_onRejected);</div><div class="line">                <span class="built_in">break</span>;</div><div class="line">            <span class="keyword">case</span> fulfilled:</div><div class="line">                onFulfilled(_value);</div><div class="line">                <span class="built_in">break</span>;</div><div class="line">            <span class="keyword">case</span> rejected:</div><div class="line">                onRejected(_value)</div><div class="line">                <span class="built_in">break</span>;</div><div class="line">        &#125;</div><div class="line">    &#125;)</div><div class="line">    </div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line">new MyPromise((resolve, reject)=&gt;&#123;</div><div class="line">    <span class="built_in">set</span>Timeout(()=&gt;&#123;</div><div class="line">        console.log(1111)</div><div class="line">        resolve(2222)</div><div class="line">    &#125;, 500)</div><div class="line">&#125;)</div><div class="line">.then((data)=&gt;&#123;</div><div class="line">    console.log(data)</div><div class="line">    <span class="built_in">return</span> 333</div><div class="line">&#125;)</div><div class="line">.then((data)=&gt;&#123;</div><div class="line">    console.log(data)</div><div class="line">&#125;)</div><div class="line"></div><div class="line">结果：</div><div class="line"></div><div class="line">1111</div><div class="line">2222</div><div class="line">333</div></pre></td></tr></table></figure>
-<p>大体上就完成了Promise的基本功能，具体可以看下Promise源码</p>
+<p>是不是特别的简单精炼？分分钟一个简单的Promise。<br>具体可以看下Promise源码</p>
 
       
 
@@ -444,6 +444,18 @@ var _hmt = _hmt || [];
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">前端架构</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">canvas</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">开源</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Node.js</a>
               </li>
              
@@ -460,23 +472,11 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">前端架构</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">canvas</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">开源</a>
+                <a href="javascript:void(0)" class="js-tag color1">react</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">react</a>
               </li>
              
               <li class="article-tag-list-item">
