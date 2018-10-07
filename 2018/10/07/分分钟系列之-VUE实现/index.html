@@ -6,17 +6,54 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Tag: 前端架构 | zhangzs的博客</title>
+  <title>分分钟系列之-VUE实现 | zhangzs的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="山西大学11级。擅长各项前端技能，深入研究移动端开发与前端性能。非专业视觉设计师。此为博客一枚。">
-<meta property="og:type" content="website">
-<meta property="og:title" content="zhangzs的博客">
-<meta property="og:url" content="http://yoursite.com/tags/前端架构/index.html">
+  <meta name="description" content="实现一个简单的VUE功能包括
+数据劫持
+数据代理
+模板编译
+视图同步
+computed订阅发布实现
+v-model双向绑定实现
+数据的对象嵌套
+
+未完成
+存在订阅了相同的函数，有时间再解决
+
+模板123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555">
+<meta property="og:type" content="article">
+<meta property="og:title" content="分分钟系列之-VUE实现">
+<meta property="og:url" content="http://yoursite.com/2018/10/07/分分钟系列之-VUE实现/index.html">
 <meta property="og:site_name" content="zhangzs的博客">
-<meta property="og:description" content="山西大学11级。擅长各项前端技能，深入研究移动端开发与前端性能。非专业视觉设计师。此为博客一枚。">
+<meta property="og:description" content="实现一个简单的VUE功能包括
+数据劫持
+数据代理
+模板编译
+视图同步
+computed订阅发布实现
+v-model双向绑定实现
+数据的对象嵌套
+
+未完成
+存在订阅了相同的函数，有时间再解决
+
+模板123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555">
+<meta property="og:updated_time" content="2018-10-07T08:51:34.826Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="zhangzs的博客">
-<meta name="twitter:description" content="山西大学11级。擅长各项前端技能，深入研究移动端开发与前端性能。非专业视觉设计师。此为博客一枚。">
+<meta name="twitter:title" content="分分钟系列之-VUE实现">
+<meta name="twitter:description" content="实现一个简单的VUE功能包括
+数据劫持
+数据代理
+模板编译
+视图同步
+computed订阅发布实现
+v-model双向绑定实现
+数据的对象嵌套
+
+未完成
+存在订阅了相同的函数，有时间再解决
+
+模板123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555">
   
     <link rel="alternative" href="/atom.xml" title="zhangzs的博客" type="application/atom+xml">
   
@@ -156,60 +193,179 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-分分钟系列之-VUE实现" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/03/04/Flux架构/" class="archive-article-date">
-  	<time datetime="2017-03-04T14:19:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-04</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/03/04/Flux架构/">Flux架构</a>
+    <h1 class="article-title" itemprop="name">
+      分分钟系列之-VUE实现
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">前端架构</a>
-        		</li>
-      		
-		</ul>
-	</div>
+        
+        <a href="/2018/10/07/分分钟系列之-VUE实现/" class="archive-article-date">
+  	<time datetime="2018-10-07T08:18:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-10-07</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="实现一个简单的VUE"><a href="#实现一个简单的VUE" class="headerlink" title="实现一个简单的VUE"></a>实现一个简单的VUE</h3><h4 id="功能包括"><a href="#功能包括" class="headerlink" title="功能包括"></a>功能包括</h4><ul>
+<li>数据劫持</li>
+<li>数据代理</li>
+<li>模板编译</li>
+<li>视图同步</li>
+<li>computed订阅发布实现</li>
+<li>v-model双向绑定实现</li>
+<li>数据的对象嵌套</li>
+</ul>
+<h4 id="未完成"><a href="#未完成" class="headerlink" title="未完成"></a>未完成</h4><ul>
+<li>存在订阅了相同的函数，有时间再解决</li>
+</ul>
+<h4 id="模板"><a href="#模板" class="headerlink" title="模板"></a>模板</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">&lt;div id=<span class="string">"app"</span>&gt;</div><div class="line">    &lt;div&gt;&#123;&#123;a.b&#125;&#125;&lt;/div&gt;</div><div class="line">    &lt;div&gt;&#123;&#123;c&#125;&#125;&#123;&#123;d&#125;&#125;&lt;/div&gt;</div><div class="line">    &lt;div&gt;&#123;&#123;sum&#125;&#125;&lt;/div&gt;</div><div class="line">    &lt;input <span class="built_in">type</span>=<span class="string">"text"</span> v-model=<span class="string">"a.b"</span>&gt;</div><div class="line">    &lt;input <span class="built_in">type</span>=<span class="string">"text"</span> v-model=<span class="string">"c"</span>&gt;</div><div class="line">&lt;/div&gt;</div><div class="line"></div><div class="line">&lt;script&gt;</div><div class="line"></div><div class="line"><span class="keyword">function</span> <span class="function"><span class="title">Dep</span></span>() &#123;</div><div class="line">    // 实现订阅发布的数组</div><div class="line">    this.subs = [];</div><div class="line">&#125;</div><div class="line">Dep.prototype = &#123;</div><div class="line">    addSub(sub) &#123;</div><div class="line">       this.subs.push(sub);</div><div class="line">    &#125;,</div><div class="line"><span class="function"><span class="title">notify</span></span>() &#123;</div><div class="line">        this.subs.forEach(sub =&gt; sub.update());</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="built_in">let</span> dep = new Dep();</div><div class="line"></div><div class="line"><span class="built_in">let</span> mvvm = new Mvvm(&#123;</div><div class="line">    el: <span class="string">'#app'</span>,</div><div class="line">    data: &#123;</div><div class="line">      a: &#123;</div><div class="line">        b: 1</div><div class="line">      &#125;,</div><div class="line">      c: 2,</div><div class="line">      d: 3</div><div class="line">    &#125;,</div><div class="line">    computed: &#123;</div><div class="line">      <span class="function"><span class="title">sum</span></span>() &#123;</div><div class="line">        // 调用一次，订阅一次，导致有2个sum</div><div class="line">        <span class="built_in">return</span> this.c + this.d;</div><div class="line">      &#125;,</div><div class="line">      <span class="function"><span class="title">noop</span></span>() &#123;</div><div class="line">      &#125;</div><div class="line">    &#125;,</div><div class="line"> &#125;);</div><div class="line"></div><div class="line"> <span class="keyword">function</span> Watcher(vm, exp, fn) &#123;</div><div class="line">     .....</div><div class="line"> &#125;</div><div class="line"></div><div class="line"> Watcher.prototype.update = <span class="function"><span class="title">function</span></span>() &#123;</div><div class="line">     this.fn()</div><div class="line"> &#125;</div><div class="line"> <span class="keyword">function</span> Mvvm(options = &#123;&#125;) &#123;</div><div class="line"></div><div class="line">     this.<span class="variable">$options</span> = options;</div><div class="line"></div><div class="line">     <span class="built_in">let</span> data = this._data = options.data</div><div class="line"></div><div class="line">     // 数据劫持</div><div class="line">    observe(data)</div><div class="line"></div><div class="line">    //数据代理</div><div class="line">    ......</div><div class="line"></div><div class="line">    initComputed.bind(this)()</div><div class="line"></div><div class="line">    // 模板编译</div><div class="line">    Compile(options.el, this);</div><div class="line"> &#125;</div><div class="line"></div><div class="line"> <span class="keyword">function</span> <span class="function"><span class="title">initComputed</span></span>() &#123;</div><div class="line">     </div><div class="line">     .....</div><div class="line"></div><div class="line"> &#125;</div><div class="line"></div><div class="line"> <span class="keyword">function</span> Observe(data) &#123;</div><div class="line"></div><div class="line"> &#125;</div><div class="line"></div><div class="line">&lt;/script&gt;</div></pre></td></tr></table></figure>
+<h4 id="注意点"><a href="#注意点" class="headerlink" title="注意点"></a>注意点</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">function</span> Watcher &#123;</div><div class="line"></div><div class="line">.....</div><div class="line"></div><div class="line">// 可以通过reduce来调用defineProperty中的get方法，进而订阅Watcher实例</div><div class="line">this.exp.split(<span class="string">'.'</span>).reduce((val, key)=&gt;&#123;</div><div class="line">    <span class="built_in">return</span> val[key]</div><div class="line">&#125;, this.vm)</div><div class="line"></div><div class="line"> .....</div><div class="line">&#125;</div><div class="line"></div><div class="line">Watcher.prototype.update = <span class="function"><span class="title">function</span></span>() &#123;</div><div class="line">    // 这里仅需要执行fn()即可，不需要别的</div><div class="line">    this.fn()</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">function</span> Compile(el, vm) &#123;</div><div class="line">    ......</div><div class="line"></div><div class="line">    // 满足非贪婪匹配</div><div class="line">    reg = /\&#123;\&#123;(.*?)\&#125;\&#125;/g;</div><div class="line"></div><div class="line">    .....</div><div class="line"></div><div class="line">    <span class="keyword">if</span>(node.nodeType === 3 &amp;&amp; reg.test(txt))&#123;</div><div class="line">        <span class="keyword">function</span> <span class="function"><span class="title">replaceTxt</span></span>() &#123;</div><div class="line">            // replace函数的参数(match匹配的字符串，<span class="variable">$1</span>,<span class="variable">$2</span>...第n个括号匹配的字符串， offset，string)</div><div class="line">            node.textContent = txt.replace(reg, (matched, placeholder)=&gt;&#123;</div><div class="line">                <span class="built_in">return</span> placeholder.split(<span class="string">'.'</span>).reduce((val, key)=&gt;&#123;</div><div class="line">                    <span class="built_in">return</span> val[key];</div><div class="line">                &#125;, vm)</div><div class="line">            &#125;)</div><div class="line">        &#125;;</div><div class="line">        replaceTxt()</div><div class="line">        new Watcher(vm, RegExp.<span class="variable">$1</span>, replaceTxt);</div><div class="line">    &#125;</div><div class="line">    // 双向绑定</div><div class="line">    <span class="keyword">if</span>(node.nodeType === 1) &#123;</div><div class="line">        <span class="built_in">let</span> nodeAttr = node.attributes;</div><div class="line">        Array.from(nodeAttr).forEach(attr =&gt; &#123;</div><div class="line">        <span class="built_in">let</span> name = attr.name,</div><div class="line">            exp = attr.value,</div><div class="line">            arr = exp.split(<span class="string">'.'</span>);</div><div class="line">        <span class="keyword">if</span>(name.includes(<span class="string">'v-model'</span>))&#123;</div><div class="line">            replaceModel()</div><div class="line">            node.addEventListener(<span class="string">'input'</span>, e=&gt;&#123;</div><div class="line">            <span class="built_in">let</span> newVal = e.target.value;</div><div class="line">            // 更新实例中的值，执行<span class="built_in">set</span>中的发布；并满足类似a.b.c这样的表达式</div><div class="line">            <span class="built_in">eval</span>(<span class="string">'vm.'</span>+exp+<span class="string">'='</span>+newVal);</div><div class="line">            node.value = newVal;</div><div class="line">            &#125;)</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">function</span> <span class="function"><span class="title">replaceModel</span></span>() &#123;</div><div class="line">            node.value =  arr.reduce((val, key)=&gt;&#123;</div><div class="line">            <span class="built_in">return</span> val[key]</div><div class="line">            &#125;, vm)</div><div class="line">        &#125;</div><div class="line">        // 更新实例时，对应的node也要更新</div><div class="line">        new Watcher(vm, exp, replaceModel);</div><div class="line">        &#125;)</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
-          
+      
 
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/blogImg/zfb_pay.png">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/blogImg/weixin_pay.png">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2018/10/07/分分钟系列之-VUE实现/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2018/09/29/promise实现/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">promise实现</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+
+
+  
+  <div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="分分钟系列之-VUE实现" data-title="分分钟系列之-VUE实现" data-url="http://yoursite.com/2018/10/07/分分钟系列之-VUE实现/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"zhangzs000"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
   
 
-    
+
 
 
           </div>
@@ -242,9 +398,9 @@ var _hmt = _hmt || [];
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		root: "/",
