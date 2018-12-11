@@ -24,7 +24,7 @@
 12345678910111213141516171819202122232425262728293031/*数据结构 ----------">
 <meta property="og:image" content="http://yoursite.com/assets/blogImg/algorithm/tree001.png">
 <meta property="og:image" content="http://yoursite.com/assets/blogImg/algorithm/tree002.png">
-<meta property="og:updated_time" content="2018-12-09T13:55:59.386Z">
+<meta property="og:updated_time" content="2018-12-11T00:00:03.064Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="算法">
 <meta name="twitter:description" content="排序算法
@@ -209,7 +209,7 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">var arr = [9,9,8,7,8,8,8,6,5,4,3,2]</div><div class="line"></div><div class="line"><span class="keyword">function</span> <span class="function"><span class="title">BubbleSort4</span></span>() &#123;</div><div class="line">	 <span class="built_in">let</span> len = arr.length,</div><div class="line">    	left = 0,</div><div class="line">    	right = len-1,</div><div class="line">    	right_pointer = 0,</div><div class="line">    	left_pointer = 0;</div><div class="line"></div><div class="line">    <span class="keyword">for</span> (; left &lt; right ; ) &#123;</div><div class="line">        <span class="keyword">for</span> (<span class="built_in">let</span> i = left; i &lt; right; i++) &#123;</div><div class="line">            <span class="keyword">if</span> (arr[i] &gt; arr[i+1]) &#123; </div><div class="line">  				[arr[i], arr[i+1]] = [arr[i+1], arr[i]];</div><div class="line">  				right_pointer = i;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        right = right_pointer;</div><div class="line">        <span class="keyword">for</span> (<span class="built_in">let</span> j = right; j &gt; left; j--) &#123;</div><div class="line">            <span class="keyword">if</span> (arr[j] &lt; arr[j-1]) &#123; </div><div class="line">  				[arr[j], arr[j-1]] = [arr[j-1], arr[j]];</div><div class="line">  				left_pointer = j;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        left = left_pointer;</div><div class="line">        // 临界值判断</div><div class="line">        <span class="keyword">if</span> (left === right-1 &amp;&amp; arr[left] &lt; arr[right]) <span class="built_in">break</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="built_in">return</span> arr;</div><div class="line">&#125;</div><div class="line"></div><div class="line">console.log(BubbleSort4(arr))</div></pre></td></tr></table></figure>
 <h3 id="冒泡排序改进-4"><a href="#冒泡排序改进-4" class="headerlink" title="冒泡排序改进 4"></a>冒泡排序改进 4</h3><p>使用位运算^（异或）去交换值。</p>
 <p>原理；</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">相同的两个数异或得0，不同的两个数异或得1; 将两个数异或的结果与其中一个数再异或，可以得到另一个数；</div><div class="line"></div><div class="line">    temp=a^b;      //设temp为临时变量，存储异或值</div><div class="line">    b=temp^b;      //相当于b=a  =&gt; a ^ b ^ b = a</div><div class="line">    a=temp^a;      //相当于a=b  =&gt; a ^ b ^ a = b</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">相同的两个数异或得0，不同的两个数异或得1; 将两个数异或的结果与其中一个数再异或，可以得到另一个数；</div><div class="line"></div><div class="line">    temp=a^b;      //设temp为临时变量，存储异或值</div><div class="line">    b=temp^b;      //相当于b=a  =&gt; a ^ b ^ b = a</div><div class="line">    a=temp^a;      //相当于a=b  =&gt; a ^ b ^ a = b</div><div class="line"></div><div class="line">但是，从汇编的指令和实际的测试来看，用异或执行的指令数目和时间长短并不是最优解。</div></pre></td></tr></table></figure>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">var arr = [9,9,8,7,8,8,8,6,5,4,3,2]</div><div class="line"></div><div class="line"><span class="keyword">function</span> <span class="function"><span class="title">BubbleSort5</span></span>() &#123;</div><div class="line">    <span class="built_in">let</span> len = arr.length;</div><div class="line">    </div><div class="line">    <span class="keyword">for</span> (<span class="built_in">let</span> i = len-1; i &gt; 0; ) &#123;</div><div class="line">        // 必须初始化，否则可能死循环</div><div class="line">        <span class="built_in">let</span> flag = 0</div><div class="line">        <span class="keyword">for</span> (<span class="built_in">let</span> j = 0; j &lt; i; j++) &#123;</div><div class="line">            <span class="keyword">if</span> (arr[j] &gt; arr[j+1]) &#123; </div><div class="line">                var temp = arr[j] ^ arr[j+1];</div><div class="line">                  arr[j] = temp ^ arr[j+1];</div><div class="line">                  arr[j+1] = temp ^ arr[j];</div><div class="line">                flag = j;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        i = flag;</div><div class="line">    &#125;</div><div class="line">    <span class="built_in">return</span> arr;</div><div class="line">&#125;</div><div class="line"></div><div class="line">console.log(BubbleSort5(arr))</div></pre></td></tr></table></figure>
 <h3 id="冒泡排序改进-5"><a href="#冒泡排序改进-5" class="headerlink" title="冒泡排序改进 5"></a>冒泡排序改进 5</h3><p>使用列表去存储值</p>
 <p>原理：</p>
@@ -473,23 +473,11 @@ var _hmt = _hmt || [];
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">前端架构</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">react</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">canvas</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">开源</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -509,11 +497,23 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">前端框架</a>
+                <a href="javascript:void(0)" class="js-tag color1">react</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">前端架构</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">服务器</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">前端框架</a>
               </li>
             
             <div class="clearfix"></div>
