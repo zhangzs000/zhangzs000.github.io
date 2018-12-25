@@ -304,7 +304,7 @@
 </ul>
 <p>稳定性：如果Ai = Aj，排序前Ai在Aj之前，排序后Ai还在Aj之前，则称这种排序算法是稳定的。</p>
 <h3 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h3><p>从小到大排序，比较相邻元素，如果前一个比后一个大，则调换位置。如果有n个数据，那么就要进行n-1趟排序，每趟排序比较次数根据趟数决定。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">/*</div><div class="line"></div><div class="line">数据结构 ---------- 数组</div><div class="line">最差时间复杂度 ---- O(n^2)</div><div class="line">最优时间复杂度  ----O(n)</div><div class="line">平均时间复杂度 ---- O(n^2)</div><div class="line">所需辅助空间 ------ O(1)</div><div class="line">稳定性 ------------ 稳定</div><div class="line"></div><div class="line">*/</div><div class="line">var arr = [9,9,8,7,8,8,8,6,5,4,3,2]</div><div class="line"></div><div class="line"><span class="keyword">function</span> <span class="function"><span class="title">BubbleSort1</span></span>() &#123;</div><div class="line">	<span class="built_in">let</span> len = arr.length;</div><div class="line">    <span class="keyword">for</span> (<span class="built_in">let</span> i = 0; i &lt; len-1; i++) &#123;</div><div class="line">        <span class="keyword">for</span> (<span class="built_in">let</span> j = 0; j &lt; len - 1 - i; j++) &#123;</div><div class="line">            <span class="keyword">if</span> (arr[j] &gt; arr[j+1]) &#123; </div><div class="line">            	// es5版       </div><div class="line">                <span class="built_in">let</span> temp = arr[j+1];        </div><div class="line">                arr[j+1] = arr[j];</div><div class="line">                arr[j] = temp;</div><div class="line">                // es6版</div><div class="line">  				//[arr[j], arr[j+1]] = [arr[j+1], arr[j]];</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="built_in">return</span> arr;</div><div class="line">&#125;</div><div class="line"></div><div class="line">console.log(bubbleSort1(arr))</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">/*</div><div class="line"></div><div class="line">数据结构 ---------- 数组</div><div class="line">最差时间复杂度 ---- O(n^2)</div><div class="line">最优时间复杂度  ----O(n)</div><div class="line">平均时间复杂度 ---- O(n^2)</div><div class="line">所需辅助空间 ------ O(1)</div><div class="line">稳定性 ------------ 稳定</div><div class="line"></div><div class="line">*/</div><div class="line">var arr = [9,9,8,7,8,8,8,6,5,4,3,2]</div><div class="line"></div><div class="line"><span class="keyword">function</span> <span class="function"><span class="title">BubbleSort1</span></span>() &#123;</div><div class="line">	<span class="built_in">let</span> len = arr.length;</div><div class="line">    <span class="keyword">for</span> (<span class="built_in">let</span> i = 0; i &lt; len-1; i++) &#123;</div><div class="line">        <span class="keyword">for</span> (<span class="built_in">let</span> j = 0; j &lt; len - 1 - i; j++) &#123;</div><div class="line">            <span class="keyword">if</span> (arr[j] &gt; arr[j+1]) &#123; </div><div class="line">            	// es5版       </div><div class="line">                <span class="built_in">let</span> temp = arr[j+1];        </div><div class="line">                arr[j+1] = arr[j];</div><div class="line">                arr[j] = temp;</div><div class="line">                // es6版</div><div class="line">  				//[arr[j], arr[j+1]] = [arr[j+1], arr[j]];</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="built_in">return</span> arr;</div><div class="line">&#125;</div><div class="line"></div><div class="line">console.log(bubbleSort1(arr))</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">for</span> (<span class="built_in">let</span> i = 0; i &lt; len; i++) &#123;</div><div class="line">    <span class="keyword">for</span> (<span class="built_in">let</span> j = 0; j &lt; len - i-1; j++) </div><div class="line">    和上面那个执行的次数是一样的。因为i=len-1时，j=0;一个循环也不走，所以次数一样。第二个循环如果不减一的话，i==0 =&gt; Jmax ==len-1 =&gt;arr[j+1] == arr[len]出现undefined。以后的话也类似。导致多循环len次</div><div class="line"></div><div class="line"><span class="keyword">for</span> (var i = arr.length - 1; i &gt; 0; i--) &#123;</div><div class="line">            <span class="keyword">for</span> (var j = 0; j &lt; i; j++) &#123;</div><div class="line">这个循环也行</div></pre></td></tr></table></figure>
 <p>n个数据最后一趟，也就是 n-1 趟的时候，不用循环，因为前面都已经比较过了。它的时间复杂度n^2-n，所有它的时间复杂度还是O(n^2)，只要保证第一趟把最大的放在顶端就行。</p>
 <p>如果数组内层循环只需一次就排好序，然后就调出循环，那么他的时间复杂度 O(n)。</p>
 <p>平均时间复杂度是一种数学期望值，需要对输入的分布情况进行假设，一般都是通过运行一定数量的实验数据后估算出来的。设每种情况的出现的概率为pi,则为sum(pi*f(n))</p>
@@ -467,14 +467,6 @@ var _hmt = _hmt || [];
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">canvas</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">开源</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Node.js</a>
               </li>
              
@@ -495,6 +487,14 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">canvas</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">开源</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">前端架构</a>
               </li>
              
@@ -503,11 +503,11 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">服务器</a>
+                <a href="javascript:void(0)" class="js-tag color5">前端框架</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">前端框架</a>
+                <a href="javascript:void(0)" class="js-tag color4">服务器</a>
               </li>
             
             <div class="clearfix"></div>
