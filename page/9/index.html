@@ -155,6 +155,82 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Node-js" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/03/18/Node-js/">Node.js</a>
+    </h1>
+  
+
+        
+        <a href="/2017/03/18/Node-js/" class="archive-article-date">
+  	<time datetime="2017-03-18T14:56:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-18</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="第一步"><a href="#第一步" class="headerlink" title="第一步"></a>第一步</h2><p>先把下面这个用5分钟看完-_-!!</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">http://es6.ruanyifeng.com/</div></pre></td></tr></table></figure>
+<h2 id="第二步写demo"><a href="#第二步写demo" class="headerlink" title="第二步写demo"></a>第二步写demo</h2><h4 id="demo1-实现登录注册"><a href="#demo1-实现登录注册" class="headerlink" title="demo1 实现登录注册"></a>demo1 实现登录注册</h4><h4 id="demo2-读取歌词"><a href="#demo2-读取歌词" class="headerlink" title="demo2 读取歌词"></a>demo2 读取歌词</h4><p><img src="/assets/blogImg/node/music.gif" alt="music" title="music"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line">//读取歌词文件</div><div class="line">//使用cmd进入node脚本模式</div><div class="line">const fs=require(<span class="string">"fs"</span>);</div><div class="line">const path = require(<span class="string">"path"</span>);</div><div class="line"></div><div class="line"><span class="built_in">let</span> _path=path.join(__dirname,<span class="string">'./xxx.lrc'</span>)</div><div class="line"></div><div class="line">fs.stat(_path,(err,stats)=&gt;&#123;</div><div class="line">	<span class="keyword">if</span>(err) throw err;</div><div class="line">	//console.log(stats)</div><div class="line">	fs.readFile(_path,(err,content)=&gt;&#123;</div><div class="line">		<span class="keyword">if</span>(err) throw err;</div><div class="line">		//默认的就是utf-8,所以不用写。</div><div class="line">		//console.log(content.toString(<span class="string">'utf-8'</span>))</div><div class="line">		<span class="built_in">let</span> lines = content.toString(<span class="string">'utf-8'</span>).split(<span class="string">'\n'</span>);</div><div class="line">		//console.log(lines);</div><div class="line">		<span class="built_in">let</span> rg=/\[(\d&#123;2&#125;)\:(\d&#123;2&#125;)\.(\d&#123;2&#125;)\](.+)/;</div><div class="line">		lines.forEach((line,index)=&gt;&#123;</div><div class="line">			//console.log(rg.test(line))</div><div class="line">			<span class="built_in">let</span> matchs =rg.exec(line);</div><div class="line">			<span class="keyword">if</span>(matchs)&#123;</div><div class="line">				//console.log(matchs)</div><div class="line">				<span class="built_in">let</span> h = matchs[1];</div><div class="line">				<span class="built_in">let</span> m = matchs[2];</div><div class="line">				<span class="built_in">let</span> _s = matchs[3];</div><div class="line">				<span class="built_in">let</span> w = matchs[4];</div><div class="line">				<span class="built_in">set</span>Timeout(()=&gt;&#123;</div><div class="line">					console.log(w);</div><div class="line">					//定时器的参数是毫秒</div><div class="line">				&#125;,h*60*1000+m*1000+_s*10)</div><div class="line">			&#125;</div><div class="line">		&#125;)</div><div class="line"></div><div class="line">	&#125;)</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Node.js</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">bootstrap</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">mysql</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">xmapp</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/03/18/Node-js/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
     <article id="post-canvas" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -318,103 +394,9 @@ git地址：
 
 
   
-    <article id="post-搭载git服务器" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/03/05/搭载git服务器/">搭载git服务器</a>
-    </h1>
-  
-
-        
-        <a href="/2017/03/05/搭载git服务器/" class="archive-article-date">
-  	<time datetime="2017-03-05T06:55:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-05</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>要是有人再问我<code>会不会搭服务器</code>，我就问是什么服务器？tomcat、weblogic、solr还是其它?下面介绍的是在ubuntu-16.04.2下搭载git服务器，之所以选择这个版本是因为要运行nodeJs。</p>
-<h2 id="Ubuntu下搭载git服务器"><a href="#Ubuntu下搭载git服务器" class="headerlink" title="Ubuntu下搭载git服务器"></a>Ubuntu下搭载git服务器</h2><p>先给几个参考链接，我也是参考这里的。</p>
-<p><a href="http://blog.csdn.net/xsl1990/article/details/25486211" target="_blank" rel="external">链接一</a>   <a href="http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000/00137583770360579bc4b458f044ce7afed3df579123eca000" target="_blank" rel="external">链接二</a>   <a href="http://www.cnblogs.com/qianxudetianxia/p/4824536.html" target="_blank" rel="external">链接三</a>   <a href="http://blog.csdn.net/lyhdream/article/details/49561645" target="_blank" rel="external">链接四</a> </p>
-<h4 id="首先你待有个Ubuntu系统"><a href="#首先你待有个Ubuntu系统" class="headerlink" title="首先你待有个Ubuntu系统"></a>首先你待有个Ubuntu系统</h4><p><img src="/assets/blogImg/git_server/gs_1.png" alt="git服务器" title="git服务器"></p>
-<p>这里推荐用u盘安装。开始没用u盘安装，好久都没有安装成功。最后用u盘也就半个小时解决。</p>
-<h4 id="调出终端输入命令"><a href="#调出终端输入命令" class="headerlink" title="调出终端输入命令"></a>调出终端输入命令</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">sudo apt-get install git</div><div class="line">sudo apt-get install openssh-server</div></pre></td></tr></table></figure>
-<p><img src="/assets/blogImg/git_server/gs_2.png" alt="git服务器" title="git服务器"></p>
-<p>可以通过下面的命令查看sshd相关的进程信息</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">ps -ef|grep <span class="string">"sshd"</span></div></pre></td></tr></table></figure>
-<p>如果你能看到一些sshd相关的进程信息，则说明你已经有这个服务了。</p>
-<p>然后，为自己配置身份信息，这样多个人提交代码的时候，就可以方便的查看是谁提交的。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">git config --global user.name <span class="string">"yourname"</span>  </div><div class="line">git config --global user.email <span class="string">"your@email.com"</span></div></pre></td></tr></table></figure>
-<p><img src="/assets/blogImg/git_server/gs_3.png" alt="git服务器" title="git服务器"></p>
-<p>再然后配置一个专门的git用户并设置密码，专门对代码进行管理。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">sudo useradd -m git(yours)  </div><div class="line">sudo passwd git(change to yours)</div></pre></td></tr></table></figure>
-<p><img src="/assets/blogImg/git_server/gs_4.png" alt="git服务器" title="git服务器"></p>
-<p>然后，在新建的git用户主目录下创建一个文件夹作为git的仓库，并为这个仓库配备最基本的安防——权限控制</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">sudo mkdir /home/git/repositories <span class="comment"># 最好使用repositories作为文件夹名称，这样可以简化后面的操作  </span></div><div class="line">sudo chown git:git /home/git/repositories  </div><div class="line">sudo chmod 755 /home/git/repositories</div></pre></td></tr></table></figure>
-<p><img src="/assets/blogImg/git_server/gs_5.png" alt="git服务器" title="git服务器"></p>
-<p>输入一下命令基本就OK!!<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">su git             //切换到git用户,你可以发现路径前面变了</div><div class="line">mkdir helloworld  //新建一个目录（仓库）</div><div class="line"><span class="built_in">cd</span> helloworld  </div><div class="line">git --bare init  //初始化一个空的仓库</div></pre></td></tr></table></figure></p>
-<p>然后找一台机器测试一下</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">git <span class="built_in">clone</span> git@192.168.0.123:/home/git/repositories/helloworld</div></pre></td></tr></table></figure>
-<p><img src="/assets/blogImg/git_server/gs_6.png" alt="git服务器" title="git服务器"></p>
-<p>再加上下面这段命令，方便你可以push和pull<br><img src="/assets/blogImg/git_server/gs_7.png" alt="git服务器" title="git服务器"></p>
-<p>然后就成功了！<br><img src="/assets/blogImg/git_server/gs_8.png" alt="git服务器" title="git服务器"></p>
-<p>再找第三台机器测试，还是成功的。<br><img src="/assets/blogImg/git_server/gs_9.png" alt="git服务器" title="git服务器"></p>
-<p>但是服务器里我什么也找不到，我<code>开始以为失败</code>了。<br><img src="/assets/blogImg/git_server/gs_10.png" alt="git服务器" title="git服务器"></p>
-<p>但是，还有 不足之处，比如别的文章提到的:</p>
-<ul>
-<li>解决每个步骤都需要输入git用户的密码。</li>
-<li>出于安全考虑，创建的git用户不允许登录shell。</li>
-</ul>
-<p>下一步可以试试集群。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">服务器</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/03/05/搭载git服务器/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/8/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span><a class="page-number" href="/page/10/">10</a><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" href="/page/10/">Next &raquo;</a>
+      <a class="extend prev" rel="prev" href="/page/8/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span><a class="page-number" href="/page/10/">10</a><a class="page-number" href="/page/11/">11</a><a class="page-number" href="/page/12/">12</a><a class="extend next" rel="next" href="/page/10/">Next &raquo;</a>
     </nav>
   
 
@@ -515,7 +497,7 @@ var _hmt = _hmt || [];
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">react</a>
+                <a href="javascript:void(0)" class="js-tag color5">前端架构</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -535,15 +517,15 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">前端架构</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">canvas</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">开源</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">react</a>
               </li>
              
               <li class="article-tag-list-item">
