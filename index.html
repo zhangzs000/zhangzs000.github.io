@@ -187,7 +187,7 @@
 <ul>
 <li>store.dispatch({type: xxx, xx: xx}) 执行时既会执行 currentReducer(currentState, action) 计算新属性，又会遍历listeners将数组中订阅的函数都执行，大多数情况我们会使用boundAction就像下面</li>
 </ul>
-<p>actions会单独集中式写一个文件，<br><code>let boundActions = bindActionCreators(actions, store.dispatch)</code><br>就可以这样使用<br><code>boundActions.xxx</code></p>
+<p>actions会单独集中式写一个文件，<br><code>let boundActions = bindActionCreators(actions, store.dispatch)</code><br>就可以这样使用<br><code>boundActions.xxx</code><br>如果引入了<code>react-redux</code><br>可以这样写<br><code>connect(mapStateToProps, mapDispathToProps)(ComponentName)</code></p>
 <ul>
 <li>store.subscribe(fn) 监听某个函数，在不使用<code>react-redux</code>时可以这样<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">componentDidMount()&#123;</div><div class="line">  this.unsubscribe = store.subscribe(()=&gt;this.setState(&#123;number: store.getState().counter1.number&#125;))</div><div class="line">&#125;</div><div class="line">componentWillUnmount()&#123;</div><div class="line">  this.unsubscribe()</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 </li>
@@ -459,6 +459,30 @@ var _hmt = _hmt || [];
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">react</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">前端架构</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">服务器</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">开源</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">前端框架</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Node.js</a>
               </li>
              
@@ -475,31 +499,7 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">前端架构</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">canvas</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">开源</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">react</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">前端框架</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">服务器</a>
               </li>
             
             <div class="clearfix"></div>
