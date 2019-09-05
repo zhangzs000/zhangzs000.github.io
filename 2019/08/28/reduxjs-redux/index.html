@@ -22,7 +22,7 @@ enhancer 加强，比如常用的applyMiddleWare">
 reducer 传入自定义reducer用来计算state，默认返回initState;
 preloadedState 初始状态
 enhancer 加强，比如常用的applyMiddleWare">
-<meta property="og:updated_time" content="2019-09-05T02:41:12.625Z">
+<meta property="og:updated_time" content="2019-09-05T02:51:33.103Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="reduxjs/redux">
 <meta name="twitter:description" content="createStore.js1export default function createStore(reducer, preloadedState, enhancer) &amp;#123;...&amp;#125;
@@ -211,6 +211,7 @@ enhancer 加强，比如常用的applyMiddleWare">
 <li>store.getState()获取状态，这里也应用了闭包保存私有变量；</li>
 </ul>
 <p>More info: <a href="https://github.com/reduxjs/redux/blob/master/src%2FcreateStore.js" target="_blank" rel="external">createStore.js</a></p>
+<hr>
 <h2 id="bindActionCreators-js"><a href="#bindActionCreators-js" class="headerlink" title="bindActionCreators.js"></a>bindActionCreators.js</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">function</span> <span class="built_in">bind</span>ActionCreator(actionCreator, dispatch) &#123;</div><div class="line">  <span class="built_in">return</span> <span class="function"><span class="title">function</span></span>() &#123;</div><div class="line">    <span class="built_in">return</span> dispatch(actionCreator.apply(this, arguments))</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="built_in">export</span> default <span class="keyword">function</span> <span class="built_in">bind</span>ActionCreators(actionCreators, dispatch) &#123;</div><div class="line">	<span class="keyword">if</span> (typeof actionCreators === <span class="string">'function'</span>) &#123;</div><div class="line">	    <span class="built_in">return</span> <span class="built_in">bind</span>ActionCreator(actionCreators, dispatch)</div><div class="line">	  &#125;</div><div class="line">	...</div><div class="line">  const boundActionCreators = &#123;&#125;</div><div class="line">  <span class="keyword">for</span> (const key <span class="keyword">in</span> actionCreators) &#123;</div><div class="line">    const actionCreator = actionCreators[key]</div><div class="line">    <span class="keyword">if</span> (typeof actionCreator === <span class="string">'function'</span>) &#123;</div><div class="line">      boundActionCreators[key] = <span class="built_in">bind</span>ActionCreator(actionCreator, dispatch)</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">  <span class="built_in">return</span> boundActionCreators</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <ul>
 <li>actionCreators 可以传对象形式的action<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">export default  &#123;</div><div class="line">  add(args)&#123;</div><div class="line">    return &#123;type: types.ADD1, payload: args&#125;</div><div class="line">  &#125;,</div><div class="line">  minus()&#123;</div><div class="line">    return &#123;type: types.MINUS1&#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
@@ -218,17 +219,20 @@ enhancer 加强，比如常用的applyMiddleWare">
 </ul>
 <p>也可以传函数<br><code>let mapStateToProps = state =&gt; state.counter1;</code><br>内部会进行判断typeof actionCreators === ‘function’ ，最终的目的还是store.dispatch({type: xxx, xx: xx})</p>
 <p>More info: <a href="https://github.com/reduxjs/redux/blob/master/src%2FbindActionCreators.js" target="_blank" rel="external">bindActionCreators.js</a></p>
+<hr>
 <h2 id="applyMiddleware-js"><a href="#applyMiddleware-js" class="headerlink" title="applyMiddleware.js"></a>applyMiddleware.js</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">return</span> createStore =&gt; (...args) =&gt; &#123;</div><div class="line">    const store = createStore(...args)</div><div class="line"></div><div class="line">    const middlewareAPI = &#123;</div><div class="line">      getState: store.getState,</div><div class="line">      dispatch: (...args) =&gt; dispatch(...args)</div><div class="line">    &#125;</div><div class="line">    const chain = middlewares.map(middleware =&gt; middleware(middlewareAPI))</div><div class="line">    dispatch = compose(...chain)(store.dispatch)</div><div class="line"></div><div class="line">    <span class="built_in">return</span> &#123;</div><div class="line">      ...store,</div><div class="line">      dispatch</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
 <ul>
 <li>dispatch: (…args)=&gt;dispatch(…args) 保证dispatch 不是对象是函数的时候每次都是重写后的dispatch方法</li>
 <li>dispatch = compose(…chain)(store.dispatch)  通过闭包的形式保存oldDispatch</li>
 </ul>
 <p>More info: <a href="https://github.com/reduxjs/redux/blob/master/src%2FapplyMiddleware.js" target="_blank" rel="external">applyMiddleware.js</a></p>
+<hr>
 <h2 id="compose-js"><a href="#compose-js" class="headerlink" title="compose.js"></a>compose.js</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">return</span> createStore =&gt; (...args) =&gt; &#123;</div><div class="line">  ....</div><div class="line">  <span class="built_in">return</span> funcs.reduce((a, b) =&gt; (...args) =&gt; a(b(...args)))</div></pre></td></tr></table></figure>
 <ul>
 <li>这里用了reduce,实现方法很多，以前还用了reduceRight,总之将穿进来的中间件从左到右执行即可； </li>
 </ul>
 <p>More info: <a href="https://github.com/reduxjs/redux/blob/master/src%2Fcompose.js" target="_blank" rel="external">compose.js</a></p>
+<hr>
 <h2 id="combineReducers-js"><a href="#combineReducers-js" class="headerlink" title="combineReducers.js"></a>combineReducers.js</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"> ...</div><div class="line"><span class="built_in">return</span> <span class="keyword">function</span> combination(state = &#123;&#125;, action) &#123;</div><div class="line">	...</div><div class="line">const nextState = &#123;&#125;</div><div class="line"><span class="keyword">for</span> (<span class="built_in">let</span> i = 0; i &lt; finalReducerKeys.length; i++) &#123;</div><div class="line">const key = finalReducerKeys[i]</div><div class="line">const reducer = finalReducers[key]</div><div class="line">const previousStateForKey = state[key]</div><div class="line">const nextStateForKey = reducer(previousStateForKey, action)</div><div class="line">...</div><div class="line">nextState[key] = nextStateForKey</div><div class="line">hasChanged = hasChanged || nextStateForKey !== previousStateForKey</div><div class="line">&#125;</div><div class="line">hasChanged =</div><div class="line">hasChanged || finalReducerKeys.length !== Object.keys(state).length</div><div class="line"><span class="built_in">return</span> hasChanged ? nextState : state</div></pre></td></tr></table></figure>
 <ul>
 <li>一般用来合并reducer<br><code>export default combineReducers({
@@ -497,15 +501,15 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">react</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">canvas</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">开源</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">react</a>
               </li>
              
               <li class="article-tag-list-item">
