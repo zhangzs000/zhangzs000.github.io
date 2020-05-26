@@ -155,6 +155,100 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-搭载git服务器" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/03/05/搭载git服务器/">搭载git服务器</a>
+    </h1>
+  
+
+        
+        <a href="/2017/03/05/搭载git服务器/" class="archive-article-date">
+  	<time datetime="2017-03-05T06:55:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-05</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>要是有人再问我<code>会不会搭服务器</code>，我就问是什么服务器？tomcat、weblogic、solr还是其它?下面介绍的是在ubuntu-16.04.2下搭载git服务器，之所以选择这个版本是因为要运行nodeJs。</p>
+<h2 id="Ubuntu下搭载git服务器"><a href="#Ubuntu下搭载git服务器" class="headerlink" title="Ubuntu下搭载git服务器"></a>Ubuntu下搭载git服务器</h2><p>先给几个参考链接，我也是参考这里的。</p>
+<p><a href="http://blog.csdn.net/xsl1990/article/details/25486211" target="_blank" rel="external">链接一</a>   <a href="http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000/00137583770360579bc4b458f044ce7afed3df579123eca000" target="_blank" rel="external">链接二</a>   <a href="http://www.cnblogs.com/qianxudetianxia/p/4824536.html" target="_blank" rel="external">链接三</a>   <a href="http://blog.csdn.net/lyhdream/article/details/49561645" target="_blank" rel="external">链接四</a> </p>
+<h4 id="首先你待有个Ubuntu系统"><a href="#首先你待有个Ubuntu系统" class="headerlink" title="首先你待有个Ubuntu系统"></a>首先你待有个Ubuntu系统</h4><p><img src="/assets/blogImg/git_server/gs_1.png" alt="git服务器" title="git服务器"></p>
+<p>这里推荐用u盘安装。开始没用u盘安装，好久都没有安装成功。最后用u盘也就半个小时解决。</p>
+<h4 id="调出终端输入命令"><a href="#调出终端输入命令" class="headerlink" title="调出终端输入命令"></a>调出终端输入命令</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">sudo apt-get install git</div><div class="line">sudo apt-get install openssh-server</div></pre></td></tr></table></figure>
+<p><img src="/assets/blogImg/git_server/gs_2.png" alt="git服务器" title="git服务器"></p>
+<p>可以通过下面的命令查看sshd相关的进程信息</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">ps -ef|grep <span class="string">"sshd"</span></div></pre></td></tr></table></figure>
+<p>如果你能看到一些sshd相关的进程信息，则说明你已经有这个服务了。</p>
+<p>然后，为自己配置身份信息，这样多个人提交代码的时候，就可以方便的查看是谁提交的。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">git config --global user.name <span class="string">"yourname"</span>  </div><div class="line">git config --global user.email <span class="string">"your@email.com"</span></div></pre></td></tr></table></figure>
+<p><img src="/assets/blogImg/git_server/gs_3.png" alt="git服务器" title="git服务器"></p>
+<p>再然后配置一个专门的git用户并设置密码，专门对代码进行管理。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">sudo useradd -m git(yours)  </div><div class="line">sudo passwd git(change to yours)</div></pre></td></tr></table></figure>
+<p><img src="/assets/blogImg/git_server/gs_4.png" alt="git服务器" title="git服务器"></p>
+<p>然后，在新建的git用户主目录下创建一个文件夹作为git的仓库，并为这个仓库配备最基本的安防——权限控制</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">sudo mkdir /home/git/repositories <span class="comment"># 最好使用repositories作为文件夹名称，这样可以简化后面的操作  </span></div><div class="line">sudo chown git:git /home/git/repositories  </div><div class="line">sudo chmod 755 /home/git/repositories</div></pre></td></tr></table></figure>
+<p><img src="/assets/blogImg/git_server/gs_5.png" alt="git服务器" title="git服务器"></p>
+<p>输入一下命令基本就OK!!<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">su git             //切换到git用户,你可以发现路径前面变了</div><div class="line">mkdir helloworld  //新建一个目录（仓库）</div><div class="line"><span class="built_in">cd</span> helloworld  </div><div class="line">git --bare init  //初始化一个空的仓库</div></pre></td></tr></table></figure></p>
+<p>然后找一台机器测试一下</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">git <span class="built_in">clone</span> git@192.168.0.123:/home/git/repositories/helloworld</div></pre></td></tr></table></figure>
+<p><img src="/assets/blogImg/git_server/gs_6.png" alt="git服务器" title="git服务器"></p>
+<p>再加上下面这段命令，方便你可以push和pull<br><img src="/assets/blogImg/git_server/gs_7.png" alt="git服务器" title="git服务器"></p>
+<p>然后就成功了！<br><img src="/assets/blogImg/git_server/gs_8.png" alt="git服务器" title="git服务器"></p>
+<p>再找第三台机器测试，还是成功的。<br><img src="/assets/blogImg/git_server/gs_9.png" alt="git服务器" title="git服务器"></p>
+<p>但是服务器里我什么也找不到，我<code>开始以为失败</code>了。<br><img src="/assets/blogImg/git_server/gs_10.png" alt="git服务器" title="git服务器"></p>
+<p>但是，还有 不足之处，比如别的文章提到的:</p>
+<ul>
+<li>解决每个步骤都需要输入git用户的密码。</li>
+<li>出于安全考虑，创建的git用户不允许登录shell。</li>
+</ul>
+<p>下一步可以试试集群。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">服务器</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/03/05/搭载git服务器/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
     <article id="post-Flux架构" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -362,104 +456,9 @@
 
 
   
-    <article id="post-React开发" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/03/04/React开发/">React开发</a>
-    </h1>
-  
-
-        
-        <a href="/2017/03/04/React开发/" class="archive-article-date">
-  	<time datetime="2017-03-04T04:20:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-04</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>最近公司用react开发项目，所以学习一下。</p>
-<h2 id="react组件"><a href="#react组件" class="headerlink" title="react组件"></a>react组件</h2><h3 id="react组件的生命周期"><a href="#react组件的生命周期" class="headerlink" title="react组件的生命周期"></a>react组件的生命周期</h3><p>关于react生命周期，不同的地方写得不一样但是，意思一样，我就挑一个写吧。</p>
-<h5 id="react设计组件的时候，把组件看成是有生命的物体，让它具有生命周期，共有三大周期。"><a href="#react设计组件的时候，把组件看成是有生命的物体，让它具有生命周期，共有三大周期。" class="headerlink" title="react设计组件的时候，把组件看成是有生命的物体，让它具有生命周期，共有三大周期。"></a>react设计组件的时候，把组件看成是有生命的物体，让它具有生命周期，共有三大周期。</h5><ul>
-<li>创建期</li>
-<li>存在期</li>
-<li>销毁期</li>
-</ul>
-<h6 id="1、创建期"><a href="#1、创建期" class="headerlink" title="1、创建期"></a>1、创建期</h6><p>创建期分为5个阶段：</p>
-<ul>
-<li>getDefaultProps :获取默认属性，还没创建出来，看不见内部的对象属性，只运行一次。</li>
-<li>getInitialState :获取默认状态,数据已创建，可以访问实例化对象。</li>
-<li>componentWillMount :组件将要被创建,组件的虚拟dom，将要渲染输出虚拟dom。</li>
-<li>render :组件渲染输出虚拟dom,一定要通过return返回虚拟dom树。</li>
-<li>componentDidMount :组件已经构建完成,组件已创建完成虚拟dom,可以操作真实的dom。</li>
-</ul>
-<p><img src="/assets/blogImg/react/react_1.jpg" alt="原型" title="创建期"></p>
-<p>-_-! <code>以后就直接用画图工具画了，太丑陋，还待上传</code>。</p>
-<h6 id="2、存在期"><a href="#2、存在期" class="headerlink" title="2、存在期"></a>2、存在期</h6><p>存在期分为5个阶段：</p>
-<ul>
-<li>componentWillReceiveProps :组件将要接受新的属性。</li>
-<li>shouldComponentUpdate :组件是否应该更新，必须返回<code>true</code>或<code>false</code>。</li>
-<li>componentWillUpdate :组件将要更新。</li>
-<li>render :组件更新，输出虚拟dom。</li>
-<li>componentDidUpdate :组件已经更新完成。</li>
-</ul>
-<p><img src="/assets/blogImg/react/react_2.jpg" alt="原型" title="存在期"></p>
-<h6 id="3、销毁期"><a href="#3、销毁期" class="headerlink" title="3、销毁期"></a>3、销毁期</h6><p>销毁期就1个阶段：</p>
-<ul>
-<li>componentWillUnmount :组件即将被销毁。</li>
-</ul>
-<p><img src="/assets/blogImg/react/react_3.jpg" alt="原型" title="销毁期"></p>
-<h4 id="下面是一个demo"><a href="#下面是一个demo" class="headerlink" title="下面是一个demo"></a>下面是一个demo</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">&lt;!DOCTYPE html&gt;</div><div class="line">&lt;html&gt;</div><div class="line">  &lt;head&gt;</div><div class="line">    &lt;meta charset=<span class="string">"UTF-8"</span> /&gt;</div><div class="line">    &lt;title&gt;React 实例&lt;/title&gt;</div><div class="line">    &lt;script src=<span class="string">"https://cdn.bootcss.com/react/15.4.2/react.min.js"</span>&gt;&lt;/script&gt;</div><div class="line">	&lt;script src=<span class="string">"https://cdn.bootcss.com/react/15.4.2/react-dom.min.js"</span>&gt;&lt;/script&gt;</div><div class="line">	&lt;script src=<span class="string">"https://cdn.bootcss.com/babel-standalone/6.22.1/babel.min.js"</span>&gt;&lt;/script&gt;</div><div class="line">  &lt;/head&gt;</div><div class="line"> &lt;body&gt;</div><div class="line">    &lt;div id=<span class="string">"app"</span>&gt;&lt;/div&gt;</div><div class="line"></div><div class="line">    &lt;script <span class="built_in">type</span>=<span class="string">"text/babel"</span>&gt;</div><div class="line">      var MessageBox = React.createClass(&#123;</div><div class="line">          getInitialState:<span class="function"><span class="title">function</span></span>()&#123;</div><div class="line">              console.log(<span class="string">'getInitialState'</span>);</div><div class="line">              <span class="built_in">return</span>&#123;</div><div class="line">                count:0,</div><div class="line">              &#125;</div><div class="line">          &#125;,</div><div class="line">          getDefaultProps:<span class="function"><span class="title">function</span></span>()&#123;</div><div class="line">              console.log(<span class="string">"getDefaultProps"</span>);</div><div class="line">          &#125;,</div><div class="line">          componentWillMount:<span class="function"><span class="title">function</span></span>()&#123;</div><div class="line">              console.log(<span class="string">"componentWillMount"</span>);</div><div class="line">              var self = this;</div><div class="line">              this.timer = <span class="built_in">set</span>Interval(<span class="function"><span class="title">function</span></span>()&#123;</div><div class="line">                self.setState(&#123;</div><div class="line">                    count:self.state.count + 1,</div><div class="line">                &#125;)</div><div class="line">              &#125;,1000);</div><div class="line">          &#125;,</div><div class="line">          componentDidMount:<span class="function"><span class="title">function</span></span>()&#123;</div><div class="line">              console.log(<span class="string">"componentDidMount"</span>);</div><div class="line">          &#125;,</div><div class="line">          componentWillReceiveProps:<span class="keyword">function</span>(nextProps)&#123;</div><div class="line">              console.log(<span class="string">"component will receive props"</span>);</div><div class="line">          &#125;,</div><div class="line">          shouldComponentUpdate:<span class="keyword">function</span>(newProps,nextState)&#123;</div><div class="line">              console.log(<span class="string">"shouldComponentUpdate"</span>);</div><div class="line">              <span class="keyword">if</span>(nextState.count&gt;10)&#123;</div><div class="line">                  console.log(<span class="string">"不要老是更新我！--优化作用"</span>);</div><div class="line">                  <span class="built_in">return</span> <span class="literal">false</span>;</div><div class="line">              &#125;</div><div class="line">              <span class="built_in">return</span> <span class="literal">true</span>;</div><div class="line">          &#125;,</div><div class="line">          componentWillUpdate:<span class="keyword">function</span>(nextProps,nextState)&#123;</div><div class="line">              console.log(<span class="string">"component will update"</span>);</div><div class="line">          &#125;,</div><div class="line">          componentDidUpdate:<span class="keyword">function</span>(prepProps,prepState)&#123;</div><div class="line">              console.log(<span class="string">"component did update"</span>);</div><div class="line">              <span class="keyword">if</span>(this.state.count&gt;3)&#123;</div><div class="line">                clearInterval(this.timer);</div><div class="line">              &#125;</div><div class="line">          &#125;,</div><div class="line">          componentWillUnmount:<span class="function"><span class="title">function</span></span>()&#123;</div><div class="line">              console.log(<span class="string">"componet will unmount"</span>);</div><div class="line">              alert(<span class="string">"啊不要啊！！！"</span>);</div><div class="line">              clearInterval(this.timer);</div><div class="line">          &#125;,</div><div class="line">          <span class="built_in">kill</span>:<span class="function"><span class="title">function</span></span>()&#123;</div><div class="line">              ReactDOM.unmountComponentAtNode(document.getElementById(<span class="string">'app'</span>));</div><div class="line">          &#125;,</div><div class="line">          <span class="keyword">do</span>Update:<span class="function"><span class="title">function</span></span>()&#123;</div><div class="line">              this.setState(&#123;</div><div class="line">                  count:this.state.count +1,</div><div class="line">              &#125;);</div><div class="line">          &#125;,</div><div class="line">          render:<span class="function"><span class="title">function</span></span>()&#123;</div><div class="line">              console.log(<span class="string">"渲染"</span>);</div><div class="line">                <span class="built_in">return</span>(</div><div class="line">                      &lt;div&gt;</div><div class="line">                        &lt;h1&gt;计数:&#123;this.state.count&#125;&lt;/h1&gt;</div><div class="line">                        &lt;button onClick=&#123;this.kill&#125;&gt;卸载这个组件&lt;/button&gt;</div><div class="line">                        &lt;button onClick=&#123;this.doUpdate&#125;&gt;手动更新&lt;/button&gt;</div><div class="line">                        &lt;Submessage count=&#123;this.state.count&#125;/&gt;</div><div class="line">                      &lt;/div&gt;</div><div class="line">                )</div><div class="line">          &#125;</div><div class="line">      &#125;);</div><div class="line">      var Submessage = React.createClass(&#123;</div><div class="line">          componentWillReceiveProps:<span class="keyword">function</span>(nextProp)&#123;</div><div class="line">              console.log(<span class="string">"子组件将要获取prop"</span>);</div><div class="line">          &#125;,</div><div class="line">          shouldComponentUpdate:<span class="keyword">function</span>(nextProp,nextState)&#123;</div><div class="line">            <span class="keyword">if</span>(nextProp.count&gt;6) <span class="built_in">return</span> <span class="literal">false</span>;</div><div class="line">            <span class="built_in">return</span> <span class="literal">true</span>;</div><div class="line">          &#125;,</div><div class="line">          render:<span class="function"><span class="title">function</span></span>()&#123;</div><div class="line">            <span class="built_in">return</span>(</div><div class="line">              &lt;h3&gt;当前计数是:&#123;this.props.count&#125;&lt;/h3&gt;</div><div class="line">            )</div><div class="line">          &#125;</div><div class="line">      &#125;);</div><div class="line">      var messageBox = ReactDOM.render(&lt;MessageBox/&gt;,document.getElementById(<span class="string">'app'</span>));</div><div class="line"></div><div class="line">    &lt;/script&gt;</div><div class="line">  &lt;/body&gt;</div><div class="line">&lt;/html&gt;</div></pre></td></tr></table></figure>
-<p>运行结果：</p>
-<p><img src="/assets/blogImg/react/react_4.png" alt="原型" title="运行结果图"></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">react</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/03/04/React开发/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/10/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="page-number" href="/page/10/">10</a><span class="page-number current">11</span><a class="page-number" href="/page/12/">12</a><a class="extend next" rel="next" href="/page/12/">Next &raquo;</a>
+      <a class="extend prev" rel="prev" href="/page/10/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="page-number" href="/page/10/">10</a><span class="page-number current">11</span><a class="page-number" href="/page/12/">12</a><a class="page-number" href="/page/13/">13</a><a class="extend next" rel="next" href="/page/12/">Next &raquo;</a>
     </nav>
   
 
@@ -471,7 +470,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2019 jonk
+    		&copy; 2020 jonk
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -560,6 +559,18 @@ var _hmt = _hmt || [];
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">前端架构</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">canvas</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">开源</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Node.js</a>
               </li>
              
@@ -576,19 +587,7 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">前端架构</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">react</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">canvas</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">开源</a>
               </li>
              
               <li class="article-tag-list-item">
