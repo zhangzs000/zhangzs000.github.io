@@ -155,6 +155,56 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-养成算法思维？" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/03/28/养成算法思维？/">redirect</a>
+    </h1>
+  
+
+        
+        <a href="/2019/03/28/养成算法思维？/" class="archive-article-date">
+  	<time datetime="2019-03-28T07:30:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-28</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="redirect-to-xxx"><a href="#redirect-to-xxx" class="headerlink" title="redirect to xxx"></a>redirect to xxx</h3>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/03/28/养成算法思维？/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
     <article id="post-redirect" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -239,67 +289,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2019/03/25/js-state-manager/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-diff" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/03/23/diff/">diff</a>
-    </h1>
-  
-
-        
-        <a href="/2019/03/23/diff/" class="archive-article-date">
-  	<time datetime="2019-03-23T09:41:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-23</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="diff算法的实现"><a href="#diff算法的实现" class="headerlink" title="diff算法的实现"></a>diff算法的实现</h3><ul>
-<li>通过虚拟dom类创建创建虚拟dom，最终通过render方法将虚拟dom渲染到页面。</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">class Element &#123;</div><div class="line">	constructor(type, props, children)&#123;</div><div class="line">		this.type = type;</div><div class="line">		this.props = props;</div><div class="line">		this.children = children;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ul>
-<li>先序深度优先遍历生成补丁包patches(key值是遍历节点的顺序)。</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">let patches = &#123;</div><div class="line">	0: &#123;type: &apos;ATTRS&apos;, attrs: &#123; class: &apos;xxx&apos;&#125;&#125;,</div><div class="line">	1: &#123;type: &apos;TEXT&apos;, text: &apos;xxx&apos;&#125;,</div><div class="line">	2: &#123;type: &apos;REPLACE&apos;, node: Element&#125;,</div><div class="line">	3: &#123;type: &apos;REMOVE&apos;, index: xxx&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ul>
-<li>patch函数更新旧dom</li>
-</ul>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/03/23/diff/">展开全文 >></a>
         </p>
       
 
@@ -420,15 +409,15 @@ var _hmt = _hmt || [];
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">前端架构</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">canvas</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">开源</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">前端架构</a>
               </li>
              
               <li class="article-tag-list-item">
