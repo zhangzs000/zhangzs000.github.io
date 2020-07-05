@@ -12,9 +12,9 @@
 对最近一次的 commit 信息做修改1git commit --amend
 
 
-git rebase 操作
+git rebase 合并提交信息
 对以前的commit 信息做修改，就涉及到了变基操作 
-1234// 这里的”-i“是指交互模式。就是说你可以干预rebase这个事务的过程，包括设置commit message，暂停commit等等。// xxx 是要修改提交信息的父级，也就是要修改提交信息下面的 ha">
+1234// 这里的”-i“是指交互模式。就是说你可以干预rebase这个事务的过程，包括设置commit message，暂停commit等等。// xxx 是要修改提交信息的父级，也就是要修改提交信息下面">
 <meta property="og:type" content="article">
 <meta property="og:title" content="git rebase">
 <meta property="og:url" content="http://yoursite.com/2020/06/28/git-rebase/index.html">
@@ -23,25 +23,35 @@ git rebase 操作
 对最近一次的 commit 信息做修改1git commit --amend
 
 
-git rebase 操作
+git rebase 合并提交信息
 对以前的commit 信息做修改，就涉及到了变基操作 
-1234// 这里的”-i“是指交互模式。就是说你可以干预rebase这个事务的过程，包括设置commit message，暂停commit等等。// xxx 是要修改提交信息的父级，也就是要修改提交信息下面的 ha">
+1234// 这里的”-i“是指交互模式。就是说你可以干预rebase这个事务的过程，包括设置commit message，暂停commit等等。// xxx 是要修改提交信息的父级，也就是要修改提交信息下面">
 <meta property="og:image" content="http://yoursite.com/assets/blogImg/rebase/rebase1.jpg">
 <meta property="og:image" content="http://yoursite.com/assets/blogImg/rebase/rebase2.jpg">
 <meta property="og:image" content="http://yoursite.com/assets/blogImg/rebase/rebase3.jpg">
 <meta property="og:image" content="http://yoursite.com/assets/blogImg/rebase/rebase4.jpg">
 <meta property="og:image" content="http://yoursite.com/assets/blogImg/rebase/rebase5.jpg">
 <meta property="og:image" content="http://yoursite.com/assets/blogImg/rebase/rebase6.jpg">
-<meta property="og:updated_time" content="2020-06-27T23:45:40.474Z">
+<meta property="og:image" content="http://yoursite.com/assets/blogImg/rebase/r1/r1.png">
+<meta property="og:image" content="http://yoursite.com/assets/blogImg/rebase/r1/r2.png">
+<meta property="og:image" content="http://yoursite.com/assets/blogImg/rebase/r1/r3.png">
+<meta property="og:image" content="http://yoursite.com/assets/blogImg/rebase/r1/r4.png">
+<meta property="og:image" content="http://yoursite.com/assets/blogImg/rebase/r1/r5.png">
+<meta property="og:image" content="http://yoursite.com/assets/blogImg/rebase/r1/r6.png">
+<meta property="og:image" content="http://yoursite.com/assets/blogImg/rebase/r1/r7.png">
+<meta property="og:image" content="http://yoursite.com/assets/blogImg/rebase/r1/r8.png">
+<meta property="og:image" content="http://yoursite.com/assets/blogImg/rebase/r1/r9.png">
+<meta property="og:image" content="http://yoursite.com/assets/blogImg/rebase/r1/r10.png">
+<meta property="og:updated_time" content="2020-07-05T01:58:00.500Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="git rebase">
 <meta name="twitter:description" content="amend 操作
 对最近一次的 commit 信息做修改1git commit --amend
 
 
-git rebase 操作
+git rebase 合并提交信息
 对以前的commit 信息做修改，就涉及到了变基操作 
-1234// 这里的”-i“是指交互模式。就是说你可以干预rebase这个事务的过程，包括设置commit message，暂停commit等等。// xxx 是要修改提交信息的父级，也就是要修改提交信息下面的 ha">
+1234// 这里的”-i“是指交互模式。就是说你可以干预rebase这个事务的过程，包括设置commit message，暂停commit等等。// xxx 是要修改提交信息的父级，也就是要修改提交信息下面">
 <meta name="twitter:image" content="http://yoursite.com/assets/blogImg/rebase/rebase1.jpg">
   
     <link rel="alternative" href="/atom.xml" title="zhangzs的博客" type="application/atom+xml">
@@ -206,7 +216,7 @@ git rebase 操作
 <li>对最近一次的 commit 信息做修改<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git commit --amend</div></pre></td></tr></table></figure>
 </li>
 </ul>
-<h3 id="git-rebase-操作"><a href="#git-rebase-操作" class="headerlink" title="git rebase 操作"></a>git rebase 操作</h3><ul>
+<h3 id="git-rebase-合并提交信息"><a href="#git-rebase-合并提交信息" class="headerlink" title="git rebase 合并提交信息"></a>git rebase 合并提交信息</h3><ul>
 <li><p>对以前的commit 信息做修改，就涉及到了变基操作 </p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">// 这里的”-i“是指交互模式。就是说你可以干预rebase这个事务的过程，包括设置commit message，暂停commit等等。</div><div class="line">// xxx 是要修改提交信息的父级，也就是要修改提交信息下面的 hash值。</div><div class="line">git rebase -i xxx</div></pre></td></tr></table></figure>
 </li>
@@ -246,6 +256,61 @@ git rebase 操作
 <li>合并不是连续的提交信息，仍然是使用那些策略<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">pick xxx</div><div class="line">s xxx1</div><div class="line">pick xxx2</div><div class="line">// 删除 xxx</div></pre></td></tr></table></figure>
 </li>
 </ul>
+<h3 id="git-rebase-将自己的提交记录的多个分支合并成一条直线"><a href="#git-rebase-将自己的提交记录的多个分支合并成一条直线" class="headerlink" title="git rebase 将自己的提交记录的多个分支合并成一条直线"></a>git rebase 将自己的提交记录的多个分支合并成一条直线</h3><ul>
+<li>1.master分支当前情况</li>
+</ul>
+<p><img src="/assets/blogImg/rebase/r1/r1.png" alt="alt text" title="测试图片"></p>
+<ul>
+<li>2.切换到test分支，产生2个提交</li>
+</ul>
+<p><img src="/assets/blogImg/rebase/r1/r2.png" alt="alt text" title="测试图片"></p>
+<ul>
+<li>3.git rebase master(以master为基础，将feature分支上的修改增加到master分支上，并生成新的版本),以前有rebase操作可能导致效果不同。</li>
+</ul>
+<p><img src="/assets/blogImg/rebase/r1/r3.png" alt="alt text" title="测试图片"><br><img src="/assets/blogImg/rebase/r1/r4.png" alt="alt text" title="测试图片"></p>
+<ul>
+<li><p>3.1 修复冲突 git add .</p>
+</li>
+<li><p>3.2 git rebase –continue</p>
+</li>
+<li><p>4.切换到 master</p>
+</li>
+</ul>
+<p><img src="/assets/blogImg/rebase/r1/r5.png" alt="alt text" title="测试图片"></p>
+<ul>
+<li>4.1 git merge test</li>
+</ul>
+<p><img src="/assets/blogImg/rebase/r1/r6.png" alt="alt text" title="测试图片"></p>
+<ul>
+<li>5.删除 test 分支， test分支目前的记录</li>
+</ul>
+<p><img src="/assets/blogImg/rebase/r1/r7.png" alt="alt text" title="测试图片"></p>
+<ul>
+<li><p>5.1删除本地 test 分支</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git branch -d test</div></pre></td></tr></table></figure>
+</li>
+<li><p>5.2删除远程 test 分支</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git push origin --delete test</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="git-rebase-将旧的提交记录直接合成一条线"><a href="#git-rebase-将旧的提交记录直接合成一条线" class="headerlink" title="git rebase 将旧的提交记录直接合成一条线"></a>git rebase 将旧的提交记录直接合成一条线</h3><ul>
+<li><ol>
+<li>查看原分支情况</li>
+</ol>
+</li>
+</ul>
+<p><img src="/assets/blogImg/rebase/r1/r8.png" alt="alt text" title="测试图片"></p>
+<ul>
+<li><ol>
+<li>git rebase -i HEAD~n (合并最近n次提交)</li>
+</ol>
+</li>
+</ul>
+<p><img src="/assets/blogImg/rebase/r1/r9.png" alt="alt text" title="测试图片"></p>
+<ul>
+<li>3.根据提示，从某个commit-id检出新分支，或 git checkout commit-id -b 新分支</li>
+</ul>
+<p><img src="/assets/blogImg/rebase/r1/r10.png" alt="alt text" title="测试图片"></p>
 
       
 
@@ -483,18 +548,6 @@ var _hmt = _hmt || [];
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">canvas</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">开源</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">前端架构</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Node.js</a>
               </li>
              
@@ -511,6 +564,14 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">canvas</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">开源</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">react</a>
               </li>
              
@@ -524,6 +585,10 @@ var _hmt = _hmt || [];
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">前端框架</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">前端架构</a>
               </li>
             
             <div class="clearfix"></div>
