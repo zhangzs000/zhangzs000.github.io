@@ -21,7 +21,8 @@ CA机构，最顶层机构，无需认真1mkdir certa
 CA机构，最顶层机构，无需认真1mkdir certa
 生成CA机构私钥，长度为2048字节1o">
 <meta property="og:image" content="http://yoursite.com/assets/blogImg/https/https.jpg">
-<meta property="og:updated_time" content="2020-05-26T00:29:26.414Z">
+<meta property="og:image" content="http://yoursite.com/assets/blogImg/https/https1.jpg">
+<meta property="og:updated_time" content="2020-07-14T23:58:03.856Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="https网站搭建">
 <meta name="twitter:description" content="[TOC]
@@ -189,7 +190,7 @@ CA机构，最顶层机构，无需认真1mkdir certa
     <div class="article-entry" itemprop="articleBody">
       
         <p>[TOC]</p>
-<h3 id="自建CA-nginx配置"><a href="#自建CA-nginx配置" class="headerlink" title="自建CA + nginx配置"></a>自建CA + nginx配置</h3><h4 id="查看openssl-版本，服务器基本都内置"><a href="#查看openssl-版本，服务器基本都内置" class="headerlink" title="查看openssl 版本，服务器基本都内置"></a>查看openssl 版本，服务器基本都内置</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">openssl version -a</div><div class="line">OpenSSL 1.0.2k-fips  26 Jan 2017 ...</div><div class="line">// 我的mac 默认openssl配置文件默认在/private/etc/ssl/openssl.cnf</div></pre></td></tr></table></figure>
+<h2 id="自建CA-nginx配置"><a href="#自建CA-nginx配置" class="headerlink" title="自建CA + nginx配置"></a>自建CA + nginx配置</h2><h4 id="查看openssl-版本，服务器基本都内置"><a href="#查看openssl-版本，服务器基本都内置" class="headerlink" title="查看openssl 版本，服务器基本都内置"></a>查看openssl 版本，服务器基本都内置</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">openssl version -a</div><div class="line">OpenSSL 1.0.2k-fips  26 Jan 2017 ...</div><div class="line">// 我的mac 默认openssl配置文件默认在/private/etc/ssl/openssl.cnf</div></pre></td></tr></table></figure>
 <h4 id="CA机构，最顶层机构，无需认真"><a href="#CA机构，最顶层机构，无需认真" class="headerlink" title="CA机构，最顶层机构，无需认真"></a>CA机构，最顶层机构，无需认真</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mkdir certa</div></pre></td></tr></table></figure>
 <h4 id="生成CA机构私钥，长度为2048字节"><a href="#生成CA机构私钥，长度为2048字节" class="headerlink" title="生成CA机构私钥，长度为2048字节"></a>生成CA机构私钥，长度为2048字节</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">openssl genrsa -out ca.private.key 2048</div></pre></td></tr></table></figure>
 <h4 id="根据CA私钥产生根证书，合法日期356天，主题中国北京…"><a href="#根据CA私钥产生根证书，合法日期356天，主题中国北京…" class="headerlink" title="根据CA私钥产生根证书，合法日期356天，主题中国北京…"></a>根据CA私钥产生根证书，合法日期356天，主题中国北京…</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">openssl req -new -x509 -key ca.private.key -out ca.crt -days 365 -subj /C=CN/ST=Beijing/L=Beijing/O=ca/OU=ca/CN=www.zhangzs.xyz/emailAddress=xxx@qq.com</div><div class="line">// 生成ca.crt 就是证书</div></pre></td></tr></table></figure>
@@ -199,16 +200,18 @@ CA机构，最顶层机构，无需认真1mkdir certa
 <h4 id="配置nginx-的ssl部分"><a href="#配置nginx-的ssl部分" class="headerlink" title="配置nginx 的ssl部分"></a>配置nginx 的ssl部分</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">ssl_certificate /root/cert1/server.crt; </div><div class="line">ssl_certificate_key  /root/cert1/server.private.key;</div></pre></td></tr></table></figure>
 <h4 id="将服务端的CA证书拷贝下来"><a href="#将服务端的CA证书拷贝下来" class="headerlink" title="将服务端的CA证书拷贝下来"></a>将服务端的CA证书拷贝下来</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">scp -r  root@xx.xxx.xx.xx:/root/cert1/ca.crt /Users/bosszhang/Documents</div></pre></td></tr></table></figure>
 <h4 id="在浏览器内部导入我们的CA证书，因为是我们自己签发的，所以不信任。"><a href="#在浏览器内部导入我们的CA证书，因为是我们自己签发的，所以不信任。" class="headerlink" title="在浏览器内部导入我们的CA证书，因为是我们自己签发的，所以不信任。"></a>在浏览器内部导入我们的CA证书，因为是我们自己签发的，所以不信任。</h4><h4 id="安装nginx时配置nginx，编译"><a href="#安装nginx时配置nginx，编译" class="headerlink" title="安装nginx时配置nginx，编译"></a>安装nginx时配置nginx，编译</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">./configure  --prefix=/usr/nginx   --with-http_ssl_module --with-openssl=/root/openssl-1.1.0h        --with-http_ssl_module --user=nginx --group=nginx</div><div class="line"></div><div class="line">make </div><div class="line">make install</div></pre></td></tr></table></figure>
-<h4 id="修改nginx-conf-将服务器证书和私钥添加上去就可以了"><a href="#修改nginx-conf-将服务器证书和私钥添加上去就可以了" class="headerlink" title="修改nginx.conf 将服务器证书和私钥添加上去就可以了"></a>修改nginx.conf 将服务器证书和私钥添加上去就可以了</h4><h3 id="letsencrypt-生成证书"><a href="#letsencrypt-生成证书" class="headerlink" title="letsencrypt 生成证书"></a>letsencrypt 生成证书</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">证书 -&gt; nginx安装配置 -&gt; 外网访问https站点</div></pre></td></tr></table></figure>
-<h3 id="阿里云-或-腾讯云直接生成-server-crt-和-server-private-key"><a href="#阿里云-或-腾讯云直接生成-server-crt-和-server-private-key" class="headerlink" title="阿里云 或 腾讯云直接生成 server.crt 和 server.private.key"></a>阿里云 或 腾讯云直接生成 server.crt 和 server.private.key</h3><h4 id="实名认证，下载证书"><a href="#实名认证，下载证书" class="headerlink" title="实名认证，下载证书"></a>实名认证，下载证书</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">ssl证书免费版-&gt;下载</div><div class="line">// 这个直接在官网的ssl模块实名认证下载即可.....</div></pre></td></tr></table></figure>
+<h4 id="修改nginx-conf-将服务器证书和私钥添加上去就可以了"><a href="#修改nginx-conf-将服务器证书和私钥添加上去就可以了" class="headerlink" title="修改nginx.conf 将服务器证书和私钥添加上去就可以了"></a>修改nginx.conf 将服务器证书和私钥添加上去就可以了</h4><h2 id="letsencrypt-生成证书"><a href="#letsencrypt-生成证书" class="headerlink" title="letsencrypt 生成证书"></a>letsencrypt 生成证书</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">证书 -&gt; nginx安装配置 -&gt; 外网访问https站点</div></pre></td></tr></table></figure>
+<h2 id="阿里云-或-腾讯云直接生成-server-crt-和-server-private-key"><a href="#阿里云-或-腾讯云直接生成-server-crt-和-server-private-key" class="headerlink" title="阿里云 或 腾讯云直接生成 server.crt 和 server.private.key"></a>阿里云 或 腾讯云直接生成 server.crt 和 server.private.key</h2><h4 id="实名认证，下载证书"><a href="#实名认证，下载证书" class="headerlink" title="实名认证，下载证书"></a>实名认证，下载证书</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">ssl证书免费版-&gt;下载</div><div class="line">// 这个直接在官网的ssl模块实名认证下载即可.....</div></pre></td></tr></table></figure>
 <h4 id="解压"><a href="#解压" class="headerlink" title="解压"></a>解压</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">yum install -y unzip zip</div><div class="line">unzip 3720164_www.zhangzs.xyz_nginx.zip</div></pre></td></tr></table></figure>
-<h3 id="自建CA-自建服务"><a href="#自建CA-自建服务" class="headerlink" title="自建CA + 自建服务"></a>自建CA + 自建服务</h3><h4 id="openssl-cnf-配置"><a href="#openssl-cnf-配置" class="headerlink" title="openssl.cnf 配置"></a>openssl.cnf 配置</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">[alt_names]  </div><div class="line">IP.1 = 127.0.0.1</div><div class="line">DNS.1 = localhost</div><div class="line">DNS.2 = test.qq.com</div></pre></td></tr></table></figure>
+<h2 id="自建CA-自建服务"><a href="#自建CA-自建服务" class="headerlink" title="自建CA + 自建服务"></a>自建CA + 自建服务</h2><h4 id="openssl-cnf-配置"><a href="#openssl-cnf-配置" class="headerlink" title="openssl.cnf 配置"></a>openssl.cnf 配置</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">[alt_names]  </div><div class="line">IP.1 = 127.0.0.1</div><div class="line">DNS.1 = localhost</div><div class="line">DNS.2 = test.qq.com</div></pre></td></tr></table></figure>
 <h4 id="服务端代码"><a href="#服务端代码" class="headerlink" title="服务端代码"></a>服务端代码</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">const https = require(&apos;https&apos;);</div><div class="line">const fs = require(&apos;fs&apos;);</div><div class="line">const path = require(&apos;path&apos;);</div><div class="line"></div><div class="line">const options = &#123;</div><div class="line">    key: fs.readFileSync(path.resolve(__dirname, &apos;ssl/server.private.pem&apos;)),</div><div class="line">    cert: fs.readFileSync(path.resolve(__dirname, &apos;ssl/server.crt&apos;))</div><div class="line">&#125;;</div><div class="line"></div><div class="line"></div><div class="line">https.createServer(options, (req, res) =&gt; &#123;</div><div class="line">    res.end(&apos;hello world\n&apos;);</div><div class="line">&#125;).listen(9000);</div></pre></td></tr></table></figure>
 <h4 id="浏览器访问"><a href="#浏览器访问" class="headerlink" title="浏览器访问"></a>浏览器访问</h4><ul>
 <li>firefox 导入ca.crt 就可以访问。</li>
 <li>chrome 不仅要导入ca.crt ，还要设置该证书为“完全信任”，并且要重启浏览器。</li>
 </ul>
 <p><img src="/assets/blogImg/https/https.jpg" alt="alt text" title="测试图片"></p>
+<h2 id="关于nginx-配置-https"><a href="#关于nginx-配置-https" class="headerlink" title="关于nginx 配置 https"></a>关于nginx 配置 https</h2><h4 id="我用早以前的nginx配置也不行，c-编译安装也不行，似乎浏览器一直接受不到服务器的公匙证书，难道是阿里云要进行某些配置？后来用宝塔很方便就解决了。"><a href="#我用早以前的nginx配置也不行，c-编译安装也不行，似乎浏览器一直接受不到服务器的公匙证书，难道是阿里云要进行某些配置？后来用宝塔很方便就解决了。" class="headerlink" title="我用早以前的nginx配置也不行，c++ 编译安装也不行，似乎浏览器一直接受不到服务器的公匙证书，难道是阿里云要进行某些配置？后来用宝塔很方便就解决了。"></a>我用早以前的nginx配置也不行，c++ 编译安装也不行，似乎浏览器一直接受不到服务器的公匙证书，难道是阿里云要进行某些配置？后来用<code>宝塔</code>很方便就解决了。</h4><p><img src="/assets/blogImg/https/https1.jpg" alt="alt text" title="测试图片"></p>
+<p>This is my website <a href="https://www.zhangzs.xyz/" title="网站链接" target="_blank" rel="external">https://www.zhangzs.xyz/</a>. </p>
 
       
 
@@ -459,6 +462,14 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">canvas</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">开源</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Node.js</a>
               </li>
              
@@ -476,14 +487,6 @@ var _hmt = _hmt || [];
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">react</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">canvas</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">开源</a>
               </li>
              
               <li class="article-tag-list-item">
