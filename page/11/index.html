@@ -155,6 +155,105 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-canvas" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/03/16/canvas/">canvas</a>
+    </h1>
+  
+
+        
+        <a href="/2017/03/16/canvas/" class="archive-article-date">
+  	<time datetime="2017-03-16T09:32:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-16</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="这篇主要是canvas"><a href="#这篇主要是canvas" class="headerlink" title="这篇主要是canvas"></a>这篇主要是canvas</h2><p><code>最终</code>要达到的效果是下面这个样子：</p>
+<p><img src="/assets/blogImg/canvas/earth.gif" alt="earth" title="earth"></p>
+<h4 id="demo1-弹弹球，碰撞就变色"><a href="#demo1-弹弹球，碰撞就变色" class="headerlink" title="demo1 弹弹球，碰撞就变色"></a>demo1 <code>弹弹球</code>，碰撞就变色</h4><p><img src="/assets/blogImg/canvas/ball.gif" alt="ball" title="ball"></p>
+<p>这个解决最长时间的问题是：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">ctx.beginPath();</div><div class="line">drawBall(ballX,ballY);</div><div class="line">ctx.closePath();</div></pre></td></tr></table></figure>
+<p>缺了2行代码，导致运动完的路径一直都在。</p>
+<h4 id="demo2-时钟"><a href="#demo2-时钟" class="headerlink" title="demo2 时钟"></a>demo2 时钟</h4><p><img src="/assets/blogImg/canvas/clock.gif" alt="clock" title="clock"></p>
+<h4 id="demo3-画板"><a href="#demo3-画板" class="headerlink" title="demo3 画板"></a>demo3 画板</h4><p><img src="/assets/blogImg/canvas/board.gif" alt="board" title="board"></p>
+<h4 id="demo4-运动"><a href="#demo4-运动" class="headerlink" title="demo4 运动"></a>demo4 运动</h4><p><img src="/assets/blogImg/canvas/transform.gif" alt="transform" title="transform"></p>
+<p>这个的主要问题是：</p>
+<ul>
+<li>canvas的旋转是从上一次旋转开始计算的和css3不一样，除非加上<code>save()</code>和<code>restore()</code>方法；</li>
+<li>clearRect的时候还待translate(0,0)，这个问题。。反正我的浏览器待这样弄。</li>
+<li>一个画板要画多个连续运动图像怎么办？</li>
+</ul>
+<h4 id="demo5-canvas拖拽"><a href="#demo5-canvas拖拽" class="headerlink" title="demo5 canvas拖拽"></a>demo5 canvas拖拽</h4><p><img src="/assets/blogImg/canvas/drag.gif" alt="drag" title="drag"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">&lt;canvas id=<span class="string">"can"</span> width=<span class="string">"500"</span> height=<span class="string">"500"</span>&gt;&lt;/canvas&gt;</div><div class="line">&lt;script <span class="built_in">type</span>=<span class="string">"text/javascript"</span>&gt;</div><div class="line">	var can=document.getElementById(<span class="string">"can"</span>);</div><div class="line">	var ctx=can.getContext(<span class="string">"2d"</span>);</div><div class="line"></div><div class="line">	//移动时要覆盖以前的坐标，所以先配置</div><div class="line">	var points = [</div><div class="line">		&#123;x:100,y:100,r:50,startA:0,endA:2*Math.PI&#125;,</div><div class="line">		&#123;x:200,y:200,r:50,startA:0,endA:2*Math.PI&#125;</div><div class="line">	]</div><div class="line">	<span class="keyword">function</span> <span class="function"><span class="title">drawArc</span></span>()&#123;</div><div class="line">		<span class="keyword">for</span> (var i = 0; i &lt; points.length; i++) &#123;</div><div class="line">			ctx.beginPath();</div><div class="line">			ctx.arc(points[i].x,points[i].y,points[i].r,points[i].startA,points[i].endA);</div><div class="line">			ctx.fill();</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	drawArc();</div><div class="line">	</div><div class="line">	</div><div class="line">	//移动图形</div><div class="line">	can.onmousedown = <span class="keyword">function</span>(e)&#123;</div><div class="line">		var e = e || window.event;</div><div class="line">		</div><div class="line"></div><div class="line">		document.onmousemove=<span class="keyword">function</span>(e)&#123;</div><div class="line">			var e = e || window.event;</div><div class="line">			ctx.clearRect(0,0,500,500);</div><div class="line"></div><div class="line">			var x = e.layerX;</div><div class="line">			var y = e.layerY;</div><div class="line">			//重新绘制</div><div class="line">			<span class="keyword">for</span> (var i = points.length - 1; i &gt;= 0; i--) &#123;</div><div class="line">				var event = new addEvent(ctx,<span class="string">"arc"</span>,points[i].x+<span class="string">","</span>+points[i].y+<span class="string">","</span>+points[i].r+<span class="string">","</span>+points[i].startA+<span class="string">","</span>+points[i].endA,<span class="function"><span class="title">function</span></span>()&#123;</div><div class="line">					ctx.beginPath();</div><div class="line">					console.log(points[i].r+<span class="string">"我是第53行"</span>)</div><div class="line">					var [callbackR,callbackX,callbackY] = [points[i].r,points[i].x,points[i].y]</div><div class="line">					ctx.arc(x,y,callbackR,callbackX,callbackY);</div><div class="line">					ctx.fill();</div><div class="line">					points[i].x = x;</div><div class="line">					points[i].y = y;</div><div class="line">				&#125;)</div><div class="line">				event.isPointInPathCallback(x,y);</div><div class="line">			&#125;</div><div class="line">			</div><div class="line">			event.isPointInPathCallback(x,y);</div><div class="line">		&#125;</div><div class="line">		document.onmouseup=<span class="function"><span class="title">function</span></span>()&#123;</div><div class="line">			document.onmousemove = null;</div><div class="line">			document.onmouseup = null;</div><div class="line"></div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	/*</div><div class="line">	//未点击之前先绘制，点击后再绘制；确保点击后是最新绘制的</div><div class="line">	ctx.beginPath();</div><div class="line">	ctx.arc(100,100,50,0,2*Math.PI);</div><div class="line">	ctx.fill();</div><div class="line"></div><div class="line">	ctx.beginPath();</div><div class="line">	ctx.arc(200,200,50,0,2*Math.PI);</div><div class="line">	ctx.fill();</div><div class="line"></div><div class="line">	ctx.beginPath();</div><div class="line">	ctx.rect(400,200,50,50);</div><div class="line">	ctx.fill();</div><div class="line"></div><div class="line">	//点击对应的图片，弹出对应的值</div><div class="line">	// can.onclick = <span class="keyword">function</span> (e)&#123;</div><div class="line">	// 	var e = e || window.event;</div><div class="line">	// 	var x = e.layerX;</div><div class="line">	// 	var y = e.layerY;</div><div class="line"></div><div class="line">	// 	//和上面一个意思</div><div class="line">	// 	// var xx = e.offsetX;</div><div class="line">	// 	// var yy = e.offsetY;  </div><div class="line">	// 	//如果把2*Math.PI当成字符串传进去是不行的。</div><div class="line">	// 	var event1 = new addEvent(ctx,<span class="string">"arc"</span>,<span class="string">"100,100,50,0,"</span>+2*Math.PI,<span class="function"><span class="title">function</span></span>()&#123;</div><div class="line">	// 		alert(1);</div><div class="line">	// 	&#125;)</div><div class="line">	// 	event1.isPointInPathCallback(x,y);</div><div class="line">	// 	var event2 = new addEvent(ctx,<span class="string">"arc"</span>,<span class="string">"200,200,50,0,"</span>+2*Math.PI,<span class="function"><span class="title">function</span></span>()&#123;</div><div class="line">	// 		alert(2);	</div><div class="line">	// 	&#125;)</div><div class="line">	// 	event2.isPointInPathCallback(x,y);</div><div class="line">	// 	var event3 = new addEvent(ctx,<span class="string">"rect"</span>,<span class="string">"400,200,50,50"</span>,<span class="function"><span class="title">function</span></span>()&#123;</div><div class="line">	// 		alert(3);	</div><div class="line">	// 	&#125;)</div><div class="line">	// 	event3.isPointInPathCallback(x,y);</div><div class="line">	// &#125;</div><div class="line">	*/</div><div class="line">	//封装成一个util</div><div class="line">	<span class="keyword">function</span> addEvent (obj,<span class="built_in">type</span>,data,callback)&#123;</div><div class="line">		this.obj = obj;</div><div class="line">		this.type = <span class="built_in">type</span>;</div><div class="line">		this.data = data;</div><div class="line">		this.callback = callback;</div><div class="line">		this.reDraw();</div><div class="line">	&#125;</div><div class="line">	addEvent.prototype =  &#123;</div><div class="line">		reDraw:<span class="function"><span class="title">function</span></span>()&#123;</div><div class="line">			<span class="keyword">if</span>(this.type == <span class="string">"arc"</span>)&#123;</div><div class="line">				this.obj.beginPath();</div><div class="line">				var arr = this.data.split(<span class="string">","</span>);</div><div class="line">				this.obj.arc(arr[0],arr[1],arr[2],arr[3],arr[4]);</div><div class="line">				this.obj.fill();</div><div class="line">			&#125;<span class="keyword">else</span> <span class="keyword">if</span>(this.type == <span class="string">"rect"</span>)&#123;</div><div class="line">				this.obj.beginPath();</div><div class="line">				var arr = this.data.split(<span class="string">","</span>);</div><div class="line">				this.obj.rect(arr[0],arr[1],arr[2],arr[3]);</div><div class="line">				this.obj.fill();</div><div class="line">			&#125;</div><div class="line">		&#125;,</div><div class="line">		isPointInPathCallback:<span class="keyword">function</span>(x,y)&#123;</div><div class="line">			<span class="keyword">if</span>(this.obj.isPointInPath(x,y))&#123;</div><div class="line">				this.callback();</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">	&#125;;</div><div class="line">&lt;/script&gt;</div></pre></td></tr></table></figure>
+<p>存在的问题：</p>
+<ul>
+<li>53行能打印出来，但是也报错Uncaught TypeError: Cannot read property ‘r’ of undefined。</li>
+<li>点击图形起始点和图形的圆心是有距离的，后期拖拽时直接将拖拽的相对距离赋值给了圆心，导致误差。</li>
+<li>还是有点懵。每次new 相同的event?    </li>
+</ul>
+<h4 id="demo6-canvas实现3d效果"><a href="#demo6-canvas实现3d效果" class="headerlink" title="demo6 canvas实现3d效果"></a>demo6 canvas实现3d效果</h4><p><img src="/assets/blogImg/canvas/3d.gif" alt="3D" title="3D"></p>
+<h2 id="很棒的canvas"><a href="#很棒的canvas" class="headerlink" title="很棒的canvas"></a>很棒的canvas</h2><h4 id="3次贝塞尔曲线算法地图"><a href="#3次贝塞尔曲线算法地图" class="headerlink" title="3次贝塞尔曲线算法地图"></a>3次贝塞尔曲线算法地图</h4><p><img src="/assets/blogImg/canvas/map.gif" alt="map" title="map"></p>
+<h4 id="canvas库"><a href="#canvas库" class="headerlink" title="canvas库"></a>canvas库</h4><pre><code class="bash">
+参考链接：https://www.evget.com/article/2014/4/9/20799.html
+</code></pre>
+<h4 id="报表统计"><a href="#报表统计" class="headerlink" title="报表统计"></a>报表统计</h4><iframe width="100%" height="450" src="https://code.hcharts.cn/temp/ErV8Dw/share/result,js,html,css" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+
+<h2 id="项目"><a href="#项目" class="headerlink" title="项目"></a>项目</h2><p>实现一个绘图工具</p>
+<pre><code class="bash">
+git地址：
+</code></pre>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">canvas</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">开源</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/03/16/canvas/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
     <article id="post-开源项目" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -313,111 +412,6 @@
 
 
   
-    <article id="post-Flux架构" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/03/04/Flux架构/">Flux架构</a>
-    </h1>
-  
-
-        
-        <a href="/2017/03/04/Flux架构/" class="archive-article-date">
-  	<time datetime="2017-03-04T14:19:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-04</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>最近公司做的项目据我观察就是flux架构，即使不是也是Flux存在多种实现之一，比如Redux之类的。</p>
-<h2 id="Flux架构"><a href="#Flux架构" class="headerlink" title="Flux架构"></a>Flux架构</h2><p>先来个<code>阮老师</code>(好多人喜欢这么称呼)<a href="http://www.ruanyifeng.com/blog/2016/01/flux.html" target="_blank" rel="external">链接</a>，</p>
-<p>参考链接 <a href="http://www.ruanyifeng.com/blog/2016/01/flux.html" target="_blank" rel="external">Browse blog</a> </p>
-<p><img src="/assets/blogImg/flux/flux_1.png" alt="flux" title="flux架构"></p>
-<h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><ul>
-<li>View：视图层；</li>
-<li>Action：动作层，视图层发出的消息(比如click)；</li>
-<li>Dispather: 派发器，用来接收action，执行回调函数；</li>
-<li>Store: 数据层，用来存放用用状态，一旦发生变动，就提醒View要更新页面；</li>
-</ul>
-<h2 id="Flux特点"><a href="#Flux特点" class="headerlink" title="Flux特点"></a>Flux特点</h2><ul>
-<li>用户访问 View</li>
-<li>View 发出用户的 Action</li>
-<li>Dispatcher 收到 Action，要求 Store 进行相应的更新</li>
-<li>Store 更新后，发出一个”change”事件</li>
-<li>View 收到”change”事件后，更新页面</li>
-</ul>
-<p>上面过程中，数据总是”单向流动”，任何相邻的部分都不会发生数据的”双向流动”。这保证了流程的清晰。</p>
-<p>然后就是看阮老师的<a href="http://www.ruanyifeng.com/blog/2016/01/flux.html" target="_blank" rel="external">demo</a>,我是看的差不多了。</p>
-<p>想用调试工具调一下，先是用<code>chrome react</code> 插件,搞了好久，插件闪来闪去，没法弄。git上的源码又不知怎么变成crc文件。<br>然后只能用react-hot-loader<a href="https://www.v2ex.com/t/286262" target="_blank" rel="external">链接</a><br>也可以试试react-transform</p>
-<p>在webpack配置完react-hot-loader后又调不好程序了-_-!!!。<br><img src="/assets/blogImg/flux/flux_2.png" alt="webpack配置错误" title="webpack配置错误"><br>不知道了，应该可以找到。</p>
-<h2 id="Redux"><a href="#Redux" class="headerlink" title="Redux"></a>Redux</h2><p>2015年，Redux 出现，将 Flux 与函数式编程结合一起，很短时间内就成为了最热门的前端架构。</p>
-<p><a href="http://www.ruanyifeng.com/blog/2016/09/redux_tutorial_part_one_basic_usages.html" target="_blank" rel="external">参考链接</a></p>
-<p>整个过程是：</p>
-<ul>
-<li>用户发出 Action，store.dispatch(action);</li>
-<li>Store 自动调用 Reducer，并且传入两个参数：当前 State 和收到的 Action。 Reducer 会返回新的 State。</li>
-<li>State 一旦有变化，Store 就会调用监听函数。</li>
-<li>listener可以通过store.getState()得到当前状态。如果使用的是 React，这时可以触发重新渲染 View。</li>
-</ul>
-<p><img src="/assets/blogImg/flux/redux_1.png" alt="redux" title="redux架构"></p>
-<p>然后，看demo。</p>
-<p>还有异步操作：Action 发出以后，过一段时间再执行 Reducer，这就是异步。这个没细看，感觉像<code>面向切面的编程(AOP)</code>。</p>
-<p><img src="/assets/blogImg/flux/redux_2.png" alt="redux" title="redux架构"></p>
-<h2 id="公司项目分析"><a href="#公司项目分析" class="headerlink" title="公司项目分析"></a>公司项目分析</h2><h4 id="项目src的目录介绍"><a href="#项目src的目录介绍" class="headerlink" title="项目src的目录介绍"></a>项目src的目录介绍</h4><p><img src="/assets/blogImg/flux/xm_1.png" alt="项目" title="项目"></p>
-<p>其实还是不大懂！！</p>
-<h4 id="关于bind"><a href="#关于bind" class="headerlink" title="关于bind"></a>关于bind</h4><p>找了些资料总结一下：当需要传参，为了确保处理函数中的this时刻指向这个组件，就需要bind。bind会可以复制出一个函数，改变函数指针，给函数传参。</p>
-<p>比如下面这个demo<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">var  Hello=React.createClass(&#123;</div><div class="line">	getInitialState:<span class="function"><span class="title">function</span></span>()&#123;</div><div class="line">		<span class="built_in">return</span> &#123;</div><div class="line">			name:<span class="string">''</span>,</div><div class="line">			sex:<span class="string">''</span>,</div><div class="line">			age:<span class="string">''</span>,</div><div class="line">			tel:<span class="string">''</span>,</div><div class="line">			address:<span class="string">''</span></div><div class="line">		&#125;</div><div class="line">	&#125;,</div><div class="line">	changeValue:<span class="keyword">function</span>(<span class="built_in">type</span>,e)&#123;			</div><div class="line">		var that=this;</div><div class="line">		var obj=&#123;&#125;</div><div class="line">		obj[<span class="built_in">type</span>]=e.target.value;</div><div class="line">		that.setState(obj)</div><div class="line">	&#125;,</div><div class="line">	render:<span class="function"><span class="title">function</span></span>()&#123;</div><div class="line">		<span class="built_in">return</span> (</div><div class="line">			&lt;div&gt;</div><div class="line">				&lt;input onChange=&#123;this.changeValue.bind(this,<span class="string">'name'</span>)&#125; <span class="built_in">type</span>=<span class="string">"text"</span> defaultValue=<span class="string">'default value'</span> /&gt;&#123;this.state.name&#125;&lt;br/&gt;</div><div class="line">				&lt;input onChange=&#123;this.changeValue.bind(this,<span class="string">'sex'</span>)&#125; <span class="built_in">type</span>=<span class="string">"text"</span> defaultValue=<span class="string">'default value'</span> /&gt;&#123;this.state.sex&#125;&lt;br/&gt;</div><div class="line">				&lt;input onChange=&#123;this.ageChange&#125; <span class="built_in">type</span>=<span class="string">"text"</span> defaultValue=<span class="string">'default value'</span> /&gt;&#123;this.state.age&#125;&lt;br/&gt;</div><div class="line"></div><div class="line">			&lt;/div&gt;</div><div class="line">		)</div><div class="line">	&#125;</div><div class="line">&#125;)</div><div class="line">    ReactDOM.render(&lt;Hello/&gt;,document.getElementById(<span class="string">"app"</span>));</div></pre></td></tr></table></figure></p>
-<p>项目中初始化时bind</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">class InvitationJoin extends Component &#123;</div><div class="line">    constructor(props) &#123;</div><div class="line">        super(props);</div><div class="line"></div><div class="line">        this.state = &#123;&#125;;</div><div class="line">        this.join = this.join.bind(this);</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="title">join</span></span>() &#123;&#125;</div><div class="line">    <span class="function"><span class="title">render</span></span>() &#123;</div><div class="line">        <span class="built_in">return</span> &lt;div className=&#123;style.box&#125;&gt;</div><div class="line">			.......</div><div class="line">			&lt;div className=&#123;style.btnBox&#125;&gt;</div><div class="line">                &lt;div className=&#123;button.normal&#125; onClick=&#123;this.join&#125;&gt;&#123;<span class="string">'加入'</span>&#125;&lt;/div&gt;</div><div class="line">            &lt;/div&gt;</div><div class="line">			........</div><div class="line">        &lt;/div&gt;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="built_in">export</span> default InvitationJoin;</div></pre></td></tr></table></figure>
-<p>使用箭头函数从而避免bind,剑锋说效率低。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">暂时没找到，有时间再从项目中找。</div></pre></td></tr></table></figure>
-<h4 id="webpack打包，不用考虑js的兼容。"><a href="#webpack打包，不用考虑js的兼容。" class="headerlink" title="webpack打包，不用考虑js的兼容。"></a>webpack打包，不用考虑js的兼容。</h4><h4 id="组件定义对象。"><a href="#组件定义对象。" class="headerlink" title="组件定义对象。"></a>组件定义对象。</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">xxxx(()=&gt;&#123;&#125;)&#123;</div><div class="line">	<span class="built_in">return</span>&#123;</div><div class="line"></div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>实在没时间写了，改天再写！！！！！！</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">前端架构</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/03/04/Flux架构/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/10/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="page-number" href="/page/10/">10</a><span class="page-number current">11</span><a class="page-number" href="/page/12/">12</a><a class="page-number" href="/page/13/">13</a><a class="extend next" rel="next" href="/page/12/">Next &raquo;</a>
@@ -525,6 +519,26 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">canvas</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">开源</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">react</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">服务器</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Node.js</a>
               </li>
              
@@ -538,26 +552,6 @@ var _hmt = _hmt || [];
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">xmapp</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">canvas</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">开源</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">react</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">服务器</a>
               </li>
              
               <li class="article-tag-list-item">
