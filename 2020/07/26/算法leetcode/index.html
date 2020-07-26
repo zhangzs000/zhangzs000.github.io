@@ -18,25 +18,25 @@
 <meta property="og:description" content="概率最大的路径给你一个由 n 个节点（下标从 0 开始）组成的无向加权图，该图由一个描述边的列表组成，其中 edges[i] = [a, b] 表示连接节点 a 和 b 的一条无向边，且该边遍历成功的概率为 succProb[i] 。
 指定两个节点分别作为起点 start 和终点 end ，请你找出从起点到终点成功概率最大的路径，并返回其成功概率。
 如果不存在从 start 到 end 的路径，请">
-<meta property="og:image" content="http://yoursite.com/assets/blogImg/leetcode/t1.jpg">
-<meta property="og:image" content="http://yoursite.com/assets/blogImg/leetcode/t2.jpg">
-<meta property="og:image" content="http://yoursite.com/assets/blogImg/leetcode/t3.jpg">
-<meta property="og:image" content="http://yoursite.com/assets/blogImg/leetcode/tt1.jpg">
-<meta property="og:image" content="http://yoursite.com/assets/blogImg/leetcode/tt2.jpg">
-<meta property="og:image" content="http://yoursite.com/assets/blogImg/leetcode/tt3.jpg">
-<meta property="og:image" content="http://yoursite.com/assets/blogImg/leetcode/t4.jpg">
-<meta property="og:image" content="http://yoursite.com/assets/blogImg/leetcode/t5.jpg">
-<meta property="og:image" content="http://yoursite.com/assets/blogImg/leetcode/t6.jpg">
-<meta property="og:image" content="http://yoursite.com/assets/blogImg/leetcode/tt4.jpg">
-<meta property="og:image" content="http://yoursite.com/assets/blogImg/leetcode/tt5.jpg">
-<meta property="og:image" content="http://yoursite.com/assets/blogImg/leetcode/tt6.jpg">
-<meta property="og:updated_time" content="2020-07-26T14:15:14.109Z">
+<meta property="og:image" content="http://yoursite.com/assets/blogImg/leetcode/t1.png">
+<meta property="og:image" content="http://yoursite.com/assets/blogImg/leetcode/t2.png">
+<meta property="og:image" content="http://yoursite.com/assets/blogImg/leetcode/t3.png">
+<meta property="og:image" content="http://yoursite.com/assets/blogImg/leetcode/tt1.png">
+<meta property="og:image" content="http://yoursite.com/assets/blogImg/leetcode/tt2.png">
+<meta property="og:image" content="http://yoursite.com/assets/blogImg/leetcode/tt3.png">
+<meta property="og:image" content="http://yoursite.com/assets/blogImg/leetcode/t4.png">
+<meta property="og:image" content="http://yoursite.com/assets/blogImg/leetcode/t5.png">
+<meta property="og:image" content="http://yoursite.com/assets/blogImg/leetcode/t6.png">
+<meta property="og:image" content="http://yoursite.com/assets/blogImg/leetcode/tt4.png">
+<meta property="og:image" content="http://yoursite.com/assets/blogImg/leetcode/tt5.png">
+<meta property="og:image" content="http://yoursite.com/assets/blogImg/leetcode/tt6.png">
+<meta property="og:updated_time" content="2020-07-26T14:20:45.946Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="算法leetcode">
 <meta name="twitter:description" content="概率最大的路径给你一个由 n 个节点（下标从 0 开始）组成的无向加权图，该图由一个描述边的列表组成，其中 edges[i] = [a, b] 表示连接节点 a 和 b 的一条无向边，且该边遍历成功的概率为 succProb[i] 。
 指定两个节点分别作为起点 start 和终点 end ，请你找出从起点到终点成功概率最大的路径，并返回其成功概率。
 如果不存在从 start 到 end 的路径，请">
-<meta name="twitter:image" content="http://yoursite.com/assets/blogImg/leetcode/t1.jpg">
+<meta name="twitter:image" content="http://yoursite.com/assets/blogImg/leetcode/t1.png">
   
     <link rel="alternative" href="/atom.xml" title="zhangzs的博客" type="application/atom+xml">
   
@@ -200,9 +200,9 @@
 <p>指定两个节点分别作为起点 start 和终点 end ，请你找出从起点到终点成功概率最大的路径，并返回其成功概率。</p>
 <p>如果不存在从 start 到 end 的路径，请 返回 0 。只要答案与标准答案的误差不超过 1e-5 ，就会被视作正确答案。</p>
 <p>示例 1：</p>
-<p><img src="/assets/blogImg/leetcode/t1.jpg" alt="alt text" title="测试图片"></p>
-<p>输入：n = 3, edges = [[0,1],[1,2],[0,2]], succProb = [0.5,0.5,0.2], start = 0, end = 2<br>输出：0.25000<br>解释：从起点到终点有两条路径，其中一条的成功概率为 0.2 ，而另一条为 0.5 * 0.5 = 0.25<br>示例 2：<br><img src="/assets/blogImg/leetcode/t2.jpg" alt="alt text" title="测试图片"></p>
-<p>输入：n = 3, edges = [[0,1],[1,2],[0,2]], succProb = [0.5,0.5,0.3], start = 0, end = 2<br>输出：0.30000<br>示例 3：<br><img src="/assets/blogImg/leetcode/t3.jpg" alt="alt text" title="测试图片"></p>
+<p><img src="/assets/blogImg/leetcode/t1.png" alt="alt text" title="测试图片"></p>
+<p>输入：n = 3, edges = [[0,1],[1,2],[0,2]], succProb = [0.5,0.5,0.2], start = 0, end = 2<br>输出：0.25000<br>解释：从起点到终点有两条路径，其中一条的成功概率为 0.2 ，而另一条为 0.5 * 0.5 = 0.25<br>示例 2：<br><img src="/assets/blogImg/leetcode/t2.png" alt="alt text" title="测试图片"></p>
+<p>输入：n = 3, edges = [[0,1],[1,2],[0,2]], succProb = [0.5,0.5,0.3], start = 0, end = 2<br>输出：0.30000<br>示例 3：<br><img src="/assets/blogImg/leetcode/t3.png" alt="alt text" title="测试图片"></p>
 <p>输入：n = 3, edges = [[0,1]], succProb = [0.5], start = 0, end = 2<br>输出：0.00000<br>解释：节点 0 和 节点 2 之间不存在路径</p>
 <p>提示：</p>
 <p>2 &lt;= n &lt;= 10^4<br>0 &lt;= start, end &lt; n<br>start != end<br>0 &lt;= a, b &lt; n<br>a != b<br>0 &lt;= succProb.length == edges.length &lt;= 2*10^4<br>0 &lt;= succProb[i] &lt;= 1<br>每两个节点之间最多有一条边</p>
@@ -212,7 +212,7 @@
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">var maxProbability = function(n, edges, succProb, start, end) &#123;</div><div class="line">    let vi = new Array(n).fill(false);</div><div class="line">    let path = new Array(n)</div><div class="line">    while(n--)&#123;</div><div class="line">        path[n] = []</div><div class="line">    &#125;</div><div class="line">    for (let i = 0; i &lt; edges.length; i++) &#123;</div><div class="line">        let e = edges[i];</div><div class="line">        path[e[0]].push([succProb[i], e[1]]);</div><div class="line">        path[e[1]].push([succProb[i], e[0]]);</div><div class="line">    &#125;</div><div class="line">    let pq = [];</div><div class="line">    pq.push([ 1, start]);</div><div class="line">    while (pq.length) &#123;</div><div class="line">        let [curProb, cur] = pq.shift()// pq.pop(); pop是操作数组的后边</div><div class="line">        if (vi[cur]) continue;</div><div class="line">        vi[cur] = true;</div><div class="line"></div><div class="line">        if (cur == end) return curProb;</div><div class="line">        let pp =path[cur];</div><div class="line">        for(let i=0; i&lt;pp.length; i++)&#123;</div><div class="line">            let [nextProb, next] = pp[i];</div><div class="line">            if (vi[next]) continue;</div><div class="line">            pq.push([curProb * nextProb, next]);</div><div class="line">            // 9000多数据每次排序， ST算法，RMQ问题 | 堆</div><div class="line">            pq.sort((a, b)=&gt;b[0]-a[0])  </div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    return 0;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
 <ul>
-<li><p>但是这样处理的话，当测试用例的节点数达到 10000 时就会超时。<br><img src="/assets/blogImg/leetcode/tt1.jpg" alt="alt text" title="测试图片"></p>
+<li><p>但是这样处理的话，当测试用例的节点数达到 10000 时就会超时。<br><img src="/assets/blogImg/leetcode/tt1.png" alt="alt text" title="测试图片"></p>
 </li>
 <li><p>其实优先队列是Dijkstra算法 的一种优化，将时间复杂度从 O(n^2) 降到 O((m+n)logn)，m边数，n是顶点数。优先队列的内部似乎是斐波那契堆(Fibonacci heap)<a href="https://baike.baidu.com/item/%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E5%A0%86/1330115?fr=aladdin" title="网站链接" target="_blank" rel="external">Fibonacci heap</a>，这里不要求那么严格由于是要概率最大的路径，所以<code>实现一个最大堆</code>。</p>
 </li>
@@ -222,21 +222,21 @@
 <li>应用上面的最大堆</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">var maxProbability = function(n, edges, succProb, start, end) &#123;</div><div class="line">    let vi = new Array(n).fill(false);</div><div class="line">    let path = new Array(n)</div><div class="line">    while(n--)&#123;</div><div class="line">        path[n] = []</div><div class="line">    &#125;</div><div class="line">    for (let i = 0; i &lt; edges.length; i++) &#123;</div><div class="line">        let e = edges[i];</div><div class="line">        path[e[0]].push([succProb[i], e[1]]);</div><div class="line">        path[e[1]].push([succProb[i], e[0]]);</div><div class="line">    &#125;</div><div class="line">   let pq =  new MaxPriorityQueue()</div><div class="line">   pq.enqueue(start, 1)</div><div class="line">    while (!pq.isEmpty()) &#123;</div><div class="line">        let &#123;element: cur, priority: curProb&#125; = pq.dequeue()</div><div class="line">        if (vi[cur]) continue;</div><div class="line">        vi[cur] = true;</div><div class="line"></div><div class="line">        if (cur == end) return curProb;</div><div class="line">        let pp =path[cur];</div><div class="line">        for(let i=0; i&lt;pp.length; i++)&#123;</div><div class="line">            let [nextProb, next] = pp[i];</div><div class="line">            if (vi[next]) continue;</div><div class="line">            pq.enqueue(next, curProb * nextProb)</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    return 0;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-<p><img src="/assets/blogImg/leetcode/tt2.jpg" alt="alt text" title="测试图片"></p>
+<p><img src="/assets/blogImg/leetcode/tt2.png" alt="alt text" title="测试图片"></p>
 <h4 id="Bellman-Ford-算法"><a href="#Bellman-Ford-算法" class="headerlink" title="Bellman-Ford 算法"></a>Bellman-Ford 算法</h4><ul>
 <li>Bellman-Ford也是一种求最短路径的方法</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">// Bellman-Ford， 100000节点 10ms 多; </div><div class="line">//https://zhuanlan.zhihu.com/p/72185593</div><div class="line">// https://www.cnblogs.com/lxt1105/p/6477639.html</div><div class="line">var maxProbability = function(n, edges, succProb, start, end) &#123;</div><div class="line">    // 求最大值，初始赋值最小；反之</div><div class="line">   let dp = new Array(n).fill(0);</div><div class="line">    dp[start] = 1;</div><div class="line">    while(true)&#123;</div><div class="line">        let k = false;</div><div class="line">        for(let j=0; j&lt;edges.length; j++)&#123;</div><div class="line">            if(dp[edges[j][0]] * succProb[j] &gt; dp[edges[j][1]])&#123;</div><div class="line">                    dp[edges[j][1]] = dp[edges[j][0]] * succProb[j];</div><div class="line">					k = true;</div><div class="line">            &#125;</div><div class="line">            if (dp[edges[j][1]] * succProb[j] &gt; dp[edges[j][0]]) &#123;</div><div class="line">                dp[edges[j][0]] = dp[edges[j][1]] * succProb[j];</div><div class="line">                k = true;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        if(!k) break;</div><div class="line">    &#125;</div><div class="line">    return dp[end]</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p><img src="/assets/blogImg/leetcode/tt3.jpg" alt="alt text" title="测试图片"></p>
+<p><img src="/assets/blogImg/leetcode/tt3.png" alt="alt text" title="测试图片"></p>
 <h2 id="子树中标签相同的节点数"><a href="#子树中标签相同的节点数" class="headerlink" title="子树中标签相同的节点数"></a>子树中标签相同的节点数</h2><p>给你一棵树（即，一个连通的无环无向图），这棵树由编号从 0  到 n - 1 的 n 个节点组成，且恰好有 n - 1 条 edges 。树的根节点为节点 0 ，树上的每一个节点都有一个标签，也就是字符串 labels 中的一个小写字符（编号为 i 的 节点的标签就是 labels[i] ）</p>
 <p>边数组 edges 以 edges[i] = [ai, bi] 的形式给出，该格式表示节点 ai 和 bi 之间存在一条边。</p>
 <p>返回一个大小为 n 的数组，其中 ans[i] 表示第 i 个节点的子树中与节点 i 标签相同的节点数。</p>
 <p>树 T 中的子树是由 T 中的某个节点及其所有后代节点组成的树。</p>
-<p>示例 1：<br><img src="/assets/blogImg/leetcode/t4.jpg" alt="alt text" title="测试图片"></p>
+<p>示例 1：<br><img src="/assets/blogImg/leetcode/t4.png" alt="alt text" title="测试图片"></p>
 <p>输入：n = 7, edges = [[0,1],[0,2],[1,4],[1,5],[2,3],[2,6]], labels = “abaedcd”<br>输出：[2,1,1,1,1,1,1]<br>解释：节点 0 的标签为 ‘a’ ，以 ‘a’ 为根节点的子树中，节点 2 的标签也是 ‘a’ ，因此答案为 2 。注意树中的每个节点都是这棵子树的一部分。<br>节点 1 的标签为 ‘b’ ，节点 1 的子树包含节点 1、4 和 5，但是节点 4、5 的标签与节点 1 不同，故而答案为 1（即，该节点本身）。<br>示例 2：</p>
-<p><img src="/assets/blogImg/leetcode/t5.jpg" alt="alt text" title="测试图片"></p>
+<p><img src="/assets/blogImg/leetcode/t5.png" alt="alt text" title="测试图片"></p>
 <p>输入：n = 4, edges = [[0,1],[1,2],[0,3]], labels = “bbbb”<br>输出：[4,2,1,1]<br>解释：节点 2 的子树中只有节点 2 ，所以答案为 1 。<br>节点 3 的子树中只有节点 3 ，所以答案为 1 。<br>节点 1 的子树中包含节点 1 和 2 ，标签都是 ‘b’ ，因此答案为 2 。<br>节点 0 的子树中包含节点 0、1、2 和 3，标签都是 ‘b’，因此答案为 4 。<br>示例 3：</p>
-<p><img src="/assets/blogImg/leetcode/t6.jpg" alt="alt text" title="测试图片"></p>
+<p><img src="/assets/blogImg/leetcode/t6.png" alt="alt text" title="测试图片"></p>
 <p>输入：n = 5, edges = [[0,1],[0,2],[1,3],[0,4]], labels = “aabab”<br>输出：[3,2,1,1,1]<br>示例 4：</p>
 <p>输入：n = 6, edges = [[0,1],[0,2],[1,3],[3,4],[4,5]], labels = “cbabaa”<br>输出：[1,2,1,1,2,1]<br>示例 5：</p>
 <p>输入：n = 7, edges = [[0,1],[1,2],[2,3],[3,4],[4,5],[5,6]], labels = “aaabaaa”<br>输出：[6,5,4,1,3,2,1]</p>
@@ -253,7 +253,7 @@
 <ul>
 <li>但是，最终结果却是超时</li>
 </ul>
-<p><img src="/assets/blogImg/leetcode/tt4.jpg" alt="alt text" title="测试图片"></p>
+<p><img src="/assets/blogImg/leetcode/tt4.png" alt="alt text" title="测试图片"></p>
 <h4 id="原始的dijkstra-算法"><a href="#原始的dijkstra-算法" class="headerlink" title="原始的dijkstra 算法"></a>原始的dijkstra 算法</h4><ul>
 <li>出于学习的目的又从百度上看了原始的dijkstra 算法，最后js的GC（last few GCs）报错。</li>
 </ul>
@@ -262,12 +262,12 @@
 <li>官网给出的答案是 dfs，但是当节点为10万个时，栈的深度将近 1万，最后栈溢出报错，但是java和 c++是没有问题的。</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line">var countSubTrees = function(n, edges, labels) &#123;</div><div class="line">    let path = new Array(n);</div><div class="line">    let n1 = n;</div><div class="line">    while(n1--)&#123;</div><div class="line">       path[n1] = []; </div><div class="line">    &#125;</div><div class="line">    edges.forEach(es=&gt;&#123;</div><div class="line">        let [s, e] = es;</div><div class="line">        // node label</div><div class="line">        path[s].push([e, labels[e]]);</div><div class="line">        path[e].push([s, labels[s]])</div><div class="line">    &#125;);</div><div class="line">    let v = new Array(n).fill(false);</div><div class="line">    let count = new Array(n).fill(0);</div><div class="line">    // 100000十万 个点  RangeError: Maximum call stack size exceeded，但是java c++ python都不会</div><div class="line">    // 树的深度差不多超过了 10000 </div><div class="line">    const dfs=(node, path, v, count, labels)=&gt;&#123;</div><div class="line">        v[node] = true;</div><div class="line">        // count[node] ++;</div><div class="line">        let curCount = new Array(26).fill(0);</div><div class="line">        curCount[labels[node].charCodeAt(0)-&apos;a&apos;.charCodeAt(0)]++</div><div class="line">        let cp = path[node];</div><div class="line">        for(let i=0; i&lt;cp.length; i++)&#123;</div><div class="line">            let [next, l] = cp[i];</div><div class="line">            if(!v[next])&#123;</div><div class="line">                let childCount = dfs(next, path, v, count, labels);</div><div class="line">                let t = 26;</div><div class="line">                while(t--)&#123;</div><div class="line">                   curCount[t] +=  childCount[t]</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        count[node] = curCount[labels[node].charCodeAt(0)-&apos;a&apos;.charCodeAt(0)]</div><div class="line">        return curCount</div><div class="line">        </div><div class="line">    &#125;</div><div class="line">    dfs(0, path, v, count, labels)</div><div class="line">    return count</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p><img src="/assets/blogImg/leetcode/tt5.jpg" alt="alt text" title="测试图片"></p>
+<p><img src="/assets/blogImg/leetcode/tt5.png" alt="alt text" title="测试图片"></p>
 <ul>
 <li>最后呢，只能是 bfs，然后从底想下累加节点数目。</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div></pre></td><td class="code"><pre><div class="line">var countSubTrees = function(n, edges, labels) &#123;</div><div class="line">    let path = new Array(n);</div><div class="line">    let siz = new Array(n);</div><div class="line">    let n1 = n;</div><div class="line">    let n2 = n;</div><div class="line">    while(n2--)&#123;</div><div class="line">        siz[n2] = new Array(26).fill(0)</div><div class="line">    &#125;</div><div class="line">    while(n1--)&#123;</div><div class="line">       path[n1] = []; </div><div class="line">    &#125;</div><div class="line">    // 生成图</div><div class="line">    edges.forEach(es=&gt;&#123;</div><div class="line">        let [s, e] = es;</div><div class="line">        // node label</div><div class="line">        path[s].push(e);</div><div class="line">        path[e].push(s)</div><div class="line">    &#125;);</div><div class="line">    let fa = new Array(n).fill(0);</div><div class="line">    let q = [];</div><div class="line">    q.push(0);</div><div class="line">    // bfs + 每个点的父节点 fa</div><div class="line">    for(let i=0; i&lt;q.length; i++)&#123;</div><div class="line">        let v = q[i];</div><div class="line">        for(let j=0; j&lt;path[v].length; j++)&#123;</div><div class="line">            let y = path[v][j]</div><div class="line">            if(y!=fa[v])&#123;</div><div class="line">                fa[y] = v;</div><div class="line">                q.push(y)</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    // 从底向上，统计每个点对应字母个数</div><div class="line">    for(let i = n - 1; i &gt;= 0; i--) &#123;</div><div class="line">        let v = q[i];</div><div class="line">        siz[v][labels[v].charCodeAt(0) - &apos;a&apos;.charCodeAt(0)]++;</div><div class="line">        if(!v) break;</div><div class="line">        for(let j = 0; j &lt; 26; j++) &#123;</div><div class="line">            siz[fa[v]][j] += siz[v][j];</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    let res = [];</div><div class="line">    for(let i = 0; i &lt; n; i++) res.push(siz[i][labels[i].charCodeAt(0) - &apos;a&apos;.charCodeAt(0)]);</div><div class="line">        return res;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p><img src="/assets/blogImg/leetcode/tt6.jpg" alt="alt text" title="测试图片"></p>
+<p><img src="/assets/blogImg/leetcode/tt6.png" alt="alt text" title="测试图片"></p>
 <p>著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
 <p>来源：力扣（LeetCode）<br>链接：<a href="https://leetcode-cn.com/problems/path-with-maximum-probability" target="_blank" rel="external">https://leetcode-cn.com/problems/path-with-maximum-probability</a><br>著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
 
@@ -511,26 +511,6 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">canvas</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">开源</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">react</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">服务器</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Node.js</a>
               </li>
              
@@ -544,6 +524,26 @@ var _hmt = _hmt || [];
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">xmapp</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">react</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">canvas</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">开源</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">服务器</a>
               </li>
              
               <li class="article-tag-list-item">
