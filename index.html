@@ -184,8 +184,8 @@
 <li>合并(Unit)：将两个元素所在的集合合并为一个集合。<br><img src="/assets/blogImg/youtube/12.png" alt="algo" title="algo"></li>
 </ul>
 </li>
-<li><p>例题：检测图中是否有环？<br><img src="/assets/blogImg/youtube/13.png" alt="algo" title="algo"></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div></pre></td><td class="code"><pre><div class="line">const checkCycle = ()=&gt;&#123;</div><div class="line">	let paths = [[0,1],[1,2],[2, 5],[2, 4],[1, 3],[3, 4]];</div><div class="line">	// 初始化</div><div class="line">	let arr = new Array(6).fill(-1);</div><div class="line">	let rank = new Array(6).fill(0);</div><div class="line">	// 错误，是在unit 合并时才集合链</div><div class="line">	// const init= (paths, arr)=&gt;&#123;</div><div class="line">	// 	paths.forEach(([x,y])=&gt;&#123;</div><div class="line">	// 		arr[x] = y</div><div class="line">	// 	&#125;)</div><div class="line">	// &#125;</div><div class="line">	const findParent= (x)=&gt;&#123;</div><div class="line">		let p = x;</div><div class="line">		while(arr[p]!==-1)&#123;</div><div class="line">			p = arr[p]</div><div class="line">		&#125;</div><div class="line">		return p</div><div class="line">	&#125;</div><div class="line">	// 是否合并,连接起来</div><div class="line">	const unit = (x, y, arr)=&gt;&#123;</div><div class="line">		let x_p = findParent(x);</div><div class="line">		let y_p = findParent(y);</div><div class="line">		// 父节点相同，说明已经链接起来了</div><div class="line">		if(x_p === y_p) return false</div><div class="line">		else &#123;</div><div class="line">			if(rank[x_p]&gt;rank[y_p]) &#123;</div><div class="line">				arr[y_p] = x_p</div><div class="line">			&#125; else if(rank[x_p]&lt;rank[y_p])&#123;</div><div class="line">				arr[x_p] = y_p</div><div class="line">			&#125; else &#123;</div><div class="line">				rank[y_p]++</div><div class="line">				// unit 合并时才生成链</div><div class="line">				arr[x_p] = y_p</div><div class="line">			&#125;</div><div class="line">			return true</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	// init(paths, arr)</div><div class="line">	for(let [x, y] of paths)&#123;</div><div class="line">		// 无需合并存在圈</div><div class="line">		if(!unit(x, y, arr)) &#123;</div><div class="line">			return true</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	return false</div><div class="line">&#125;</div><div class="line"></div><div class="line">console.log(checkCycle())</div></pre></td></tr></table></figure>
+<li><p>例题：检测无向图图中是否有环？<br><img src="/assets/blogImg/youtube/13.png" alt="algo" title="algo"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div></pre></td><td class="code"><pre><div class="line">const checkCycle = ()=&gt;&#123;</div><div class="line">	let paths = [[0,1],[1,2],[2, 5],[2, 4],[1, 3],[3, 4]];</div><div class="line">	// 初始化</div><div class="line">	// 添加注意初始化数组的长度跟节点个数n有关系，防止出现undefined。</div><div class="line">	let arr = new Array(6).fill(-1);</div><div class="line">	let rank = new Array(6).fill(0);</div><div class="line">	// 错误，是在unit 合并时才集合链</div><div class="line">	// const init= (paths, arr)=&gt;&#123;</div><div class="line">	// 	paths.forEach(([x,y])=&gt;&#123;</div><div class="line">	// 		arr[x] = y</div><div class="line">	// 	&#125;)</div><div class="line">	// &#125;</div><div class="line">	const findParent= (x)=&gt;&#123;</div><div class="line">		let p = x;</div><div class="line">		while(arr[p]!==-1)&#123;</div><div class="line">			p = arr[p]</div><div class="line">		&#125;</div><div class="line">		return p</div><div class="line">	&#125;</div><div class="line">	// 是否合并,连接起来</div><div class="line">	const unit = (x, y, arr)=&gt;&#123;</div><div class="line">		let x_p = findParent(x);</div><div class="line">		let y_p = findParent(y);</div><div class="line">		// 父节点相同，说明已经链接起来了</div><div class="line">		if(x_p === y_p) return false</div><div class="line">		else &#123;</div><div class="line">			if(rank[x_p]&gt;rank[y_p]) &#123;</div><div class="line">				arr[y_p] = x_p</div><div class="line">			&#125; else if(rank[x_p]&lt;rank[y_p])&#123;</div><div class="line">				arr[x_p] = y_p</div><div class="line">			&#125; else &#123;</div><div class="line">				rank[y_p]++</div><div class="line">				// unit 合并时才生成链</div><div class="line">				arr[x_p] = y_p</div><div class="line">			&#125;</div><div class="line">			return true</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	// init(paths, arr)</div><div class="line">	for(let [x, y] of paths)&#123;</div><div class="line">		// 无需合并存在圈</div><div class="line">		if(!unit(x, y, arr)) &#123;</div><div class="line">			return true</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	return false</div><div class="line">&#125;</div><div class="line"></div><div class="line">console.log(checkCycle())</div></pre></td></tr></table></figure>
 </li>
 </ul>
 <h2 id="堆排序-heapSort"><a href="#堆排序-heapSort" class="headerlink" title="堆排序 heapSort"></a>堆排序 heapSort</h2><ul>
@@ -240,6 +240,40 @@
 <li>Fibonacci sequence,O(2^n) =&gt; O(n) 这么个思想。</li>
 <li>爬楼梯</li>
 <li>背包9讲</li>
+</ul>
+<h2 id="KMP"><a href="#KMP" class="headerlink" title="KMP"></a>KMP</h2><ul>
+<li>字符串匹配算法</li>
+<li>根据前缀和后缀相同，匹配完第一轮，匹配第二轮时看能不能直接匹配后缀。 复杂度 O(m+n)</li>
+</ul>
+<h4 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h4><ul>
+<li><p>1.求出前缀表。<br><img src="/assets/blogImg/kmp/k1.png" alt="algo" title="algo"></p>
+<ul>
+<li>当下个字符匹配时：</li>
+<li>len 目前达到的最长公共前缀的长度，比较长度；</li>
+<li><p>i 是prefix数组当前的索引，prefix[0]=0, i从第一个字母比较；<br><img src="/assets/blogImg/kmp/k2.png" alt="algo" title="algo"></p>
+</li>
+<li><p>当下一个不匹配时：<br><img src="/assets/blogImg/kmp/k3.png" alt="algo" title="algo"></p>
+</li>
+<li><p>为了好计算，prefix整体右移，将prefix[0] = -1，<br><img src="/assets/blogImg/kmp/k4.png" alt="algo" title="algo"></p>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line">function prefix_table(pattern, prefix, n) &#123;</div><div class="line">    prefix[0] = 0;</div><div class="line">    let len = 0;</div><div class="line">    let i= 1;</div><div class="line">    while(i&lt;n)&#123;</div><div class="line">      if( pattern[i] == pattern[len] ) &#123;</div><div class="line">        len++;</div><div class="line">        prefix[i] = len;</div><div class="line">        i++;</div><div class="line">      &#125; else &#123;</div><div class="line">        if(len&gt;0)&#123;</div><div class="line">          len = prefix[len - 1];</div><div class="line">        &#125; else &#123;</div><div class="line">          // len === 0</div><div class="line">          prefix[i] = len;</div><div class="line">          i++;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line">function move_prefix_table(prefix, n) &#123;</div><div class="line">  for (let i=n-1; i&gt;0; i--)&#123;</div><div class="line">    prefix[i] = prefix[i-1];</div><div class="line">  &#125;</div><div class="line">  prefix[0] = -1;</div><div class="line">&#125;</div><div class="line"></div><div class="line">let pattern = &quot;ABABCABAA&quot;;</div><div class="line">let prefix = new Array(9);</div><div class="line">let n=9;</div><div class="line">//  下面这2个api可通用</div><div class="line">prefix_table(pattern, prefix, n);</div><div class="line">move_prefix_table(prefix, n);</div><div class="line"></div><div class="line">console.log(&apos;prefix: &apos;,prefix)</div></pre></td></tr></table></figure>
+<p><img src="/assets/blogImg/kmp/k5.png" alt="algo" title="algo"></p>
+<ul>
+<li><p>2.开始匹配：</p>
+<ul>
+<li>相同 i++, j++；</li>
+<li>不相同如下图：</li>
+<li>j 从指向4C，指向2A,</li>
+</ul>
+<p><img src="/assets/blogImg/kmp/k6.png" alt="algo" title="algo"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line"> let pattern = &quot;ABABCABAA&quot;;</div><div class="line">let text =       &quot;ABABABCABAABABABABA&quot;;  // 2</div><div class="line">// let text =    &quot;ABABABABCABAAB&quot;; // 4</div><div class="line"></div><div class="line">function kmp_search(text, pattern)&#123;</div><div class="line"></div><div class="line">  let n = pattern.length;</div><div class="line">  let m = text.length;</div><div class="line">  let prefix = new Array(n);</div><div class="line">  let i=0;</div><div class="line">  let j=0;</div><div class="line">  prefix_table(pattern, prefix, n);</div><div class="line">  move_prefix_table(prefix, n);</div><div class="line">  // text[i] , len(text),      = m</div><div class="line">  // pattern[j] , len(pattern) = n</div><div class="line"></div><div class="line">  while(i &lt; m)&#123;</div><div class="line">    if (j==n - 1 &amp;&amp; text[i] == pattern[j]) &#123;</div><div class="line">        console.log(&quot;Found pattern&quot;, i - j);</div><div class="line">        // 找到后，继续往下匹配，看还有没有</div><div class="line">        j = prefix[j];</div><div class="line">    &#125;</div><div class="line">    if (text[i] == pattern[j]) &#123;</div><div class="line">        i++; j++;</div><div class="line">    &#125; else &#123;</div><div class="line">        j = prefix[j];</div><div class="line">        if(j==-1)&#123;</div><div class="line">          i++; </div><div class="line">          j++;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line">kmp_search(text, pattern)</div><div class="line">// 结果应该是2</div></pre></td></tr></table></figure>
+<ul>
+<li>参考例题：<a href="https://leetcode-cn.com/problems/implement-strstr/submissions/" target="_blank" rel="external">https://leetcode-cn.com/problems/implement-strstr/submissions/</a></li>
+</ul>
+</li>
 </ul>
 
       
@@ -448,7 +482,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2020 jonk
+    		&copy; 2021 jonk
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -541,6 +575,10 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">react</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Node.js</a>
               </li>
              
@@ -562,10 +600,6 @@ var _hmt = _hmt || [];
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">开源</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">react</a>
               </li>
              
               <li class="article-tag-list-item">
