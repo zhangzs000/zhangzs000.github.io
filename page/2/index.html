@@ -155,6 +155,169 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-decorator" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/10/31/decorator/">decorator</a>
+    </h1>
+  
+
+        
+        <a href="/2020/10/31/decorator/" class="archive-article-date">
+  	<time datetime="2020-10-31T14:54:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-31</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="装饰器"><a href="#装饰器" class="headerlink" title="装饰器"></a>装饰器</h3><ul>
+<li>ES6的装饰器，是一种函数。可以修饰类，属性和方法。</li>
+</ul>
+<h4 id="修饰类"><a href="#修饰类" class="headerlink" title="修饰类"></a>修饰类</h4><ul>
+<li>第一个参数就是这个类</li>
+</ul>
+<p><img src="/assets/blogImg/decorator/d1_1.png" alt="decorator" title="decorator"></p>
+<ul>
+<li>结果<br><img src="/assets/blogImg/decorator/d1_2.png" alt="decorator" title="decorator"></li>
+</ul>
+<ul>
+<li>嵌套装饰器的执行顺序类似洋葱模型</li>
+</ul>
+<p><img src="/assets/blogImg/decorator/d2_1.png" alt="decorator" title="decorator"></p>
+<ul>
+<li>结果<br><img src="/assets/blogImg/decorator/d2_2.png" alt="decorator" title="decorator"></li>
+</ul>
+<h4 id="修饰属性"><a href="#修饰属性" class="headerlink" title="修饰属性"></a>修饰属性</h4><p><img src="/assets/blogImg/decorator/d3_1.png" alt="decorator" title="decorator"></p>
+<ul>
+<li>结果<br><img src="/assets/blogImg/decorator/d3_2.png" alt="decorator" title="decorator"></li>
+</ul>
+<h4 id="修饰方法"><a href="#修饰方法" class="headerlink" title="修饰方法"></a>修饰方法</h4><p><img src="/assets/blogImg/decorator/d4_1.png" alt="decorator" title="decorator"></p>
+<ul>
+<li>结果<br><img src="/assets/blogImg/decorator/d4_2.png" alt="decorator" title="decorator"></li>
+</ul>
+<h4 id="IOC-Inversion-of-Control-amp-DI-Dependency-Injection"><a href="#IOC-Inversion-of-Control-amp-DI-Dependency-Injection" class="headerlink" title="IOC(Inversion of Control) &amp; DI(Dependency Injection)"></a>IOC(Inversion of Control) &amp; DI(Dependency Injection)</h4><ul>
+<li>控制反转。一种编程思想，无需手动创建实例，交给容器去做。所有服务统一注册到容器中，当用户需要时特定服务时，容器会负责该服务及其依赖的创建和管理。像朝鲜的社会主义体系。</li>
+<li>依赖注入。需要哪个服务注入哪个服务。控制反转依靠依赖注入实现。</li>
+<li>应用：<code>nestjs</code>, <code>midwayjs</code>, <code>springMVC</code>。</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/10/31/decorator/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
+    <article id="title-札记" class="article article-type-title  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/08/30/札记/">札记</a>
+    </h1>
+  
+
+        
+        <a href="/2020/08/30/札记/" class="archive-article-date">
+  	<time datetime="2020-08-30T14:48:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-08-30</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="网上偶然看见一道题"><a href="#网上偶然看见一道题" class="headerlink" title="网上偶然看见一道题"></a>网上偶然看见一道题</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">const delay = (ms) =&gt; new Promise((resolve) =&gt; setTimeout(resolve, ms));</div><div class="line">const subFlow = createFlow([() =&gt; delay(1000).then(() =&gt; log(&quot;c&quot;))]);</div><div class="line"></div><div class="line">createFlow([</div><div class="line">  () =&gt; log(&quot;a&quot;),</div><div class="line">  () =&gt; log(&quot;b&quot;),</div><div class="line">  subFlow,</div><div class="line">  [() =&gt; delay(1000).then(() =&gt; log(&quot;d&quot;)), () =&gt; log(&quot;e&quot;)],</div><div class="line">]).run(() =&gt; &#123;</div><div class="line">  console.log(&quot;done&quot;);</div><div class="line">&#125;);</div><div class="line">// 需要按照 a,b,延迟1秒,c,延迟1秒,d,e, done 的顺序打印复制代码</div><div class="line">按照上面的测试用例，实现 createFlow：</div><div class="line">1.flow 是指一系列 effects 组成的逻辑片段。</div><div class="line">2.flow 支持嵌套。</div><div class="line">3.effects 的执行只需要支持串行。</div></pre></td></tr></table></figure>
+<ul>
+<li>如果是异步串行呢，想到的就是用next函数了，</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">const log = console.log;</div><div class="line">function createFlow(effects)&#123;</div><div class="line">	effects = effects.flat();</div><div class="line">	return &#123;</div><div class="line">		async run (cb)&#123;</div><div class="line">			for (let i = 0; i &lt; effects.length; i++) &#123;</div><div class="line">				if(effects[i].run)&#123;</div><div class="line">					await effects[i].run()</div><div class="line">				&#125; else &#123;</div><div class="line">					await effects[i]()</div><div class="line">				&#125;</div><div class="line">			&#125;</div><div class="line">			cb &amp;&amp; cb()</div><div class="line">		&#125;</div><div class="line">	&#125; </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li><code>async await</code>通过 babel 转义成 generator</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">// 测试代码</div><div class="line">async function test()&#123;</div><div class="line">  await 1</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">// 测试代码转义后</div><div class="line">// https://babeljs.io/</div><div class="line">...</div><div class="line"></div><div class="line">function _test() &#123;</div><div class="line">  _test = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() &#123;</div><div class="line">    return regeneratorRuntime.wrap(function _callee$(_context) &#123;</div><div class="line">      while (1) &#123;</div><div class="line">        switch (_context.prev = _context.next) &#123;</div><div class="line">          case 0:</div><div class="line">            _context.next = 2;</div><div class="line">            return 1;</div><div class="line"></div><div class="line">          case 2:</div><div class="line">          case &quot;end&quot;:</div><div class="line">            return _context.stop();</div><div class="line">        &#125;</div><div class="line">      &#125;</div><div class="line">    &#125;, _callee);</div><div class="line">  &#125;));</div></pre></td></tr></table></figure>
+<ul>
+<li>而 generator 内部实现也是通过 <code>next</code> 函数执行， 就是下面的 <code>_next</code></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">...</div><div class="line"></div><div class="line">function asyncGeneratorStep(</div><div class="line">        gen,</div><div class="line">        resolve,</div><div class="line">        reject,</div><div class="line">        _next,</div><div class="line">        _throw,</div><div class="line">        key,</div><div class="line">        arg</div><div class="line">      ) &#123;</div><div class="line">        try &#123;</div><div class="line">          var info = gen[key](arg);</div><div class="line">          var value = info.value;</div><div class="line">        &#125; catch (error) &#123;</div><div class="line">          reject(error);</div><div class="line">          return;</div><div class="line">        &#125;</div><div class="line">        if (info.done) &#123;</div><div class="line">          resolve(value);</div><div class="line">        &#125; else &#123;</div><div class="line">          Promise.resolve(value).then(_next, _throw);</div><div class="line">        &#125;</div><div class="line">      &#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>将下面 generator 测试函数babel 编译后, 发现确实是和 <code>async + await</code>一样都用了 <code>regeneratorRuntime</code></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">function *test()&#123;</div><div class="line">        let n1 = yield new Promise(r=&gt;setTimeout(()=&gt;r(1), 1000));</div><div class="line">        let n2 = yield new Promise(r=&gt;setTimeout(()=&gt;r(2+n1), 1000));</div><div class="line">        return n2</div><div class="line">    &#125;  </div><div class="line">    const gen = test()</div><div class="line">    let &#123; value, done &#125; = gen.next();</div><div class="line">    value.then((data) =&gt; &#123;</div><div class="line">        console.log(&apos;then: &apos;,data);</div><div class="line">        let &#123; value, done &#125; = gen.next(data);</div><div class="line">        value.then(function (data) &#123;</div><div class="line">            console.log(&apos;then: &apos;,data);</div><div class="line">        &#125;);</div><div class="line">    &#125;);</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">...</div><div class="line">return regeneratorRuntime.wrap(function test$(_context) &#123;</div><div class="line">    while (1) &#123;</div><div class="line">      switch (_context.prev = _context.next) &#123;</div><div class="line">        case 0:</div><div class="line">          _context.next = 2;</div><div class="line">          return new Promise(function (r) &#123;</div><div class="line">            return setTimeout(function () &#123;</div><div class="line">              return r(1);</div><div class="line">            &#125;, 1000);</div><div class="line">          &#125;);</div><div class="line"></div><div class="line">        case 2:</div><div class="line">          n1 = _context.sent;</div><div class="line">          _context.next = 5;</div><div class="line">          return new Promise(function (r) &#123;</div><div class="line">            return setTimeout(function () &#123;</div><div class="line">              return r(2 + n1);</div><div class="line">            &#125;, 1000);</div><div class="line">          &#125;);</div><div class="line">  ......</div></pre></td></tr></table></figure>
+<ul>
+<li>generator 函数执行又会产生一个<code>迭代器</code>, 例如下面2 函数是等价的</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">let arr = [...&#123;0: 1, 1: 2, 2: 3,length: 3,</div><div class="line">        [Symbol.iterator]:function()&#123;</div><div class="line">            let i = 0;</div><div class="line">            return &#123;</div><div class="line">                next: ()=&gt;&#123;</div><div class="line">                    return i&gt;this.length? &#123;done: true, value: undefined&#125; : &#123;done: false, value: this[i++]&#125;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    </div><div class="line">    &#125;]</div><div class="line">    for(let e of arr)&#123;</div><div class="line">        console.log(&apos;e: &apos;, e)</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">let arr = [...&#123;0: 1, 1: 2, 2: 3,length: 3,</div><div class="line">        [Symbol.iterator]: function*()&#123;</div><div class="line">            let i=0;</div><div class="line">            while(i!==this.length)&#123;</div><div class="line">                yield this[i++]</div><div class="line">            &#125;</div><div class="line">            yield this[i]</div><div class="line">        &#125;</div><div class="line">    </div><div class="line">    &#125;]</div><div class="line">    for(let e of arr)&#123;</div><div class="line">        console.log(&apos;e: &apos;, e)</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>上面在处理Promise的过程可以优化成 <code>co</code> 库的形式</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">function myCo(it) &#123;</div><div class="line">    return new Promise((resolve, reject) =&gt; &#123;</div><div class="line">      function next(r) &#123;</div><div class="line">        let &#123; value, done &#125; = it.next(r);</div><div class="line">        if (!done) &#123;</div><div class="line">          Promise.resolve(value).then((r) =&gt; &#123;</div><div class="line">            console.log(&quot;r: &quot;, r);</div><div class="line">            next(r);</div><div class="line">          &#125;);</div><div class="line">        &#125; else &#123;</div><div class="line">          resolve(value);</div><div class="line">        &#125;</div><div class="line">      &#125;</div><div class="line">      next();</div><div class="line">    &#125;);</div><div class="line">  &#125;</div><div class="line">  myCo(gen).then((data) =&gt; console.log(&quot;myCo: &quot;, data));</div></pre></td></tr></table></figure>
+<ul>
+<li>async + await 是 generator + co 的语法糖</li>
+<li>express 和 koa 中间件原理也是通过 next 来顺序执行数组中的回调函数。</li>
+</ul>
+<h3 id="控制请求并发个数"><a href="#控制请求并发个数" class="headerlink" title="控制请求并发个数"></a>控制请求并发个数</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div></pre></td><td class="code"><pre><div class="line">let urls = [&#123;status:&apos;wait&apos; &#125;,&#123;status:&apos;wait&apos; &#125;,&#123;status:&apos;wait&apos; &#125;,&#123;status:&apos;wait&apos; &#125;,&#123;status:&apos;wait&apos; &#125;,&#123;status:&apos;wait&apos; &#125;,&#123;status:&apos;wait&apos; &#125;,&#123;status:&apos;wait&apos; &#125;,&#123;status:&apos;wait&apos; &#125;,&#123;status:&apos;wait&apos; &#125;],</div><div class="line">		max = 3,</div><div class="line">		counter = 0,</div><div class="line">		retry = new Array(10).fill(0);</div><div class="line">	const request = (urls, max)=&gt;&#123;</div><div class="line">		return new Promise((resolve, reject)=&gt;&#123;</div><div class="line">			let len = urls.length;</div><div class="line">			const ajax = (config)=&gt;&#123;</div><div class="line">				return new Promise((resolve, reject)=&gt;&#123;</div><div class="line">					setTimeout(()=&gt;&#123;</div><div class="line">						// resolve(&apos;ok&apos;)</div><div class="line">						console.log(&apos;loading: &apos;,config.i)</div><div class="line">						if(Math.random()&gt;.3)&#123;</div><div class="line">							resolve(&apos;ok&apos;)</div><div class="line">						&#125;else&#123;</div><div class="line">							reject(&apos;error&apos;)</div><div class="line">						&#125;</div><div class="line">					&#125;, 1000)</div><div class="line">				&#125;)</div><div class="line">			&#125;</div><div class="line">			const upload = ()=&gt;&#123;</div><div class="line">				console.log(&apos;再次开启max: &apos;,max)</div><div class="line">				while(max &amp;&amp; counter &lt; len)&#123;</div><div class="line">					max--; // 只能在这 max--, 写到 while判断会再次减1</div><div class="line">					const i = urls.findIndex(v=&gt;v.status==&apos;wait&apos;|| v.status==&apos;error&apos;)</div><div class="line">					urls[i].status = &apos;uploading&apos;</div><div class="line">					ajax(&#123;i&#125;)</div><div class="line">					.then(data=&gt;&#123;</div><div class="line">						console.log(&apos;ok thunk index: &apos;,i)</div><div class="line">						urls[i].status = &apos;done&apos;</div><div class="line">						max++;</div><div class="line">						counter++;</div><div class="line">						if(counter === len)&#123;</div><div class="line">							console.log(&apos;finish urls: &apos;,urls)</div><div class="line">							resolve()</div><div class="line">						&#125; else &#123;</div><div class="line">							upload();</div><div class="line">						&#125;</div><div class="line">					&#125;)</div><div class="line">					.catch(()=&gt;&#123;</div><div class="line">						urls[i].status = &apos;error&apos;</div><div class="line">						retry[i]++</div><div class="line">						console.log(&apos;error thunk index: &apos;,i, &apos;retry times: &apos;,retry[i])</div><div class="line">						if(retry[i]&gt;=2)&#123;</div><div class="line">							// 某个下载失败</div><div class="line">			                console.log(&apos;fail thunk index: &apos;,i)</div><div class="line">			                reject()</div><div class="line">			            &#125;</div><div class="line">			            max++;</div><div class="line">			            upload()</div><div class="line">					&#125;)</div><div class="line">				&#125;</div><div class="line">			&#125;</div><div class="line">			upload()</div><div class="line">		&#125;)</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	request(urls, max)</div></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/08/30/札记/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
     <article id="title-算法leetcode" class="article article-type-title  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -327,228 +490,9 @@
 
 
   
-    <article id="post-git-rebase" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/06/28/git-rebase/">git rebase</a>
-    </h1>
-  
-
-        
-        <a href="/2020/06/28/git-rebase/" class="archive-article-date">
-  	<time datetime="2020-06-27T23:02:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-28</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="amend-操作"><a href="#amend-操作" class="headerlink" title="amend 操作"></a>amend 操作</h3><ul>
-<li>对最近一次的 commit 信息做修改<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git commit --amend</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<h3 id="git-rebase-合并提交信息"><a href="#git-rebase-合并提交信息" class="headerlink" title="git rebase 合并提交信息"></a>git rebase 合并提交信息</h3><ul>
-<li><p>对以前的commit 信息做修改，就涉及到了变基操作 </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">// 这里的”-i“是指交互模式。就是说你可以干预rebase这个事务的过程，包括设置commit message，暂停commit等等。</div><div class="line">// xxx 是要修改提交信息的父级，也就是要修改提交信息下面的 hash值。</div><div class="line">git rebase -i xxx</div></pre></td></tr></table></figure>
-</li>
-<li><p>更改策略, 修改 hash 前面的关键字</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">p pick = use commit // 使用提交信息</div><div class="line">r reword = use commit, but edit commit message // 使用信息，但是编辑信息</div><div class="line">.....</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<p><img src="/assets/blogImg/rebase/rebase1.jpg" alt="alt text" title="测试图片"></p>
-<ul>
-<li>保存退出后，自动进如下一个交互，修改提交记录<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">// 修改提交信息</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<p><img src="/assets/blogImg/rebase/rebase2.jpg" alt="alt text" title="测试图片"></p>
-<ul>
-<li>查看修改后的状态<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git log --graph</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<p><img src="/assets/blogImg/rebase/rebase3.jpg" alt="alt text" title="测试图片"></p>
-<ul>
-<li><p>多个commit 合并为一个 commit</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">// xxx 仍然是父级 hash</div><div class="line">git rebase -i xxx</div></pre></td></tr></table></figure>
-</li>
-<li><p>将提交信息合并到上面提交</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">s squash  = use commit, but meld into pre commit // 合并到上面提交</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<p><img src="/assets/blogImg/rebase/rebase4.jpg" alt="alt text" title="测试图片"></p>
-<ul>
-<li>添加提交信息</li>
-</ul>
-<p><img src="/assets/blogImg/rebase/rebase5.jpg" alt="alt text" title="测试图片"></p>
-<ul>
-<li>查看修改后状态</li>
-</ul>
-<p><img src="/assets/blogImg/rebase/rebase6.jpg" alt="alt text" title="测试图片"></p>
-<ul>
-<li>合并不是连续的提交信息，仍然是使用那些策略<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">pick xxx</div><div class="line">s xxx1</div><div class="line">pick xxx2</div><div class="line">// 删除 xxx</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<h3 id="git-rebase-将自己的提交记录的多个分支合并成一条直线"><a href="#git-rebase-将自己的提交记录的多个分支合并成一条直线" class="headerlink" title="git rebase 将自己的提交记录的多个分支合并成一条直线"></a>git rebase 将自己的提交记录的多个分支合并成一条直线</h3><ul>
-<li>1.master分支当前情况</li>
-</ul>
-<p><img src="/assets/blogImg/rebase/r1/r1.png" alt="alt text" title="测试图片"></p>
-<ul>
-<li>2.切换到test分支，产生2个提交</li>
-</ul>
-<p><img src="/assets/blogImg/rebase/r1/r2.png" alt="alt text" title="测试图片"></p>
-<ul>
-<li>3.git rebase master(以master为基础，将feature分支上的修改增加到master分支上，并生成新的版本),以前有rebase操作可能导致效果不同。</li>
-</ul>
-<p><img src="/assets/blogImg/rebase/r1/r3.png" alt="alt text" title="测试图片"><br><img src="/assets/blogImg/rebase/r1/r4.png" alt="alt text" title="测试图片"></p>
-<ul>
-<li><p>3.1 修复冲突 git add .</p>
-</li>
-<li><p>3.2 git rebase –continue</p>
-</li>
-<li><p>4.切换到 master</p>
-</li>
-</ul>
-<p><img src="/assets/blogImg/rebase/r1/r5.png" alt="alt text" title="测试图片"></p>
-<ul>
-<li>4.1 git merge test</li>
-</ul>
-<p><img src="/assets/blogImg/rebase/r1/r6.png" alt="alt text" title="测试图片"></p>
-<ul>
-<li>5.删除 test 分支， test分支目前的记录</li>
-</ul>
-<p><img src="/assets/blogImg/rebase/r1/r7.png" alt="alt text" title="测试图片"></p>
-<ul>
-<li><p>5.1删除本地 test 分支</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git branch -d test</div></pre></td></tr></table></figure>
-</li>
-<li><p>5.2删除远程 test 分支</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git push origin --delete test</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<h3 id="git-rebase-将旧的提交记录直接合成一条线"><a href="#git-rebase-将旧的提交记录直接合成一条线" class="headerlink" title="git rebase 将旧的提交记录直接合成一条线"></a>git rebase 将旧的提交记录直接合成一条线</h3><ul>
-<li>1.查看原分支情况</li>
-</ul>
-<p><img src="/assets/blogImg/rebase/r1/r8.png" alt="alt text" title="测试图片"></p>
-<ul>
-<li>2.git rebase -i HEAD~n (合并最近n次提交)</li>
-</ul>
-<p><img src="/assets/blogImg/rebase/r1/r9.png" alt="alt text" title="测试图片"></p>
-<ul>
-<li>3.<code>根据提示</code>，从某个commit-id检出新分支，或 git checkout commit-id -b 新分支</li>
-</ul>
-<p><img src="/assets/blogImg/rebase/r1/r10.png" alt="alt text" title="测试图片"></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/06/28/git-rebase/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-https网站搭建" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/05/26/https网站搭建/">https网站搭建</a>
-    </h1>
-  
-
-        
-        <a href="/2020/05/26/https网站搭建/" class="archive-article-date">
-  	<time datetime="2020-05-26T00:20:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-26</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>[TOC]</p>
-<h2 id="自建CA-nginx配置"><a href="#自建CA-nginx配置" class="headerlink" title="自建CA + nginx配置"></a>自建CA + nginx配置</h2><h4 id="查看openssl-版本，服务器基本都内置"><a href="#查看openssl-版本，服务器基本都内置" class="headerlink" title="查看openssl 版本，服务器基本都内置"></a>查看openssl 版本，服务器基本都内置</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">openssl version -a</div><div class="line">OpenSSL 1.0.2k-fips  26 Jan 2017 ...</div><div class="line">// 我的mac 默认openssl配置文件默认在/private/etc/ssl/openssl.cnf</div></pre></td></tr></table></figure>
-<h4 id="CA机构，最顶层机构，无需认真"><a href="#CA机构，最顶层机构，无需认真" class="headerlink" title="CA机构，最顶层机构，无需认真"></a>CA机构，最顶层机构，无需认真</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mkdir certa</div></pre></td></tr></table></figure>
-<h4 id="生成CA机构私钥，长度为2048字节"><a href="#生成CA机构私钥，长度为2048字节" class="headerlink" title="生成CA机构私钥，长度为2048字节"></a>生成CA机构私钥，长度为2048字节</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">openssl genrsa -out ca.private.key 2048</div></pre></td></tr></table></figure>
-<h4 id="根据CA私钥产生根证书，合法日期356天，主题中国北京…"><a href="#根据CA私钥产生根证书，合法日期356天，主题中国北京…" class="headerlink" title="根据CA私钥产生根证书，合法日期356天，主题中国北京…"></a>根据CA私钥产生根证书，合法日期356天，主题中国北京…</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">openssl req -new -x509 -key ca.private.key -out ca.crt -days 365 -subj /C=CN/ST=Beijing/L=Beijing/O=ca/OU=ca/CN=www.zhangzs.xyz/emailAddress=xxx@qq.com</div><div class="line">// 生成ca.crt 就是证书</div></pre></td></tr></table></figure>
-<h4 id="生成服务端私钥"><a href="#生成服务端私钥" class="headerlink" title="生成服务端私钥"></a>生成服务端私钥</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">openssl genrsa -out server.private.key 2048</div></pre></td></tr></table></figure>
-<h4 id="服务器用自己的私钥，CA签名，生成证书签名请求"><a href="#服务器用自己的私钥，CA签名，生成证书签名请求" class="headerlink" title="服务器用自己的私钥，CA签名，生成证书签名请求"></a>服务器用自己的私钥，CA签名，生成证书签名请求</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">openssl req -new -key server.private.key -out server.csr -days 365 -subj /C=CN/ST=Beijing/L=Beijing/O=ca/OU=ca/CN=www.zhangzs.xyz/emailAddress=xxx@qq.com</div></pre></td></tr></table></figure>
-<h4 id="CA基于server-csr生成签名证书"><a href="#CA基于server-csr生成签名证书" class="headerlink" title="CA基于server.csr生成签名证书"></a>CA基于server.csr生成签名证书</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">openssl x509 -req -days 365 -CA ca.crt -CAkey ca.private.key -CAcreateserial -in server.csr -out server.crt</div></pre></td></tr></table></figure>
-<h4 id="配置nginx-的ssl部分"><a href="#配置nginx-的ssl部分" class="headerlink" title="配置nginx 的ssl部分"></a>配置nginx 的ssl部分</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">ssl_certificate /root/cert1/server.crt; </div><div class="line">ssl_certificate_key  /root/cert1/server.private.key;</div></pre></td></tr></table></figure>
-<h4 id="将服务端的CA证书拷贝下来"><a href="#将服务端的CA证书拷贝下来" class="headerlink" title="将服务端的CA证书拷贝下来"></a>将服务端的CA证书拷贝下来</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">scp -r  root@xx.xxx.xx.xx:/root/cert1/ca.crt /Users/bosszhang/Documents</div></pre></td></tr></table></figure>
-<h4 id="在浏览器内部导入我们的CA证书，因为是我们自己签发的，所以不信任。"><a href="#在浏览器内部导入我们的CA证书，因为是我们自己签发的，所以不信任。" class="headerlink" title="在浏览器内部导入我们的CA证书，因为是我们自己签发的，所以不信任。"></a>在浏览器内部导入我们的CA证书，因为是我们自己签发的，所以不信任。</h4><h4 id="安装nginx时配置nginx，编译"><a href="#安装nginx时配置nginx，编译" class="headerlink" title="安装nginx时配置nginx，编译"></a>安装nginx时配置nginx，编译</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">./configure  --prefix=/usr/nginx   --with-http_ssl_module --with-openssl=/root/openssl-1.1.0h        --with-http_ssl_module --user=nginx --group=nginx</div><div class="line"></div><div class="line">make </div><div class="line">make install</div></pre></td></tr></table></figure>
-<h4 id="修改nginx-conf-将服务器证书和私钥添加上去就可以了"><a href="#修改nginx-conf-将服务器证书和私钥添加上去就可以了" class="headerlink" title="修改nginx.conf 将服务器证书和私钥添加上去就可以了"></a>修改nginx.conf 将服务器证书和私钥添加上去就可以了</h4><h2 id="letsencrypt-生成证书"><a href="#letsencrypt-生成证书" class="headerlink" title="letsencrypt 生成证书"></a>letsencrypt 生成证书</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">证书 -&gt; nginx安装配置 -&gt; 外网访问https站点</div></pre></td></tr></table></figure>
-<h2 id="阿里云-或-腾讯云直接生成-server-crt-和-server-private-key"><a href="#阿里云-或-腾讯云直接生成-server-crt-和-server-private-key" class="headerlink" title="阿里云 或 腾讯云直接生成 server.crt 和 server.private.key"></a>阿里云 或 腾讯云直接生成 server.crt 和 server.private.key</h2><h4 id="实名认证，下载证书"><a href="#实名认证，下载证书" class="headerlink" title="实名认证，下载证书"></a>实名认证，下载证书</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">ssl证书免费版-&gt;下载</div><div class="line">// 这个直接在官网的ssl模块实名认证下载即可.....</div></pre></td></tr></table></figure>
-<h4 id="解压"><a href="#解压" class="headerlink" title="解压"></a>解压</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">yum install -y unzip zip</div><div class="line">unzip 3720164_www.zhangzs.xyz_nginx.zip</div></pre></td></tr></table></figure>
-<h2 id="自建CA-自建服务"><a href="#自建CA-自建服务" class="headerlink" title="自建CA + 自建服务"></a>自建CA + 自建服务</h2><h4 id="openssl-cnf-配置"><a href="#openssl-cnf-配置" class="headerlink" title="openssl.cnf 配置"></a>openssl.cnf 配置</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">[alt_names]  </div><div class="line">IP.1 = 127.0.0.1</div><div class="line">DNS.1 = localhost</div><div class="line">DNS.2 = test.qq.com</div></pre></td></tr></table></figure>
-<h4 id="服务端代码"><a href="#服务端代码" class="headerlink" title="服务端代码"></a>服务端代码</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">const https = require(&apos;https&apos;);</div><div class="line">const fs = require(&apos;fs&apos;);</div><div class="line">const path = require(&apos;path&apos;);</div><div class="line"></div><div class="line">const options = &#123;</div><div class="line">    key: fs.readFileSync(path.resolve(__dirname, &apos;ssl/server.private.pem&apos;)),</div><div class="line">    cert: fs.readFileSync(path.resolve(__dirname, &apos;ssl/server.crt&apos;))</div><div class="line">&#125;;</div><div class="line"></div><div class="line"></div><div class="line">https.createServer(options, (req, res) =&gt; &#123;</div><div class="line">    res.end(&apos;hello world\n&apos;);</div><div class="line">&#125;).listen(9000);</div></pre></td></tr></table></figure>
-<h4 id="浏览器访问"><a href="#浏览器访问" class="headerlink" title="浏览器访问"></a>浏览器访问</h4><ul>
-<li>firefox 导入ca.crt 就可以访问。</li>
-<li>chrome 不仅要导入ca.crt ，还要设置该证书为“完全信任”，并且要重启浏览器。</li>
-</ul>
-<p><img src="/assets/blogImg/https/https.jpg" alt="alt text" title="测试图片"></p>
-<h2 id="关于nginx-配置-https"><a href="#关于nginx-配置-https" class="headerlink" title="关于nginx 配置 https"></a>关于nginx 配置 https</h2><ul>
-<li>我用早以前的nginx配置也不行，c++ 编译安装也不行，似乎浏览器一直接受不到服务器的公匙证书，</li>
-<li>难道是阿里云要进行某些配置？后来用<code>宝塔</code>很方便就解决了。</li>
-<li>This is my website <a href="https://www.zhangzs.xyz/" title="网站链接" target="_blank" rel="external">https://www.zhangzs.xyz/</a>.<br><img src="/assets/blogImg/https/https1.jpg" alt="alt text" title="测试图片"></li>
-</ul>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/05/26/https网站搭建/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/14/">14</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
+      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/15/">15</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
     </nav>
   
 
@@ -649,11 +593,11 @@ var _hmt = _hmt || [];
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">前端架构</a>
+                <a href="javascript:void(0)" class="js-tag color2">canvas</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">react</a>
+                <a href="javascript:void(0)" class="js-tag color3">开源</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -673,15 +617,11 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">canvas</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">开源</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">react</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -690,6 +630,10 @@ var _hmt = _hmt || [];
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">前端框架</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">前端架构</a>
               </li>
             
             <div class="clearfix"></div>
