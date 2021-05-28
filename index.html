@@ -155,65 +155,44 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-记一次Ali笔试" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-微前端应用" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2021/05/19/记一次Ali笔试/">记一次Ali笔试</a>
+      <a class="article-title" href="/2021/05/29/微前端应用/">微前端应用</a>
     </h1>
   
 
         
-        <a href="/2021/05/19/记一次Ali笔试/" class="archive-article-date">
-  	<time datetime="2021-05-18T16:48:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-05-19</time>
+        <a href="/2021/05/29/微前端应用/" class="archive-article-date">
+  	<time datetime="2021-05-28T23:23:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-05-29</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><ul>
-<li>响应浏览器事件</li>
-<li>展示当前浏览器窗口的宽高，并在窗口 resize 后实时反馈：</li>
-</ul>
-<h3 id="笔试"><a href="#笔试" class="headerlink" title="笔试"></a>笔试</h3><ul>
-<li>我当时是这么写的：</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">const throttle = (fn, time)=&gt;&#123;</div><div class="line">	return ()=&gt;&#123;</div><div class="line">	.... 略....</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">const useResize = (props)=&gt;&#123;</div><div class="line">	const [p, setP] = useState(&#123;...props&#125;);</div><div class="line">	const fn = function(e)&#123;</div><div class="line">	setP(&#123;width: e.clientWidth,  height: e.clientHeight&#125;)</div><div class="line">&#125;</div><div class="line"></div><div class="line">window.onresize= throttle(fn, 100)</div><div class="line">	return [&#123;width: p.width,  height: p.height&#125;, setP]</div><div class="line">&#125;</div><div class="line"></div><div class="line">const resizeComponent = ()=&gt;&#123;</div><div class="line">	const [data, SetData] = useResize(&#123;width: 1, height: 1&#125;)</div><div class="line">	return &lt;div&gt;&#123;data.width&#125; &#123;data.height&#125;&lt;/div&gt;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="项目中"><a href="#项目中" class="headerlink" title="项目中"></a>项目中</h3><ul>
-<li>项目中是真实用到的，因为播放器的宽会随着屏幕变化</li>
-</ul>
-<h4 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h4><ul>
-<li>涉及到一个实验中(Experimental)的 api: <code>ResizeObserver</code>，所以会涉及到兼容<ul>
-<li>参考链接：<a href="https://developer.mozilla.org/zh-CN/docs/Web/API/ResizeObserver" target="_blank" rel="external">https://developer.mozilla.org/zh-CN/docs/Web/API/ResizeObserver</a></li>
-<li>文中这样描述‘ResizeObserver避免了在自身回调中调整大小，从而触发的无限回调和循环依赖。它仅通过在后            续帧中处理DOM中更深层次的元素来实现这一点。’</li>
-</ul>
+        <h3 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h3><h5 id="在以前公司工作时，有几个不是特别友好的问题："><a href="#在以前公司工作时，有几个不是特别友好的问题：" class="headerlink" title="在以前公司工作时，有几个不是特别友好的问题："></a>在以前公司工作时，有几个不是特别友好的问题：</h5><ul>
+<li>1.二级域名不同，在与<code>存储小组</code>对接时涉及到token问题；</li>
+<li><ol>
+<li>项目的技术栈不同，有的是vue，有的是react；</li>
+</ol>
 </li>
-<li>还跟浏览器渲染有点关系<code>window.requestAnimationFrame</code></li>
-<li>还跟react的合成事件有点关系，<code>e.persist()</code> 阻止重新设置事件的属性。<ul>
-<li>参考链接：<a href="https://reactjs.org/docs/legacy-event-pooling.html" target="_blank" rel="external">https://reactjs.org/docs/legacy-event-pooling.html</a></li>
-</ul>
+<li><ol>
+<li>有一个公共项目，每次版本更新，所有项目都待上下线，虽然我们上线是前端直接点击Jenkins。</li>
+</ol>
 </li>
 </ul>
-<h4 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h4><ul>
-<li>throttle 这个网上很多</li>
+<p>在不断得工作和学习，自己想到了<code>完美的解决方案</code>。</p>
+<p>需求是什么(what), 怎么处理(how), 为什么这么处理(why), 3W原则 -<code>题记</code></p>
+<h3 id="微前端"><a href="#微前端" class="headerlink" title="微前端"></a>微前端</h3><ul>
+<li>微前端是</li>
+<li>使用微前端可以解决前两个问题</li>
+<li>公共项目版本更新的原理类似<code>协商缓存</code></li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">export const throttle = &lt;T extends any[]&gt;(func: (...arg: T) =&gt; void, delay = 0, flush = true) =&gt; &#123;</div><div class="line">    .... 略 ...</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-<ul>
-<li>判断是否支持 ResizeObserver</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">export function isSupported() &#123;</div><div class="line">    return isBrowser() &amp;&amp; window.ResizeObserver &amp;&amp; typeof ResizeObserver === &apos;function&apos;;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ul>
-<li>工具函数 resizeHelper.js 实现</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">const resizeListeners = new Map&lt;Element | SVGElement, (rect: DOMRectReadOnly) =&gt; void&gt;();</div><div class="line"></div><div class="line">const observer = isSupported()</div><div class="line">    ? new ResizeObserver(entries =&gt; &#123;</div><div class="line">         		... 略...</div><div class="line">			entries.forEach(entry =&gt; &#123;</div><div class="line">                  if (resizeListeners.has(entry.target)) &#123;</div><div class="line">                      resizeListeners.get(entry.target)!(entry.contentRect);</div><div class="line">                  &#125;</div><div class="line">              &#125;);</div><div class="line">				... 略...</div><div class="line">      &#125;</div><div class="line">    : (() =&gt; &#123;</div><div class="line">          let timer: any;</div><div class="line">          const initTimer = () =&gt; &#123;</div><div class="line">              timer = setInterval(() =&gt; &#123;</div><div class="line">    				... 略...</div><div class="line">					Array.from(resizeListeners.keys()).forEach((element: Element | SVGElement) =&gt; &#123;                                 </div><div class="line">					 	resizeListeners.get(element)!(element.getBoundingClientRect());</div><div class="line">                      </div><div class="line"> 					&#125;);</div><div class="line">              &#125;, 500);</div><div class="line">          &#125;;</div><div class="line">          return &#123;</div><div class="line">              observe() &#123;</div><div class="line">                  if (!timer) &#123;</div><div class="line">                      initTimer();</div><div class="line">                  &#125;</div><div class="line">              &#125;,</div><div class="line">              unobserve() &#123;</div><div class="line">                  if (resizeListeners.size === 0 &amp;&amp; timer) &#123;</div><div class="line">                      clearInterval(timer);</div><div class="line">                      timer = null;</div><div class="line">                  &#125;</div><div class="line">              &#125;</div><div class="line">          &#125;;</div><div class="line">      &#125;)();</div><div class="line"></div><div class="line"></div><div class="line">export default &#123;</div><div class="line">    observe(element: Element | SVGElement, cb: (rect: DOMRectReadOnly) =&gt; void) &#123;</div><div class="line">        if (!resizeListeners.has(element)) &#123;</div><div class="line">            observer.observe(element);</div><div class="line">            logger.debug(element, &apos;绑定resize事件&apos;);</div><div class="line">        &#125;</div><div class="line">        resizeListeners.set(element, throttle(cb, 200));</div><div class="line">    &#125;,</div><div class="line">    unobserve(element: Element | SVGElement) &#123;</div><div class="line">        if (resizeListeners.has(element)) &#123;</div><div class="line">            observer.unobserve(element);</div><div class="line">            logger.debug(element, &apos;解除resize事件&apos;);</div><div class="line">        &#125;</div><div class="line">        resizeListeners.delete(element);</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-<ul>
-<li>播放器使用</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">componentDidMount() &#123;</div><div class="line"></div><div class="line">        if (this.container.current) &#123;</div><div class="line"></div><div class="line">            if (isSupported()) &#123;</div><div class="line">   					... 略...</div><div class="line">                 resizeHelper.observe(this.container.current, rect =&gt; &#123;</div><div class="line">                    this.setSize(rect.width);</div><div class="line">                &#125;);</div><div class="line">            &#125; </div><div class="line">        &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
       
 
@@ -226,7 +205,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2021/05/19/记一次Ali笔试/">展开全文 >></a>
+          <a class="article-more-a" href="/2021/05/29/微前端应用/">展开全文 >></a>
         </p>
       
 
@@ -244,39 +223,34 @@
 
 
   
-    <article id="post-vscode调试xxx-js" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-有意思的问题" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2021/05/19/vscode调试xxx-js/">vscode调试xxx.js</a>
+      <a class="article-title" href="/2021/05/29/有意思的问题/">有意思的问题</a>
     </h1>
   
 
         
-        <a href="/2021/05/19/vscode调试xxx-js/" class="archive-article-date">
-  	<time datetime="2021-05-18T16:46:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-05-19</time>
+        <a href="/2021/05/29/有意思的问题/" class="archive-article-date">
+  	<time datetime="2021-05-28T23:21:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-05-29</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="调试-js文件"><a href="#调试-js文件" class="headerlink" title="调试 js文件"></a>调试 js文件</h3><h4 id="vscode-版本-1-56-2"><a href="#vscode-版本-1-56-2" class="headerlink" title="vscode 版本: 1.56.2"></a>vscode 版本: 1.56.2</h4><p>调试js文件时默认添加的配置是这样的<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">      &quot;type&quot;: &quot;pwa-node&quot;,</div><div class="line">      &quot;request&quot;: &quot;launch&quot;,</div><div class="line">      &quot;name&quot;: &quot;Launch Program&quot;,</div><div class="line">      &quot;skipFiles&quot;: [</div><div class="line">        &quot;&lt;node_internals&gt;/**&quot;</div><div class="line">      ],</div><div class="line">      &quot;program&quot;: &quot;$&#123;workspaceFolder&#125;/crawl/compiler/src/parser.js&quot;</div><div class="line">    &#125;</div></pre></td></tr></table></figure></p>
-<p>你会发现不管怎么搞都走不到断点，这是<code>为什么</code>呢？？？？？？其实你只需要修改 type 参数就可以了。</p>
-<ul>
-<li><p>保证 type 和 路径正确，可以调试</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">      &quot;type&quot;: &quot;node&quot;,</div><div class="line">      &quot;request&quot;: &quot;launch&quot;,</div><div class="line">      &quot;name&quot;: &quot;Launch Program&quot;,</div><div class="line">      &quot;skipFiles&quot;: [</div><div class="line">        &quot;&lt;node_internals&gt;/**&quot;</div><div class="line">      ],</div><div class="line">      &quot;program&quot;: &quot;$&#123;workspaceFolder&#125;/crawl/compiler/src/parser.js&quot;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
-</li>
-<li><p>修改 settings.json<br>去除掉 <code>&quot;debug.javascript.usePreview&quot;: false,</code>后发现，即使 “type”: “node” 都走不了断点，不好使。</p>
-</li>
-<li><p>并且 debugger 运行时必须选择 Launch Progrem 。难道要和 launch.json 中的name 值一致？</p>
-</li>
+        <h3 id="生活中常见的问题"><a href="#生活中常见的问题" class="headerlink" title="生活中常见的问题"></a>生活中常见的问题</h3><ul>
+<li>计算器</li>
+<li>汉诺塔</li>
+<li>24点</li>
 </ul>
-<h4 id="另一台-mac"><a href="#另一台-mac" class="headerlink" title="另一台 mac"></a>另一台 mac</h4><p>但是我换另一台mac笔记本配置如下，却是可以正常 debugger 的，那我就不知道为什么了：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">      &quot;name&quot;: &quot;Launch Program&quot;,</div><div class="line">      &quot;program&quot;: &quot;$&#123;workspaceFolder&#125;/compiler/src/parser.js&quot;,</div><div class="line">      &quot;request&quot;: &quot;launch&quot;,</div><div class="line">      &quot;skipFiles&quot;: [</div><div class="line">        &quot;&lt;node_internals&gt;/**&quot;</div><div class="line">      ],</div><div class="line">      &quot;type&quot;: &quot;pwa-node&quot;</div><div class="line">    &#125;</div></pre></td></tr></table></figure></p>
-<p>node 和 pwa-node的区别：<br><a href="https://segmentfault.com/q/1010000023049217?utm_source=tag-newest" target="_blank" rel="external">https://segmentfault.com/q/1010000023049217?utm_source=tag-newest</a></p>
+<h4 id="计算器"><a href="#计算器" class="headerlink" title="计算器"></a>计算器</h4><h5 id="平时支持-x-的简单计算器是如何计算的"><a href="#平时支持-x-的简单计算器是如何计算的" class="headerlink" title="平时支持 +-x/ 的简单计算器是如何计算的"></a>平时支持 +-x/ 的简单计算器是如何计算的</h5><ul>
+<li>粗糙的做法 eval()</li>
+</ul>
 
       
 
@@ -289,7 +263,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2021/05/19/vscode调试xxx-js/">展开全文 >></a>
+          <a class="article-more-a" href="/2021/05/29/有意思的问题/">展开全文 >></a>
         </p>
       
 
@@ -307,125 +281,72 @@
 
 
   
-    <article id="post-youtube札记" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-编译器工作原理" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/11/09/youtube札记/">youtube札记</a>
+      <a class="article-title" href="/2021/05/29/编译器工作原理/">编译器工作原理</a>
     </h1>
   
 
         
-        <a href="/2020/11/09/youtube札记/" class="archive-article-date">
-  	<time datetime="2020-11-09T02:15:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-09</time>
+        <a href="/2021/05/29/编译器工作原理/" class="archive-article-date">
+  	<time datetime="2021-05-28T23:19:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-05-29</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="并查集-Disjoint-set-："><a href="#并查集-Disjoint-set-：" class="headerlink" title="并查集(Disjoint-set)："></a>并查集(Disjoint-set)：</h2><ul>
-<li><p>在计算机科学中，并查集是一种树型的数据结构，用于处理一些不交集（Disjoint Sets）的合并及查询问题。</p>
+        <p>[TOC]</p>
+<h3 id="编译器工作流"><a href="#编译器工作流" class="headerlink" title="编译器工作流"></a>编译器工作流</h3><ul>
+<li>解析<ul>
+<li>词法分析</li>
+<li>语法分析</li>
+</ul>
 </li>
-<li><p>主要操作</p>
+<li>遍历</li>
+<li>转化</li>
+<li>代码生成</li>
+</ul>
+<h4 id="解析"><a href="#解析" class="headerlink" title="解析"></a>解析</h4><ul>
+<li>解析(Parsing)解析是将最初原始的代码转换为一种更加抽象的表示(即AST)</li>
+<li><code>词法分析</code>接收原始代码,然后把它分割成一些token </li>
+<li><code>语法分析</code>接收之 前生成的token ， 把它们转换成一种抽象的表示AST(Vue与React互转)</li>
+</ul>
+<h6 id="词法分析-Lexical-Analysis"><a href="#词法分析-Lexical-Analysis" class="headerlink" title="词法分析(Lexical Analysis)"></a>词法分析(Lexical Analysis)</h6><ul>
+<li><code>词法分析</code>接收原始代码,然后把它分割成一些被称为token 的东西，这个过程是在词法分析器(Tokenizer或者Lexer)中完成的</li>
+<li><p>原始代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;h1 id=&quot;title&quot;&gt;hello world&lt;/h1&gt;</div></pre></td></tr></table></figure>
+</li>
+<li><p>token (分词)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">Module &#123;</div><div class="line">  type: &apos;Program&apos;,</div><div class="line">  body:</div><div class="line">   [ ExpressionStatement &#123; type: &apos;ExpressionStatement&apos;, expression: [JSXElement] &#125; ],</div><div class="line">  sourceType: &apos;module&apos;,</div><div class="line">  tokens:</div><div class="line">   [ &#123; type: &apos;Punctuator&apos;, value: &apos;&lt;&apos; &#125;,</div><div class="line">     &#123; type: &apos;JSXIdentifier&apos;, value: &apos;h1&apos; &#125;,</div><div class="line">     &#123; type: &apos;JSXIdentifier&apos;, value: &apos;id&apos; &#125;,</div><div class="line">     &#123; type: &apos;Punctuator&apos;, value: &apos;=&apos; &#125;,</div><div class="line">     &#123; type: &apos;String&apos;, value: &apos;&quot;title&quot;&apos; &#125;,</div><div class="line">     &#123; type: &apos;Punctuator&apos;, value: &apos;&gt;&apos; &#125;,</div><div class="line">     &#123; type: &apos;JSXText&apos;, value: &apos;hello world&apos; &#125;,</div><div class="line">     &#123; type: &apos;Punctuator&apos;, value: &apos;&lt;&apos; &#125;,</div><div class="line">     &#123; type: &apos;Punctuator&apos;, value: &apos;/&apos; &#125;,</div><div class="line">     &#123; type: &apos;JSXIdentifier&apos;, value: &apos;h1&apos; &#125;,</div><div class="line">     &#123; type: &apos;Punctuator&apos;, value: &apos;&gt;&apos; &#125; ] &#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>实现方式(算法下一篇实现)</p>
 <ul>
-<li>查找(Find)：查找元素所在的集合，即根节点。<br><img src="/assets/blogImg/youtube/11.png" alt="algo" title="algo"></li>
-<li>合并(Unit)：将两个元素所在的集合合并为一个集合。<br><img src="/assets/blogImg/youtube/12.png" alt="algo" title="algo"></li>
+<li>有限状态机</li>
+<li>正则 </li>
 </ul>
 </li>
-<li><p>例题：检测无向图图中是否有环？<br><img src="/assets/blogImg/youtube/13.png" alt="algo" title="algo"></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div></pre></td><td class="code"><pre><div class="line">const checkCycle = ()=&gt;&#123;</div><div class="line">	let paths = [[0,1],[1,2],[2, 5],[2, 4],[1, 3],[3, 4]];</div><div class="line">	// 初始化</div><div class="line">	// 添加注意初始化数组的长度跟节点个数n有关系，防止出现undefined。</div><div class="line">	let arr = new Array(6).fill(-1);</div><div class="line">	let rank = new Array(6).fill(0);</div><div class="line">	// 错误，是在unit 合并时才集合链</div><div class="line">	// const init= (paths, arr)=&gt;&#123;</div><div class="line">	// 	paths.forEach(([x,y])=&gt;&#123;</div><div class="line">	// 		arr[x] = y</div><div class="line">	// 	&#125;)</div><div class="line">	// &#125;</div><div class="line">	const findParent= (x)=&gt;&#123;</div><div class="line">		let p = x;</div><div class="line">		while(arr[p]!==-1)&#123;</div><div class="line">			p = arr[p]</div><div class="line">		&#125;</div><div class="line">		return p</div><div class="line">	&#125;</div><div class="line">	// 是否合并,连接起来</div><div class="line">	const unit = (x, y, arr)=&gt;&#123;</div><div class="line">		let x_p = findParent(x);</div><div class="line">		let y_p = findParent(y);</div><div class="line">		// 父节点相同，说明已经链接起来了</div><div class="line">		if(x_p === y_p) return false</div><div class="line">		else &#123;</div><div class="line">			if(rank[x_p]&gt;rank[y_p]) &#123;</div><div class="line">				arr[y_p] = x_p</div><div class="line">			&#125; else if(rank[x_p]&lt;rank[y_p])&#123;</div><div class="line">				arr[x_p] = y_p</div><div class="line">			&#125; else &#123;</div><div class="line">				rank[y_p]++</div><div class="line">				// unit 合并时才生成链</div><div class="line">				arr[x_p] = y_p</div><div class="line">			&#125;</div><div class="line">			return true</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	// init(paths, arr)</div><div class="line">	for(let [x, y] of paths)&#123;</div><div class="line">		// 无需合并存在圈</div><div class="line">		if(!unit(x, y, arr)) &#123;</div><div class="line">			return true</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	return false</div><div class="line">&#125;</div><div class="line"></div><div class="line">console.log(checkCycle())</div></pre></td></tr></table></figure>
-</li>
 </ul>
-<h2 id="堆排序-heapSort"><a href="#堆排序-heapSort" class="headerlink" title="堆排序 heapSort"></a>堆排序 heapSort</h2><ul>
-<li><p>是指利用堆这种数据结构所设计的一种排序算法。堆是一个近似完全二叉树的结构，并同时满足堆积的性质：即子结点的键值或索引总是小于（或者大于）它的父节点。</p>
-</li>
-<li><p>初始化堆复杂度O(n), 堆排序复杂度O(n*logn)。</p>
-</li>
-<li><p>完全二叉树：生成节点的顺序是从上到下，从左到右的顺序进行编号。与满二叉树中编号，在二叉树中的位置相同。</p>
-</li>
-<li><p>大顶堆： 父节点值&gt;子节点值，且为完全二叉树。</p>
-</li>
-<li><p>例题：初始化大顶堆？排序时重写构建大顶堆？<br><img src="/assets/blogImg/youtube/21.png" alt="algo" title="algo"></p>
-</li>
-<li><p>算法实现</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div></pre></td><td class="code"><pre><div class="line">let heap = ()=&gt;&#123;</div><div class="line">	const swap = (tree, a, b)=&gt;&#123;</div><div class="line">		if(a === b) return</div><div class="line">		let tmp = tree[a];</div><div class="line">		tree[a] = tree[b];</div><div class="line">		tree[b] = tmp</div><div class="line">	&#125;</div><div class="line">// O(logn) </div><div class="line">	const heapify = (tree, n, i)=&gt;&#123;</div><div class="line">		if(i&gt;=n) return </div><div class="line">		let c1 = 2*i+1;</div><div class="line">		let c2 = 2*i+2;</div><div class="line">		let max = i;</div><div class="line">		if(c1&lt;n &amp;&amp; tree[c1]&gt;tree[max])&#123;</div><div class="line">			max = c1</div><div class="line">		&#125;</div><div class="line">		if(c2&lt;n &amp;&amp; tree[c2]&gt;tree[max])&#123;</div><div class="line">			max = c2</div><div class="line">		&#125;</div><div class="line">		if(max !==i)&#123;</div><div class="line">			swap(tree, max, i)</div><div class="line">			heapify(tree, n, max)</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">// 这个构建堆也应该是 nlog(n)</div><div class="line">	const buildHeap = (tree, n)=&gt;&#123;</div><div class="line">		// 最末尾节点索引</div><div class="line">		let lastNode = n-1;</div><div class="line">		// 最末尾父节点开始向上 heapify</div><div class="line">		let parent = Math.floor((lastNode-1)/2);</div><div class="line">		for(let i=parent; i&gt;=0; i--)&#123;</div><div class="line">			heapify(tree, n, i)</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">const heapSort = (tree, n)=&gt;&#123;</div><div class="line">		buildHeap(tree, n);</div><div class="line">		for(let i=n-1; i&gt;=0; i--)&#123;</div><div class="line">			// 顶点和末尾交换</div><div class="line">			swap(tree, i, 0)</div><div class="line">			heapify(tree, i, 0)</div><div class="line">		&#125;</div><div class="line">		console.log(&apos;sort: &apos;,tree)</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	let tree = [4, 10, 3, 5, 1, 2,6, 7, 8];</div><div class="line">	let n=9;</div><div class="line">	</div><div class="line">// 构建二叉树 结果1 </div><div class="line">	buildHeap(tree, n)</div><div class="line">// 堆排序 结果2 </div><div class="line">heapSort(tree, n)</div><div class="line">	console.log(&apos;tree: &apos;,tree)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>// 结果1<br><img src="/assets/blogImg/youtube/22.png" alt="algo" title="algo"><br>// 结果2<br><img src="/assets/blogImg/youtube/23.png" alt="algo" title="algo"></p>
+<h6 id="语法分析-Syntactic-Analysis"><a href="#语法分析-Syntactic-Analysis" class="headerlink" title="语法分析(Syntactic Analysis)"></a>语法分析(Syntactic Analysis)</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  &quot;type&quot;: &quot;Program&quot;,</div><div class="line">  &quot;body&quot;: [</div><div class="line">    &#123;</div><div class="line">      &quot;type&quot;: &quot;ExpressionStatement&quot;,</div><div class="line">      &quot;expression&quot;: &#123;</div><div class="line">        &quot;type&quot;: &quot;JSXElement&quot;,</div><div class="line">        &quot;openingElement&quot;: &#123;</div><div class="line">          &quot;type&quot;: &quot;JSXOpeningElement&quot;,</div><div class="line">          &quot;name&quot;: &#123;</div><div class="line">            &quot;type&quot;: &quot;JSXIdentifier&quot;,</div><div class="line">            &quot;name&quot;: &quot;h1&quot;,</div><div class="line">          &#125;,</div><div class="line">          &quot;selfClosing&quot;: false,</div><div class="line">          &quot;attributes&quot;: [</div><div class="line">            &#123;</div><div class="line">              &quot;type&quot;: &quot;JSXAttribute&quot;,</div><div class="line">              &quot;name&quot;: &#123;</div><div class="line">                &quot;type&quot;: &quot;JSXIdentifier&quot;,</div><div class="line">                &quot;name&quot;: &quot;id&quot;,</div><div class="line">              &#125;,</div><div class="line">              &quot;value&quot;: &#123;</div><div class="line">                &quot;type&quot;: &quot;Literal&quot;,</div><div class="line">                &quot;value&quot;: &quot;title&quot;,</div><div class="line">                &quot;raw&quot;: &quot;\&quot;title\&quot;&quot;,</div><div class="line">              &#125;</div><div class="line">            &#125;</div><div class="line">          ]</div><div class="line">        &#125;,</div><div class="line">        &quot;children&quot;: [</div><div class="line">          &#123;</div><div class="line">            &quot;type&quot;: &quot;JSXText&quot;,</div><div class="line">            &quot;value&quot;: &quot;hello world&quot;,</div><div class="line">            &quot;raw&quot;: &quot;hello world&quot;</div><div class="line">          &#125;</div><div class="line">        ],</div><div class="line">        &quot;closingElement&quot;: &#123;</div><div class="line">          &quot;type&quot;: &quot;JSXClosingElement&quot;,</div><div class="line">          &quot;name&quot;: &#123;</div><div class="line">            &quot;type&quot;: &quot;JSXIdentifier&quot;,</div><div class="line">            &quot;name&quot;: &quot;h1&quot;,</div><div class="line">          &#125;,</div><div class="line">        &#125;,</div><div class="line">      &#125;,</div><div class="line">    &#125;</div><div class="line">  ],</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <ul>
-<li>heapSort2</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div></pre></td><td class="code"><pre><div class="line">class MaxHeap &#123;</div><div class="line">    // 数组索引决定堆的排列，所以只是交换索引对应的值</div><div class="line">    arr = [];</div><div class="line">    left(i)&#123;</div><div class="line">        return i*2+1</div><div class="line">    &#125;</div><div class="line">    right(i)&#123;</div><div class="line">        return i*2+2</div><div class="line">    &#125;</div><div class="line">    parent(i)&#123;</div><div class="line">        return Math.floor((i-1)/2)</div><div class="line">    &#125;</div><div class="line">    swap(i, j)&#123;</div><div class="line">    	if(i===j) return;</div><div class="line">        let tmp = this.arr[i];</div><div class="line">        this.arr[i] = this.arr[j];</div><div class="line">        this.arr[j] = tmp</div><div class="line">    &#125;</div><div class="line">    // 保证坐标i要不断下沉</div><div class="line">    sink(i)&#123;</div><div class="line">        let len = this.arr.length;</div><div class="line">        // 或运算时短路求值</div><div class="line">        while(this.left(i)&lt;len || this.right(i)&lt;len)&#123;</div><div class="line">            let max = this.arr[i], m = i,  l = this.left(i), r = this.right(i);</div><div class="line">            if(this.arr[l]&gt;=max) &#123;</div><div class="line">                max = this.arr[l]</div><div class="line">                m = l</div><div class="line">            &#125;</div><div class="line">            if(this.arr[r]&gt;=max) &#123;</div><div class="line">                max = this.arr[r]</div><div class="line">                m = r</div><div class="line">            &#125;</div><div class="line">            // i===m 说明顺序对，不必下沉，避免死循环</div><div class="line">            if(i===m) break</div><div class="line">            this.swap(i, m)</div><div class="line">            i = m;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    // 保证i能持续上浮，i的兄弟不管</div><div class="line">    swim(i)&#123;</div><div class="line">        let p;</div><div class="line">        // i &gt; 0 能避免掉初始数组是 空 的情况, 还有 this.parent(0) undefind 情况。</div><div class="line">        while(i&gt;0 &amp;&amp; (this.arr[p = this.parent(i)]&lt;=this.arr[i]))&#123;</div><div class="line">         this.swap(i, p)</div><div class="line">         i=p;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    // 放入末尾，然后上浮</div><div class="line">    insert(v)&#123;</div><div class="line">        this.arr.push(v)</div><div class="line">        this.swim(this.arr.length-1)</div><div class="line">    &#125;</div><div class="line">    delMax()&#123;</div><div class="line">        let max = this.arr[0];</div><div class="line">        this.swap(0, this.arr.length-1);</div><div class="line">        this.arr.pop()</div><div class="line">        this.sink(0)</div><div class="line">        return max;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">var findKthLargest = function(nums, k) &#123;</div><div class="line">    let maxheap = new MaxHeap();</div><div class="line">    nums.forEach(n=&gt;maxheap.insert(n))</div><div class="line">    console.log(&apos;xx: &apos;,maxheap.arr)</div><div class="line">let r;</div><div class="line">let sr = [];</div><div class="line">    while(k--)&#123;</div><div class="line">        r = maxheap.delMax()</div><div class="line">sr.unshift(r)</div><div class="line">&#125;</div><div class="line">console.log(‘sr: ’, sr)</div><div class="line">return r</div><div class="line">&#125;;</div><div class="line">let nums = [4, 10, 3, 5, 1, 2,6, 7, 8];</div><div class="line">let k=9;</div><div class="line">console.log(findKthLargest(nums, k))</div></pre></td></tr></table></figure>
-<p>// xx 的结果<br><img src="/assets/blogImg/youtube/24.png" alt="algo" title="algo"><br>// sr 结果<br><img src="/assets/blogImg/youtube/25.png" alt="algo" title="algo"></p>
-<h2 id="最短路径-Dijkstra"><a href="#最短路径-Dijkstra" class="headerlink" title="最短路径 Dijkstra"></a>最短路径 Dijkstra</h2><ul>
-<li><p>是从一个顶点到其余各顶点的最短路径算法，解决的是有权图中最短路径问题。</p>
-</li>
-<li><p>例题： 遍历graph， a到各个点的最短距离：<br><img src="/assets/blogImg/youtube/31.png" alt="algo" title="algo"><br><img src="/assets/blogImg/youtube/32.png" alt="algo" title="algo"></p>
-</li>
-<li><p>算法实现<br><img src="/assets/blogImg/youtube/33.png" alt="algo" title="algo"></p>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div></pre></td><td class="code"><pre><div class="line">let graph=&#123;</div><div class="line">	&apos;a&apos;: &#123;&apos;b&apos;:5, &apos;c&apos;:1&#125;,</div><div class="line">	&apos;b&apos;: &#123;&apos;a&apos;:5, &apos;c&apos;:2, &apos;d&apos;:1&#125;,</div><div class="line">	&apos;c&apos;: &#123;&apos;a&apos;:1, &apos;b&apos;:2, &apos;d&apos;:4, &apos;e&apos;:8&#125;,</div><div class="line">	&apos;d&apos;: &#123;&apos;b&apos;:1, &apos;c&apos;:4, &apos;e&apos;:3, &apos;f&apos;:6&#125;,</div><div class="line">	&apos;e&apos;: &#123;&apos;c&apos;:8, &apos;d&apos;:3&#125;,</div><div class="line">	&apos;f&apos;: &#123;&apos;d&apos;:6&#125;</div><div class="line"></div><div class="line">&#125;</div><div class="line">const distance = (s)=&gt;&#123;</div><div class="line">	let d = &#123;[s]:0&#125;;</div><div class="line">	for(let k in graph)&#123;</div><div class="line">		if(k!==s)&#123;</div><div class="line">			d[k]=Infinity</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	return d</div><div class="line">&#125;</div><div class="line">const dijkstra = (s)=&gt;&#123;</div><div class="line">	let q = new MinPriorityQueue(&#123; priority: (turn) =&gt; turn.value &#125;)</div><div class="line">	q.enqueue(&#123; name: s, value: 0 &#125;)</div><div class="line">	let visited = new Set();</div><div class="line">	let parent = &#123;[s]:-1&#125;;</div><div class="line">	let d = distance(s);</div><div class="line"></div><div class="line">	while(q.size())&#123;</div><div class="line">		const &#123; priority: p, element: e&#125; = q.dequeue();</div><div class="line">		let en = e.name;</div><div class="line">		visited.add(en);</div><div class="line"></div><div class="line">		let ns = Object.keys(graph[en]);</div><div class="line">		ns.forEach(n=&gt;&#123;</div><div class="line">			// 相邻边必然存在已经访问过的，所有要过滤</div><div class="line">			if(!visited.has(n))&#123;</div><div class="line">				// p en节点的最短距离</div><div class="line">				let np = p + graph[en][n]</div><div class="line">				if(np &lt; d[n])&#123;</div><div class="line">					// 这样就可能存在距离不同的，多个重复名字的点</div><div class="line">					q.enqueue(&#123; name: n, value: np &#125;)</div><div class="line">					parent[n] = en;</div><div class="line">					d[n] = np</div><div class="line">				&#125;</div><div class="line"></div><div class="line">			&#125;</div><div class="line">		&#125;)</div><div class="line">	&#125;</div><div class="line">	return [parent, d]</div><div class="line">&#125;</div><div class="line">let [p, d] = dijkstra(&apos;a&apos;);</div><div class="line">console.log(&apos;parent: &apos;,p)</div><div class="line">console.log(&apos;distance: &apos;, d)</div></pre></td></tr></table></figure>
-<p><img src="/assets/blogImg/youtube/34.png" alt="algo" title="algo"></p>
-<ul>
-<li><p>BFS</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">let graph=&#123;</div><div class="line">	&apos;a&apos;: [&apos;b&apos;, &apos;c&apos;],</div><div class="line">	&apos;b&apos;: [&apos;a&apos;, &apos;c&apos;, &apos;d&apos;],</div><div class="line">	&apos;c&apos;: [&apos;a&apos;, &apos;b&apos;, &apos;d&apos;, &apos;e&apos;],</div><div class="line">	&apos;d&apos;: [&apos;b&apos;, &apos;c&apos;, &apos;e&apos;, &apos;f&apos;],</div><div class="line">	&apos;e&apos;: [&apos;c&apos;, &apos;d&apos;],</div><div class="line">	&apos;f&apos;: [&apos;d&apos;]</div><div class="line">&#125;</div><div class="line">const bfs = (s)=&gt;&#123;</div><div class="line">	let q = [s];</div><div class="line">	let v = new Set();</div><div class="line"></div><div class="line">	while(q.length)&#123;</div><div class="line">		let n = q.shift();</div><div class="line">		v.add(n)</div><div class="line">		let ns = graph[n];</div><div class="line">		ns.forEach(n=&gt;&#123;</div><div class="line">			if(!v.has(n))&#123;</div><div class="line">				q.push(n)</div><div class="line">			&#125;</div><div class="line">		&#125;)</div><div class="line">	&#125;</div><div class="line">	console.log(&apos;r: &apos;, [...v])</div><div class="line">&#125;</div><div class="line">console.log(bfs(&apos;a&apos;))</div><div class="line">// 结果</div><div class="line">r:  (6) [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;, &quot;e&quot;, &quot;f&quot;]</div></pre></td></tr></table></figure>
-</li>
-<li><p>DFS1</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">const dfs = (s)=&gt;&#123;</div><div class="line">	let stack = [s];</div><div class="line">	let v = new Set();</div><div class="line"></div><div class="line">	while(stack.length)&#123;</div><div class="line">		let n = stack.pop();</div><div class="line">		v.add(n)</div><div class="line">		let ns = graph[n];</div><div class="line">		ns.forEach(n=&gt;&#123;</div><div class="line">			if(!v.has(n))&#123;</div><div class="line">				stack.push(n)</div><div class="line">			&#125;</div><div class="line">		&#125;)</div><div class="line">	&#125;</div><div class="line">	console.log(&apos;r: &apos;, [...v])</div><div class="line">&#125;</div><div class="line">console.log(dfs(&apos;a&apos;))</div><div class="line">// 结果</div><div class="line">r:  (6) [&quot;a&quot;, &quot;c&quot;, &quot;e&quot;, &quot;d&quot;, &quot;f&quot;, &quot;b&quot;]</div></pre></td></tr></table></figure>
-</li>
-<li><p>DFS2</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">let v = new Set();</div><div class="line">const dfs = (s, v) =&gt;&#123;</div><div class="line">	if(!s)&#123;</div><div class="line">		return</div><div class="line">	&#125;</div><div class="line">	v.add(s);</div><div class="line">	console.log(&apos;前序r: &apos;, [...v]);</div><div class="line">	let ns = graph[s]</div><div class="line">	if(ns.length) &#123;</div><div class="line">		ns.forEach(n=&gt;&#123;</div><div class="line">			if(!v.has(n))&#123;</div><div class="line">				dfs(n, v)</div><div class="line">			&#125;</div><div class="line">		&#125;)		</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">&#125;</div><div class="line">console.log(dfs(&apos;a&apos;, v))</div><div class="line">// 结果 </div><div class="line">前序r:  (6) [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;, &quot;e&quot;, &quot;f&quot;]</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<h2 id="线段树"><a href="#线段树" class="headerlink" title="线段树"></a>线段树</h2><ul>
-<li>线段树，线段树是一种二叉搜索树，与区间树相似，它将一个区间划分成一些单元区间，每个单元区间对应线段树中的一个叶结点。</li>
-<li>例题：随机取数组连续一部分求和，随机修改 的复杂度。</li>
-<li>Query O(n) =&gt; O(logn)</li>
-<li>Update O(logn)<br><img src="/assets/blogImg/youtube/41.png" alt="algo" title="algo"></li>
-</ul>
-<h2 id="动态规划-DP-Dynamic-Programming"><a href="#动态规划-DP-Dynamic-Programming" class="headerlink" title="动态规划 DP(Dynamic Programming)"></a>动态规划 DP(Dynamic Programming)</h2><ul>
-<li>Fibonacci sequence,O(2^n) =&gt; O(n) 这么个思想。</li>
-<li>爬楼梯</li>
-<li>背包9讲</li>
-</ul>
-<h2 id="KMP"><a href="#KMP" class="headerlink" title="KMP"></a>KMP</h2><ul>
-<li>字符串匹配算法</li>
-<li>根据前缀和后缀相同，匹配完第一轮，匹配第二轮时看能不能直接匹配后缀。 复杂度 O(m+n)</li>
-</ul>
-<h4 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h4><ul>
-<li><p>1.求出前缀表。<br><img src="/assets/blogImg/kmp/k1.png" alt="algo" title="algo"></p>
-<ul>
-<li>当下个字符匹配时：</li>
-<li>len 目前达到的最长公共前缀的长度，比较长度；</li>
-<li><p>i 是prefix数组当前的索引，prefix[0]=0, i从第一个字母比较；<br><img src="/assets/blogImg/kmp/k2.png" alt="algo" title="algo"></p>
-</li>
-<li><p>当下一个不匹配时：<br><img src="/assets/blogImg/kmp/k3.png" alt="algo" title="algo"></p>
-</li>
-<li><p>为了好计算，prefix整体右移，将prefix[0] = -1，<br><img src="/assets/blogImg/kmp/k4.png" alt="algo" title="algo"></p>
-</li>
+<li>实现方式(算法下一篇实现)<ul>
+<li>递归下降算法</li>
 </ul>
 </li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line">function prefix_table(pattern, prefix, n) &#123;</div><div class="line">    prefix[0] = 0;</div><div class="line">    let len = 0;</div><div class="line">    let i= 1;</div><div class="line">    while(i&lt;n)&#123;</div><div class="line">      if( pattern[i] == pattern[len] ) &#123;</div><div class="line">        len++;</div><div class="line">        prefix[i] = len;</div><div class="line">        i++;</div><div class="line">      &#125; else &#123;</div><div class="line">        if(len&gt;0)&#123;</div><div class="line">          len = prefix[len - 1];</div><div class="line">        &#125; else &#123;</div><div class="line">          // len === 0</div><div class="line">          prefix[i] = len;</div><div class="line">          i++;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line">function move_prefix_table(prefix, n) &#123;</div><div class="line">  for (let i=n-1; i&gt;0; i--)&#123;</div><div class="line">    prefix[i] = prefix[i-1];</div><div class="line">  &#125;</div><div class="line">  prefix[0] = -1;</div><div class="line">&#125;</div><div class="line"></div><div class="line">let pattern = &quot;ABABCABAA&quot;;</div><div class="line">let prefix = new Array(9);</div><div class="line">let n=9;</div><div class="line">//  下面这2个api可通用</div><div class="line">prefix_table(pattern, prefix, n);</div><div class="line">move_prefix_table(prefix, n);</div><div class="line"></div><div class="line">console.log(&apos;prefix: &apos;,prefix)</div></pre></td></tr></table></figure>
-<p><img src="/assets/blogImg/kmp/k5.png" alt="algo" title="algo"></p>
-<ul>
-<li><p>2.开始匹配：</p>
-<ul>
-<li>相同 i++, j++；</li>
-<li>不相同如下图：</li>
-<li>j 从指向4C，指向2A,</li>
+<h4 id="遍历"><a href="#遍历" class="headerlink" title="遍历"></a>遍历</h4><ul>
+<li>对于上面的AST进行使用的是<code>深度优先遍历</code>。</li>
 </ul>
-<p><img src="/assets/blogImg/kmp/k6.png" alt="algo" title="algo"></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line"> let pattern = &quot;ABABCABAA&quot;;</div><div class="line">let text =       &quot;ABABABCABAABABABABA&quot;;  // 2</div><div class="line">// let text =    &quot;ABABABABCABAAB&quot;; // 4</div><div class="line"></div><div class="line">function kmp_search(text, pattern)&#123;</div><div class="line"></div><div class="line">  let n = pattern.length;</div><div class="line">  let m = text.length;</div><div class="line">  let prefix = new Array(n);</div><div class="line">  let i=0;</div><div class="line">  let j=0;</div><div class="line">  prefix_table(pattern, prefix, n);</div><div class="line">  move_prefix_table(prefix, n);</div><div class="line">  // text[i] , len(text),      = m</div><div class="line">  // pattern[j] , len(pattern) = n</div><div class="line"></div><div class="line">  while(i &lt; m)&#123;</div><div class="line">    if (j==n - 1 &amp;&amp; text[i] == pattern[j]) &#123;</div><div class="line">        console.log(&quot;Found pattern&quot;, i - j);</div><div class="line">        // 找到后，继续往下匹配，看还有没有</div><div class="line">        j = prefix[j];</div><div class="line">    &#125;</div><div class="line">    if (text[i] == pattern[j]) &#123;</div><div class="line">        i++; j++;</div><div class="line">    &#125; else &#123;</div><div class="line">        j = prefix[j];</div><div class="line">        if(j==-1)&#123;</div><div class="line">          i++; </div><div class="line">          j++;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line">kmp_search(text, pattern)</div><div class="line">// 结果应该是2</div></pre></td></tr></table></figure>
-<ul>
-<li>参考例题：<a href="https://leetcode-cn.com/problems/implement-strstr/submissions/" target="_blank" rel="external">https://leetcode-cn.com/problems/implement-strstr/submissions/</a></li>
+<h4 id="转化"><a href="#转化" class="headerlink" title="转化"></a>转化</h4><ul>
+<li>它只是把AST拿过来然后对它做一些修改。</li>
 </ul>
-</li>
+<h4 id="代码生成"><a href="#代码生成" class="headerlink" title="代码生成"></a>代码生成</h4><ul>
+<li>编译器的最后一个阶段是代码生成，根据AST来输出代码。</li>
 </ul>
 
       
@@ -439,7 +360,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2020/11/09/youtube札记/">展开全文 >></a>
+          <a class="article-more-a" href="/2021/05/29/编译器工作原理/">展开全文 >></a>
         </p>
       
 
@@ -459,7 +380,7 @@
   
   
     <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/15/">15</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/16/">16</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
     </nav>
   
 
@@ -564,6 +485,14 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">canvas</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">开源</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Node.js</a>
               </li>
              
@@ -580,19 +509,11 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">canvas</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">开源</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">服务器</a>
+                <a href="javascript:void(0)" class="js-tag color1">react</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -600,7 +521,7 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">react</a>
+                <a href="javascript:void(0)" class="js-tag color4">服务器</a>
               </li>
             
             <div class="clearfix"></div>

@@ -155,47 +155,68 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-md语法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-框架对比" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/03/03/md语法/">学习md语法</a>
+      <a class="article-title" href="/2017/03/04/框架对比/">框架对比</a>
     </h1>
   
 
         
-        <a href="/2017/03/03/md语法/" class="archive-article-date">
-  	<time datetime="2017-03-03T08:51:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-03</time>
+        <a href="/2017/03/04/框架对比/" class="archive-article-date">
+  	<time datetime="2017-03-04T10:59:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-04</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="这是大标题"><a href="#这是大标题" class="headerlink" title="这是大标题"></a>这是大标题</h2><h3 id="这是小标题"><a href="#这是小标题" class="headerlink" title="这是小标题"></a>这是小标题</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ 这里面放代码</div></pre></td></tr></table></figure>
-<p>这里放超链接: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="下面是插入图片"><a href="#下面是插入图片" class="headerlink" title="下面是插入图片"></a>下面是插入图片</h3><p><img src="http://game.feng.com/photo/article/ios/wegameplatform/000/099/677/article_99677_640x320.jpg" alt="WeiPhone" title="威锋网" width="400"></p>
-<h3 id="这里也是图片"><a href="#这里也是图片" class="headerlink" title="这里也是图片"></a>这里也是图片</h3><p><img src="/assets/blogImg/touxiang.png" alt="alt text" title="测试图片"></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">![不支持](/assets/blogImg/touxiang.png&#123;100x100&#125; <span class="string">"测试图片并且定义宽高"</span>)</div></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">![不支持](/assets/blogImg/touxiang.png =100x100 <span class="string">"测试图片并且定义宽高"</span>)</div></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ http://wowubuntu.com/markdown/basic.html</div></pre></td></tr></table></figure>
-<h3 id="在博客园写博客想要好的样式，还必须用第三方工具，我记得是writerlive之类的；现在感觉太棒了！！"><a href="#在博客园写博客想要好的样式，还必须用第三方工具，我记得是writerlive之类的；现在感觉太棒了！！" class="headerlink" title="在博客园写博客想要好的样式，还必须用第三方工具，我记得是writerlive之类的；现在感觉太棒了！！"></a>在博客园写博客想要好的样式，还必须用第三方工具，我记得是writerlive之类的；现在感觉太棒了！！</h3><h2 id="下面这幅图是用截图工具处理的。。。。"><a href="#下面这幅图是用截图工具处理的。。。。" class="headerlink" title="下面这幅图是用截图工具处理的。。。。"></a>下面这幅图是用截图工具处理的。。。。</h2><p><img src="/assets/blogImg/jidong1.png" alt="alt text" title="好开心"></p>
-<ul>
-<li>这里是列表</li>
-<li>这里是列表</li>
+        <p>关于框架的对比网上资料很多，这里仅供参考</p>
+<h2 id="React的特点和优势"><a href="#React的特点和优势" class="headerlink" title="React的特点和优势"></a>React的特点和优势</h2><ul>
+<li>虚拟dom，减少不必要的更新，render Virtual DOM + diff + 必要的 DOM 更新。</li>
+<li>jsx语法，结构清晰易于编写，必须是闭合标签。</li>
+<li>单向数据流，只要服务端数据发生变动，前端数据也变动，开发者只关注实现业务就行了。</li>
+<li>组件化开发，可组合、可重用、可维护、可测试。</li>
 </ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">基本可以应付了。</div></pre></td></tr></table></figure>
-<h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">hexo new title //默认问post布局，title改为你的文章名</div><div class="line">似乎还待加一句 $ hexo generate //生成静态文件</div><div class="line">hexo deploy</div></pre></td></tr></table></figure>
-<p>列表：</p>
-<ul>
-<li>。。。。</li>
-<li>。。。</li>
+<p>vue没用过，听说vue是结合angular和react国产框架，是<code>最简单的框架</code>，这话不是我说的。<br>还有人说，微信小程序内部是<code>react native</code>开发的，这话也不是我说的。</p>
+<h2 id="React和Vue对比"><a href="#React和Vue对比" class="headerlink" title="React和Vue对比"></a>React和Vue对比</h2><ul>
+<li>React和Vue的适用范围无疑是很相似的：同样是基于组件的轻量级框架，同样专注于用户界面的视图层。同样可以用在简单的项目中，也同样可以使用全家桶扩展为复杂的应用程序。</li>
+<li>React是一个轻量级的框架，专注试图层，适用于简单个大型项目，并且可以从webApp像原生过度，reactNative。</li>
+<li>如果喜欢使用模版用vue,因为react是借助jsx在js中创建DOM.    </li>
+<li>如果你喜欢简单，用vue,因为不需要转译，react重度依赖jsx和es6新特性，比如class。    </li>
+<li>竟可能小和快使用vue,渲染快，引入的文件小。    </li>
+<li>大型应用程序选择react,js模版可测试性和维护性很高。vue模版很难测试，维护，分解。    </li>
+<li>适用于Web端，和原生App的框架，用react。<br>React Native是一个使用Javascript构建移动端原生应用程序（iOS，Android）的库。 它与React.js相同，只是不使用Web组件，而是使用原生组件。 如果你学过React.js，很快就能上手React Native。</li>
+<li>更大的生态系统选择react。</li>
+<li>如果你已经用其中一个用得很爽了，那就不用变了。</li>
 </ul>
-<p>Great !!!!</p>
-
+<p>参考链接 <a href="http://mp.weixin.qq.com/s/b15QKwJnKXmIlrTyQPVGPA" target="_blank" rel="external">Browse blog</a> </p>
+<h2 id="附录："><a href="#附录：" class="headerlink" title="附录："></a>附录：</h2><p>曾经问剑锋为什么选择react时，我做了点总结：</p>
+<ul>
+<li>react是偏向功能性的，轻量级的，单页面应用，组件开发，并且易于向原生开发过度(react native)。</li>
+<li>他给我的印象就是，老是问我能用图画出来吗？然后还有以前的话，“尝试是错误的，想好再做”、“把快捷键都记住”、“要动脑，总结”，还有以前的话“把业务编号都记住”，连环踢T_T；</li>
+</ul>
+<h2 id="Angular1"><a href="#Angular1" class="headerlink" title="Angular1"></a>Angular1</h2><ul>
+<li>适用于SPA–路由机制;CRUD应用,如后台管理界面。</li>
+<li>不适用,游戏、图形界面编辑器，这种频繁DOM操作也很复杂的应用。</li>
+</ul>
+<h2 id="Angular1的特性"><a href="#Angular1的特性" class="headerlink" title="Angular1的特性"></a>Angular1的特性</h2><ul>
+<li>MVC（模型 - 视图 - 控制器）或MVVM （模型 - 视图 - 视图模型）模式来组织源代码。</li>
+<li>模块系统,依赖注入,可嵌入、注入和测试。</li>
+<li>指令系统,可以创建可重用的自定义组件与指令的API。</li>
+<li>HTML 模板,允许设计人员和开发人员同时工作。</li>
+<li>数据双向绑定,当模型发生变化时，视图会自动更新，反之亦然。</li>
+</ul>
+<h2 id="以前公司的框架"><a href="#以前公司的框架" class="headerlink" title="以前公司的框架"></a>以前公司的框架</h2><ul>
+<li>以前公司的前台框架是使用<code>jQuery UI部件库</code>（Widget Factory）来创建插件，并且这也是最常见的一种方式，说来自己也研究好几年了,然并卵。</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$.widget( <span class="string">"custom.progressbar"</span>, &#123;</div><div class="line"> </div><div class="line">    // Default options.</div><div class="line">    options: &#123;</div><div class="line">        value: 0</div><div class="line">    &#125;,</div><div class="line">    _create: <span class="function"><span class="title">function</span></span>() &#123;</div><div class="line">        var progress = this.options.value + <span class="string">"%"</span>;</div><div class="line">        this.element</div><div class="line">            .addClass( <span class="string">"progressbar"</span> )</div><div class="line">            .text( progress );</div><div class="line">    &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>上面这段代码是从<code>菜鸟学院</code>粘贴过来的。</p>
+<h6 id="最后呢，曾经有人问我用angular1做项目，以后会不会出现什么问题？我说-”如果只是一个花瓶的话，用什么都没问题。”，最后再套用一下别人的话如果你已经用其中一个用得很爽了，那就不用变了。"><a href="#最后呢，曾经有人问我用angular1做项目，以后会不会出现什么问题？我说-”如果只是一个花瓶的话，用什么都没问题。”，最后再套用一下别人的话如果你已经用其中一个用得很爽了，那就不用变了。" class="headerlink" title="最后呢，曾经有人问我用angular1做项目，以后会不会出现什么问题？我说:”如果只是一个花瓶的话，用什么都没问题。”，最后再套用一下别人的话如果你已经用其中一个用得很爽了，那就不用变了。"></a>最后呢，曾经有人问我用angular1做项目，以后会不会出现什么问题？我说:”如果只是一个<code>花瓶</code>的话，用什么都没问题。”，最后再套用一下别人的话<code>如果你已经用其中一个用得很爽了，那就不用变了。</code></h6>
       
 
       
@@ -203,11 +224,22 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">前端框架</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2017/03/03/md语法/">展开全文 >></a>
+          <a class="article-more-a" href="/2017/03/04/框架对比/">展开全文 >></a>
         </p>
       
 
@@ -225,35 +257,60 @@
 
 
   
-    <article id="post-hexo博客" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-React开发" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/03/02/hexo博客/">用hexo制作博客</a>
+      <a class="article-title" href="/2017/03/04/React开发/">React开发</a>
     </h1>
   
 
         
-        <a href="/2017/03/02/hexo博客/" class="archive-article-date">
-  	<time datetime="2017-03-02T14:32:55.508Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-02</time>
+        <a href="/2017/03/04/React开发/" class="archive-article-date">
+  	<time datetime="2017-03-04T04:20:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-04</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+        <p>最近公司用react开发项目，所以学习一下。</p>
+<h2 id="react组件"><a href="#react组件" class="headerlink" title="react组件"></a>react组件</h2><h3 id="react组件的生命周期"><a href="#react组件的生命周期" class="headerlink" title="react组件的生命周期"></a>react组件的生命周期</h3><p>关于react生命周期，不同的地方写得不一样但是，意思一样，我就挑一个写吧。</p>
+<h5 id="react设计组件的时候，把组件看成是有生命的物体，让它具有生命周期，共有三大周期。"><a href="#react设计组件的时候，把组件看成是有生命的物体，让它具有生命周期，共有三大周期。" class="headerlink" title="react设计组件的时候，把组件看成是有生命的物体，让它具有生命周期，共有三大周期。"></a>react设计组件的时候，把组件看成是有生命的物体，让它具有生命周期，共有三大周期。</h5><ul>
+<li>创建期</li>
+<li>存在期</li>
+<li>销毁期</li>
+</ul>
+<h6 id="1、创建期"><a href="#1、创建期" class="headerlink" title="1、创建期"></a>1、创建期</h6><p>创建期分为5个阶段：</p>
+<ul>
+<li>getDefaultProps :获取默认属性，还没创建出来，看不见内部的对象属性，只运行一次。</li>
+<li>getInitialState :获取默认状态,数据已创建，可以访问实例化对象。</li>
+<li>componentWillMount :组件将要被创建,组件的虚拟dom，将要渲染输出虚拟dom。</li>
+<li>render :组件渲染输出虚拟dom,一定要通过return返回虚拟dom树。</li>
+<li>componentDidMount :组件已经构建完成,组件已创建完成虚拟dom,可以操作真实的dom。</li>
+</ul>
+<p><img src="/assets/blogImg/react/react_1.jpg" alt="原型" title="创建期"></p>
+<p>-_-! <code>以后就直接用画图工具画了，太丑陋，还待上传</code>。</p>
+<h6 id="2、存在期"><a href="#2、存在期" class="headerlink" title="2、存在期"></a>2、存在期</h6><p>存在期分为5个阶段：</p>
+<ul>
+<li>componentWillReceiveProps :组件将要接受新的属性。</li>
+<li>shouldComponentUpdate :组件是否应该更新，必须返回<code>true</code>或<code>false</code>。</li>
+<li>componentWillUpdate :组件将要更新。</li>
+<li>render :组件更新，输出虚拟dom。</li>
+<li>componentDidUpdate :组件已经更新完成。</li>
+</ul>
+<p><img src="/assets/blogImg/react/react_2.jpg" alt="原型" title="存在期"></p>
+<h6 id="3、销毁期"><a href="#3、销毁期" class="headerlink" title="3、销毁期"></a>3、销毁期</h6><p>销毁期就1个阶段：</p>
+<ul>
+<li>componentWillUnmount :组件即将被销毁。</li>
+</ul>
+<p><img src="/assets/blogImg/react/react_3.jpg" alt="原型" title="销毁期"></p>
+<h4 id="下面是一个demo"><a href="#下面是一个demo" class="headerlink" title="下面是一个demo"></a>下面是一个demo</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">&lt;!DOCTYPE html&gt;</div><div class="line">&lt;html&gt;</div><div class="line">  &lt;head&gt;</div><div class="line">    &lt;meta charset=<span class="string">"UTF-8"</span> /&gt;</div><div class="line">    &lt;title&gt;React 实例&lt;/title&gt;</div><div class="line">    &lt;script src=<span class="string">"https://cdn.bootcss.com/react/15.4.2/react.min.js"</span>&gt;&lt;/script&gt;</div><div class="line">	&lt;script src=<span class="string">"https://cdn.bootcss.com/react/15.4.2/react-dom.min.js"</span>&gt;&lt;/script&gt;</div><div class="line">	&lt;script src=<span class="string">"https://cdn.bootcss.com/babel-standalone/6.22.1/babel.min.js"</span>&gt;&lt;/script&gt;</div><div class="line">  &lt;/head&gt;</div><div class="line"> &lt;body&gt;</div><div class="line">    &lt;div id=<span class="string">"app"</span>&gt;&lt;/div&gt;</div><div class="line"></div><div class="line">    &lt;script <span class="built_in">type</span>=<span class="string">"text/babel"</span>&gt;</div><div class="line">      var MessageBox = React.createClass(&#123;</div><div class="line">          getInitialState:<span class="function"><span class="title">function</span></span>()&#123;</div><div class="line">              console.log(<span class="string">'getInitialState'</span>);</div><div class="line">              <span class="built_in">return</span>&#123;</div><div class="line">                count:0,</div><div class="line">              &#125;</div><div class="line">          &#125;,</div><div class="line">          getDefaultProps:<span class="function"><span class="title">function</span></span>()&#123;</div><div class="line">              console.log(<span class="string">"getDefaultProps"</span>);</div><div class="line">          &#125;,</div><div class="line">          componentWillMount:<span class="function"><span class="title">function</span></span>()&#123;</div><div class="line">              console.log(<span class="string">"componentWillMount"</span>);</div><div class="line">              var self = this;</div><div class="line">              this.timer = <span class="built_in">set</span>Interval(<span class="function"><span class="title">function</span></span>()&#123;</div><div class="line">                self.setState(&#123;</div><div class="line">                    count:self.state.count + 1,</div><div class="line">                &#125;)</div><div class="line">              &#125;,1000);</div><div class="line">          &#125;,</div><div class="line">          componentDidMount:<span class="function"><span class="title">function</span></span>()&#123;</div><div class="line">              console.log(<span class="string">"componentDidMount"</span>);</div><div class="line">          &#125;,</div><div class="line">          componentWillReceiveProps:<span class="keyword">function</span>(nextProps)&#123;</div><div class="line">              console.log(<span class="string">"component will receive props"</span>);</div><div class="line">          &#125;,</div><div class="line">          shouldComponentUpdate:<span class="keyword">function</span>(newProps,nextState)&#123;</div><div class="line">              console.log(<span class="string">"shouldComponentUpdate"</span>);</div><div class="line">              <span class="keyword">if</span>(nextState.count&gt;10)&#123;</div><div class="line">                  console.log(<span class="string">"不要老是更新我！--优化作用"</span>);</div><div class="line">                  <span class="built_in">return</span> <span class="literal">false</span>;</div><div class="line">              &#125;</div><div class="line">              <span class="built_in">return</span> <span class="literal">true</span>;</div><div class="line">          &#125;,</div><div class="line">          componentWillUpdate:<span class="keyword">function</span>(nextProps,nextState)&#123;</div><div class="line">              console.log(<span class="string">"component will update"</span>);</div><div class="line">          &#125;,</div><div class="line">          componentDidUpdate:<span class="keyword">function</span>(prepProps,prepState)&#123;</div><div class="line">              console.log(<span class="string">"component did update"</span>);</div><div class="line">              <span class="keyword">if</span>(this.state.count&gt;3)&#123;</div><div class="line">                clearInterval(this.timer);</div><div class="line">              &#125;</div><div class="line">          &#125;,</div><div class="line">          componentWillUnmount:<span class="function"><span class="title">function</span></span>()&#123;</div><div class="line">              console.log(<span class="string">"componet will unmount"</span>);</div><div class="line">              alert(<span class="string">"啊不要啊！！！"</span>);</div><div class="line">              clearInterval(this.timer);</div><div class="line">          &#125;,</div><div class="line">          <span class="built_in">kill</span>:<span class="function"><span class="title">function</span></span>()&#123;</div><div class="line">              ReactDOM.unmountComponentAtNode(document.getElementById(<span class="string">'app'</span>));</div><div class="line">          &#125;,</div><div class="line">          <span class="keyword">do</span>Update:<span class="function"><span class="title">function</span></span>()&#123;</div><div class="line">              this.setState(&#123;</div><div class="line">                  count:this.state.count +1,</div><div class="line">              &#125;);</div><div class="line">          &#125;,</div><div class="line">          render:<span class="function"><span class="title">function</span></span>()&#123;</div><div class="line">              console.log(<span class="string">"渲染"</span>);</div><div class="line">                <span class="built_in">return</span>(</div><div class="line">                      &lt;div&gt;</div><div class="line">                        &lt;h1&gt;计数:&#123;this.state.count&#125;&lt;/h1&gt;</div><div class="line">                        &lt;button onClick=&#123;this.kill&#125;&gt;卸载这个组件&lt;/button&gt;</div><div class="line">                        &lt;button onClick=&#123;this.doUpdate&#125;&gt;手动更新&lt;/button&gt;</div><div class="line">                        &lt;Submessage count=&#123;this.state.count&#125;/&gt;</div><div class="line">                      &lt;/div&gt;</div><div class="line">                )</div><div class="line">          &#125;</div><div class="line">      &#125;);</div><div class="line">      var Submessage = React.createClass(&#123;</div><div class="line">          componentWillReceiveProps:<span class="keyword">function</span>(nextProp)&#123;</div><div class="line">              console.log(<span class="string">"子组件将要获取prop"</span>);</div><div class="line">          &#125;,</div><div class="line">          shouldComponentUpdate:<span class="keyword">function</span>(nextProp,nextState)&#123;</div><div class="line">            <span class="keyword">if</span>(nextProp.count&gt;6) <span class="built_in">return</span> <span class="literal">false</span>;</div><div class="line">            <span class="built_in">return</span> <span class="literal">true</span>;</div><div class="line">          &#125;,</div><div class="line">          render:<span class="function"><span class="title">function</span></span>()&#123;</div><div class="line">            <span class="built_in">return</span>(</div><div class="line">              &lt;h3&gt;当前计数是:&#123;this.props.count&#125;&lt;/h3&gt;</div><div class="line">            )</div><div class="line">          &#125;</div><div class="line">      &#125;);</div><div class="line">      var messageBox = ReactDOM.render(&lt;MessageBox/&gt;,document.getElementById(<span class="string">'app'</span>));</div><div class="line"></div><div class="line">    &lt;/script&gt;</div><div class="line">  &lt;/body&gt;</div><div class="line">&lt;/html&gt;</div></pre></td></tr></table></figure>
+<p>运行结果：</p>
+<p><img src="/assets/blogImg/react/react_4.png" alt="原型" title="运行结果图"></p>
 
       
 
@@ -262,11 +319,133 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">react</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2017/03/02/hexo博客/">展开全文 >></a>
+          <a class="article-more-a" href="/2017/03/04/React开发/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
+    <article id="post-js理解" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/03/03/js理解/">js理解</a>
+    </h1>
+  
+
+        
+        <a href="/2017/03/03/js理解/" class="archive-article-date">
+  	<time datetime="2017-03-03T10:08:31.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-03</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="js中的面向对象"><a href="#js中的面向对象" class="headerlink" title="js中的面向对象"></a>js中的面向对象</h2><h3 id="面向对象的三大特性：封装、继承、多态。这里只说封装和继承。"><a href="#面向对象的三大特性：封装、继承、多态。这里只说封装和继承。" class="headerlink" title="面向对象的三大特性：封装、继承、多态。这里只说封装和继承。"></a>面向对象的三大特性：封装、继承、多态。这里只说封装和继承。</h3><h5 id="js面向对象的几种方式"><a href="#js面向对象的几种方式" class="headerlink" title="js面向对象的几种方式"></a>js面向对象的几种方式</h5><p>这个不同的人有不同的总结，仅供参考！</p>
+<h6 id="1、工厂模式"><a href="#1、工厂模式" class="headerlink" title="1、工厂模式"></a>1、工厂模式</h6><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">function</span> Person(name)&#123;</div><div class="line">    // 原料</div><div class="line">    var obj=new Object();</div><div class="line">    // 加工</div><div class="line">    obj.name=name;</div><div class="line">	obj.getName=<span class="function"><span class="title">function</span></span>() &#123;</div><div class="line">      console.log(this.name)</div><div class="line">   &#125;</div><div class="line">   //出厂</div><div class="line">    <span class="built_in">return</span> obj;</div><div class="line">&#125;</div><div class="line"></div><div class="line">var person = Person(<span class="string">"zhang"</span>)</div><div class="line">person.getName();</div></pre></td></tr></table></figure>
+<h6 id="结果为"><a href="#结果为" class="headerlink" title="结果为"></a>结果为</h6><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">zhang</div></pre></td></tr></table></figure>
+<p>这种方式的缺点是：每一个实例都创建一个新的对象,浪费空间，并且创建实例时没有用关键字new；</p>
+<h6 id="2、构造函数模式"><a href="#2、构造函数模式" class="headerlink" title="2、构造函数模式"></a>2、构造函数模式</h6><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">function</span> Person(opt)&#123;</div><div class="line">	this.config=&#123;</div><div class="line">		name:<span class="string">"zhang"</span></div><div class="line">	&#125;</div><div class="line">	<span class="keyword">for</span>(var i <span class="keyword">in</span> opt)&#123;</div><div class="line">		this.config[i]=opt[i]</div><div class="line">	&#125;</div><div class="line">	this.getName=<span class="function"><span class="title">function</span></span>()&#123;</div><div class="line">		console.log(this.config.name)</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">var person = new Person(&#123;name:<span class="string">"lisi"</span>&#125;)</div><div class="line">person.getName();</div></pre></td></tr></table></figure>
+<h6 id="结果为-1"><a href="#结果为-1" class="headerlink" title="结果为"></a>结果为</h6><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">lisi</div></pre></td></tr></table></figure>
+<p>这种方式的优势是：对象指向性强，new出的就是一个person示例；</p>
+<h6 id="3、混合模式"><a href="#3、混合模式" class="headerlink" title="3、混合模式"></a>3、混合模式</h6><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">function</span> Person(name)&#123;</div><div class="line">	this.name = name;</div><div class="line">&#125;</div><div class="line"></div><div class="line">Person.prototype=&#123;</div><div class="line">	getName:<span class="function"><span class="title">function</span></span>()&#123;</div><div class="line">		console.log(this.name)</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line">var person = new Person(<span class="string">"lisi"</span>)</div><div class="line">person.getName();</div></pre></td></tr></table></figure>
+<h6 id="结果为-2"><a href="#结果为-2" class="headerlink" title="结果为"></a>结果为</h6><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">lisi</div></pre></td></tr></table></figure>
+<p>这种方式的优势是：属性独立，并且可以根据原型链实现方法共享；</p>
+<h5 id="js的继承"><a href="#js的继承" class="headerlink" title="js的继承"></a>js的继承</h5><h3 id="首先介绍js中的原型链"><a href="#首先介绍js中的原型链" class="headerlink" title="首先介绍js中的原型链"></a>首先介绍js中的原型链</h3><p>首先来一段代码</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">function</span> <span class="function"><span class="title">funcA</span></span>() &#123;</div><div class="line">    this.show = <span class="function"><span class="title">function</span></span>() &#123;&#125;</div><div class="line">&#125;</div><div class="line">console.log(funcA.prototype);</div></pre></td></tr></table></figure>
+<p>通过观察可以画出这样的图形</p>
+<p><img src="/assets/blogImg/js/js_1.png" alt="原型" title="js原型"></p>
+<p>注：此图是盗用别人的图片，具体参考下面链接，此博客已被吾收录。</p>
+<p>参考链接 <a href="http://www.cnblogs.com/OceanHeaven/p/4965947.html" target="_blank" rel="external">Browse blog</a></p>
+<p>总之，最后形成一张这样的图：</p>
+<p><img src="/assets/blogImg/js/js_2.png" alt="原型" title="js原型"></p>
+<h4 id="是不是感觉惊呆了！！！！！！"><a href="#是不是感觉惊呆了！！！！！！" class="headerlink" title="是不是感觉惊呆了！！！！！！"></a>是不是感觉惊呆了！！！！！！</h4><h4 id="如果让我画的话，比如一个b继承a的图，是这样："><a href="#如果让我画的话，比如一个b继承a的图，是这样：" class="headerlink" title="如果让我画的话，比如一个b继承a的图，是这样："></a>如果让我画的话，比如一个b继承a的图，是这样：</h4><p>b是函数funcB()的实例，a是函数funA()的实例对象。</p>
+<p><img src="/assets/blogImg/js/js_3.png" alt="原型" title="js继承图"></p>
+<h2 id="下面是js继承"><a href="#下面是js继承" class="headerlink" title="下面是js继承"></a>下面是js继承</h2><p>参考链接 <a href="http://www.jb51.net/article/55540.htm" target="_blank" rel="external">Browse blog</a></p>
+<h6 id="1、使用原型链实现继承"><a href="#1、使用原型链实现继承" class="headerlink" title="1、使用原型链实现继承"></a>1、使用原型链实现继承</h6><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">function</span> <span class="function"><span class="title">SuperClass</span></span>()&#123;</div><div class="line">	this.name = <span class="string">"zhang"</span>;</div><div class="line">&#125;</div><div class="line">SuperClass.prototype.say=<span class="function"><span class="title">function</span></span>()&#123;</div><div class="line">	console.log(this.name);</div><div class="line">&#125;</div><div class="line"><span class="keyword">function</span> <span class="function"><span class="title">SubClass</span></span>()&#123;</div><div class="line">	this.name = <span class="string">"haha"</span>;</div><div class="line">&#125;</div><div class="line">SubClass.prototype.say=<span class="function"><span class="title">function</span></span>()&#123;</div><div class="line">	console.log(this.name);</div><div class="line">&#125;</div><div class="line">SubClass.prototype=new SuperClass();</div><div class="line">var sub = new SubClass();</div><div class="line"></div><div class="line">sub.say();</div></pre></td></tr></table></figure>
+<p>结果是：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">haha</div></pre></td></tr></table></figure>
+<p>但是：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">function</span> <span class="function"><span class="title">SuperClass</span></span>()&#123;</div><div class="line">  this.name = <span class="string">"women"</span>;</div><div class="line">  this.bra = [<span class="string">"a"</span>,<span class="string">"b"</span>];</div><div class="line">&#125;</div><div class="line"><span class="keyword">function</span> <span class="function"><span class="title">SubClass</span></span>()&#123;</div><div class="line">  this.subname = <span class="string">"your sister"</span>;</div><div class="line">&#125;</div><div class="line">SubClass.prototype = new SuperClass();</div><div class="line">var sub1 = new SubClass();</div><div class="line">sub1.name = <span class="string">"man"</span>;</div><div class="line">sub1.bra.push(<span class="string">"c"</span>);</div><div class="line">console.log(sub1.name);//man</div><div class="line">console.log(sub1.bra);//[<span class="string">"a"</span>,<span class="string">"b"</span>,<span class="string">"c"</span>]</div><div class="line">var sub2 = new SubClass();</div><div class="line">console.log(sub1.name);//woman</div><div class="line">console.log(sub2.bra);//[<span class="string">"a"</span>,<span class="string">"b"</span>,<span class="string">"c"</span>]</div></pre></td></tr></table></figure>
+<p>缺点显而易见：所有继承自SuperClass的实例都会受到影响，引用类型共享。</p>
+<h6 id="2、经典继承"><a href="#2、经典继承" class="headerlink" title="2、经典继承"></a>2、经典继承</h6><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">function</span> <span class="function"><span class="title">SuperClass</span></span>() &#123;</div><div class="line">  this.name = <span class="string">"women"</span>;</div><div class="line">  this.bra = [<span class="string">"a"</span>, <span class="string">"b"</span>];</div><div class="line">&#125;</div><div class="line">SuperClass.prototype.sayWhat = <span class="function"><span class="title">function</span></span>()&#123;</div><div class="line">  console.log(<span class="string">"hello"</span>);</div><div class="line">&#125;</div><div class="line"><span class="keyword">function</span> <span class="function"><span class="title">SubClass</span></span>() &#123;</div><div class="line">  this.subname = <span class="string">"your sister"</span>;</div><div class="line">  SuperClass.call(this);</div><div class="line">&#125;  </div><div class="line">var sub1 = new SubClass();</div><div class="line">console.log(sub1.sayWhat());//TypeError: undefined is not a <span class="keyword">function</span></div></pre></td></tr></table></figure>
+<p>但是：</p>
+<p>1、如果在构造函数中有方法的定义，那么对于每一个实例都存在一份单独的Function引用，我们的目的其实是想共用这个方法。（其实不太懂）<br>2、超类型原型中定义的方法，在子类型实例中是无法调用到。</p>
+<h6 id="3、组合式继承"><a href="#3、组合式继承" class="headerlink" title="3、组合式继承"></a>3、组合式继承</h6><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">function</span> <span class="function"><span class="title">SuperClass</span></span>() &#123;</div><div class="line">  this.name = <span class="string">"women"</span>;</div><div class="line">  this.bra = [<span class="string">"a"</span>, <span class="string">"b"</span>];</div><div class="line">&#125;</div><div class="line">SuperClass.prototype.sayWhat = <span class="function"><span class="title">function</span></span>()&#123;</div><div class="line">  console.log(<span class="string">"hello"</span>);</div><div class="line">&#125;</div><div class="line"><span class="keyword">function</span> <span class="function"><span class="title">SubClass</span></span>() &#123;</div><div class="line">  this.subname = <span class="string">"your sister"</span>;</div><div class="line">  SuperClass.call(this);       //第二次调用SuperClass</div><div class="line">&#125;</div><div class="line">SubClass.prototype = new SuperClass(); //第一次调用SuperClass</div><div class="line">var sub1 = new SubClass();</div><div class="line">console.log(sub1.sayWhat());//hello</div></pre></td></tr></table></figure>
+<p>这个常用，寄生组合式继承就不写了，想了解的看<a href="http://www.jb51.net/article/55540.htm" target="_blank" rel="external">原文</a>。<br>据说有寄生组合式继承的插件。</p>
+<p>但是：<br>这个模式调用了两次超类型的构造函数。</p>
+<p>下面是我自己项目中的一段代码：MstBall继承了Missile</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">/*</div><div class="line">*组合式继承实现MasterBall这个类</div><div class="line">*/</div><div class="line"><span class="keyword">function</span> MstBall(option)&#123;</div><div class="line">  //经典继承</div><div class="line">  Missile.call(this,option);</div><div class="line">&#125;</div><div class="line">//原型继承</div><div class="line">MstBall.prototype = new Missile();</div><div class="line">//重写create方法</div><div class="line">MstBall.prototype._create = <span class="function"><span class="title">function</span></span>() &#123;</div><div class="line">  var mstBall = $(<span class="string">"&lt;div class='missile "</span>+this.config.className+<span class="string">"'&gt;"</span>);</div><div class="line">  mstBall.css(&#123;</div><div class="line">    width:this.config.width,</div><div class="line">    height:this.config.height,</div><div class="line">    transform:<span class="string">"translate("</span>+this.config.pos.x+<span class="string">"px,"</span>+this.config.pos.y+<span class="string">"px)"</span></div><div class="line">  &#125;);</div><div class="line">  this.missile=mstBall;</div><div class="line">  //console.log(this.missile)</div><div class="line">  GameConfig.gameBox.append(this.missile);</div><div class="line">  <span class="built_in">return</span> this;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<h2 id="ES6中类和类的继承的写法"><a href="#ES6中类和类的继承的写法" class="headerlink" title="ES6中类和类的继承的写法"></a>ES6中类和类的继承的写法</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">class ColorPoint extends Point &#123;</div><div class="line">  constructor(x, y, color) &#123;</div><div class="line">    super(x, y); // 等同于parent.constructor(x, y)</div><div class="line">    this.color = color;</div><div class="line">  &#125;</div><div class="line">  <span class="function"><span class="title">toString</span></span>() &#123;</div><div class="line">    <span class="built_in">return</span> this.color + <span class="string">' '</span> + super.toString(); // 等同于parent.toString()</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>参考链接 <a href="http://www.jianshu.com/p/342966fdf816" target="_blank" rel="external">Browse blog</a><br>参考链接 <a href="http://www.jianshu.com/p/d1bd2218b1f2" target="_blank" rel="external">Browse blog</a></p>
+<p>ES6继承感觉像java中的的继承，规范了继承的操作。</p>
+<p>最后，写点剑锋的东西，虽然最后被拉黑T_T</p>
+<h2 id="原型链"><a href="#原型链" class="headerlink" title="原型链"></a>原型链</h2><h3 id="作用域链demo1"><a href="#作用域链demo1" class="headerlink" title="作用域链demo1"></a>作用域链demo1</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">//对name的访问, 哪种效率更高</div><div class="line">var name = <span class="string">'张三'</span>;</div><div class="line"></div><div class="line"><span class="keyword">function</span> <span class="function"><span class="title">hello</span></span>() &#123;</div><div class="line">	console.log(name);</div><div class="line">	console.log(window.name);</div><div class="line">	console.log(this.name);</div><div class="line">&#125;</div><div class="line">hello();</div></pre></td></tr></table></figure>
+<p>分析：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">var name = <span class="string">'张三'</span>;</div><div class="line">　　var start = new Date().getTime();</div><div class="line">　　<span class="keyword">for</span>(var i=0;i&lt;100000;i++)&#123;</div><div class="line">    hello()</div><div class="line">  &#125;</div><div class="line">  </div><div class="line">　　var end = new Date().getTime();</div><div class="line">　　alert(end-start);</div><div class="line">  <span class="keyword">function</span> <span class="function"><span class="title">hello</span></span>()&#123;</div><div class="line">    //console.log(name)//2234,2240,2372,2272---2279.5</div><div class="line">    //console.log(window.name);//2292,2439,2299,2437---2366.75</div><div class="line">    //console.log(this.name);//2302,2324,2272,2363--2315.25</div><div class="line">  &#125;</div></pre></td></tr></table></figure></p>
+<p>我就这么测了一下效率从高到低是name,this.name,window.name。。。和我分析的不一样啊！！<br>不过测也不准，优势时间多有时时间低。</p>
+<h3 id="原型链特点"><a href="#原型链特点" class="headerlink" title="原型链特点"></a>原型链特点</h3><ul>
+<li>支持了面向对象开发模式</li>
+<li>显示原型指针<code>prototype</code>, 任何函数都有(除了特殊Empty函数)</li>
+<li>隐式原型指针<code>__proto__</code>, 任何对象都有(除了null, undefined, NaN)</li>
+<li>特殊空函数只有<code>__proto__</code></li>
+<li>Object的原型对象的<code>__proto__</code>指向null</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">Function instanceof Object //任何对象都是Object的实例</div><div class="line"></div><div class="line">Object instanceof Function //任何函数都是Function的实例</div><div class="line"></div><div class="line">Date.__proto__ === Function.prototype</div><div class="line"></div><div class="line">Function.__proto__ === Function.prototype</div></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/03/03/js理解/">展开全文 >></a>
         </p>
       
 
@@ -286,7 +465,7 @@
   
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/14/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><a class="page-number" href="/page/14/">14</a><span class="page-number current">15</span>
+      <a class="extend prev" rel="prev" href="/page/14/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><a class="page-number" href="/page/14/">14</a><span class="page-number current">15</span><a class="page-number" href="/page/16/">16</a><a class="extend next" rel="next" href="/page/16/">Next &raquo;</a>
     </nav>
   
 
@@ -391,6 +570,14 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">canvas</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">开源</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Node.js</a>
               </li>
              
@@ -407,19 +594,11 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">canvas</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">开源</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">服务器</a>
+                <a href="javascript:void(0)" class="js-tag color1">react</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -427,7 +606,7 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">react</a>
+                <a href="javascript:void(0)" class="js-tag color4">服务器</a>
               </li>
             
             <div class="clearfix"></div>

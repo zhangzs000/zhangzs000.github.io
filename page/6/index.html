@@ -155,40 +155,37 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-分分钟系列之-VUE实现" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-diff" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/10/07/分分钟系列之-VUE实现/">VUE相关</a>
+      <a class="article-title" href="/2019/03/23/diff/">diff</a>
     </h1>
   
 
         
-        <a href="/2018/10/07/分分钟系列之-VUE实现/" class="archive-article-date">
-  	<time datetime="2018-10-07T08:18:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-10-07</time>
+        <a href="/2019/03/23/diff/" class="archive-article-date">
+  	<time datetime="2019-03-23T09:41:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-23</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="实现一个简单的VUE"><a href="#实现一个简单的VUE" class="headerlink" title="实现一个简单的VUE"></a>实现一个简单的VUE</h3><h4 id="功能包括"><a href="#功能包括" class="headerlink" title="功能包括"></a>功能包括</h4><ul>
-<li>数据劫持</li>
-<li>数据代理</li>
-<li>模板编译</li>
-<li>视图同步</li>
-<li>computed订阅发布实现</li>
-<li>v-model双向绑定实现</li>
-<li>数据的对象嵌套</li>
+        <h3 id="diff算法的实现"><a href="#diff算法的实现" class="headerlink" title="diff算法的实现"></a>diff算法的实现</h3><ul>
+<li>通过虚拟dom类创建创建虚拟dom，最终通过render方法将虚拟dom渲染到页面。</li>
 </ul>
-<h4 id="未完成"><a href="#未完成" class="headerlink" title="未完成"></a>未完成</h4><ul>
-<li>存在订阅了相同的函数</li>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">class Element &#123;</div><div class="line">	constructor(type, props, children)&#123;</div><div class="line">		this.type = type;</div><div class="line">		this.props = props;</div><div class="line">		this.children = children;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>先序深度优先遍历生成补丁包patches(key值是遍历节点的顺序)。</li>
 </ul>
-<h4 id="模板"><a href="#模板" class="headerlink" title="模板"></a>模板</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">&lt;div id=<span class="string">"app"</span>&gt;</div><div class="line">    &lt;div&gt;&#123;&#123;a.b&#125;&#125;&lt;/div&gt;</div><div class="line">    &lt;div&gt;&#123;&#123;c&#125;&#125;&#123;&#123;d&#125;&#125;&lt;/div&gt;</div><div class="line">    &lt;div&gt;&#123;&#123;sum&#125;&#125;&lt;/div&gt;</div><div class="line">    &lt;input <span class="built_in">type</span>=<span class="string">"text"</span> v-model=<span class="string">"a.b"</span>&gt;</div><div class="line">    &lt;input <span class="built_in">type</span>=<span class="string">"text"</span> v-model=<span class="string">"c"</span>&gt;</div><div class="line">&lt;/div&gt;</div><div class="line"></div><div class="line">&lt;script&gt;</div><div class="line"></div><div class="line"><span class="keyword">function</span> <span class="function"><span class="title">Dep</span></span>() &#123;</div><div class="line">    // 实现订阅发布的数组</div><div class="line">    this.subs = [];</div><div class="line">&#125;</div><div class="line">Dep.prototype = &#123;</div><div class="line">    addSub(sub) &#123;</div><div class="line">       this.subs.push(sub);</div><div class="line">    &#125;,</div><div class="line">    <span class="function"><span class="title">notify</span></span>() &#123;</div><div class="line">        this.subs.forEach(sub =&gt; sub.update());</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="built_in">let</span> dep = new Dep();</div><div class="line"></div><div class="line"><span class="built_in">let</span> mvvm = new Mvvm(&#123;</div><div class="line">    el: <span class="string">'#app'</span>,</div><div class="line">    data: &#123;</div><div class="line">      a: &#123;</div><div class="line">        b: 1</div><div class="line">      &#125;,</div><div class="line">      c: 2,</div><div class="line">      d: 3</div><div class="line">    &#125;,</div><div class="line">    computed: &#123;</div><div class="line">      <span class="function"><span class="title">sum</span></span>() &#123;</div><div class="line">        // 调用一次，订阅一次，导致有2个sum</div><div class="line">        <span class="built_in">return</span> this.c + this.d;</div><div class="line">      &#125;,</div><div class="line">      <span class="function"><span class="title">noop</span></span>() &#123;</div><div class="line">      &#125;</div><div class="line">    &#125;,</div><div class="line"> &#125;);</div><div class="line"></div><div class="line"> <span class="keyword">function</span> Watcher(vm, exp, fn) &#123;</div><div class="line">     .....</div><div class="line"> &#125;</div><div class="line"></div><div class="line"> Watcher.prototype.update = <span class="function"><span class="title">function</span></span>() &#123;</div><div class="line">     this.fn()</div><div class="line"> &#125;</div><div class="line"> <span class="keyword">function</span> Mvvm(options = &#123;&#125;) &#123;</div><div class="line"></div><div class="line">     this.<span class="variable">$options</span> = options;</div><div class="line"></div><div class="line">     <span class="built_in">let</span> data = this._data = options.data</div><div class="line"></div><div class="line">     // 数据劫持</div><div class="line">    observe(data)</div><div class="line"></div><div class="line">    //数据代理</div><div class="line">    ......</div><div class="line"></div><div class="line">    initComputed.bind(this)()</div><div class="line"></div><div class="line">    // 模板编译</div><div class="line">    Compile(options.el, this);</div><div class="line"> &#125;</div><div class="line"></div><div class="line"> <span class="keyword">function</span> <span class="function"><span class="title">initComputed</span></span>() &#123;</div><div class="line">     </div><div class="line">     .....</div><div class="line"></div><div class="line"> &#125;</div><div class="line"></div><div class="line"> <span class="keyword">function</span> Observe(data) &#123;</div><div class="line"></div><div class="line"> &#125;</div><div class="line"></div><div class="line">&lt;/script&gt;</div></pre></td></tr></table></figure>
-<h4 id="注意点"><a href="#注意点" class="headerlink" title="注意点"></a>注意点</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">function</span> Watcher &#123;</div><div class="line"></div><div class="line">.....</div><div class="line"></div><div class="line">// 可以通过reduce来调用defineProperty中的get方法，进而订阅Watcher实例</div><div class="line">this.exp.split(<span class="string">'.'</span>).reduce((val, key)=&gt;&#123;</div><div class="line">    <span class="built_in">return</span> val[key]</div><div class="line">&#125;, this.vm)</div><div class="line"></div><div class="line"> .....</div><div class="line">&#125;</div><div class="line"></div><div class="line">Watcher.prototype.update = <span class="function"><span class="title">function</span></span>() &#123;</div><div class="line">    // 这里仅需要执行fn()即可，不需要别的</div><div class="line">    this.fn()</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">function</span> Compile(el, vm) &#123;</div><div class="line">    ......</div><div class="line"></div><div class="line">    // 满足非贪婪匹配</div><div class="line">    reg = /\&#123;\&#123;(.*?)\&#125;\&#125;/g;</div><div class="line"></div><div class="line">    .....</div><div class="line"></div><div class="line">    <span class="keyword">if</span>(node.nodeType === 3 &amp;&amp; reg.test(txt))&#123;</div><div class="line">        <span class="keyword">function</span> <span class="function"><span class="title">replaceTxt</span></span>() &#123;</div><div class="line">            // replace函数的参数(match匹配的字符串，<span class="variable">$1</span>,<span class="variable">$2</span>...第n个括号匹配的字符串， offset，string)</div><div class="line">            node.textContent = txt.replace(reg, (matched, placeholder)=&gt;&#123;</div><div class="line">                <span class="built_in">return</span> placeholder.split(<span class="string">'.'</span>).reduce((val, key)=&gt;&#123;</div><div class="line">                    <span class="built_in">return</span> val[key];</div><div class="line">                &#125;, vm)</div><div class="line">            &#125;)</div><div class="line">        &#125;;</div><div class="line">        replaceTxt()</div><div class="line">        new Watcher(vm, RegExp.<span class="variable">$1</span>, replaceTxt);</div><div class="line">    &#125;</div><div class="line">    // 双向绑定</div><div class="line">    <span class="keyword">if</span>(node.nodeType === 1) &#123;</div><div class="line">        <span class="built_in">let</span> nodeAttr = node.attributes;</div><div class="line">        Array.from(nodeAttr).forEach(attr =&gt; &#123;</div><div class="line">        <span class="built_in">let</span> name = attr.name,</div><div class="line">            exp = attr.value,</div><div class="line">            arr = exp.split(<span class="string">'.'</span>);</div><div class="line">        <span class="keyword">if</span>(name.includes(<span class="string">'v-model'</span>))&#123;</div><div class="line">            replaceModel()</div><div class="line">            node.addEventListener(<span class="string">'input'</span>, e=&gt;&#123;</div><div class="line"></div><div class="line">            <span class="built_in">let</span> newVal = e.target.value;</div><div class="line"></div><div class="line">            // 更新实例中的值，执行<span class="built_in">set</span>中的发布；并满足类似a.b.c这样的表达式</div><div class="line">            <span class="built_in">eval</span>(<span class="string">'vm.'</span>+exp+<span class="string">'='</span>+newVal);</div><div class="line"></div><div class="line">            node.value = newVal;</div><div class="line"></div><div class="line">            &#125;)</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">function</span> <span class="function"><span class="title">replaceModel</span></span>() &#123;</div><div class="line">            node.value =  arr.reduce((val, key)=&gt;&#123;</div><div class="line">            <span class="built_in">return</span> val[key]</div><div class="line">            &#125;, vm)</div><div class="line">        &#125;</div><div class="line">        // 更新实例时，对应的node也要更新</div><div class="line">        new Watcher(vm, exp, replaceModel);</div><div class="line">        &#125;)</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">let patches = &#123;</div><div class="line">	0: &#123;type: &apos;ATTRS&apos;, attrs: &#123; class: &apos;xxx&apos;&#125;&#125;,</div><div class="line">	1: &#123;type: &apos;TEXT&apos;, text: &apos;xxx&apos;&#125;,</div><div class="line">	2: &#123;type: &apos;REPLACE&apos;, node: Element&#125;,</div><div class="line">	3: &#123;type: &apos;REMOVE&apos;, index: xxx&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>patch函数更新旧dom</li>
+</ul>
 
       
 
@@ -201,7 +198,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2018/10/07/分分钟系列之-VUE实现/">展开全文 >></a>
+          <a class="article-more-a" href="/2019/03/23/diff/">展开全文 >></a>
         </p>
       
 
@@ -219,45 +216,33 @@
 
 
   
-    <article id="post-promise实现" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-react-router实现" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/09/29/promise实现/">promise实现</a>
+      <a class="article-title" href="/2019/03/23/react-router实现/">react-router实现</a>
     </h1>
   
 
         
-        <a href="/2018/09/29/promise实现/" class="archive-article-date">
-  	<time datetime="2018-09-28T22:25:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-29</time>
+        <a href="/2019/03/23/react-router实现/" class="archive-article-date">
+  	<time datetime="2019-03-22T18:12:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-23</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="实现一个简单的promise"><a href="#实现一个简单的promise" class="headerlink" title="实现一个简单的promise"></a>实现一个简单的promise</h3><ul>
-<li>首先实现这种形式</li>
+        <h3 id="react-router相关实现"><a href="#react-router相关实现" class="headerlink" title="react-router相关实现"></a>react-router相关实现</h3><h4 id="利用let-Provider-Consumer-React-createContext-实现"><a href="#利用let-Provider-Consumer-React-createContext-实现" class="headerlink" title="利用let {Provider, Consumer} = React.createContext();实现"></a>利用<code>let {Provider, Consumer} = React.createContext();</code>实现</h4><ul>
+<li>HashRouter</li>
+<li>Link组件</li>
+<li>Redirect组件</li>
+<li>Route组件</li>
+<li>Switch组件</li>
 </ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">new Promise((resolve, reject)=&gt;&#123;</div><div class="line">    console.log(111)</div><div class="line">    resolve(222)</div><div class="line">&#125;)</div><div class="line">.then((data)=&gt;&#123;</div><div class="line">    console.log(data)</div><div class="line">&#125;)</div><div class="line"></div><div class="line">结果：</div><div class="line"></div><div class="line">111</div><div class="line">222</div></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">const pedding = <span class="string">'pedding'</span>;</div><div class="line">const fulfilled = <span class="string">'fulfilled'</span>;</div><div class="line">const rejected = <span class="string">'rejected'</span>;</div><div class="line">const isFunction = (val) =&gt; typeof val === <span class="string">'function'</span></div><div class="line"></div><div class="line">class MyPromise &#123;</div><div class="line">    constructor(handler) &#123;</div><div class="line"></div><div class="line">        <span class="keyword">if</span>(!isFunction(handler)) &#123;</div><div class="line">            throw new Error(<span class="string">'promise必须传入函数！'</span>)</div><div class="line">        &#125;</div><div class="line">        // 值传递</div><div class="line">        this._value;</div><div class="line">        // 内部状态</div><div class="line">        this._status = pedding;</div><div class="line"></div><div class="line">        try &#123;</div><div class="line">            // 保证异步调用时this指向</div><div class="line">            handler(this._resolve.bind(this), this._reject.bind(this))</div><div class="line"></div><div class="line">        &#125; catch (error) &#123;</div><div class="line">            </div><div class="line">        &#125;</div><div class="line">        </div><div class="line">    &#125;</div><div class="line">    _resolve(val) &#123;</div><div class="line"></div><div class="line">        this._value = val;</div><div class="line">        // resolve之后更改状态</div><div class="line">        this._status = fulfilled;</div><div class="line">    &#125;</div><div class="line">    _reject(val) &#123;</div><div class="line"></div><div class="line">    &#125;</div><div class="line">    <span class="keyword">then</span>(resolve, reject) &#123;</div><div class="line">        const &#123; _value, _status &#125; = this</div><div class="line"></div><div class="line">        switch(_status) &#123;</div><div class="line">            <span class="keyword">case</span> pedding: </div><div class="line">            </div><div class="line">            <span class="built_in">break</span>;</div><div class="line">            <span class="keyword">case</span> fulfilled:</div><div class="line">            resolve(_value);</div><div class="line">            <span class="built_in">break</span>;</div><div class="line">            <span class="keyword">case</span> rejected:</div><div class="line">            reject(_value)</div><div class="line">            <span class="built_in">break</span>;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ul>
-<li>对异步的处理</li>
-</ul>
-<p>上面那种形式如果碰见异步就会出现问题，如何实现异步的情况？类似订阅发布形式。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">new Promise((resolve, reject)=&gt;&#123;</div><div class="line">    <span class="built_in">set</span>Timeout(()=&gt;&#123;</div><div class="line">        console.log(111)</div><div class="line">        resolve(222)</div><div class="line">    &#125;, 100)</div><div class="line">&#125;)</div><div class="line">.then((data)=&gt;&#123;</div><div class="line">    console.log(data)</div><div class="line">&#125;)</div><div class="line"></div><div class="line">结果：</div><div class="line"></div><div class="line">111</div><div class="line">222</div></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">class MyPromise &#123;</div><div class="line">    constructor(handler) &#123;</div><div class="line"></div><div class="line">        <span class="keyword">if</span>(!isFunction(handler)) &#123;</div><div class="line">            throw new Error(<span class="string">'promise必须传入函数！'</span>)</div><div class="line">        &#125;</div><div class="line">        // 值传递</div><div class="line">        this._value;</div><div class="line">        // 内部状态</div><div class="line">        this._status = pedding;</div><div class="line"></div><div class="line">        this._fulfilledList = [];</div><div class="line"></div><div class="line">        this._rejectedList = [];</div><div class="line"></div><div class="line">        try &#123;</div><div class="line">            // 保证异步调用时this指向</div><div class="line">            handler(this._resolve.bind(this), this._reject.bind(this))</div><div class="line"></div><div class="line">        &#125; catch (error) &#123;</div><div class="line">            </div><div class="line">        &#125;</div><div class="line">        </div><div class="line">    &#125;</div><div class="line">    _resolve(val) &#123;</div><div class="line">        // 避免resolve多次执行</div><div class="line">        <span class="keyword">if</span>(this._status !== pedding) <span class="built_in">return</span></div><div class="line">        </div><div class="line">        // resolve之后更改状态，如果用解构赋值，这里就不执行？</div><div class="line">        this._status = fulfilled;</div><div class="line"></div><div class="line">        this._value = val;</div><div class="line"></div><div class="line">        this._fulfilledList.forEach((item)=&gt;&#123;</div><div class="line">            item(val)</div><div class="line">        &#125;)</div><div class="line">        </div><div class="line">    &#125;</div><div class="line">    _reject(val) &#123;</div><div class="line"></div><div class="line">        <span class="keyword">if</span>(this._status !== pedding) <span class="built_in">return</span></div><div class="line">        </div><div class="line">        this._status = rejected;</div><div class="line"></div><div class="line">        this._value = val;</div><div class="line"></div><div class="line">        this._rejectedList.forEach((item)=&gt;&#123;</div><div class="line">            item(val)</div><div class="line">        &#125;)</div><div class="line"></div><div class="line">    &#125;</div><div class="line">    <span class="keyword">then</span>(onFulfilled, onRejected) &#123;</div><div class="line">        const &#123; _value, _status, _fulfilledList, _rejectedList &#125; = this</div><div class="line"></div><div class="line">        switch(_status) &#123;</div><div class="line">            <span class="keyword">case</span> pedding: </div><div class="line">            _fulfilledList.push(onFulfilled);</div><div class="line">            _rejectedList.push(onRejected);</div><div class="line">            <span class="built_in">break</span>;</div><div class="line">            <span class="keyword">case</span> fulfilled:</div><div class="line">            onFulfilled(_value);</div><div class="line">            <span class="built_in">break</span>;</div><div class="line">            <span class="keyword">case</span> rejected:</div><div class="line">            onRejected(_value)</div><div class="line">            <span class="built_in">break</span>;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ul>
-<li>then之间的值传递</li>
-</ul>
-<p>链式调用中，上一个then的返回值，下一个then如何接收？这里要用到闭包。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">new Promise((resolve, reject)=&gt;&#123;</div><div class="line">    <span class="built_in">set</span>Timeout(()=&gt;&#123;</div><div class="line">        console.log(111)</div><div class="line">        resolve(222)</div><div class="line">    &#125;, 100)</div><div class="line">&#125;)</div><div class="line">.then((data)=&gt;&#123;</div><div class="line">    console.log(data)</div><div class="line">    <span class="built_in">return</span> 333</div><div class="line">&#125;)</div><div class="line">.then((data)=&gt;&#123;</div><div class="line">    console.log(data)</div><div class="line">&#125;)</div><div class="line"></div><div class="line">结果：</div><div class="line"></div><div class="line">111</div><div class="line">222</div><div class="line">333</div></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">.......</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">then</span>(onFulfilled, onRejected) &#123;</div><div class="line">    const &#123; _value, _status, _fulfilledList, _rejectedList &#125; = this</div><div class="line">    </div><div class="line">    <span class="built_in">return</span> new MyPromise((nextFulfiled, nextRejected)=&gt;&#123;</div><div class="line">        const _onFulfilled = (val) =&gt; &#123;</div><div class="line">            <span class="built_in">let</span> res = onFulfilled(val);</div><div class="line">            nextFulfiled(res)</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        const _onRejected = (val) =&gt; &#123;</div><div class="line">            <span class="built_in">let</span> res = onRejected(val);</div><div class="line">            nextRejected(res)</div><div class="line">        &#125;</div><div class="line">        switch(_status) &#123;</div><div class="line">            <span class="keyword">case</span> pedding: </div><div class="line">                _fulfilledList.push(_onFulfilled);</div><div class="line">                _rejectedList.push(_onRejected);</div><div class="line">                <span class="built_in">break</span>;</div><div class="line">            <span class="keyword">case</span> fulfilled:</div><div class="line">                onFulfilled(_value);</div><div class="line">                <span class="built_in">break</span>;</div><div class="line">            <span class="keyword">case</span> rejected:</div><div class="line">                onRejected(_value)</div><div class="line">                <span class="built_in">break</span>;</div><div class="line">        &#125;</div><div class="line">    &#125;)</div><div class="line">    </div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line">new MyPromise((resolve, reject)=&gt;&#123;</div><div class="line">    <span class="built_in">set</span>Timeout(()=&gt;&#123;</div><div class="line">        console.log(1111)</div><div class="line">        resolve(2222)</div><div class="line">    &#125;, 500)</div><div class="line">&#125;)</div><div class="line">.then((data)=&gt;&#123;</div><div class="line">    console.log(data)</div><div class="line">    <span class="built_in">return</span> 333</div><div class="line">&#125;)</div><div class="line">.then((data)=&gt;&#123;</div><div class="line">    console.log(data)</div><div class="line">&#125;)</div><div class="line"></div><div class="line">结果：</div><div class="line"></div><div class="line">1111</div><div class="line">2222</div><div class="line">333</div></pre></td></tr></table></figure>
-<p>扩展： </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">new 实现</div><div class="line">bind实现</div></pre></td></tr></table></figure>
 
       
 
@@ -270,7 +255,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2018/09/29/promise实现/">展开全文 >></a>
+          <a class="article-more-a" href="/2019/03/23/react-router实现/">展开全文 >></a>
         </p>
       
 
@@ -288,52 +273,12 @@
 
 
   
-    <article id="post-数据可视化" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-新世界" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/08/14/数据可视化/">数据可视化</a>
-    </h1>
-  
-
-        
-        <a href="/2018/08/14/数据可视化/" class="archive-article-date">
-  	<time datetime="2018-08-13T23:58:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-14</time>
-</a>
-        
-      </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="如何提高可视化技术"><a href="#如何提高可视化技术" class="headerlink" title="如何提高可视化技术"></a>如何提高可视化技术</h3><ul>
-<li>牛顿经典力学</li>
-<li>函数、微积分</li>
-<li><p>工具</p>
-</li>
-<li><p>信息图表</p>
-<ul>
-<li>D3图形知识</li>
-<li>ECharts和G2</li>
-</ul>
-</li>
-<li><p>地理空间</p>
-<ul>
-<li>Leaflet</li>
-<li>OpenLayer</li>
-<li>Mapbox</li>
-</ul>
-</li>
-<li><p>三维空间</p>
-<ul>
-<li>three.js最全的webgl库</li>
-<li>spritejs好用的canvas动画库</li>
-</ul>
-</li>
-</ul>
-
+        
       
 
       
@@ -345,7 +290,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2018/08/14/数据可视化/">展开全文 >></a>
+          <a class="article-more-a" href="/2018/10/07/新世界/">展开全文 >></a>
         </p>
       
 
@@ -365,7 +310,7 @@
   
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/5/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><span class="space">&hellip;</span><a class="page-number" href="/page/15/">15</a><a class="extend next" rel="next" href="/page/7/">Next &raquo;</a>
+      <a class="extend prev" rel="prev" href="/page/5/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><span class="space">&hellip;</span><a class="page-number" href="/page/16/">16</a><a class="extend next" rel="next" href="/page/7/">Next &raquo;</a>
     </nav>
   
 
@@ -470,6 +415,14 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">canvas</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">开源</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Node.js</a>
               </li>
              
@@ -486,19 +439,11 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">canvas</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">开源</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">服务器</a>
+                <a href="javascript:void(0)" class="js-tag color1">react</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -506,7 +451,7 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">react</a>
+                <a href="javascript:void(0)" class="js-tag color4">服务器</a>
               </li>
             
             <div class="clearfix"></div>

@@ -28,7 +28,7 @@
 我当时是这么写的：
 
 1234567891011121314151617181920const throttle = (fn, time)=&amp;gt;&amp;#123;	return ()=&amp;gt;&amp;#123;	.... 略....	&amp;#125;&amp;#125;const useResize = (props)=&amp;g">
-<meta property="og:updated_time" content="2021-05-18T16:57:36.300Z">
+<meta property="og:updated_time" content="2021-05-28T23:15:44.167Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="记一次Ali笔试">
 <meta name="twitter:description" content="题目
@@ -237,6 +237,18 @@
 <li>播放器使用</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">componentDidMount() &#123;</div><div class="line"></div><div class="line">        if (this.container.current) &#123;</div><div class="line"></div><div class="line">            if (isSupported()) &#123;</div><div class="line">   					... 略...</div><div class="line">                 resizeHelper.observe(this.container.current, rect =&gt; &#123;</div><div class="line">                    this.setSize(rect.width);</div><div class="line">                &#125;);</div><div class="line">            &#125; </div><div class="line">        &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="扩展"><a href="#扩展" class="headerlink" title="扩展"></a>扩展</h3><h4 id="MutationObserver"><a href="#MutationObserver" class="headerlink" title="MutationObserver"></a>MutationObserver</h4><ul>
+<li>MutationObserver 监视对DOM树所做更改的能力。包括 增加/删除 子元素，修改子元素属性。</li>
+<li>MutationObserver 属于微任务。</li>
+<li>参考链接： <a href="https://developer.mozilla.org/zh-CN/docs/Web/API/MutationObserver" target="_blank" rel="external">https://developer.mozilla.org/zh-CN/docs/Web/API/MutationObserver</a><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">..... 略 .....</div><div class="line">const observer = new MutationObserver(callback);</div><div class="line"></div><div class="line">// 以上述配置开始观察目标节点</div><div class="line">observer.observe(targetNode, config);</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="IntersectionObserver"><a href="#IntersectionObserver" class="headerlink" title="IntersectionObserver"></a>IntersectionObserver</h4><ul>
+<li>一种异步检测目标元素与祖先元素或 viewport 相交情况变化的方法。</li>
+<li>可以实现图片懒加载——当图片滚动到可见时才进行加载</li>
+<li>属于轮询？<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">// 实现图片懒加载</div><div class="line">// 原理，底部的div可见就调用函数</div><div class="line">observer = new IntersectionObserver(changes =&gt; &#123;</div><div class="line">                changes.forEach(change =&gt; &#123;</div><div class="line">                    if (change.target == bottomRef.current &amp;&amp; change.isIntersecting) &#123;</div><div class="line">                        !stop &amp;&amp; nextPageFunc &amp;&amp; nextPageFunc();</div><div class="line">                    &#125;</div><div class="line">                &#125;);</div><div class="line">            &#125;);</div><div class="line"> observer.observe(bottomRef.current);</div></pre></td></tr></table></figure>
+</li>
+</ul>
 
       
 
@@ -339,6 +351,15 @@
 
   
 <nav id="article-nav">
+  
+    <a href="/2021/05/29/编译器工作原理/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          编译器工作原理
+        
+      </div>
+    </a>
   
   
     <a href="/2021/05/19/vscode调试xxx-js/" id="article-nav-older" class="article-nav-link-wrap">
@@ -478,6 +499,14 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">canvas</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">开源</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Node.js</a>
               </li>
              
@@ -494,19 +523,11 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">canvas</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">开源</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">服务器</a>
+                <a href="javascript:void(0)" class="js-tag color1">react</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -514,7 +535,7 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">react</a>
+                <a href="javascript:void(0)" class="js-tag color4">服务器</a>
               </li>
             
             <div class="clearfix"></div>
