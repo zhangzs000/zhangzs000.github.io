@@ -182,7 +182,7 @@
 <h3 id="笔试"><a href="#笔试" class="headerlink" title="笔试"></a>笔试</h3><ul>
 <li>我当时的思路大体这样的：</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">const throttle = (fn, time)=&gt;&#123;</div><div class="line">	return ()=&gt;&#123;</div><div class="line">	.... 略....</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">const useResize = (props)=&gt;&#123;</div><div class="line">	const [p, setP] = useState(&#123;...props&#125;);</div><div class="line">	const fn = function(e)&#123;</div><div class="line">	setP(&#123;width: e.clientWidth,  height: e.clientHeight&#125;)</div><div class="line">&#125;</div><div class="line"></div><div class="line">window.onresize= throttle(fn, 100)</div><div class="line">	return [&#123;width: p.width,  height: p.height&#125;, setP]</div><div class="line">&#125;</div><div class="line"></div><div class="line">const resizeComponent = ()=&gt;&#123;</div><div class="line">	const [data, SetData] = useResize(&#123;width: 1, height: 1&#125;)</div><div class="line">	return &lt;div&gt;&#123;data.width&#125; &#123;data.height&#125;&lt;/div&gt;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">const throttle = (fn, time)=&gt;&#123;</div><div class="line">	return ()=&gt;&#123;</div><div class="line">	.... 略....</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">const useResize = (props)=&gt;&#123;</div><div class="line">	const [p, setP] = useState(&#123;...props&#125;);</div><div class="line">	const fn = function(e)&#123;</div><div class="line">		setP(&#123;width: e.clientWidth,  height: e.clientHeight&#125;)</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	window.onresize= throttle(fn, 100)</div><div class="line">	</div><div class="line">	return [&#123;width: p.width,  height: p.height&#125;, setP]</div><div class="line">&#125;</div><div class="line"></div><div class="line">const resizeComponent = ()=&gt;&#123;</div><div class="line">	const [data, SetData] = useResize(&#123;width: 1, height: 1&#125;)</div><div class="line">	return &lt;div&gt;&#123;data.width&#125; &#123;data.height&#125;&lt;/div&gt;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h3 id="项目中"><a href="#项目中" class="headerlink" title="项目中"></a>项目中</h3><ul>
 <li>项目中是真实用到的，因为播放器的宽会随着屏幕变化</li>
 </ul>
@@ -592,15 +592,15 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">react</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">canvas</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">开源</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">react</a>
               </li>
              
               <li class="article-tag-list-item">
