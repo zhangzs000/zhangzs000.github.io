@@ -368,12 +368,10 @@
 <li><p>语法分析，描述了<code>代码语句中的每一个片段以及它们之间的关系</code>或者 <code>AST</code></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">// 语法规则 进阶 巴科范式</div><div class="line">add -&gt; multiple |multiple + add</div><div class="line">multiple -&gt; NUMBER | NUMBER * multiple</div><div class="line"></div><div class="line">// 算法： 递归向下，从外层往内层下降</div><div class="line">function toAST(tokenReader) &#123;</div><div class="line">  ... 略 ...</div><div class="line">  let child = additive(tokenReader); // 能推导出来，就 push</div><div class="line">  ... 略 ...</div><div class="line">&#125;</div><div class="line"></div><div class="line">function additive(tokenReader) &#123;</div><div class="line">  let child1 = minus(tokenReader);</div><div class="line">  ... 略 ...</div><div class="line">      let child2 = additive(tokenReader);</div><div class="line">     ... 略 ...</div><div class="line">&#125;</div><div class="line">... 略 ...</div></pre></td></tr></table></figure>
 </li>
-<li><p>逆波兰计算器</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">https://www.youtube.com/watch?v=635SxlJgq7I&amp;list=PLmOn9nNkQxJFvyhDYx0ya4F75uTtUHA_f&amp;index=36</div></pre></td></tr></table></figure>
-</li>
 <li><p>根据AST递归计算(很多相似结构)</p>
 </li>
 </ul>
+<h6 id="逆波兰计算器"><a href="#逆波兰计算器" class="headerlink" title="逆波兰计算器"></a>逆波兰计算器</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">https://www.youtube.com/watch?v=635SxlJgq7I&amp;list=PLmOn9nNkQxJFvyhDYx0ya4F75uTtUHA_f&amp;index=36</div></pre></td></tr></table></figure>
 <h4 id="汉诺塔"><a href="#汉诺塔" class="headerlink" title="汉诺塔"></a>汉诺塔</h4><p>##### </p>
 
       
