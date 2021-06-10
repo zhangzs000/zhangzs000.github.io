@@ -155,6 +155,109 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-前端监控" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/06/11/前端监控/">前端监控</a>
+    </h1>
+  
+
+        
+        <a href="/2021/06/11/前端监控/" class="archive-article-date">
+  	<time datetime="2021-06-10T22:19:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-11</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="什么是前端监控"><a href="#什么是前端监控" class="headerlink" title="什么是前端监控"></a>什么是前端监控</h3><ul>
+<li>对前端性能和错误的监控</li>
+</ul>
+<h3 id="为什么要做前端监控"><a href="#为什么要做前端监控" class="headerlink" title="为什么要做前端监控"></a>为什么要做前端监控</h3><ul>
+<li>更快发现问题和解决问题</li>
+<li>做产品的决策依据</li>
+<li>提升前端工程师的技术深度和广度</li>
+<li>为业务扩展提供了更多可能性</li>
+</ul>
+<h3 id="怎么做前端监控"><a href="#怎么做前端监控" class="headerlink" title="怎么做前端监控"></a>怎么做前端监控</h3><ul>
+<li><p>jsError</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">window.addEventListener(&quot;error&quot;,function()&#123;&#125;, true)</div></pre></td></tr></table></figure>
+</li>
+<li><p>promiseError</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">window.addEventListener(&quot;unhandledrejection&quot;,function()&#123;&#125;, true)</div></pre></td></tr></table></figure>
+</li>
+<li><p>资源加载</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">// 必须捕获过程，并且先加载 window.addEventListener</div><div class="line">&lt;script type=&quot;text/javascript&quot;&gt;</div><div class="line">	window.addEventListener(&apos;error&apos;,(e)=&gt;&#123;</div><div class="line">		console.log(&apos;e: &apos;,e)</div><div class="line">	&#125;, true)</div><div class="line">&lt;/script&gt;</div><div class="line">&lt;script type=&quot;text/javascript&quot; src=&quot;./xxx.js&quot;&gt;&lt;/script&gt;</div></pre></td></tr></table></figure>
+</li>
+<li><p>加载时间</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">new PerformanceObserver((entryList, observer) =&gt; &#123;&#125;).observe(&#123; type: &quot;xx&quot;, buffered: true &#125;);</div><div class="line">performance.timing</div></pre></td></tr></table></figure>
+</li>
+<li><p>监听白屏幕</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">// 返还在特定坐标点下的HTML元素数组</div><div class="line">document.elementsFromPoint()</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="怎么上报"><a href="#怎么上报" class="headerlink" title="怎么上报"></a>怎么上报</h3><ul>
+<li><p>gif 图</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">gif 图片做上传, 图片速度快, 没有跨域问题；</div></pre></td></tr></table></figure>
+</li>
+<li><p>post请求</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">无长度限制，阿里云上报;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="链家开源项目：灯塔"><a href="#链家开源项目：灯塔" class="headerlink" title="链家开源项目：灯塔"></a>链家开源项目：灯塔</h3><p><a href="https://github.com/LianjiaTech/fee" target="_blank" rel="external">https://github.com/LianjiaTech/fee</a></p>
+<h4 id="环境配置"><a href="#环境配置" class="headerlink" title="环境配置"></a>环境配置</h4><ul>
+<li><p>系统版本</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">MacOs 10.13.4</div></pre></td></tr></table></figure>
+</li>
+<li><p>mysql</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">5.6.39</div><div class="line">参考链接：</div><div class="line">https://downloads.mysql.com/archives/community/</div><div class="line">https://www.cnblogs.com/benbenzhu/p/5578162.html</div></pre></td></tr></table></figure>
+</li>
+<li><p>redis</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">6.2.4</div><div class="line">参考链接：</div><div class="line">https://redis.io/download</div><div class="line">https://www.jianshu.com/p/3bdfda703552</div></pre></td></tr></table></figure>
+</li>
+<li><p>nginx</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">1.18.0</div><div class="line">http://nginx.org/en/download.html</div><div class="line">https://www.yinxiang.com/everhub/note/6d95496a-1f34-444e-bcce-607a94cb7955</div></pre></td></tr></table></figure>
+</li>
+<li><p>未解决问题</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">很多细节问题，比如 mysql`max key length ` 等，懒得折腾</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="项目流程"><a href="#项目流程" class="headerlink" title="项目流程"></a>项目流程</h4><p><img src="/assets/blogImg/jk/j1.jpg" alt="alt text" title="测试图片"></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/06/11/前端监控/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
     <article id="post-微前端应用" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -181,12 +284,19 @@
 <li>3.有一个公共项目，每次版本更新，所有项目都待上下线，虽然我们上线是前端直接点击Jenkins。</li>
 </ul>
 <p>在不断得工作和学习，自己想到了<code>完美的解决方案</code>。</p>
-<p>需求是什么(what), 怎么处理(how), 为什么这么处理(why), 3W原则 -<code>题记</code></p>
 <h3 id="微前端"><a href="#微前端" class="headerlink" title="微前端"></a>微前端</h3><ul>
-<li>微前端是</li>
+<li>微前端就是将不同的功能按照不同的维度拆分成多个子应用，通过主应用来加载这些子应用。还有后端的微服务是面向服务架构（SOA）的一种变体，把应用程序设计成一系列松耦合的细粒度服务，并通过轻量级的通信协议组织起来。</li>
 <li>使用微前端可以解决前两个问题</li>
-<li>公共项目版本更新的原理类似<code>协商缓存</code></li>
+<li>公共项目版本更新的原理类似<code>协商缓存</code><h4 id="实现原理"><a href="#实现原理" class="headerlink" title="实现原理"></a>实现原理</h4></li>
+<li><p>应用的加载与切换</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">// 路由实现</div></pre></td></tr></table></figure>
+</li>
+<li><p>应用的隔离与通信</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">// 父子，子子应用通信</div><div class="line">父子通信 props</div><div class="line">子子通信 window对象，发布订阅模式</div></pre></td></tr></table></figure>
+</li>
 </ul>
+<p>参考链接：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">https://blog.csdn.net/webyouxuan/article/details/107603165</div></pre></td></tr></table></figure></p>
+<h3 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h3><p>参考链接：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">https://mp.weixin.qq.com/s?__biz=MzI3NTM5NDgzOA==&amp;mid=2247496957&amp;idx=2&amp;sn=4020ee80490cb78b7215f3fd8e3bb7dc&amp;chksm=eb07cc84dc704592f91893620981863c5f0d3603e273e04bad109724b1d1ba7590594a2a4308&amp;mpshare=1&amp;scene=1&amp;srcid=0528HdOyZzGuc6ZcznDaTBXV&amp;sharer_sharetime=1623205674082&amp;sharer_shareid=addda33c4eab5e9d285d29057d1ba689#rd</div></pre></td></tr></table></figure></p>
 
       
 
@@ -244,7 +354,27 @@
 </ul>
 <h4 id="计算器"><a href="#计算器" class="headerlink" title="计算器"></a>计算器</h4><h5 id="平时支持-x-的简单计算器是如何计算的"><a href="#平时支持-x-的简单计算器是如何计算的" class="headerlink" title="平时支持 +-x/ 的简单计算器是如何计算的"></a>平时支持 +-x/ 的简单计算器是如何计算的</h5><ul>
 <li>粗糙的做法 eval()</li>
+<li>栈</li>
+<li>编译原理</li>
+<li>逆波兰计算器</li>
 </ul>
+<h6 id="栈"><a href="#栈" class="headerlink" title="栈"></a>栈</h6><p><img src="/assets/blogImg/yys/y1.jpg" alt="alt text" title="测试图片"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div></pre></td><td class="code"><pre><div class="line">/**</div><div class="line"> * @param &#123;string&#125; s</div><div class="line"> * @return &#123;number&#125;</div><div class="line"> */</div><div class="line">var calculate = function(s) &#123;</div><div class="line">    let i=0; </div><div class="line">    let len = s.length;</div><div class="line">    let pre = &apos;+&apos;;</div><div class="line">    let num = 0;</div><div class="line">    let q =[];</div><div class="line">    while(i&lt;len)&#123;</div><div class="line">        let c = s[i];</div><div class="line">        if(!isNaN(c) &amp;&amp; c!==&apos; &apos;)&#123;</div><div class="line">            num = num*10 + Number(c)</div><div class="line">        &#125; </div><div class="line">        if(isNaN(c) || i=== len - 1)  &#123;</div><div class="line">            if(pre === &apos;+&apos;)&#123;</div><div class="line">                q.push(num)</div><div class="line">                pre = c;</div><div class="line">                num = 0;</div><div class="line">            &#125; else if(pre === &apos;-&apos;)&#123;</div><div class="line">                q.push(-num )</div><div class="line">                pre = c;</div><div class="line">                num = 0;</div><div class="line">            &#125; else if(pre === &apos;*&apos;)&#123;</div><div class="line">                q.push( q.pop() * num )</div><div class="line">                pre = c;</div><div class="line">                num = 0;</div><div class="line">            &#125; else if(pre === &apos;/&apos;)&#123;</div><div class="line"> // 取整</div><div class="line">                q.push( q.pop() / num | 0 )</div><div class="line">                pre = c;</div><div class="line">                num = 0;</div><div class="line">            &#125; </div><div class="line">        &#125;</div><div class="line">        i++</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    return q.reduce((a,b)=&gt;a+b, 0)</div><div class="line"></div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<h6 id="双栈"><a href="#双栈" class="headerlink" title="双栈"></a>双栈</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
+<h6 id="编译原理"><a href="#编译原理" class="headerlink" title="编译原理"></a>编译原理</h6><ul>
+<li><p>分词</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">// 方法一：正则匹配</div><div class="line">while (true) &#123;</div><div class="line">// 每次循环匹配出相应的 token</div><div class="line">    let result = RegExpObject.exec(script);</div><div class="line">    ... 略 ...</div><div class="line">  &#125;</div><div class="line"></div><div class="line">// 方法二：有限状态机</div><div class="line">function start(char) &#123;</div><div class="line">  if (char === &quot;&lt;&quot;) &#123;</div><div class="line">    emit(&#123; type: tokenTypes.LeftParentheses, value: &quot;&lt;&quot; &#125;);</div><div class="line">    return foundLeftParentheses; //找到了 &lt;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line">function foundLeftParentheses(char) &#123;</div><div class="line">  ... 略 ...</div><div class="line">&#125;</div><div class="line">... 略 ..</div><div class="line">let state = start;</div><div class="line">for (let char of input) &#123;</div><div class="line">    if (state) state = state(char);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>语法分析，描述了<code>代码语句中的每一个片段以及它们之间的关系</code>或者 <code>AST</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">// 语法规则 进阶 巴科范式</div><div class="line">add -&gt; multiple |multiple + add</div><div class="line">multiple -&gt; NUMBER | NUMBER * multiple</div><div class="line"></div><div class="line">// 算法： 递归向下，从外层往内层下降</div><div class="line">function toAST(tokenReader) &#123;</div><div class="line">  ... 略 ...</div><div class="line">  let child = additive(tokenReader); // 能推导出来，就 push</div><div class="line">  ... 略 ...</div><div class="line">&#125;</div><div class="line"></div><div class="line">function additive(tokenReader) &#123;</div><div class="line">  let child1 = minus(tokenReader);</div><div class="line">  ... 略 ...</div><div class="line">      let child2 = additive(tokenReader);</div><div class="line">     ... 略 ...</div><div class="line">&#125;</div><div class="line">... 略 ...</div></pre></td></tr></table></figure>
+</li>
+<li><p>逆波兰计算器</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">https://www.youtube.com/watch?v=635SxlJgq7I&amp;list=PLmOn9nNkQxJFvyhDYx0ya4F75uTtUHA_f&amp;index=36</div></pre></td></tr></table></figure>
+</li>
+<li><p>根据AST递归计算(很多相似结构)</p>
+</li>
+</ul>
+<h4 id="汉诺塔"><a href="#汉诺塔" class="headerlink" title="汉诺塔"></a>汉诺塔</h4><p>##### </p>
 
       
 
@@ -258,103 +388,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2021/05/29/有意思的问题/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-编译器工作原理" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/05/29/编译器工作原理/">编译器工作原理</a>
-    </h1>
-  
-
-        
-        <a href="/2021/05/29/编译器工作原理/" class="archive-article-date">
-  	<time datetime="2021-05-28T23:19:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-05-29</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>[TOC]</p>
-<h3 id="编译器工作流"><a href="#编译器工作流" class="headerlink" title="编译器工作流"></a>编译器工作流</h3><ul>
-<li>解析<ul>
-<li>词法分析</li>
-<li>语法分析</li>
-</ul>
-</li>
-<li>遍历</li>
-<li>转化</li>
-<li>代码生成</li>
-</ul>
-<h4 id="解析"><a href="#解析" class="headerlink" title="解析"></a>解析</h4><ul>
-<li>解析(Parsing)解析是将最初原始的代码转换为一种更加抽象的表示(即AST)</li>
-<li><code>词法分析</code>接收原始代码,然后把它分割成一些token </li>
-<li><code>语法分析</code>接收之 前生成的token ， 把它们转换成一种抽象的表示AST(Vue与React互转)</li>
-</ul>
-<h6 id="词法分析-Lexical-Analysis"><a href="#词法分析-Lexical-Analysis" class="headerlink" title="词法分析(Lexical Analysis)"></a>词法分析(Lexical Analysis)</h6><ul>
-<li><code>词法分析</code>接收原始代码,然后把它分割成一些被称为token 的东西，这个过程是在词法分析器(Tokenizer或者Lexer)中完成的</li>
-<li><p>原始代码</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;h1 id=&quot;title&quot;&gt;hello world&lt;/h1&gt;</div></pre></td></tr></table></figure>
-</li>
-<li><p>token (分词)</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">Module &#123;</div><div class="line">  type: &apos;Program&apos;,</div><div class="line">  body:</div><div class="line">   [ ExpressionStatement &#123; type: &apos;ExpressionStatement&apos;, expression: [JSXElement] &#125; ],</div><div class="line">  sourceType: &apos;module&apos;,</div><div class="line">  tokens:</div><div class="line">   [ &#123; type: &apos;Punctuator&apos;, value: &apos;&lt;&apos; &#125;,</div><div class="line">     &#123; type: &apos;JSXIdentifier&apos;, value: &apos;h1&apos; &#125;,</div><div class="line">     &#123; type: &apos;JSXIdentifier&apos;, value: &apos;id&apos; &#125;,</div><div class="line">     &#123; type: &apos;Punctuator&apos;, value: &apos;=&apos; &#125;,</div><div class="line">     &#123; type: &apos;String&apos;, value: &apos;&quot;title&quot;&apos; &#125;,</div><div class="line">     &#123; type: &apos;Punctuator&apos;, value: &apos;&gt;&apos; &#125;,</div><div class="line">     &#123; type: &apos;JSXText&apos;, value: &apos;hello world&apos; &#125;,</div><div class="line">     &#123; type: &apos;Punctuator&apos;, value: &apos;&lt;&apos; &#125;,</div><div class="line">     &#123; type: &apos;Punctuator&apos;, value: &apos;/&apos; &#125;,</div><div class="line">     &#123; type: &apos;JSXIdentifier&apos;, value: &apos;h1&apos; &#125;,</div><div class="line">     &#123; type: &apos;Punctuator&apos;, value: &apos;&gt;&apos; &#125; ] &#125;</div></pre></td></tr></table></figure>
-</li>
-<li><p>实现方式(算法下一篇实现)</p>
-<ul>
-<li>有限状态机</li>
-<li>正则 </li>
-</ul>
-</li>
-</ul>
-<h6 id="语法分析-Syntactic-Analysis"><a href="#语法分析-Syntactic-Analysis" class="headerlink" title="语法分析(Syntactic Analysis)"></a>语法分析(Syntactic Analysis)</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  &quot;type&quot;: &quot;Program&quot;,</div><div class="line">  &quot;body&quot;: [</div><div class="line">    &#123;</div><div class="line">      &quot;type&quot;: &quot;ExpressionStatement&quot;,</div><div class="line">      &quot;expression&quot;: &#123;</div><div class="line">        &quot;type&quot;: &quot;JSXElement&quot;,</div><div class="line">        &quot;openingElement&quot;: &#123;</div><div class="line">          &quot;type&quot;: &quot;JSXOpeningElement&quot;,</div><div class="line">          &quot;name&quot;: &#123;</div><div class="line">            &quot;type&quot;: &quot;JSXIdentifier&quot;,</div><div class="line">            &quot;name&quot;: &quot;h1&quot;,</div><div class="line">          &#125;,</div><div class="line">          &quot;selfClosing&quot;: false,</div><div class="line">          &quot;attributes&quot;: [</div><div class="line">            &#123;</div><div class="line">              &quot;type&quot;: &quot;JSXAttribute&quot;,</div><div class="line">              &quot;name&quot;: &#123;</div><div class="line">                &quot;type&quot;: &quot;JSXIdentifier&quot;,</div><div class="line">                &quot;name&quot;: &quot;id&quot;,</div><div class="line">              &#125;,</div><div class="line">              &quot;value&quot;: &#123;</div><div class="line">                &quot;type&quot;: &quot;Literal&quot;,</div><div class="line">                &quot;value&quot;: &quot;title&quot;,</div><div class="line">                &quot;raw&quot;: &quot;\&quot;title\&quot;&quot;,</div><div class="line">              &#125;</div><div class="line">            &#125;</div><div class="line">          ]</div><div class="line">        &#125;,</div><div class="line">        &quot;children&quot;: [</div><div class="line">          &#123;</div><div class="line">            &quot;type&quot;: &quot;JSXText&quot;,</div><div class="line">            &quot;value&quot;: &quot;hello world&quot;,</div><div class="line">            &quot;raw&quot;: &quot;hello world&quot;</div><div class="line">          &#125;</div><div class="line">        ],</div><div class="line">        &quot;closingElement&quot;: &#123;</div><div class="line">          &quot;type&quot;: &quot;JSXClosingElement&quot;,</div><div class="line">          &quot;name&quot;: &#123;</div><div class="line">            &quot;type&quot;: &quot;JSXIdentifier&quot;,</div><div class="line">            &quot;name&quot;: &quot;h1&quot;,</div><div class="line">          &#125;,</div><div class="line">        &#125;,</div><div class="line">      &#125;,</div><div class="line">    &#125;</div><div class="line">  ],</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ul>
-<li>实现方式(算法下一篇实现)<ul>
-<li>递归下降算法</li>
-</ul>
-</li>
-</ul>
-<h4 id="遍历"><a href="#遍历" class="headerlink" title="遍历"></a>遍历</h4><ul>
-<li>对于上面的AST进行使用的是<code>深度优先遍历</code>。</li>
-</ul>
-<h4 id="转化"><a href="#转化" class="headerlink" title="转化"></a>转化</h4><ul>
-<li>它只是把AST拿过来然后对它做一些修改。</li>
-</ul>
-<h4 id="代码生成"><a href="#代码生成" class="headerlink" title="代码生成"></a>代码生成</h4><ul>
-<li>编译器的最后一个阶段是代码生成，根据AST来输出代码。</li>
-</ul>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/05/29/编译器工作原理/">展开全文 >></a>
         </p>
       
 
@@ -475,6 +508,10 @@ var _hmt = _hmt || [];
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">前端架构</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Node.js</a>
               </li>
              
@@ -491,14 +528,6 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">前端架构</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">react</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">canvas</a>
               </li>
              
@@ -507,15 +536,19 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">react</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">服务器</a>
+                <a href="javascript:void(0)" class="js-tag color5">前端框架</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">前端框架</a>
+                <a href="javascript:void(0)" class="js-tag color4">服务器</a>
               </li>
             
             <div class="clearfix"></div>

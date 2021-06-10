@@ -14,7 +14,8 @@
 3.有一个公共项目，每次版本更新，所有项目都待上下线，虽然我们上线是前端直接点击Jenkins。
 
 在不断得工作和学习，自己想到了完美的解决方案。
-需求是什么(what), 怎么处理(how), 为什么这么处理(why), 3W原则">
+微前端
+微前端就是将不同的功能按照不同的维度拆分成多个子应用，通过主应用来加载这些子应">
 <meta property="og:type" content="article">
 <meta property="og:title" content="微前端应用">
 <meta property="og:url" content="http://yoursite.com/2021/05/29/微前端应用/index.html">
@@ -25,8 +26,9 @@
 3.有一个公共项目，每次版本更新，所有项目都待上下线，虽然我们上线是前端直接点击Jenkins。
 
 在不断得工作和学习，自己想到了完美的解决方案。
-需求是什么(what), 怎么处理(how), 为什么这么处理(why), 3W原则">
-<meta property="og:updated_time" content="2021-05-28T23:28:59.667Z">
+微前端
+微前端就是将不同的功能按照不同的维度拆分成多个子应用，通过主应用来加载这些子应">
+<meta property="og:updated_time" content="2021-06-10T22:18:40.976Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="微前端应用">
 <meta name="twitter:description" content="需求在以前公司工作时，有几个不是特别友好的问题：
@@ -35,7 +37,8 @@
 3.有一个公共项目，每次版本更新，所有项目都待上下线，虽然我们上线是前端直接点击Jenkins。
 
 在不断得工作和学习，自己想到了完美的解决方案。
-需求是什么(what), 怎么处理(how), 为什么这么处理(why), 3W原则">
+微前端
+微前端就是将不同的功能按照不同的维度拆分成多个子应用，通过主应用来加载这些子应">
   
     <link rel="alternative" href="/atom.xml" title="zhangzs的博客" type="application/atom+xml">
   
@@ -201,12 +204,19 @@
 <li>3.有一个公共项目，每次版本更新，所有项目都待上下线，虽然我们上线是前端直接点击Jenkins。</li>
 </ul>
 <p>在不断得工作和学习，自己想到了<code>完美的解决方案</code>。</p>
-<p>需求是什么(what), 怎么处理(how), 为什么这么处理(why), 3W原则 -<code>题记</code></p>
 <h3 id="微前端"><a href="#微前端" class="headerlink" title="微前端"></a>微前端</h3><ul>
-<li>微前端是</li>
+<li>微前端就是将不同的功能按照不同的维度拆分成多个子应用，通过主应用来加载这些子应用。还有后端的微服务是面向服务架构（SOA）的一种变体，把应用程序设计成一系列松耦合的细粒度服务，并通过轻量级的通信协议组织起来。</li>
 <li>使用微前端可以解决前两个问题</li>
-<li>公共项目版本更新的原理类似<code>协商缓存</code></li>
+<li>公共项目版本更新的原理类似<code>协商缓存</code><h4 id="实现原理"><a href="#实现原理" class="headerlink" title="实现原理"></a>实现原理</h4></li>
+<li><p>应用的加载与切换</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">// 路由实现</div></pre></td></tr></table></figure>
+</li>
+<li><p>应用的隔离与通信</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">// 父子，子子应用通信</div><div class="line">父子通信 props</div><div class="line">子子通信 window对象，发布订阅模式</div></pre></td></tr></table></figure>
+</li>
 </ul>
+<p>参考链接：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">https://blog.csdn.net/webyouxuan/article/details/107603165</div></pre></td></tr></table></figure></p>
+<h3 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h3><p>参考链接：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">https://mp.weixin.qq.com/s?__biz=MzI3NTM5NDgzOA==&amp;mid=2247496957&amp;idx=2&amp;sn=4020ee80490cb78b7215f3fd8e3bb7dc&amp;chksm=eb07cc84dc704592f91893620981863c5f0d3603e273e04bad109724b1d1ba7590594a2a4308&amp;mpshare=1&amp;scene=1&amp;srcid=0528HdOyZzGuc6ZcznDaTBXV&amp;sharer_sharetime=1623205674082&amp;sharer_shareid=addda33c4eab5e9d285d29057d1ba689#rd</div></pre></td></tr></table></figure></p>
 
       
 
@@ -309,6 +319,15 @@
 
   
 <nav id="article-nav">
+  
+    <a href="/2021/06/11/前端监控/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          前端监控
+        
+      </div>
+    </a>
   
   
     <a href="/2021/05/29/有意思的问题/" id="article-nav-older" class="article-nav-link-wrap">
@@ -444,6 +463,10 @@ var _hmt = _hmt || [];
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">前端架构</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Node.js</a>
               </li>
              
@@ -460,14 +483,6 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">前端架构</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">react</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">canvas</a>
               </li>
              
@@ -476,15 +491,19 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">react</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">服务器</a>
+                <a href="javascript:void(0)" class="js-tag color5">前端框架</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">前端框架</a>
+                <a href="javascript:void(0)" class="js-tag color4">服务器</a>
               </li>
             
             <div class="clearfix"></div>
