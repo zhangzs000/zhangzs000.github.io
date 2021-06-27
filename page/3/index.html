@@ -155,6 +155,69 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-vscode调试xxx-js" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/05/19/vscode调试xxx-js/">vscode调试xxx.js</a>
+    </h1>
+  
+
+        
+        <a href="/2021/05/19/vscode调试xxx-js/" class="archive-article-date">
+  	<time datetime="2021-05-18T16:46:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-05-19</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="调试-js文件"><a href="#调试-js文件" class="headerlink" title="调试 js文件"></a>调试 js文件</h3><h4 id="vscode-版本-1-56-2"><a href="#vscode-版本-1-56-2" class="headerlink" title="vscode 版本: 1.56.2"></a>vscode 版本: 1.56.2</h4><p>调试js文件时默认添加的配置是这样的<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">      &quot;type&quot;: &quot;pwa-node&quot;,</div><div class="line">      &quot;request&quot;: &quot;launch&quot;,</div><div class="line">      &quot;name&quot;: &quot;Launch Program&quot;,</div><div class="line">      &quot;skipFiles&quot;: [</div><div class="line">        &quot;&lt;node_internals&gt;/**&quot;</div><div class="line">      ],</div><div class="line">      &quot;program&quot;: &quot;$&#123;workspaceFolder&#125;/crawl/compiler/src/parser.js&quot;</div><div class="line">    &#125;</div></pre></td></tr></table></figure></p>
+<p>你会发现不管怎么搞都走不到断点，这是<code>为什么</code>呢？？？？？？其实你只需要修改 type 参数就可以了。</p>
+<ul>
+<li><p>保证 type 和 路径正确，可以调试</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">      &quot;type&quot;: &quot;node&quot;,</div><div class="line">      &quot;request&quot;: &quot;launch&quot;,</div><div class="line">      &quot;name&quot;: &quot;Launch Program&quot;,</div><div class="line">      &quot;skipFiles&quot;: [</div><div class="line">        &quot;&lt;node_internals&gt;/**&quot;</div><div class="line">      ],</div><div class="line">      &quot;program&quot;: &quot;$&#123;workspaceFolder&#125;/crawl/compiler/src/parser.js&quot;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>修改 settings.json<br>去除掉 <code>&quot;debug.javascript.usePreview&quot;: false,</code>后发现，即使 “type”: “node” 都走不了断点，不好使。</p>
+</li>
+<li><p>并且 debugger 运行时必须选择 Launch Progrem 。难道要和 launch.json 中的name 值一致？</p>
+</li>
+</ul>
+<h4 id="另一台-mac"><a href="#另一台-mac" class="headerlink" title="另一台 mac"></a>另一台 mac</h4><p>但是我换另一台mac笔记本配置如下，却是可以正常 debugger 的，那我就不知道为什么了：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">      &quot;name&quot;: &quot;Launch Program&quot;,</div><div class="line">      &quot;program&quot;: &quot;$&#123;workspaceFolder&#125;/compiler/src/parser.js&quot;,</div><div class="line">      &quot;request&quot;: &quot;launch&quot;,</div><div class="line">      &quot;skipFiles&quot;: [</div><div class="line">        &quot;&lt;node_internals&gt;/**&quot;</div><div class="line">      ],</div><div class="line">      &quot;type&quot;: &quot;pwa-node&quot;</div><div class="line">    &#125;</div></pre></td></tr></table></figure></p>
+<p>node 和 pwa-node的区别：<br><a href="https://segmentfault.com/q/1010000023049217?utm_source=tag-newest" target="_blank" rel="external">https://segmentfault.com/q/1010000023049217?utm_source=tag-newest</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/05/19/vscode调试xxx-js/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
     <article id="post-youtube札记" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -385,92 +448,9 @@
 
 
   
-    <article id="title-札记" class="article article-type-title  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/08/30/札记/">札记</a>
-    </h1>
-  
-
-        
-        <a href="/2020/08/30/札记/" class="archive-article-date">
-  	<time datetime="2020-08-30T14:48:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-08-30</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="网上偶然看见一道题"><a href="#网上偶然看见一道题" class="headerlink" title="网上偶然看见一道题"></a>网上偶然看见一道题</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">const delay = (ms) =&gt; new Promise((resolve) =&gt; setTimeout(resolve, ms));</div><div class="line">const subFlow = createFlow([() =&gt; delay(1000).then(() =&gt; log(&quot;c&quot;))]);</div><div class="line"></div><div class="line">createFlow([</div><div class="line">  () =&gt; log(&quot;a&quot;),</div><div class="line">  () =&gt; log(&quot;b&quot;),</div><div class="line">  subFlow,</div><div class="line">  [() =&gt; delay(1000).then(() =&gt; log(&quot;d&quot;)), () =&gt; log(&quot;e&quot;)],</div><div class="line">]).run(() =&gt; &#123;</div><div class="line">  console.log(&quot;done&quot;);</div><div class="line">&#125;);</div><div class="line">// 需要按照 a,b,延迟1秒,c,延迟1秒,d,e, done 的顺序打印复制代码</div><div class="line">按照上面的测试用例，实现 createFlow：</div><div class="line">1.flow 是指一系列 effects 组成的逻辑片段。</div><div class="line">2.flow 支持嵌套。</div><div class="line">3.effects 的执行只需要支持串行。</div></pre></td></tr></table></figure>
-<ul>
-<li>如果是异步串行呢，想到的就是用next函数了，</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">const log = console.log;</div><div class="line">function createFlow(effects)&#123;</div><div class="line">	effects = effects.flat();</div><div class="line">	return &#123;</div><div class="line">		async run (cb)&#123;</div><div class="line">			for (let i = 0; i &lt; effects.length; i++) &#123;</div><div class="line">				if(effects[i].run)&#123;</div><div class="line">					await effects[i].run()</div><div class="line">				&#125; else &#123;</div><div class="line">					await effects[i]()</div><div class="line">				&#125;</div><div class="line">			&#125;</div><div class="line">			cb &amp;&amp; cb()</div><div class="line">		&#125;</div><div class="line">	&#125; </div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ul>
-<li><code>async await</code>通过 babel 转义成 generator</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">// 测试代码</div><div class="line">async function test()&#123;</div><div class="line">  await 1</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">// 测试代码转义后</div><div class="line">// https://babeljs.io/</div><div class="line">...</div><div class="line"></div><div class="line">function _test() &#123;</div><div class="line">  _test = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() &#123;</div><div class="line">    return regeneratorRuntime.wrap(function _callee$(_context) &#123;</div><div class="line">      while (1) &#123;</div><div class="line">        switch (_context.prev = _context.next) &#123;</div><div class="line">          case 0:</div><div class="line">            _context.next = 2;</div><div class="line">            return 1;</div><div class="line"></div><div class="line">          case 2:</div><div class="line">          case &quot;end&quot;:</div><div class="line">            return _context.stop();</div><div class="line">        &#125;</div><div class="line">      &#125;</div><div class="line">    &#125;, _callee);</div><div class="line">  &#125;));</div></pre></td></tr></table></figure>
-<ul>
-<li>而 generator 内部实现也是通过 <code>next</code> 函数执行， 就是下面的 <code>_next</code></li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">...</div><div class="line"></div><div class="line">function asyncGeneratorStep(</div><div class="line">        gen,</div><div class="line">        resolve,</div><div class="line">        reject,</div><div class="line">        _next,</div><div class="line">        _throw,</div><div class="line">        key,</div><div class="line">        arg</div><div class="line">      ) &#123;</div><div class="line">        try &#123;</div><div class="line">          var info = gen[key](arg);</div><div class="line">          var value = info.value;</div><div class="line">        &#125; catch (error) &#123;</div><div class="line">          reject(error);</div><div class="line">          return;</div><div class="line">        &#125;</div><div class="line">        if (info.done) &#123;</div><div class="line">          resolve(value);</div><div class="line">        &#125; else &#123;</div><div class="line">          Promise.resolve(value).then(_next, _throw);</div><div class="line">        &#125;</div><div class="line">      &#125;</div></pre></td></tr></table></figure>
-<ul>
-<li>将下面 generator 测试函数babel 编译后, 发现确实是和 <code>async + await</code>一样都用了 <code>regeneratorRuntime</code></li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">function *test()&#123;</div><div class="line">        let n1 = yield new Promise(r=&gt;setTimeout(()=&gt;r(1), 1000));</div><div class="line">        let n2 = yield new Promise(r=&gt;setTimeout(()=&gt;r(2+n1), 1000));</div><div class="line">        return n2</div><div class="line">    &#125;  </div><div class="line">    const gen = test()</div><div class="line">    let &#123; value, done &#125; = gen.next();</div><div class="line">    value.then((data) =&gt; &#123;</div><div class="line">        console.log(&apos;then: &apos;,data);</div><div class="line">        let &#123; value, done &#125; = gen.next(data);</div><div class="line">        value.then(function (data) &#123;</div><div class="line">            console.log(&apos;then: &apos;,data);</div><div class="line">        &#125;);</div><div class="line">    &#125;);</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">...</div><div class="line">return regeneratorRuntime.wrap(function test$(_context) &#123;</div><div class="line">    while (1) &#123;</div><div class="line">      switch (_context.prev = _context.next) &#123;</div><div class="line">        case 0:</div><div class="line">          _context.next = 2;</div><div class="line">          return new Promise(function (r) &#123;</div><div class="line">            return setTimeout(function () &#123;</div><div class="line">              return r(1);</div><div class="line">            &#125;, 1000);</div><div class="line">          &#125;);</div><div class="line"></div><div class="line">        case 2:</div><div class="line">          n1 = _context.sent;</div><div class="line">          _context.next = 5;</div><div class="line">          return new Promise(function (r) &#123;</div><div class="line">            return setTimeout(function () &#123;</div><div class="line">              return r(2 + n1);</div><div class="line">            &#125;, 1000);</div><div class="line">          &#125;);</div><div class="line">  ......</div></pre></td></tr></table></figure>
-<ul>
-<li>generator 函数执行又会产生一个<code>迭代器</code>, 例如下面2 函数是等价的</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">let arr = [...&#123;0: 1, 1: 2, 2: 3,length: 3,</div><div class="line">        [Symbol.iterator]:function()&#123;</div><div class="line">            let i = 0;</div><div class="line">            return &#123;</div><div class="line">                next: ()=&gt;&#123;</div><div class="line">                    return i&gt;this.length? &#123;done: true, value: undefined&#125; : &#123;done: false, value: this[i++]&#125;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    </div><div class="line">    &#125;]</div><div class="line">    for(let e of arr)&#123;</div><div class="line">        console.log(&apos;e: &apos;, e)</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">let arr = [...&#123;0: 1, 1: 2, 2: 3,length: 3,</div><div class="line">        [Symbol.iterator]: function*()&#123;</div><div class="line">            let i=0;</div><div class="line">            while(i!==this.length)&#123;</div><div class="line">                yield this[i++]</div><div class="line">            &#125;</div><div class="line">            yield this[i]</div><div class="line">        &#125;</div><div class="line">    </div><div class="line">    &#125;]</div><div class="line">    for(let e of arr)&#123;</div><div class="line">        console.log(&apos;e: &apos;, e)</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
-<ul>
-<li>上面在处理Promise的过程可以优化成 <code>co</code> 库的形式</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">function myCo(it) &#123;</div><div class="line">    return new Promise((resolve, reject) =&gt; &#123;</div><div class="line">      function next(r) &#123;</div><div class="line">        let &#123; value, done &#125; = it.next(r);</div><div class="line">        if (!done) &#123;</div><div class="line">          Promise.resolve(value).then((r) =&gt; &#123;</div><div class="line">            console.log(&quot;r: &quot;, r);</div><div class="line">            next(r);</div><div class="line">          &#125;);</div><div class="line">        &#125; else &#123;</div><div class="line">          resolve(value);</div><div class="line">        &#125;</div><div class="line">      &#125;</div><div class="line">      next();</div><div class="line">    &#125;);</div><div class="line">  &#125;</div><div class="line">  myCo(gen).then((data) =&gt; console.log(&quot;myCo: &quot;, data));</div></pre></td></tr></table></figure>
-<ul>
-<li>async + await 是 generator + co 的语法糖</li>
-<li>express 和 koa 中间件原理也是通过 next 来顺序执行数组中的回调函数。</li>
-</ul>
-<h3 id="控制请求并发个数"><a href="#控制请求并发个数" class="headerlink" title="控制请求并发个数"></a>控制请求并发个数</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div></pre></td><td class="code"><pre><div class="line">let urls = [&#123;status:&apos;wait&apos; &#125;,&#123;status:&apos;wait&apos; &#125;,&#123;status:&apos;wait&apos; &#125;,&#123;status:&apos;wait&apos; &#125;,&#123;status:&apos;wait&apos; &#125;,&#123;status:&apos;wait&apos; &#125;,&#123;status:&apos;wait&apos; &#125;,&#123;status:&apos;wait&apos; &#125;,&#123;status:&apos;wait&apos; &#125;,&#123;status:&apos;wait&apos; &#125;],</div><div class="line">		max = 3,</div><div class="line">		counter = 0,</div><div class="line">		retry = new Array(10).fill(0);</div><div class="line">	const request = (urls, max)=&gt;&#123;</div><div class="line">		return new Promise((resolve, reject)=&gt;&#123;</div><div class="line">			let len = urls.length;</div><div class="line">			const ajax = (config)=&gt;&#123;</div><div class="line">				return new Promise((resolve, reject)=&gt;&#123;</div><div class="line">					setTimeout(()=&gt;&#123;</div><div class="line">						// resolve(&apos;ok&apos;)</div><div class="line">						console.log(&apos;loading: &apos;,config.i)</div><div class="line">						if(Math.random()&gt;.3)&#123;</div><div class="line">							resolve(&apos;ok&apos;)</div><div class="line">						&#125;else&#123;</div><div class="line">							reject(&apos;error&apos;)</div><div class="line">						&#125;</div><div class="line">					&#125;, 1000)</div><div class="line">				&#125;)</div><div class="line">			&#125;</div><div class="line">			const upload = ()=&gt;&#123;</div><div class="line">				console.log(&apos;再次开启max: &apos;,max)</div><div class="line">				while(max &amp;&amp; counter &lt; len)&#123;</div><div class="line">					max--; // 只能在这 max--, 写到 while判断会再次减1</div><div class="line">					const i = urls.findIndex(v=&gt;v.status==&apos;wait&apos;|| v.status==&apos;error&apos;)</div><div class="line">					urls[i].status = &apos;uploading&apos;</div><div class="line">					ajax(&#123;i&#125;)</div><div class="line">					.then(data=&gt;&#123;</div><div class="line">						console.log(&apos;ok thunk index: &apos;,i)</div><div class="line">						urls[i].status = &apos;done&apos;</div><div class="line">						max++;</div><div class="line">						counter++;</div><div class="line">						if(counter === len)&#123;</div><div class="line">							console.log(&apos;finish urls: &apos;,urls)</div><div class="line">							resolve()</div><div class="line">						&#125; else &#123;</div><div class="line">							upload();</div><div class="line">						&#125;</div><div class="line">					&#125;)</div><div class="line">					.catch(()=&gt;&#123;</div><div class="line">						urls[i].status = &apos;error&apos;</div><div class="line">						retry[i]++</div><div class="line">						console.log(&apos;error thunk index: &apos;,i, &apos;retry times: &apos;,retry[i])</div><div class="line">						if(retry[i]&gt;=2)&#123;</div><div class="line">							// 某个下载失败</div><div class="line">			                console.log(&apos;fail thunk index: &apos;,i)</div><div class="line">			                reject()</div><div class="line">			            &#125;</div><div class="line">			            max++;</div><div class="line">			            upload()</div><div class="line">					&#125;)</div><div class="line">				&#125;</div><div class="line">			&#125;</div><div class="line">			upload()</div><div class="line">		&#125;)</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	request(urls, max)</div></pre></td></tr></table></figure>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/08/30/札记/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/16/">16</a><a class="extend next" rel="next" href="/page/4/">Next &raquo;</a>
+      <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/17/">17</a><a class="extend next" rel="next" href="/page/4/">Next &raquo;</a>
     </nav>
   
 
@@ -575,6 +555,14 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">canvas</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">开源</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Node.js</a>
               </li>
              
@@ -592,14 +580,6 @@ var _hmt = _hmt || [];
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">react</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">canvas</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">开源</a>
               </li>
              
               <li class="article-tag-list-item">
