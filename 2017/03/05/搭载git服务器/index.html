@@ -8,20 +8,22 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>搭载git服务器 | zhangzs的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="要是有人再问我会不会搭服务器，我就问是什么服务器？tomcat、weblogic、solr还是其它?下面介绍的是在ubuntu-16.04.2下搭载git服务器，之所以选择这个版本是因为要运行nodeJs。
+  <meta name="description" content="为什么要换系统呢，不换 node版本 或 插件版本
 Ubuntu下搭载git服务器先给几个参考链接，我也是参考这里的。
 链接一   链接二   链接三   链接四 
 首先你待有个Ubuntu系统
-这里推荐用u盘安装。开始没用u盘安装，好久都没有">
+这里推荐用u盘安装。开始没用u盘安装，好久都没有安装成功。最后用u盘也就半个小时解决。
+调出终端输入命令123sudo apt-get install gitsudo apt-get install op">
 <meta property="og:type" content="article">
 <meta property="og:title" content="搭载git服务器">
 <meta property="og:url" content="http://yoursite.com/2017/03/05/搭载git服务器/index.html">
 <meta property="og:site_name" content="zhangzs的博客">
-<meta property="og:description" content="要是有人再问我会不会搭服务器，我就问是什么服务器？tomcat、weblogic、solr还是其它?下面介绍的是在ubuntu-16.04.2下搭载git服务器，之所以选择这个版本是因为要运行nodeJs。
+<meta property="og:description" content="为什么要换系统呢，不换 node版本 或 插件版本
 Ubuntu下搭载git服务器先给几个参考链接，我也是参考这里的。
 链接一   链接二   链接三   链接四 
 首先你待有个Ubuntu系统
-这里推荐用u盘安装。开始没用u盘安装，好久都没有">
+这里推荐用u盘安装。开始没用u盘安装，好久都没有安装成功。最后用u盘也就半个小时解决。
+调出终端输入命令123sudo apt-get install gitsudo apt-get install op">
 <meta property="og:image" content="http://yoursite.com/assets/blogImg/git_server/gs_1.png">
 <meta property="og:image" content="http://yoursite.com/assets/blogImg/git_server/gs_2.png">
 <meta property="og:image" content="http://yoursite.com/assets/blogImg/git_server/gs_3.png">
@@ -32,14 +34,15 @@ Ubuntu下搭载git服务器先给几个参考链接，我也是参考这里的�
 <meta property="og:image" content="http://yoursite.com/assets/blogImg/git_server/gs_8.png">
 <meta property="og:image" content="http://yoursite.com/assets/blogImg/git_server/gs_9.png">
 <meta property="og:image" content="http://yoursite.com/assets/blogImg/git_server/gs_10.png">
-<meta property="og:updated_time" content="2018-04-15T09:00:53.995Z">
+<meta property="og:updated_time" content="2021-07-05T23:05:52.296Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="搭载git服务器">
-<meta name="twitter:description" content="要是有人再问我会不会搭服务器，我就问是什么服务器？tomcat、weblogic、solr还是其它?下面介绍的是在ubuntu-16.04.2下搭载git服务器，之所以选择这个版本是因为要运行nodeJs。
+<meta name="twitter:description" content="为什么要换系统呢，不换 node版本 或 插件版本
 Ubuntu下搭载git服务器先给几个参考链接，我也是参考这里的。
 链接一   链接二   链接三   链接四 
 首先你待有个Ubuntu系统
-这里推荐用u盘安装。开始没用u盘安装，好久都没有">
+这里推荐用u盘安装。开始没用u盘安装，好久都没有安装成功。最后用u盘也就半个小时解决。
+调出终端输入命令123sudo apt-get install gitsudo apt-get install op">
 <meta name="twitter:image" content="http://yoursite.com/assets/blogImg/git_server/gs_1.png">
   
     <link rel="alternative" href="/atom.xml" title="zhangzs的博客" type="application/atom+xml">
@@ -200,7 +203,7 @@ Ubuntu下搭载git服务器先给几个参考链接，我也是参考这里的�
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>要是有人再问我<code>会不会搭服务器</code>，我就问是什么服务器？tomcat、weblogic、solr还是其它?下面介绍的是在ubuntu-16.04.2下搭载git服务器，之所以选择这个版本是因为要运行nodeJs。</p>
+        <p>为什么要换系统呢，不换 node版本 或 插件版本</p>
 <h2 id="Ubuntu下搭载git服务器"><a href="#Ubuntu下搭载git服务器" class="headerlink" title="Ubuntu下搭载git服务器"></a>Ubuntu下搭载git服务器</h2><p>先给几个参考链接，我也是参考这里的。</p>
 <p><a href="http://blog.csdn.net/xsl1990/article/details/25486211" target="_blank" rel="external">链接一</a>   <a href="http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000/00137583770360579bc4b458f044ce7afed3df579123eca000" target="_blank" rel="external">链接二</a>   <a href="http://www.cnblogs.com/qianxudetianxia/p/4824536.html" target="_blank" rel="external">链接三</a>   <a href="http://blog.csdn.net/lyhdream/article/details/49561645" target="_blank" rel="external">链接四</a> </p>
 <h4 id="首先你待有个Ubuntu系统"><a href="#首先你待有个Ubuntu系统" class="headerlink" title="首先你待有个Ubuntu系统"></a>首先你待有个Ubuntu系统</h4><p><img src="/assets/blogImg/git_server/gs_1.png" alt="git服务器" title="git服务器"></p>
@@ -232,7 +235,6 @@ Ubuntu下搭载git服务器先给几个参考链接，我也是参考这里的�
 <li>解决每个步骤都需要输入git用户的密码。</li>
 <li>出于安全考虑，创建的git用户不允许登录shell。</li>
 </ul>
-<p>下一步可以试试集群。</p>
 
       
 
@@ -494,11 +496,7 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">canvas</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">开源</a>
+                <a href="javascript:void(0)" class="js-tag color1">react</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -518,7 +516,11 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">react</a>
+                <a href="javascript:void(0)" class="js-tag color2">canvas</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">开源</a>
               </li>
              
               <li class="article-tag-list-item">

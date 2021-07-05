@@ -155,6 +155,56 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-虚拟列表" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/07/06/虚拟列表/">虚拟列表</a>
+    </h1>
+  
+
+        
+        <a href="/2021/07/06/虚拟列表/" class="archive-article-date">
+  	<time datetime="2021-07-05T23:00:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-07-06</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/07/06/虚拟列表/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
     <article id="post-信息安全" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -221,6 +271,7 @@
 <li>如何防范</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">1. 添加验证码(体验不好)， 验证码可以防止并发量</div><div class="line">2. 判断来源  referer 防盗链</div><div class="line">3. token 表单提交的 token 和 session 中的 token 做对比</div></pre></td></tr></table></figure>
+<h4 id="易混淆"><a href="#易混淆" class="headerlink" title="易混淆"></a>易混淆</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">JWT: Json web token (JWT), 是为了在网络应用环境间传递声明而执行的一种基于JSON的开放标准（(RFC 7519).该token被设计为紧凑且安全的，特别适用于分布式站点的单点登录（SSO）场景。</div><div class="line">jwt 验证登陆</div><div class="line">let token = jwt.encode(非敏感信息) </div><div class="line">jwt.decode(token, secret) 解码校验token判断是否能登陆过</div><div class="line"></div><div class="line">JIT: JavaScript 程序最初都是被编译为字节码，通过解释器进行解释执行，解释执行能够获得更好的启动时间。某些被频繁执行的方法或者代码块，被认定为“热点代码”。在运行时, 会把这些热点代码编译成与本地平台相关的机器码，并且进行各种层次的优化，以提高执行效率。完成这个任务的编译器称为即时编译器（JIT编译器）。</div></pre></td></tr></table></figure>
 <h4 id="扩展"><a href="#扩展" class="headerlink" title="扩展"></a>扩展</h4><h3 id="sql-注入"><a href="#sql-注入" class="headerlink" title="sql 注入"></a>sql 注入</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">select * from user where username = &apos;&apos; and password = &apos; &apos; or &apos;1&apos; = &apos;1 &apos;</div></pre></td></tr></table></figure>
 <ul>
 <li>如何防范</li>
@@ -360,75 +411,6 @@
 
 
   
-    <article id="post-微前端应用" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/05/29/微前端应用/">微前端应用</a>
-    </h1>
-  
-
-        
-        <a href="/2021/05/29/微前端应用/" class="archive-article-date">
-  	<time datetime="2021-05-28T23:23:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-05-29</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h3><h5 id="在以前公司工作时，有几个不是特别友好的问题："><a href="#在以前公司工作时，有几个不是特别友好的问题：" class="headerlink" title="在以前公司工作时，有几个不是特别友好的问题："></a>在以前公司工作时，有几个不是特别友好的问题：</h5><ul>
-<li>1.二级域名不同，在与<code>存储小组</code>对接时涉及到token问题；</li>
-<li>2.项目的技术栈不同，有的是vue，有的是react。之前是通过不同二级域名解决；</li>
-<li>3.有一个公共项目，每次版本更新，所有项目都待上下线，虽然我们上线是前端直接点击Jenkins；</li>
-</ul>
-<p>在不断得工作和学习，自己想到了<code>完美的解决方案</code>。</p>
-<h3 id="微前端"><a href="#微前端" class="headerlink" title="微前端"></a>微前端</h3><ul>
-<li>微前端就是将不同的功能按照不同的维度拆分成多个子应用，通过主应用来加载这些子应用。还有后端的微服务是面向服务架构（SOA）的一种变体，把应用程序设计成一系列松耦合的细粒度服务，并通过轻量级的通信协议组织起来。</li>
-<li>使用微前端可以解决前两个问题</li>
-<li>公共项目版本更新的原理类似<code>协商缓存</code><h4 id="实现原理"><a href="#实现原理" class="headerlink" title="实现原理"></a>实现原理</h4></li>
-<li><p>应用的加载与切换</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">// 路由实现</div></pre></td></tr></table></figure>
-</li>
-<li><p>应用的隔离与通信</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">// 父子，子子应用通信</div><div class="line">父子通信 props</div><div class="line">子子通信 window对象，发布订阅模式</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>参考链接：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">https://blog.csdn.net/webyouxuan/article/details/107603165</div></pre></td></tr></table></figure></p>
-<h3 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h3><p>参考链接：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">https://mp.weixin.qq.com/s?__biz=MzI3NTM5NDgzOA==&amp;mid=2247496957&amp;idx=2&amp;sn=4020ee80490cb78b7215f3fd8e3bb7dc&amp;chksm=eb07cc84dc704592f91893620981863c5f0d3603e273e04bad109724b1d1ba7590594a2a4308&amp;mpshare=1&amp;scene=1&amp;srcid=0528HdOyZzGuc6ZcznDaTBXV&amp;sharer_sharetime=1623205674082&amp;sharer_shareid=addda33c4eab5e9d285d29057d1ba689#rd</div></pre></td></tr></table></figure></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/05/29/微前端应用/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/17/">17</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -536,11 +518,7 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">canvas</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">开源</a>
+                <a href="javascript:void(0)" class="js-tag color1">react</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -560,7 +538,11 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">react</a>
+                <a href="javascript:void(0)" class="js-tag color2">canvas</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">开源</a>
               </li>
              
               <li class="article-tag-list-item">
