@@ -176,10 +176,13 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h3 id="渲染方式"><a href="#渲染方式" class="headerlink" title="渲染方式"></a>渲染方式</h3><ul>
-<li>SSR</li>
-<li>CSR</li>
-<li>PreRender</li>
-<li>SSG</li>
+<li>CSR(浏览器)</li>
+<li>PreRender<ul>
+<li>SSR(不同用户结果不同)</li>
+<li>SSG(所以用户请求的结果都相同)</li>
+<li>模板静态化(提前生成文件)</li>
+</ul>
+</li>
 </ul>
 <h3 id="SSR实现"><a href="#SSR实现" class="headerlink" title="SSR实现"></a>SSR实现</h3>
       
@@ -467,6 +470,18 @@ var _hmt = _hmt || [];
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">canvas</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">开源</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">前端架构</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Node.js</a>
               </li>
              
@@ -480,18 +495,6 @@ var _hmt = _hmt || [];
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">xmapp</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">canvas</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">开源</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">前端架构</a>
               </li>
              
               <li class="article-tag-list-item">
