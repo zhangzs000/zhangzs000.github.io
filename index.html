@@ -171,7 +171,7 @@
 <li>CSR(浏览器)</li>
 <li>PreRender<ul>
 <li>SSR(不同用户结果不同)</li>
-<li>SSG(所以用户请求的结果都相同)</li>
+<li>SSG(所有用户请求的结果都相同)</li>
 <li>Freemarker模板静态化(提前生成文件)</li>
 </ul>
 </li>
@@ -324,7 +324,7 @@
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">1. 添加验证码(体验不好)， 验证码可以防止并发量</div><div class="line">2. 判断来源  referer 防盗链</div><div class="line">3. token 表单提交的 token 和 session 中的 token 做对比</div></pre></td></tr></table></figure>
 <h4 id="易混淆"><a href="#易混淆" class="headerlink" title="易混淆"></a>易混淆</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">JWT: Json web token (JWT), 是为了在网络应用环境间传递声明而执行的一种基于JSON的开放标准（(RFC 7519).该token被设计为紧凑且安全的，特别适用于分布式站点的单点登录（SSO）场景。</div><div class="line">jwt 验证登陆</div><div class="line">let token = jwt.encode(非敏感信息) </div><div class="line">jwt.decode(token, secret) 解码校验token判断是否能登陆过</div><div class="line"></div><div class="line">JIT: JavaScript 程序最初都是被编译为字节码，通过解释器进行解释执行，解释执行能够获得更好的启动时间。某些被频繁执行的方法或者代码块，被认定为“热点代码”。在运行时, 会把这些热点代码编译成与本地平台相关的机器码，并且进行各种层次的优化，以提高执行效率。完成这个任务的编译器称为即时编译器（JIT编译器）。</div></pre></td></tr></table></figure>
-<h4 id="扩展"><a href="#扩展" class="headerlink" title="扩展"></a>扩展</h4><h3 id="sql-注入"><a href="#sql-注入" class="headerlink" title="sql 注入"></a>sql 注入</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">select * from user where username = &apos;&apos; and password = &apos; &apos; or &apos;1&apos; = &apos;1 &apos;</div></pre></td></tr></table></figure>
+<h3 id="sql-注入"><a href="#sql-注入" class="headerlink" title="sql 注入"></a>sql 注入</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">select * from user where username = &apos;&apos; and password = &apos; &apos; or &apos;1&apos; = &apos;1 &apos;</div></pre></td></tr></table></figure>
 <ul>
 <li>如何防范</li>
 </ul>
@@ -467,6 +467,14 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">canvas</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">开源</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Node.js</a>
               </li>
              
@@ -488,14 +496,6 @@ var _hmt = _hmt || [];
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">canvas</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">开源</a>
               </li>
              
               <li class="article-tag-list-item">
