@@ -8,22 +8,26 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>搭载git服务器 | zhangzs的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="为什么要换系统呢，不换 node版本 或 插件版本
+  <meta name="description" content="服务器相关
 Ubuntu下搭载git服务器先给几个参考链接，我也是参考这里的。
 链接一   链接二   链接三   链接四 
 首先你待有个Ubuntu系统
 这里推荐用u盘安装。开始没用u盘安装，好久都没有安装成功。最后用u盘也就半个小时解决。
-调出终端输入命令123sudo apt-get install gitsudo apt-get install op">
+调出终端输入命令123sudo apt-get install gitsudo apt-get install openssh-server
+
+可以通过下面">
 <meta property="og:type" content="article">
 <meta property="og:title" content="搭载git服务器">
 <meta property="og:url" content="http://yoursite.com/2017/03/05/搭载git服务器/index.html">
 <meta property="og:site_name" content="zhangzs的博客">
-<meta property="og:description" content="为什么要换系统呢，不换 node版本 或 插件版本
+<meta property="og:description" content="服务器相关
 Ubuntu下搭载git服务器先给几个参考链接，我也是参考这里的。
 链接一   链接二   链接三   链接四 
 首先你待有个Ubuntu系统
 这里推荐用u盘安装。开始没用u盘安装，好久都没有安装成功。最后用u盘也就半个小时解决。
-调出终端输入命令123sudo apt-get install gitsudo apt-get install op">
+调出终端输入命令123sudo apt-get install gitsudo apt-get install openssh-server
+
+可以通过下面">
 <meta property="og:image" content="http://yoursite.com/assets/blogImg/git_server/gs_1.png">
 <meta property="og:image" content="http://yoursite.com/assets/blogImg/git_server/gs_2.png">
 <meta property="og:image" content="http://yoursite.com/assets/blogImg/git_server/gs_3.png">
@@ -34,15 +38,21 @@ Ubuntu下搭载git服务器先给几个参考链接，我也是参考这里的�
 <meta property="og:image" content="http://yoursite.com/assets/blogImg/git_server/gs_8.png">
 <meta property="og:image" content="http://yoursite.com/assets/blogImg/git_server/gs_9.png">
 <meta property="og:image" content="http://yoursite.com/assets/blogImg/git_server/gs_10.png">
-<meta property="og:updated_time" content="2021-12-09T00:59:25.556Z">
+<meta property="og:image" content="http://yoursite.com/assets/blogImg/git_server/g1.png">
+<meta property="og:image" content="http://yoursite.com/assets/blogImg/git_server/g2.png">
+<meta property="og:image" content="http://yoursite.com/assets/blogImg/git_server/g3.png">
+<meta property="og:image" content="http://yoursite.com/assets/blogImg/git_server/g4.png">
+<meta property="og:updated_time" content="2021-12-12T23:47:56.770Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="搭载git服务器">
-<meta name="twitter:description" content="为什么要换系统呢，不换 node版本 或 插件版本
+<meta name="twitter:description" content="服务器相关
 Ubuntu下搭载git服务器先给几个参考链接，我也是参考这里的。
 链接一   链接二   链接三   链接四 
 首先你待有个Ubuntu系统
 这里推荐用u盘安装。开始没用u盘安装，好久都没有安装成功。最后用u盘也就半个小时解决。
-调出终端输入命令123sudo apt-get install gitsudo apt-get install op">
+调出终端输入命令123sudo apt-get install gitsudo apt-get install openssh-server
+
+可以通过下面">
 <meta name="twitter:image" content="http://yoursite.com/assets/blogImg/git_server/gs_1.png">
   
     <link rel="alternative" href="/atom.xml" title="zhangzs的博客" type="application/atom+xml">
@@ -195,7 +205,7 @@ Ubuntu下搭载git服务器先给几个参考链接，我也是参考这里的�
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>为什么要换系统呢，不换 node版本 或 插件版本</p>
+        <p>服务器相关</p>
 <h2 id="Ubuntu下搭载git服务器"><a href="#Ubuntu下搭载git服务器" class="headerlink" title="Ubuntu下搭载git服务器"></a>Ubuntu下搭载git服务器</h2><p>先给几个参考链接，我也是参考这里的。</p>
 <p><a href="http://blog.csdn.net/xsl1990/article/details/25486211" target="_blank" rel="external">链接一</a>   <a href="http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000/00137583770360579bc4b458f044ce7afed3df579123eca000" target="_blank" rel="external">链接二</a>   <a href="http://www.cnblogs.com/qianxudetianxia/p/4824536.html" target="_blank" rel="external">链接三</a>   <a href="http://blog.csdn.net/lyhdream/article/details/49561645" target="_blank" rel="external">链接四</a> </p>
 <h4 id="首先你待有个Ubuntu系统"><a href="#首先你待有个Ubuntu系统" class="headerlink" title="首先你待有个Ubuntu系统"></a>首先你待有个Ubuntu系统</h4><p><img src="/assets/blogImg/git_server/gs_1.png" alt="git服务器" title="git服务器"></p>
@@ -227,7 +237,23 @@ Ubuntu下搭载git服务器先给几个参考链接，我也是参考这里的�
 <li>解决每个步骤都需要输入git用户的密码。</li>
 <li>出于安全考虑，创建的git用户不允许登录shell。</li>
 </ul>
-<h4 id="git文件存储地址"><a href="#git文件存储地址" class="headerlink" title="git文件存储地址"></a>git文件存储地址</h4>
+<h4 id="git文件存储地址"><a href="#git文件存储地址" class="headerlink" title="git文件存储地址"></a>git文件存储地址</h4><ul>
+<li>其实git的提交记录都存储在 <code>.git/objects</code> 下</li>
+</ul>
+<p><img src="/assets/blogImg/git_server/g1.png" alt="git服务器" title="git服务器"></p>
+<p><img src="/assets/blogImg/git_server/g2.png" alt="git服务器" title="git服务器"></p>
+<ul>
+<li>放入暂存区，git已经帮我们放入对象了，暂存区创建blob对象</li>
+</ul>
+<p><img src="/assets/blogImg/git_server/g3.png" alt="git服务器" title="git服务器"></p>
+<p><img src="/assets/blogImg/git_server/g4.png" alt="git服务器" title="git服务器"></p>
+<h4 id="服务器"><a href="#服务器" class="headerlink" title="服务器"></a>服务器</h4><h5 id="全文搜索服务器"><a href="#全文搜索服务器" class="headerlink" title="全文搜索服务器"></a>全文搜索服务器</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">solr、 Lucene</div></pre></td></tr></table></figure>
+<h5 id="Node-服务器"><a href="#Node-服务器" class="headerlink" title="Node 服务器"></a>Node 服务器</h5><h5 id="WEB应用服务器"><a href="#WEB应用服务器" class="headerlink" title="WEB应用服务器"></a>WEB应用服务器</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Tomcat、WebLogic</div><div class="line"></div><div class="line">集群</div></pre></td></tr></table></figure>
+<h4 id="容器"><a href="#容器" class="headerlink" title="容器"></a>容器</h4><ul>
+<li>容器的本质就是一个视图隔离、资源可限制、独立文件系统的进程集合，它将系统的其他资源隔离开来，具有自己独立的资源视图。<br>可以部署应用程序，并在上面运行的环境。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">Docker 应用容器： 容器技术虚拟化。</div><div class="line"></div><div class="line">Servlet容器：就是实现了Servlet技术规范的部署环境，它可以部署运行Servlet程序。</div><div class="line"></div><div class="line">WEB容器：可以部署多个WEB应用程序的环境。</div><div class="line"></div><div class="line">Java EE容器：实现了Java EE技术规范的部署环境。</div></pre></td></tr></table></figure>
+
       
 
       
@@ -496,6 +522,14 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">react</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Node.js</a>
               </li>
              
@@ -509,14 +543,6 @@ var _hmt = _hmt || [];
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">xmapp</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">react</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
               </li>
              
               <li class="article-tag-list-item">
