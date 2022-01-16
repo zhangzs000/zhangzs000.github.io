@@ -164,52 +164,6 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>[TOC]</p>
-<h3 id="编译器工作流"><a href="#编译器工作流" class="headerlink" title="编译器工作流"></a>编译器工作流</h3><ul>
-<li>解析<ul>
-<li>词法分析</li>
-<li>语法分析</li>
-</ul>
-</li>
-<li>遍历</li>
-<li>转化</li>
-<li>代码生成</li>
-</ul>
-<h4 id="解析"><a href="#解析" class="headerlink" title="解析"></a>解析</h4><ul>
-<li>解析(Parsing)解析是将最初原始的代码转换为一种更加抽象的表示(即AST)</li>
-<li><code>词法分析</code>接收原始代码,然后把它分割成一些token </li>
-<li><code>语法分析</code>接收之 前生成的token ， 把它们转换成一种抽象的表示AST(Vue与React互转)</li>
-</ul>
-<h6 id="词法分析-Lexical-Analysis"><a href="#词法分析-Lexical-Analysis" class="headerlink" title="词法分析(Lexical Analysis)"></a>词法分析(Lexical Analysis)</h6><ul>
-<li><code>词法分析</code>接收原始代码,然后把它分割成一些被称为token 的东西，这个过程是在词法分析器(Tokenizer或者Lexer)中完成的</li>
-<li><p>原始代码</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;h1 id=&quot;title&quot;&gt;hello world&lt;/h1&gt;</div></pre></td></tr></table></figure>
-</li>
-<li><p>token (分词)</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">Module &#123;</div><div class="line">  type: &apos;Program&apos;,</div><div class="line">  body:</div><div class="line">   [ ExpressionStatement &#123; type: &apos;ExpressionStatement&apos;, expression: [JSXElement] &#125; ],</div><div class="line">  sourceType: &apos;module&apos;,</div><div class="line">  tokens:</div><div class="line">   [ &#123; type: &apos;Punctuator&apos;, value: &apos;&lt;&apos; &#125;,</div><div class="line">     &#123; type: &apos;JSXIdentifier&apos;, value: &apos;h1&apos; &#125;,</div><div class="line">     &#123; type: &apos;JSXIdentifier&apos;, value: &apos;id&apos; &#125;,</div><div class="line">     &#123; type: &apos;Punctuator&apos;, value: &apos;=&apos; &#125;,</div><div class="line">     &#123; type: &apos;String&apos;, value: &apos;&quot;title&quot;&apos; &#125;,</div><div class="line">     &#123; type: &apos;Punctuator&apos;, value: &apos;&gt;&apos; &#125;,</div><div class="line">     &#123; type: &apos;JSXText&apos;, value: &apos;hello world&apos; &#125;,</div><div class="line">     &#123; type: &apos;Punctuator&apos;, value: &apos;&lt;&apos; &#125;,</div><div class="line">     &#123; type: &apos;Punctuator&apos;, value: &apos;/&apos; &#125;,</div><div class="line">     &#123; type: &apos;JSXIdentifier&apos;, value: &apos;h1&apos; &#125;,</div><div class="line">     &#123; type: &apos;Punctuator&apos;, value: &apos;&gt;&apos; &#125; ] &#125;</div></pre></td></tr></table></figure>
-</li>
-<li><p>实现方式(算法下一篇实现)</p>
-<ul>
-<li>有限状态机</li>
-<li>正则 </li>
-</ul>
-</li>
-</ul>
-<h6 id="语法分析-Syntactic-Analysis"><a href="#语法分析-Syntactic-Analysis" class="headerlink" title="语法分析(Syntactic Analysis)"></a>语法分析(Syntactic Analysis)</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  &quot;type&quot;: &quot;Program&quot;,</div><div class="line">  &quot;body&quot;: [</div><div class="line">    &#123;</div><div class="line">      &quot;type&quot;: &quot;ExpressionStatement&quot;,</div><div class="line">      &quot;expression&quot;: &#123;</div><div class="line">        &quot;type&quot;: &quot;JSXElement&quot;,</div><div class="line">        &quot;openingElement&quot;: &#123;</div><div class="line">          &quot;type&quot;: &quot;JSXOpeningElement&quot;,</div><div class="line">          &quot;name&quot;: &#123;</div><div class="line">            &quot;type&quot;: &quot;JSXIdentifier&quot;,</div><div class="line">            &quot;name&quot;: &quot;h1&quot;,</div><div class="line">          &#125;,</div><div class="line">          &quot;selfClosing&quot;: false,</div><div class="line">          &quot;attributes&quot;: [</div><div class="line">            &#123;</div><div class="line">              &quot;type&quot;: &quot;JSXAttribute&quot;,</div><div class="line">              &quot;name&quot;: &#123;</div><div class="line">                &quot;type&quot;: &quot;JSXIdentifier&quot;,</div><div class="line">                &quot;name&quot;: &quot;id&quot;,</div><div class="line">              &#125;,</div><div class="line">              &quot;value&quot;: &#123;</div><div class="line">                &quot;type&quot;: &quot;Literal&quot;,</div><div class="line">                &quot;value&quot;: &quot;title&quot;,</div><div class="line">                &quot;raw&quot;: &quot;\&quot;title\&quot;&quot;,</div><div class="line">              &#125;</div><div class="line">            &#125;</div><div class="line">          ]</div><div class="line">        &#125;,</div><div class="line">        &quot;children&quot;: [</div><div class="line">          &#123;</div><div class="line">            &quot;type&quot;: &quot;JSXText&quot;,</div><div class="line">            &quot;value&quot;: &quot;hello world&quot;,</div><div class="line">            &quot;raw&quot;: &quot;hello world&quot;</div><div class="line">          &#125;</div><div class="line">        ],</div><div class="line">        &quot;closingElement&quot;: &#123;</div><div class="line">          &quot;type&quot;: &quot;JSXClosingElement&quot;,</div><div class="line">          &quot;name&quot;: &#123;</div><div class="line">            &quot;type&quot;: &quot;JSXIdentifier&quot;,</div><div class="line">            &quot;name&quot;: &quot;h1&quot;,</div><div class="line">          &#125;,</div><div class="line">        &#125;,</div><div class="line">      &#125;,</div><div class="line">    &#125;</div><div class="line">  ],</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ul>
-<li>实现方式(算法下一篇实现)<ul>
-<li>递归下降算法</li>
-</ul>
-</li>
-</ul>
-<h4 id="遍历"><a href="#遍历" class="headerlink" title="遍历"></a>遍历</h4><ul>
-<li>对于上面的AST进行使用的是<code>深度优先遍历</code>。</li>
-</ul>
-<h4 id="转化"><a href="#转化" class="headerlink" title="转化"></a>转化</h4><ul>
-<li>它只是把AST拿过来然后对它做一些修改。</li>
-</ul>
-<h4 id="代码生成"><a href="#代码生成" class="headerlink" title="代码生成"></a>代码生成</h4><ul>
-<li>编译器的最后一个阶段是代码生成，根据AST来输出代码。</li>
-</ul>
 
       
 
@@ -436,7 +390,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2021 jonk
+    		&copy; 2022 jonk
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -529,6 +483,10 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">react</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Node.js</a>
               </li>
              
@@ -542,10 +500,6 @@ var _hmt = _hmt || [];
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">xmapp</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">react</a>
               </li>
              
               <li class="article-tag-list-item">
