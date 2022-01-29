@@ -8,39 +8,13 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>信息安全 | zhangzs的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="[TOC]
-12
-xss攻击什么是xss攻击
-XSS 即（Cross Site Scripting）中文名称为：跨站脚本攻击。
-
-xss攻击的分类反射型
-服务端返回的链接有恶意脚本
-1234服务端没有过滤返回的链接，比如 服务端返回ctx.body = &amp;apos;&amp;lt;script&amp;gt;alert(&amp;quot;反射型 XSS 攻击&amp;quot;)&amp;lt;/script&amp;gt;&amp;apos;;ht">
-<meta property="og:type" content="article">
+  <meta property="og:type" content="article">
 <meta property="og:title" content="信息安全">
 <meta property="og:url" content="http://yoursite.com/2021/06/28/信息安全/index.html">
 <meta property="og:site_name" content="zhangzs的博客">
-<meta property="og:description" content="[TOC]
-12
-xss攻击什么是xss攻击
-XSS 即（Cross Site Scripting）中文名称为：跨站脚本攻击。
-
-xss攻击的分类反射型
-服务端返回的链接有恶意脚本
-1234服务端没有过滤返回的链接，比如 服务端返回ctx.body = &amp;apos;&amp;lt;script&amp;gt;alert(&amp;quot;反射型 XSS 攻击&amp;quot;)&amp;lt;/script&amp;gt;&amp;apos;;ht">
-<meta property="og:image" content="http://yoursite.com/assets/blogImg/anquan/a1.png">
-<meta property="og:updated_time" content="2021-12-13T18:58:58.775Z">
+<meta property="og:updated_time" content="2022-01-29T03:35:06.730Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="信息安全">
-<meta name="twitter:description" content="[TOC]
-12
-xss攻击什么是xss攻击
-XSS 即（Cross Site Scripting）中文名称为：跨站脚本攻击。
-
-xss攻击的分类反射型
-服务端返回的链接有恶意脚本
-1234服务端没有过滤返回的链接，比如 服务端返回ctx.body = &amp;apos;&amp;lt;script&amp;gt;alert(&amp;quot;反射型 XSS 攻击&amp;quot;)&amp;lt;/script&amp;gt;&amp;apos;;ht">
-<meta name="twitter:image" content="http://yoursite.com/assets/blogImg/anquan/a1.png">
   
     <link rel="alternative" href="/atom.xml" title="zhangzs的博客" type="application/atom+xml">
   
@@ -188,60 +162,7 @@ xss攻击的分类反射型
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>[TOC]</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
-<h3 id="xss攻击"><a href="#xss攻击" class="headerlink" title="xss攻击"></a>xss攻击</h3><h4 id="什么是xss攻击"><a href="#什么是xss攻击" class="headerlink" title="什么是xss攻击"></a>什么是xss攻击</h4><ul>
-<li>XSS 即（Cross Site Scripting）中文名称为：跨站脚本攻击。</li>
-</ul>
-<h4 id="xss攻击的分类"><a href="#xss攻击的分类" class="headerlink" title="xss攻击的分类"></a>xss攻击的分类</h4><h5 id="反射型"><a href="#反射型" class="headerlink" title="反射型"></a>反射型</h5><ul>
-<li><p>服务端返回的链接有<code>恶意</code>脚本</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">服务端没有过滤返回的链接，比如 服务端返回</div><div class="line">ctx.body = &apos;&lt;script&gt;alert(&quot;反射型 XSS 攻击&quot;)&lt;/script&gt;&apos;;</div><div class="line">http://xxx/?redirect_to=javascript:alert(&apos;XSS&apos;);</div><div class="line">就注入恶意脚本</div></pre></td></tr></table></figure>
-</li>
-<li><p>如何防范</p>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">方式一：XSS 防御之 URL 编码</div><div class="line">返回的链接用 encodeURIComponent 执行</div><div class="line">eg: </div><div class="line">encodeURIComponent(&apos;https://www.baidu.com/&apos;)</div><div class="line">&quot;https%3A%2F%2Fwww.baidu.com%2F&quot;</div><div class="line">这个链接浏览器不识别</div><div class="line"></div><div class="line">方法二：</div><div class="line">// 根据项目情况进行过滤，禁止掉 &quot;javascript:&quot; 链接、非法 scheme 等</div><div class="line">allowSchemes = [&quot;http&quot;, &quot;https&quot;];</div><div class="line">valid = isValid(getParameter(&quot;redirect_to&quot;), allowSchemes);</div><div class="line"></div><div class="line">方法三：XSS 防御之 CSS 编码</div><div class="line">&lt;style&gt;body&#123;background-image: url(&quot;javascript:alert(&apos;xss&apos;)&quot;);&#125;&lt;/style&gt;</div><div class="line"></div><div class="line">方法四：开启CSP网页安全政策</div></pre></td></tr></table></figure>
-<h5 id="DOM-base"><a href="#DOM-base" class="headerlink" title="DOM-base"></a>DOM-base</h5><ul>
-<li><p>取出和执行<code>恶意代码</code>由浏览器端完成，属于前端 JavaScript 自身的安全漏洞，而其他两种 XSS 都属于服务端的安全漏洞。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">不基于后端的攻击，修改属性插入内容</div></pre></td></tr></table></figure>
-</li>
-<li><p>如何防范</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">对内容进行编码</div><div class="line">encodeURI</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<h5 id="存储型-持久型"><a href="#存储型-持久型" class="headerlink" title="存储型(持久型)"></a>存储型(持久型)</h5><ul>
-<li><p><code>恶意代码</code>提交到目标网站的数据库或服务器中</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">比如没有对输入框中的链接做过滤，便提交到数据库中</div></pre></td></tr></table></figure>
-</li>
-<li><p>如何防范</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">客户端传给服务器时，先过滤;</div><div class="line">服务端过滤;</div><div class="line">输出时过滤，转义;</div><div class="line">function html2Escape(sHtml) &#123;</div><div class="line"> return sHtml.replace(/[&lt;&gt;&amp;&quot;]/g,function(c)&#123;console.log(&apos;c: &apos;,c);</div><div class="line">   return &#123;&apos;&lt;&apos;:&apos;&amp;lt;&apos;,&apos;&gt;&apos;:&apos;&amp;gt;&apos;,&apos;&amp;&apos;:&apos;&amp;amp;&apos;,&apos;&quot;&apos;:&apos;&amp;quot;&apos;&#125;[c];</div><div class="line"> &#125;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<h5 id="XSS-防御之-URL-编码"><a href="#XSS-防御之-URL-编码" class="headerlink" title="XSS 防御之 URL 编码"></a>XSS 防御之 URL 编码</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">返回的链接用 encodeURIComponent 执行</div><div class="line">eg: </div><div class="line">encodeURIComponent(&apos;https://www.baidu.com/&apos;)</div><div class="line">&quot;https%3A%2F%2Fwww.baidu.com%2F&quot;</div><div class="line">这个链接浏览器不识别</div></pre></td></tr></table></figure>
-<h5 id="白名单"><a href="#白名单" class="headerlink" title="白名单"></a>白名单</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">// 根据项目情况进行过滤，禁止掉 &quot;javascript:&quot; 链接、非法 scheme 等</div><div class="line">allowSchemes = [&quot;http&quot;, &quot;https&quot;];</div><div class="line">valid = isValid(getParameter(&quot;redirect_to&quot;), allowSchemes);</div></pre></td></tr></table></figure>
-<h5 id="XSS-防御之-CSS-编码"><a href="#XSS-防御之-CSS-编码" class="headerlink" title="XSS 防御之 CSS 编码"></a>XSS 防御之 CSS 编码</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;style&gt;body&#123;background-image: url(&quot;javascript:alert(&apos;xss&apos;)&quot;);&#125;&lt;/style&gt;</div></pre></td></tr></table></figure>
-<h5 id="开启CSP网页安全政策"><a href="#开启CSP网页安全政策" class="headerlink" title="开启CSP网页安全政策"></a>开启CSP网页安全政策</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;meta http-equiv=&quot;Content-Security-Policy&quot; content=&quot;&quot;&gt; 等</div></pre></td></tr></table></figure>
-<h5 id="在用户提交时，由前端过滤输入，然后提交到后端。这样做是否可行呢？"><a href="#在用户提交时，由前端过滤输入，然后提交到后端。这样做是否可行呢？" class="headerlink" title="在用户提交时，由前端过滤输入，然后提交到后端。这样做是否可行呢？"></a>在用户提交时，由前端过滤输入，然后提交到后端。这样做是否可行呢？</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">答案是不可行。一旦攻击者绕过前端过滤，直接构造请求，就可以提交恶意代码了。</div></pre></td></tr></table></figure>
-<h3 id="csrf"><a href="#csrf" class="headerlink" title="csrf"></a>csrf</h3><h4 id="什么是-csrf-攻击"><a href="#什么是-csrf-攻击" class="headerlink" title="什么是 csrf 攻击"></a>什么是 csrf 攻击</h4><ul>
-<li>CSRF一般指跨站请求伪造。跨站请求伪造（英语：Cross-site request forgery）</li>
-</ul>
-<h4 id="csrf-攻击产生的前提"><a href="#csrf-攻击产生的前提" class="headerlink" title="csrf 攻击产生的前提"></a>csrf 攻击产生的前提</h4><ul>
-<li>表单提交，为了可用性考虑，浏览器的同源策略是不做限制的。</li>
-<li>同源策略限制内容有：Cookie、LocalStorage、IndexedDB 等存储性内容；DOM 节点，AJAX 请求不能发送。</li>
-</ul>
-<p><img src="/assets/blogImg/anquan/a1.png" alt="alt text" title="测试图片"></p>
-<ul>
-<li>如何防范</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">1. 添加验证码(体验不好)， 验证码可以防止并发量</div><div class="line">2. 判断来源  referer 防盗链</div><div class="line">3. token 表单提交的 token 和 session 中的 token 做对比</div></pre></td></tr></table></figure>
-<h4 id="易混淆"><a href="#易混淆" class="headerlink" title="易混淆"></a>易混淆</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">JWT: Json web token (JWT), 是为了在网络应用环境间传递声明而执行的一种基于JSON的开放标准（(RFC 7519).该token被设计为紧凑且安全的，特别适用于分布式站点的单点登录（SSO）场景。</div><div class="line">jwt 验证登陆</div><div class="line">let token = jwt.encode(非敏感信息) </div><div class="line">jwt.decode(token, secret) 解码校验token判断是否能登陆过</div><div class="line"></div><div class="line">JIT: JavaScript 程序最初都是被编译为字节码，通过解释器进行解释执行，解释执行能够获得更好的启动时间。某些被频繁执行的方法或者代码块，被认定为“热点代码”。在运行时, 会把这些热点代码编译成与本地平台相关的机器码，并且进行各种层次的优化，以提高执行效率。完成这个任务的编译器称为即时编译器（JIT编译器）。</div></pre></td></tr></table></figure>
-<h3 id="sql-注入"><a href="#sql-注入" class="headerlink" title="sql 注入"></a>sql 注入</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">select * from user where username = &apos;&apos; and password = &apos; &apos; or &apos;1&apos; = &apos;1 &apos;</div></pre></td></tr></table></figure>
-<ul>
-<li>如何防范</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">预编译，这样就不会出现拼串的问题了</div></pre></td></tr></table></figure>
-<p>参考链接：<br><a href="https://tech.meituan.com/2018/09/27/fe-security.html" target="_blank" rel="external">https://tech.meituan.com/2018/09/27/fe-security.html</a><br><a href="https://tech.meituan.com/2018/10/11/fe-security-csrf.html" target="_blank" rel="external">https://tech.meituan.com/2018/10/11/fe-security-csrf.html</a><br><a href="https://www.cnblogs.com/tugenhua0707/p/10909284.html" target="_blank" rel="external">https://www.cnblogs.com/tugenhua0707/p/10909284.html</a></p>
-
+        
       
 
       
@@ -487,6 +408,10 @@ var _hmt = _hmt || [];
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">前端架构</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Node.js</a>
               </li>
              
@@ -503,7 +428,7 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">前端架构</a>
+                <a href="javascript:void(0)" class="js-tag color1">react</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -512,10 +437,6 @@ var _hmt = _hmt || [];
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">开源</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">react</a>
               </li>
              
               <li class="article-tag-list-item">
