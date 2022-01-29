@@ -213,25 +213,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h3><h5 id="有几个问题："><a href="#有几个问题：" class="headerlink" title="有几个问题："></a>有几个问题：</h5><ul>
-<li>1.域名不同，在与<code>存储小组</code>对接时涉及到token问题、；</li>
-<li>2.项目的技术栈不同，有的是vue，有的是react。之前是通过不同二级域名解决，体验不是太好；</li>
-<li>3.有一个公共项目，每次版本更新，所有项目都待上下线，虽然我们上线是前端直接点击Jenkins；</li>
-</ul>
-<h3 id="微前端"><a href="#微前端" class="headerlink" title="微前端"></a>微前端</h3><ul>
-<li>微前端就是将不同的功能按照不同的维度拆分成多个子应用，通过主应用来加载这些子应用。还有后端的微服务是面向服务架构（SOA）的一种变体，把应用程序设计成一系列松耦合的细粒度服务，并通过轻量级的通信协议组织起来。</li>
-<li>使用微前端可以解决前两个问题</li>
-<li>公共项目版本更新的原理类似<code>协商缓存</code><h4 id="实现原理"><a href="#实现原理" class="headerlink" title="实现原理"></a>实现原理</h4></li>
-<li><p>应用的加载与切换</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">// 路由实现</div></pre></td></tr></table></figure>
-</li>
-<li><p>应用的隔离与通信</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">// 父子，子子应用通信</div><div class="line">父子通信 props</div><div class="line">子子通信 window对象，发布订阅模式</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>参考链接：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">https://blog.csdn.net/webyouxuan/article/details/107603165</div></pre></td></tr></table></figure></p>
-<h3 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h3><p>参考链接：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">https://mp.weixin.qq.com/s?__biz=MzI3NTM5NDgzOA==&amp;mid=2247496957&amp;idx=2&amp;sn=4020ee80490cb78b7215f3fd8e3bb7dc&amp;chksm=eb07cc84dc704592f91893620981863c5f0d3603e273e04bad109724b1d1ba7590594a2a4308&amp;mpshare=1&amp;scene=1&amp;srcid=0528HdOyZzGuc6ZcznDaTBXV&amp;sharer_sharetime=1623205674082&amp;sharer_shareid=addda33c4eab5e9d285d29057d1ba689#rd</div></pre></td></tr></table></figure></p>
-
+        
       
 
       
@@ -446,14 +428,6 @@ var _hmt = _hmt || [];
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">前端架构</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">react</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Node.js</a>
               </li>
              
@@ -470,11 +444,19 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">前端架构</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">canvas</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">开源</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">react</a>
               </li>
              
               <li class="article-tag-list-item">
