@@ -8,22 +8,13 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>https网站搭建 | zhangzs的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="nginx 配置集群123456789upstream servers &amp;#123;	server 127.0.0.1:3000;	server 127.0.0.1:4000;	server 127.0.0.1:5000;&amp;#125;location /api &amp;#123;	proxy_pass http:servers;&amp;#125;
-减少服务器，提高并发量提高单机每秒并发访问
-做好数据库优化，建">
-<meta property="og:type" content="article">
+  <meta property="og:type" content="article">
 <meta property="og:title" content="https网站搭建">
 <meta property="og:url" content="http://yoursite.com/2020/05/26/https网站搭建/index.html">
 <meta property="og:site_name" content="zhangzs的博客">
-<meta property="og:description" content="nginx 配置集群123456789upstream servers &amp;#123;	server 127.0.0.1:3000;	server 127.0.0.1:4000;	server 127.0.0.1:5000;&amp;#125;location /api &amp;#123;	proxy_pass http:servers;&amp;#125;
-减少服务器，提高并发量提高单机每秒并发访问
-做好数据库优化，建">
-<meta property="og:updated_time" content="2022-07-30T09:33:15.886Z">
+<meta property="og:updated_time" content="2022-07-30T09:37:03.500Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="https网站搭建">
-<meta name="twitter:description" content="nginx 配置集群123456789upstream servers &amp;#123;	server 127.0.0.1:3000;	server 127.0.0.1:4000;	server 127.0.0.1:5000;&amp;#125;location /api &amp;#123;	proxy_pass http:servers;&amp;#125;
-减少服务器，提高并发量提高单机每秒并发访问
-做好数据库优化，建">
   
     <link rel="alternative" href="/atom.xml" title="zhangzs的博客" type="application/atom+xml">
   
@@ -171,18 +162,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="nginx-配置集群"><a href="#nginx-配置集群" class="headerlink" title="nginx 配置集群"></a>nginx 配置集群</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">upstream servers &#123;</div><div class="line">	server 127.0.0.1:3000;</div><div class="line">	server 127.0.0.1:4000;</div><div class="line">	server 127.0.0.1:5000;</div><div class="line">&#125;</div><div class="line"></div><div class="line">location /api &#123;</div><div class="line">	proxy_pass http:servers;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="减少服务器，提高并发量"><a href="#减少服务器，提高并发量" class="headerlink" title="减少服务器，提高并发量"></a>减少服务器，提高并发量</h2><h3 id="提高单机每秒并发访问"><a href="#提高单机每秒并发访问" class="headerlink" title="提高单机每秒并发访问"></a>提高单机每秒并发访问</h3><ul>
-<li>做好数据库优化，建索引；配主从读写分离和数据库集群；优化主外键字段；事物优化； </li>
-<li>充分利用缓存，couchBase memcached redis mongodb 内存式数据库，或者 缓存服务；</li>
-<li>优化TCP 参数，JVM 参数， 内存分配；</li>
-</ul>
-<h2 id="k8s"><a href="#k8s" class="headerlink" title="k8s"></a>k8s</h2><ul>
-<li>Kubermetes 可以看作是用来<code>部署镜像</code>的平台；</li>
-<li>操作多台服务器，调度部署镜像；</li>
-<li>k8s 更容易部署集群。k8s 里面有个 proxy，就不用配置servers 了。</li>
-</ul>
-
+        
       
 
       
@@ -428,7 +408,7 @@ var _hmt = _hmt || [];
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">react</a>
+                <a href="javascript:void(0)" class="js-tag color5">前端架构</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -448,7 +428,7 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">前端架构</a>
+                <a href="javascript:void(0)" class="js-tag color1">react</a>
               </li>
              
               <li class="article-tag-list-item">
