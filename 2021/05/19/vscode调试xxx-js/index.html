@@ -8,16 +8,13 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>vscode调试xxx.js | zhangzs的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="调试 js文件vscode 版本: 1.56.2调试js文件时默认添加的配置是这样的123456789&amp;#123;      &amp;quot;type&amp;quot;: &amp;quot;pwa-node&amp;quot;,      &amp;quot;request&amp;quot;: &amp;quot;launch&amp;quot;,      &amp;quot;name&amp;quot;: &amp;quot;Launch Program&amp;quot;,">
-<meta property="og:type" content="article">
+  <meta property="og:type" content="article">
 <meta property="og:title" content="vscode调试xxx.js">
 <meta property="og:url" content="http://yoursite.com/2021/05/19/vscode调试xxx-js/index.html">
 <meta property="og:site_name" content="zhangzs的博客">
-<meta property="og:description" content="调试 js文件vscode 版本: 1.56.2调试js文件时默认添加的配置是这样的123456789&amp;#123;      &amp;quot;type&amp;quot;: &amp;quot;pwa-node&amp;quot;,      &amp;quot;request&amp;quot;: &amp;quot;launch&amp;quot;,      &amp;quot;name&amp;quot;: &amp;quot;Launch Program&amp;quot;,">
-<meta property="og:updated_time" content="2021-05-18T16:49:19.240Z">
+<meta property="og:updated_time" content="2022-11-14T04:34:08.171Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="vscode调试xxx.js">
-<meta name="twitter:description" content="调试 js文件vscode 版本: 1.56.2调试js文件时默认添加的配置是这样的123456789&amp;#123;      &amp;quot;type&amp;quot;: &amp;quot;pwa-node&amp;quot;,      &amp;quot;request&amp;quot;: &amp;quot;launch&amp;quot;,      &amp;quot;name&amp;quot;: &amp;quot;Launch Program&amp;quot;,">
   
     <link rel="alternative" href="/atom.xml" title="zhangzs的博客" type="application/atom+xml">
   
@@ -165,20 +162,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="调试-js文件"><a href="#调试-js文件" class="headerlink" title="调试 js文件"></a>调试 js文件</h3><h4 id="vscode-版本-1-56-2"><a href="#vscode-版本-1-56-2" class="headerlink" title="vscode 版本: 1.56.2"></a>vscode 版本: 1.56.2</h4><p>调试js文件时默认添加的配置是这样的<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">      &quot;type&quot;: &quot;pwa-node&quot;,</div><div class="line">      &quot;request&quot;: &quot;launch&quot;,</div><div class="line">      &quot;name&quot;: &quot;Launch Program&quot;,</div><div class="line">      &quot;skipFiles&quot;: [</div><div class="line">        &quot;&lt;node_internals&gt;/**&quot;</div><div class="line">      ],</div><div class="line">      &quot;program&quot;: &quot;$&#123;workspaceFolder&#125;/crawl/compiler/src/parser.js&quot;</div><div class="line">    &#125;</div></pre></td></tr></table></figure></p>
-<p>你会发现不管怎么搞都走不到断点，这是<code>为什么</code>呢？？？？？？其实你只需要修改 type 参数就可以了。</p>
-<ul>
-<li><p>保证 type 和 路径正确，可以调试</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">      &quot;type&quot;: &quot;node&quot;,</div><div class="line">      &quot;request&quot;: &quot;launch&quot;,</div><div class="line">      &quot;name&quot;: &quot;Launch Program&quot;,</div><div class="line">      &quot;skipFiles&quot;: [</div><div class="line">        &quot;&lt;node_internals&gt;/**&quot;</div><div class="line">      ],</div><div class="line">      &quot;program&quot;: &quot;$&#123;workspaceFolder&#125;/crawl/compiler/src/parser.js&quot;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
-</li>
-<li><p>修改 settings.json<br>去除掉 <code>&quot;debug.javascript.usePreview&quot;: false,</code>后发现，即使 “type”: “node” 都走不了断点，不好使。</p>
-</li>
-<li><p>并且 debugger 运行时必须选择 Launch Progrem 。难道要和 launch.json 中的name 值一致？</p>
-</li>
-</ul>
-<h4 id="另一台-mac"><a href="#另一台-mac" class="headerlink" title="另一台 mac"></a>另一台 mac</h4><p>但是我换另一台mac笔记本配置如下，却是可以正常 debugger 的，那我就不知道为什么了：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">      &quot;name&quot;: &quot;Launch Program&quot;,</div><div class="line">      &quot;program&quot;: &quot;$&#123;workspaceFolder&#125;/compiler/src/parser.js&quot;,</div><div class="line">      &quot;request&quot;: &quot;launch&quot;,</div><div class="line">      &quot;skipFiles&quot;: [</div><div class="line">        &quot;&lt;node_internals&gt;/**&quot;</div><div class="line">      ],</div><div class="line">      &quot;type&quot;: &quot;pwa-node&quot;</div><div class="line">    &#125;</div></pre></td></tr></table></figure></p>
-<p>node 和 pwa-node的区别：<br><a href="https://segmentfault.com/q/1010000023049217?utm_source=tag-newest" target="_blank" rel="external">https://segmentfault.com/q/1010000023049217?utm_source=tag-newest</a></p>
-
+        
       
 
       
@@ -448,15 +432,15 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">canvas</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">开源</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
               </li>
              
               <li class="article-tag-list-item">

@@ -163,41 +163,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="网上偶然看见一道题"><a href="#网上偶然看见一道题" class="headerlink" title="网上偶然看见一道题"></a>网上偶然看见一道题</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">const delay = (ms) =&gt; new Promise((resolve) =&gt; setTimeout(resolve, ms));</div><div class="line">const subFlow = createFlow([() =&gt; delay(1000).then(() =&gt; log(&quot;c&quot;))]);</div><div class="line"></div><div class="line">createFlow([</div><div class="line">  () =&gt; log(&quot;a&quot;),</div><div class="line">  () =&gt; log(&quot;b&quot;),</div><div class="line">  subFlow,</div><div class="line">  [() =&gt; delay(1000).then(() =&gt; log(&quot;d&quot;)), () =&gt; log(&quot;e&quot;)],</div><div class="line">]).run(() =&gt; &#123;</div><div class="line">  console.log(&quot;done&quot;);</div><div class="line">&#125;);</div><div class="line">// 需要按照 a,b,延迟1秒,c,延迟1秒,d,e, done 的顺序打印复制代码</div><div class="line">按照上面的测试用例，实现 createFlow：</div><div class="line">1.flow 是指一系列 effects 组成的逻辑片段。</div><div class="line">2.flow 支持嵌套。</div><div class="line">3.effects 的执行只需要支持串行。</div></pre></td></tr></table></figure>
-<ul>
-<li>如果是异步串行呢，想到的就是用next函数了，</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">const log = console.log;</div><div class="line">function createFlow(effects)&#123;</div><div class="line">	effects = effects.flat();</div><div class="line">	return &#123;</div><div class="line">		async run (cb)&#123;</div><div class="line">			for (let i = 0; i &lt; effects.length; i++) &#123;</div><div class="line">				if(effects[i].run)&#123;</div><div class="line">					await effects[i].run()</div><div class="line">				&#125; else &#123;</div><div class="line">					await effects[i]()</div><div class="line">				&#125;</div><div class="line">			&#125;</div><div class="line">			cb &amp;&amp; cb()</div><div class="line">		&#125;</div><div class="line">	&#125; </div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ul>
-<li><code>async await</code>通过 babel 转义成 generator</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">// 测试代码</div><div class="line">async function test()&#123;</div><div class="line">  await 1</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">// 测试代码转义后</div><div class="line">// https://babeljs.io/</div><div class="line">...</div><div class="line"></div><div class="line">function _test() &#123;</div><div class="line">  _test = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() &#123;</div><div class="line">    return regeneratorRuntime.wrap(function _callee$(_context) &#123;</div><div class="line">      while (1) &#123;</div><div class="line">        switch (_context.prev = _context.next) &#123;</div><div class="line">          case 0:</div><div class="line">            _context.next = 2;</div><div class="line">            return 1;</div><div class="line"></div><div class="line">          case 2:</div><div class="line">          case &quot;end&quot;:</div><div class="line">            return _context.stop();</div><div class="line">        &#125;</div><div class="line">      &#125;</div><div class="line">    &#125;, _callee);</div><div class="line">  &#125;));</div></pre></td></tr></table></figure>
-<ul>
-<li>而 generator 内部实现也是通过 <code>next</code> 函数执行， 就是下面的 <code>_next</code></li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">...</div><div class="line"></div><div class="line">function asyncGeneratorStep(</div><div class="line">        gen,</div><div class="line">        resolve,</div><div class="line">        reject,</div><div class="line">        _next,</div><div class="line">        _throw,</div><div class="line">        key,</div><div class="line">        arg</div><div class="line">      ) &#123;</div><div class="line">        try &#123;</div><div class="line">          var info = gen[key](arg);</div><div class="line">          var value = info.value;</div><div class="line">        &#125; catch (error) &#123;</div><div class="line">          reject(error);</div><div class="line">          return;</div><div class="line">        &#125;</div><div class="line">        if (info.done) &#123;</div><div class="line">          resolve(value);</div><div class="line">        &#125; else &#123;</div><div class="line">          Promise.resolve(value).then(_next, _throw);</div><div class="line">        &#125;</div><div class="line">      &#125;</div></pre></td></tr></table></figure>
-<ul>
-<li>将下面 generator 测试函数babel 编译后, 发现确实是和 <code>async + await</code>一样都用了 <code>regeneratorRuntime</code></li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">function *test()&#123;</div><div class="line">        let n1 = yield new Promise(r=&gt;setTimeout(()=&gt;r(1), 1000));</div><div class="line">        let n2 = yield new Promise(r=&gt;setTimeout(()=&gt;r(2+n1), 1000));</div><div class="line">        return n2</div><div class="line">    &#125;  </div><div class="line">    const gen = test()</div><div class="line">    let &#123; value, done &#125; = gen.next();</div><div class="line">    value.then((data) =&gt; &#123;</div><div class="line">        console.log(&apos;then: &apos;,data);</div><div class="line">        let &#123; value, done &#125; = gen.next(data);</div><div class="line">        value.then(function (data) &#123;</div><div class="line">            console.log(&apos;then: &apos;,data);</div><div class="line">        &#125;);</div><div class="line">    &#125;);</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">...</div><div class="line">return regeneratorRuntime.wrap(function test$(_context) &#123;</div><div class="line">    while (1) &#123;</div><div class="line">      switch (_context.prev = _context.next) &#123;</div><div class="line">        case 0:</div><div class="line">          _context.next = 2;</div><div class="line">          return new Promise(function (r) &#123;</div><div class="line">            return setTimeout(function () &#123;</div><div class="line">              return r(1);</div><div class="line">            &#125;, 1000);</div><div class="line">          &#125;);</div><div class="line"></div><div class="line">        case 2:</div><div class="line">          n1 = _context.sent;</div><div class="line">          _context.next = 5;</div><div class="line">          return new Promise(function (r) &#123;</div><div class="line">            return setTimeout(function () &#123;</div><div class="line">              return r(2 + n1);</div><div class="line">            &#125;, 1000);</div><div class="line">          &#125;);</div><div class="line">  ......</div></pre></td></tr></table></figure>
-<ul>
-<li>generator 函数执行又会产生一个<code>迭代器</code>, 例如下面2 函数是等价的</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">let arr = [...&#123;0: 1, 1: 2, 2: 3,length: 3,</div><div class="line">        [Symbol.iterator]:function()&#123;</div><div class="line">            let i = 0;</div><div class="line">            return &#123;</div><div class="line">                next: ()=&gt;&#123;</div><div class="line">                    return i&gt;this.length? &#123;done: true, value: undefined&#125; : &#123;done: false, value: this[i++]&#125;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    </div><div class="line">    &#125;]</div><div class="line">    for(let e of arr)&#123;</div><div class="line">        console.log(&apos;e: &apos;, e)</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">let arr = [...&#123;0: 1, 1: 2, 2: 3,length: 3,</div><div class="line">        [Symbol.iterator]: function*()&#123;</div><div class="line">            let i=0;</div><div class="line">            while(i!==this.length)&#123;</div><div class="line">                yield this[i++]</div><div class="line">            &#125;</div><div class="line">            yield this[i]</div><div class="line">        &#125;</div><div class="line">    </div><div class="line">    &#125;]</div><div class="line">    for(let e of arr)&#123;</div><div class="line">        console.log(&apos;e: &apos;, e)</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
-<ul>
-<li>上面在处理Promise的过程可以优化成 <code>co</code> 库的形式</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">function myCo(it) &#123;</div><div class="line">    return new Promise((resolve, reject) =&gt; &#123;</div><div class="line">      function next(r) &#123;</div><div class="line">        let &#123; value, done &#125; = it.next(r);</div><div class="line">        if (!done) &#123;</div><div class="line">          Promise.resolve(value).then((r) =&gt; &#123;</div><div class="line">            console.log(&quot;r: &quot;, r);</div><div class="line">            next(r);</div><div class="line">          &#125;);</div><div class="line">        &#125; else &#123;</div><div class="line">          resolve(value);</div><div class="line">        &#125;</div><div class="line">      &#125;</div><div class="line">      next();</div><div class="line">    &#125;);</div><div class="line">  &#125;</div><div class="line">  myCo(gen).then((data) =&gt; console.log(&quot;myCo: &quot;, data));</div></pre></td></tr></table></figure>
-<ul>
-<li>async + await 是 generator + co 的语法糖</li>
-<li>express 和 koa 中间件原理也是通过 next 来顺序执行数组中的回调函数。</li>
-</ul>
-<h3 id="redux-saga-实现"><a href="#redux-saga-实现" class="headerlink" title="redux-saga 实现"></a>redux-saga 实现</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">...</div></pre></td></tr></table></figure>
-<h3 id="控制请求并发个数"><a href="#控制请求并发个数" class="headerlink" title="控制请求并发个数"></a>控制请求并发个数</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div></pre></td><td class="code"><pre><div class="line">let urls = [&#123;status:&apos;wait&apos; &#125;,&#123;status:&apos;wait&apos; &#125;,&#123;status:&apos;wait&apos; &#125;,&#123;status:&apos;wait&apos; &#125;,&#123;status:&apos;wait&apos; &#125;,&#123;status:&apos;wait&apos; &#125;,&#123;status:&apos;wait&apos; &#125;,&#123;status:&apos;wait&apos; &#125;,&#123;status:&apos;wait&apos; &#125;,&#123;status:&apos;wait&apos; &#125;],</div><div class="line">		max = 3,</div><div class="line">		counter = 0,</div><div class="line">		retry = new Array(10).fill(0);</div><div class="line">	const request = (urls, max)=&gt;&#123;</div><div class="line">		return new Promise((resolve, reject)=&gt;&#123;</div><div class="line">			let len = urls.length;</div><div class="line">			const ajax = (config)=&gt;&#123;</div><div class="line">				return new Promise((resolve, reject)=&gt;&#123;</div><div class="line">					setTimeout(()=&gt;&#123;</div><div class="line">						// resolve(&apos;ok&apos;)</div><div class="line">						console.log(&apos;loading: &apos;,config.i)</div><div class="line">						if(Math.random()&gt;.3)&#123;</div><div class="line">							resolve(&apos;ok&apos;)</div><div class="line">						&#125;else&#123;</div><div class="line">							reject(&apos;error&apos;)</div><div class="line">						&#125;</div><div class="line">					&#125;, 1000)</div><div class="line">				&#125;)</div><div class="line">			&#125;</div><div class="line">			const upload = ()=&gt;&#123;</div><div class="line">				console.log(&apos;再次开启max: &apos;,max)</div><div class="line">				while(max &amp;&amp; counter &lt; len)&#123;</div><div class="line">					max--; // 只能在这 max--, 写到 while判断会再次减1</div><div class="line">					const i = urls.findIndex(v=&gt;v.status==&apos;wait&apos;|| v.status==&apos;error&apos;)</div><div class="line">					urls[i].status = &apos;uploading&apos;</div><div class="line">					ajax(&#123;i&#125;)</div><div class="line">					.then(data=&gt;&#123;</div><div class="line">						console.log(&apos;ok thunk index: &apos;,i)</div><div class="line">						urls[i].status = &apos;done&apos;</div><div class="line">						max++;</div><div class="line">						counter++;</div><div class="line">						if(counter === len)&#123;</div><div class="line">							console.log(&apos;finish urls: &apos;,urls)</div><div class="line">							resolve()</div><div class="line">						&#125; else &#123;</div><div class="line">							upload();</div><div class="line">						&#125;</div><div class="line">					&#125;)</div><div class="line">					.catch(()=&gt;&#123;</div><div class="line">						urls[i].status = &apos;error&apos;</div><div class="line">						retry[i]++</div><div class="line">						console.log(&apos;error thunk index: &apos;,i, &apos;retry times: &apos;,retry[i])</div><div class="line">						if(retry[i]&gt;=2)&#123;</div><div class="line">							// 某个下载失败</div><div class="line">			                console.log(&apos;fail thunk index: &apos;,i)</div><div class="line">			                reject()</div><div class="line">			            &#125;</div><div class="line">			            max++;</div><div class="line">			            upload()</div><div class="line">					&#125;)</div><div class="line">				&#125;</div><div class="line">			&#125;</div><div class="line">			upload()</div><div class="line">		&#125;)</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	request(urls, max)</div></pre></td></tr></table></figure>
-
+        
       
 
       
@@ -419,100 +385,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="amend-操作"><a href="#amend-操作" class="headerlink" title="amend 操作"></a>amend 操作</h3><ul>
-<li>对最近一次的 commit 信息做修改<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git commit --amend</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<h3 id="git-rebase-合并提交信息"><a href="#git-rebase-合并提交信息" class="headerlink" title="git rebase 合并提交信息"></a>git rebase 合并提交信息</h3><ul>
-<li><p>对以前的commit 信息做修改，就涉及到了变基操作 </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">// 这里的”-i“是指交互模式。就是说你可以干预rebase这个事务的过程，包括设置commit message，暂停commit等等。</div><div class="line">// xxx 是要修改提交信息的父级，也就是要修改提交信息下面的 hash值。</div><div class="line">git rebase -i xxx</div></pre></td></tr></table></figure>
-</li>
-<li><p>更改策略, 修改 hash 前面的关键字</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">p pick = use commit // 使用提交信息</div><div class="line">r reword = use commit, but edit commit message // 使用信息，但是编辑信息</div><div class="line">.....</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<p><img src="/assets/blogImg/rebase/rebase1.jpg" alt="alt text" title="测试图片"></p>
-<ul>
-<li>保存退出后，自动进如下一个交互，修改提交记录<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">// 修改提交信息</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<p><img src="/assets/blogImg/rebase/rebase2.jpg" alt="alt text" title="测试图片"></p>
-<ul>
-<li>查看修改后的状态<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git log --graph</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<p><img src="/assets/blogImg/rebase/rebase3.jpg" alt="alt text" title="测试图片"></p>
-<ul>
-<li><p>多个commit 合并为一个 commit</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">// xxx 仍然是父级 hash</div><div class="line">git rebase -i xxx</div></pre></td></tr></table></figure>
-</li>
-<li><p>将提交信息合并到上面提交</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">s squash  = use commit, but meld into pre commit // 合并到上面提交</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<p><img src="/assets/blogImg/rebase/rebase4.jpg" alt="alt text" title="测试图片"></p>
-<ul>
-<li>添加提交信息</li>
-</ul>
-<p><img src="/assets/blogImg/rebase/rebase5.jpg" alt="alt text" title="测试图片"></p>
-<ul>
-<li>查看修改后状态</li>
-</ul>
-<p><img src="/assets/blogImg/rebase/rebase6.jpg" alt="alt text" title="测试图片"></p>
-<ul>
-<li>合并不是连续的提交信息，仍然是使用那些策略<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">pick xxx</div><div class="line">s xxx1</div><div class="line">pick xxx2</div><div class="line">// 删除 xxx</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<h3 id="git-rebase-将自己的提交记录的多个分支合并成一条直线"><a href="#git-rebase-将自己的提交记录的多个分支合并成一条直线" class="headerlink" title="git rebase 将自己的提交记录的多个分支合并成一条直线"></a>git rebase 将自己的提交记录的多个分支合并成一条直线</h3><ul>
-<li>1.master分支当前情况</li>
-</ul>
-<p><img src="/assets/blogImg/rebase/r1/r1.png" alt="alt text" title="测试图片"></p>
-<ul>
-<li>2.切换到test分支，产生2个提交</li>
-</ul>
-<p><img src="/assets/blogImg/rebase/r1/r2.png" alt="alt text" title="测试图片"></p>
-<ul>
-<li>3.git rebase master(以master为基础，将feature分支上的修改增加到master分支上，并生成新的版本),以前有rebase操作可能导致效果不同。</li>
-</ul>
-<p><img src="/assets/blogImg/rebase/r1/r3.png" alt="alt text" title="测试图片"><br><img src="/assets/blogImg/rebase/r1/r4.png" alt="alt text" title="测试图片"></p>
-<ul>
-<li><p>3.1 修复冲突 git add .</p>
-</li>
-<li><p>3.2 git rebase –continue</p>
-</li>
-<li><p>4.切换到 master</p>
-</li>
-</ul>
-<p><img src="/assets/blogImg/rebase/r1/r5.png" alt="alt text" title="测试图片"></p>
-<ul>
-<li>4.1 git merge test</li>
-</ul>
-<p><img src="/assets/blogImg/rebase/r1/r6.png" alt="alt text" title="测试图片"></p>
-<ul>
-<li>5.删除 test 分支， test分支目前的记录</li>
-</ul>
-<p><img src="/assets/blogImg/rebase/r1/r7.png" alt="alt text" title="测试图片"></p>
-<ul>
-<li><p>5.1删除本地 test 分支</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git branch -d test</div></pre></td></tr></table></figure>
-</li>
-<li><p>5.2删除远程 test 分支</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git push origin --delete test</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<h3 id="git-rebase-将旧的提交记录直接合成一条线"><a href="#git-rebase-将旧的提交记录直接合成一条线" class="headerlink" title="git rebase 将旧的提交记录直接合成一条线"></a>git rebase 将旧的提交记录直接合成一条线</h3><ul>
-<li>1.查看原分支情况</li>
-</ul>
-<p><img src="/assets/blogImg/rebase/r1/r8.png" alt="alt text" title="测试图片"></p>
-<ul>
-<li>2.git rebase -i HEAD~n (合并最近n次提交)</li>
-</ul>
-<p><img src="/assets/blogImg/rebase/r1/r9.png" alt="alt text" title="测试图片"></p>
-<ul>
-<li>3.<code>根据提示</code>，从某个commit-id检出新分支，或 git checkout commit-id -b 新分支</li>
-</ul>
-<p><img src="/assets/blogImg/rebase/r1/r10.png" alt="alt text" title="测试图片"></p>
-
+        
       
 
       
@@ -669,15 +542,15 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">canvas</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">开源</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
               </li>
              
               <li class="article-tag-list-item">
